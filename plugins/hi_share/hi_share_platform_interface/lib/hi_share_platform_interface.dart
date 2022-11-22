@@ -1,7 +1,2 @@
-library hi_share_platform_interface;
-
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/hi_share_platform.dart';
+export 'src/method_channel_hi_share.dart';
