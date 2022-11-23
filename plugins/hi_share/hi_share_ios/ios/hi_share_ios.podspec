@@ -1,17 +1,13 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint hi_share_ios.podspec` to validate before publishing.
-#
 Pod::Spec.new do |s|
   s.name             = 'hi_share_ios'
   s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.summary          = 'Flutter plugin for native share.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+A Flutter plugin for making the underlying platform (Android or iOS) native share.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/tospery/flutter/tree/main/plugins/hi_share'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Yang Jianxiang' => 'tospery@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'

@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftHiShareIosPlugin: NSObject, FlutterPlugin {
+public class SwiftHiSharePlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "hi_share_ios", binaryMessenger: registrar.messenger())
-    let instance = SwiftHiShareIosPlugin()
+    let channel = FlutterMethodChannel(name: "plugins.tospery.com/hi_share_ios", binaryMessenger: registrar.messenger())
+    let instance = SwiftHiSharePlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

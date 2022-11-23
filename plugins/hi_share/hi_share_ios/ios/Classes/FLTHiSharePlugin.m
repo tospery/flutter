@@ -1,4 +1,4 @@
-#import "HiShareIosPlugin.h"
+#import "FLTHiSharePlugin.h"
 #if __has_include(<hi_share_ios/hi_share_ios-Swift.h>)
 #import <hi_share_ios/hi_share_ios-Swift.h>
 #else
@@ -8,8 +8,8 @@
 #import "hi_share_ios-Swift.h"
 #endif
 
-@implementation HiShareIosPlugin
+@implementation FLTHiSharePlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftHiShareIosPlugin registerWithRegistrar:registrar];
+  [SwiftHiSharePlugin registerWithRegistrar:registrar];
 }
 @end
