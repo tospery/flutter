@@ -1,8 +1,7 @@
-
-import 'hi_share_platform_interface.dart';
+import 'package:hi_share_platform_interface/hi_share_platform_interface.dart';
 
 class HiShare {
-  Future<String?> getPlatformVersion() {
-    return HiSharePlatform.instance.getPlatformVersion();
+  Future<bool> show() {
+    return HiSharePlatform.instance.show();
   }
 }

@@ -16,6 +16,6 @@ abstract class HiSharePlatform extends PlatformInterface {
   }
 
   Future<bool> show() {
-    throw UnimplementedError('show() has not been implemented.');
+    return _instance.show();
   }
 }
