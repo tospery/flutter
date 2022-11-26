@@ -17,7 +17,7 @@ class HiShareAndroidPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "hi_share_android")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "plugins.tospery.com/hi_share_android")
     channel.setMethodCallHandler(this)
   }
 

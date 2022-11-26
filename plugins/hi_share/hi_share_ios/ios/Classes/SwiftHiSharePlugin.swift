@@ -9,6 +9,14 @@ public class SwiftHiSharePlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    let vc = UIActivityViewController(
+        activityItems: [
+            "分享内容的标题",
+            URL(string: "https://github.com/tospery/flutter_hub")!
+        ],
+        applicationActivities: nil
+    )
+    UIApplication.shared.keyWindow!.rootViewController?.present(vc, animated: true, completion: nil)
+    result(false)
   }
 }
