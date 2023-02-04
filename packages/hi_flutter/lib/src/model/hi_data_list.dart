@@ -1,23 +1,24 @@
 import 'package:hi_flutter/hi_flutter.dart';
 
 class HiDataList<T> extends HiModel {
-  final bool? hasNext;
-  final int? count;
-  final List<T>? items;
+  final bool hasNext;
+  final int count;
+  final List<T> items;
 
   @override
-  bool get isValid => hasNext != null || count != null || items != null;
+  bool get isValid => true;
 
   const HiDataList({
-    this.hasNext,
-    this.count,
-    this.items,
+    this.hasNext = false,
+    this.count = 0,
+    this.items = const [],
   });
 
   factory HiDataList.fromJson(Map<String, dynamic> json) => HiDataList(
-        hasNext: hiBool(json.valueForKeys(['has_next', '!over'])),
-        count: hiInt(json.valueForKeys(['count', 'total'])),
-        items: json.valueForKeys(['items', 'datas']) as List<T>?,
+        hasNext: hiBool(json.valueForKeys(['has_next', '!over'])) ?? false,
+        count: hiInt(json.valueForKeys(['count', 'total'])) ?? 0,
+     //   items: json.valueForKeys(['items', 'datas']) as List<T>?,
+        items: (json.valueForKeys(['items', 'datas']) as List?)?.cast<T>() ?? [],
       );
 
   @override
