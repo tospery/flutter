@@ -5,11 +5,15 @@ class HiService extends GetConnect {
   void onInit() {
     super.onInit();
     httpClient.defaultDecoder = (data) {
-      var json = data as Map<String, dynamic>? ??
-          {
-            HiParameter.code: HiError.okCode,
-            HiParameter.data: data,
-          };
+      var json = Map<String, dynamic>();
+      if (data is Map<String, dynamic>) {
+        json = data;
+      } else {
+        json = {
+          HiParameter.code: HiError.okCode,
+          HiParameter.data: data,
+        };
+      }
       return HiResponse.fromJson(json);
     };
 

@@ -1,5 +1,6 @@
 import 'package:hi_flutter/hi_flutter.dart';
 
+// extends Error
 class HiError implements Exception {
   final int code;
   final String? message;

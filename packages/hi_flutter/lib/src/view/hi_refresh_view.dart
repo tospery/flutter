@@ -14,7 +14,7 @@ class HiRefreshView<C extends HiListController>
 
   const HiRefreshView({
     super.key,
-    this.enablePullRefresh = true,
+    this.enablePullRefresh = false,
     this.enableLoadingMore = false,
     this.tag,
     this.onPullRefresh,

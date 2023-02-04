@@ -16,19 +16,9 @@ class HiResponse extends Equatable {
   });
 
   factory HiResponse.fromJson(Map<String, dynamic> json) => HiResponse(
-        code: hiInt(
-          json.valueForKeys(
-            Get.find<HiConfiguration>().codeKeys ?? ['code'],
-          ),
-        ),
-        message: hiString(
-          json.valueForKeys(
-            Get.find<HiConfiguration>().messageKeys ?? ['message'],
-          ),
-        ),
-        data: json.valueForKeys(
-          Get.find<HiConfiguration>().dataKeys ?? ['data'],
-        ),
+        code: hiInt(json.valueForKeys(['code'],),),
+        message: hiString(json.valueForKeys(['message', 'msg'],),),
+        data: json.valueForKeys(['data'],),
         json: json,
       );
 
