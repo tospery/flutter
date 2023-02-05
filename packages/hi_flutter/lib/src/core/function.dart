@@ -216,13 +216,14 @@ Widget hiBlur({double? sigma, Widget? child}) {
   );
 }
 
-Future<bool?> toast(String message) {
-  Fluttertoast.cancel();
-  return Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.TOP,
-  );
+void toast(String message) {
+  // Fluttertoast.cancel();
+  // return Fluttertoast.showToast(
+  //   msg: message,
+  //   toastLength: Toast.LENGTH_LONG,
+  //   gravity: ToastGravity.TOP,
+  // );
+  Get.snackbar('', message);
 }
 
 showLoading({String? title}) {

@@ -9,6 +9,7 @@ class HiParameter {
   static const model = 'model';
   static const extra = 'extra';
   static const index = 'index';
+  static const pageSize = 'pageSize';
   static const arguments = 'arguments';
   static const username = 'username';
   static const hideNavBar = 'hideNavBar';

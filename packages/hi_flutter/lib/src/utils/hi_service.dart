@@ -10,7 +10,7 @@ class HiService extends GetConnect {
         json = data;
       } else {
         json = {
-          HiParameter.code: HiError.okCode,
+          HiParameter.code: HiResponse.ok,
           HiParameter.data: data,
         };
       }
@@ -23,6 +23,12 @@ class HiService extends GetConnect {
     });
     httpClient.addResponseModifier((request, response) {
       log('${request.url.path}(${response.statusCode}, ${response.statusText})\n${response.body}');
+      if (response.body is HiResponse) {
+        var data = (response.body as HiResponse).data;
+        if (data is List<dynamic>) {
+          log('items count: ${data.length}');
+        }
+      }
       return response;
     });
   }
@@ -43,7 +49,9 @@ class HiService extends GetConnect {
     }
     var base = response.body as HiResponse;
     if (!checkCode) {
-      return Future.value(returnData ? base.data : base.json);
+      // return Future.value(returnData ? base.data : base.json);
+      // var json = base.json;
+      return Future.value(base.json);
     }
     if (base.code != HiError.okCode) {
       return Future.error(

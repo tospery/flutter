@@ -9,9 +9,12 @@ extension RefreshControllerEx on RefreshController {
     } else if (mode == HiRequestMode.more) {
       loadComplete();
     }
-    if (!hasNext) {
-      loadNoData();
-    }
+    hasNext ? resetNoData() : loadNoData();
+    // if (hasNext) {
+    //   resetNoData();
+    // } else {
+    //   loadNoData();
+    // }
     // if (mode == HiRequestMode.refresh) {
     //   Get.toast(R.strings.pullRefreshSuccess.tr);
     // }

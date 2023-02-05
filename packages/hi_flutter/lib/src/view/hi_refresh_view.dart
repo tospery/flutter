@@ -82,8 +82,7 @@ class HiRefreshViewState extends State<HiRefreshView>
   _buildSuccessView() {
     return Obx(
       () => Visibility(
-        visible: widget.getController.items.isNotEmpty &&
-            widget.getController.error.value == null,
+        visible: widget.getController.items.isNotEmpty,
         child: ScrollConfiguration(
           behavior: HiOverScrollBehavior(),
           child: SmartRefresher(
@@ -104,7 +103,8 @@ class HiRefreshViewState extends State<HiRefreshView>
   _buildFailureView() {
     return Obx(
       () => Visibility(
-        visible: widget.getController.error.value != null,
+        visible: widget.getController.items.isEmpty &&
+            widget.getController.error.value != null,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -155,6 +155,7 @@ class HiRefreshViewState extends State<HiRefreshView>
 
   Widget _buildFooter(BuildContext context, LoadStatus? mode) {
     Widget footer;
+    log('更多状态: $mode');
     if (mode == LoadStatus.idle) {
       footer = Text(
         R.strings.loadingMoreIdle.tr,
