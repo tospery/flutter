@@ -63,7 +63,7 @@ class HiRefreshViewState extends State<HiRefreshView>
   _buildLoadingView() {
     return Obx(
       () => Visibility(
-        visible: widget.getController.items.isEmpty &&
+        visible: widget.getController.list.isEmpty &&
             widget.getController.error.value == null,
         child: SizedBox(
           width: 200,
@@ -82,7 +82,7 @@ class HiRefreshViewState extends State<HiRefreshView>
   _buildSuccessView() {
     return Obx(
       () => Visibility(
-        visible: widget.getController.items.isNotEmpty,
+        visible: widget.getController.list.isNotEmpty,
         child: ScrollConfiguration(
           behavior: HiOverScrollBehavior(),
           child: SmartRefresher(
@@ -103,7 +103,7 @@ class HiRefreshViewState extends State<HiRefreshView>
   _buildFailureView() {
     return Obx(
       () => Visibility(
-        visible: widget.getController.items.isEmpty &&
+        visible: widget.getController.list.isEmpty &&
             widget.getController.error.value != null,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../core/logger.dart';
 import '../core/datatype.dart';
 
 extension RefreshControllerEx on RefreshController {
@@ -9,6 +10,7 @@ extension RefreshControllerEx on RefreshController {
     } else if (mode == HiRequestMode.more) {
       loadComplete();
     }
+    log('hasNext-> $hasNext');
     hasNext ? resetNoData() : loadNoData();
     // if (hasNext) {
     //   resetNoData();

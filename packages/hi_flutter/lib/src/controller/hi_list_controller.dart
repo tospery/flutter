@@ -8,7 +8,7 @@ class HiListController<T> extends HiBaseController {
   var pageSize = 20;
   var requestMode = HiRequestMode.none.obs;
   RefreshController? refreshController;
-  RxList<T> items = <T>[].obs;
+  RxList<T> list = <T>[].obs;
   Rx<HiError?> error = Rx<HiError?>(null);
 
   @override
@@ -20,17 +20,35 @@ class HiListController<T> extends HiBaseController {
         parameters.boolForKey(HiParameter.canLoadMore) ?? false;
   }
 
-  void finish({List? items, bool? hasNext, HiError? error}) {
+  void finish({List<T>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
+
+    // if (mode != HiRequestMode.more) {
+    //   items.clear();
+    // }
+    // items.addAll(result);
+    if (this.requestMode.value != HiRequestMode.more) {
+      this.list.clear();
+    }
     if (this.error.value != null) {
       refreshController?.onFailure(requestMode.value);
       if (requestMode.value == HiRequestMode.more) {
         toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
       }
     } else {
+      // var next = (items?.length ?? 0) == this.pageSize;
+      // var aaa = items?.length ?? 0;
+      // if (aaa == this.pageSize) {
+      //   log('has next page');
+      // } else {
+      //   log('no more data');
+      // }
+      // var next = (items?.length ?? 0) == this.pageSize;
+       // log('next value = $next, $pageSize');
+      this.list.addAll(items ?? []);
       refreshController?.onSuccess(
           requestMode.value,
-          hasNext ?? ((items?.length ?? 0) >= this.pageSize),
+          hasNext ?? ((items?.length ?? 0) == this.pageSize),
       );
     }
     requestMode.value = HiRequestMode.none;
