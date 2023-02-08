@@ -10,16 +10,7 @@ extension RefreshControllerEx on RefreshController {
     } else if (mode == HiRequestMode.more) {
       loadComplete();
     }
-    log('hasNext-> $hasNext');
     hasNext ? resetNoData() : loadNoData();
-    // if (hasNext) {
-    //   resetNoData();
-    // } else {
-    //   loadNoData();
-    // }
-    // if (mode == HiRequestMode.refresh) {
-    //   Get.toast(R.strings.pullRefreshSuccess.tr);
-    // }
   }
 
   void onFailure(HiRequestMode mode) {
