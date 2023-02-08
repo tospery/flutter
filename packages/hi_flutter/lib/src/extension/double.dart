@@ -1,1 +1,0 @@
-extension DoubleEx on double {}
