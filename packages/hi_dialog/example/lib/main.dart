@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_dialog/hi_dialog.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    toast('this is message');
     setState(() {
       _counter++;
     });
