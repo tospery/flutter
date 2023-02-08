@@ -1,0 +1,34 @@
+class Strings {
+  final login = 'login';
+  final loading = 'loading';
+  final unknown = 'unknown';
+  final timeout = 'timeout';
+  final unlogin = 'unlogin';
+  final unauthed = 'unauthed';
+  final dataInvalid = 'dataInvalid';
+  final dataIsEmpty = 'dataIsEmpty';
+  final networkTitle = 'networkTitle';
+  final networkDisabled = 'networkDisabled';
+  final networkNotReachable = 'networkNotReachable';
+  final serverTitle = 'serverTitle';
+  final abnormalOperation = 'abnormalOperation';
+  final pullRefreshIdle = 'pullRefreshIdle';
+  final pullRefreshFreed = 'pullRefreshFreed';
+  final pullRefreshSuccess = 'pullRefreshSuccess';
+  final pullRefreshFailure = 'pullRefreshFailure';
+  final loadingMoreIdle = 'loadingMoreIdle';
+  final loadingMoreNoData = 'loadingMoreNoData';
+  final loadingMoreFailure = 'loadingMoreFailure';
+  // final appName = 'appName';
+  // final loadEmpty = 'loadEmpty';
+  // final setting = 'setting';
+  // final favorite = 'favorite';
+  // final share = 'share';
+  // final coin = 'coin';
+  // final signin = 'signin';
+  // final loginSuccess = 'loginSuccess';
+  // final loginFailure = 'loginFailure';
+  // final signinSuccess = 'signinSuccess';
+  // final signinFailure = 'signinFailure';
+  // final clickToLogin = 'clickToLogin';
+}

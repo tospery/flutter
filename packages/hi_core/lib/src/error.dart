@@ -1,3 +1,6 @@
+import 'resource/r.dart';
+import 'extension/object.dart';
+
 class HiError implements Exception {
   final int code;
   final String? message;
@@ -11,12 +14,12 @@ class HiError implements Exception {
 
   HiError(this.code, this.message, {this.data});
 
-  static HiAppError get unknown => HiAppError(1, R.strings.unknown.tr);
-  static HiAppError get timeout => HiAppError(2, R.strings.timeout.tr);
-  static HiAppError get unlogin => HiAppError(3, R.strings.unlogin.tr);
-  static HiAppError get unauthed => HiAppError(4, R.strings.unauthed.tr);
-  static HiAppError get dataInvalid => HiAppError(5, R.strings.dataInvalid.tr);
-  static HiAppError get dataIsEmpty => HiAppError(6, R.strings.dataIsEmpty.tr);
+  static HiAppError get unknown => HiAppError(1, R.strings.unknown);
+  static HiAppError get timeout => HiAppError(2, R.strings.timeout);
+  static HiAppError get unlogin => HiAppError(3, R.strings.unlogin);
+  static HiAppError get unauthed => HiAppError(4, R.strings.unauthed);
+  static HiAppError get dataInvalid => HiAppError(5, R.strings.dataInvalid);
+  static HiAppError get dataIsEmpty => HiAppError(6, R.strings.dataIsEmpty);
 
   @override
   String toString() {
@@ -28,20 +31,20 @@ class HiNetworkError extends HiError {
   HiNetworkError(super.code, super.message, {super.data});
 
   @override
-  String? get displayTitle => R.strings.networkTitle.tr;
+  String? get displayTitle => R.strings.networkTitle;
 
   @override
   String? get displayImage => R.assets.images.errorNetwork;
 
   static HiNetworkError get disabled =>
-      HiNetworkError(1, R.strings.networkDisabled.tr);
+      HiNetworkError(1, R.strings.networkDisabled);
   static HiNetworkError get unreachable =>
-      HiNetworkError(2, R.strings.networkNotReachable.tr);
+      HiNetworkError(2, R.strings.networkNotReachable);
 }
 
 class HiClientError extends HiError {
   @override
-  String? get displayTitle => R.strings.serverTitle.tr;
+  String? get displayTitle => R.strings.serverTitle;
 
   @override
   String? get displayImage => R.assets.images.errorServer;
@@ -51,7 +54,7 @@ class HiClientError extends HiError {
 
 class HiServerError extends HiError {
   @override
-  String? get displayTitle => R.strings.serverTitle.tr;
+  String? get displayTitle => R.strings.serverTitle;
 
   @override
   String? get displayImage => R.assets.images.errorServer;
@@ -63,5 +66,5 @@ class HiAppError extends HiError {
   HiAppError(super.code, super.message, {super.data});
 
   @override
-  String? get displayTitle => R.strings.abnormalOperation.tr;
+  String? get displayTitle => R.strings.abnormalOperation;
 }

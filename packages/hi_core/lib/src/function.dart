@@ -3,8 +3,11 @@
 // import 'package:get/get.dart';
 // import '../view/hi_cached_image.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:io';
+import 'dart:ui';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'extension/bool.dart';
 import 'extension/int.dart';
 import 'extension/string.dart';
@@ -167,7 +170,7 @@ SizedBox hiSpace({
     );
 
 void removeSystemTransparent(BuildContext context) {
-  if (!GetPlatform.isAndroid) {
+  if (!Platform.isAndroid) {
     return;
   }
   SystemChrome.setSystemUIOverlayStyle(
@@ -186,26 +189,26 @@ void hideKeyboard(BuildContext context) {
   }
 }
 
-Widget hiImage(String url, {double? width, double? height}) {
-  if (url.isEmpty) {
-    return Container();
-  }
-  if (url.startsWith('http')) {
-    return HiCachedImage(uri: url, width: width, height: height);
-  }
-  Widget? result;
-  try {
-    result = Image.asset(url, width: width, height: height);
-  } catch (e) {
-    var value = int.tryParse(url, radix: 16);
-    if (value != null) {
-      var data = IconData(value, fontFamily: 'MaterialIcons');
-      return Icon(data, size: width ?? height);
-    }
-    result = HiCachedImage(uri: url, width: width, height: height);
-  }
-  return result;
-}
+// Widget hiImage(String url, {double? width, double? height}) {
+//   if (url.isEmpty) {
+//     return Container();
+//   }
+//   if (url.startsWith('http')) {
+//     return HiCachedImage(uri: url, width: width, height: height);
+//   }
+//   Widget? result;
+//   try {
+//     result = Image.asset(url, width: width, height: height);
+//   } catch (e) {
+//     var value = int.tryParse(url, radix: 16);
+//     if (value != null) {
+//       var data = IconData(value, fontFamily: 'MaterialIcons');
+//       return Icon(data, size: width ?? height);
+//     }
+//     result = HiCachedImage(uri: url, width: width, height: height);
+//   }
+//   return result;
+// }
 
 Widget hiBlur({double? sigma, Widget? child}) {
   return BackdropFilter(
