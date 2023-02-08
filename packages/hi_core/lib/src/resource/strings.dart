@@ -1,14 +1,19 @@
 class Strings {
   final login = 'login';
   final loading = 'loading';
+  final none = 'none';
   final unknown = 'unknown';
   final timeout = 'timeout';
+  final navigation = 'navigation';
   final unlogin = 'unlogin';
   final unauthed = 'unauthed';
   final dataInvalid = 'dataInvalid';
   final dataIsEmpty = 'dataIsEmpty';
+  final userNotLoginedIn = 'userNotLoginedIn';
+  final userLoginExpired = 'userLoginExpired';
   final networkTitle = 'networkTitle';
   final networkDisabled = 'networkDisabled';
+  final networkNotConnected = 'networkNotConnected';
   final networkNotReachable = 'networkNotReachable';
   final serverTitle = 'serverTitle';
   final abnormalOperation = 'abnormalOperation';

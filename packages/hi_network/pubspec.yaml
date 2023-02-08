@@ -11,11 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-#  shared_preferences: 2.0.15
-#  sqflite: 2.0.3+1
-#  cv: 0.2.8+1
-#  hi_core:
-#    path: ../hi_core
+  get: 4.6.5
+  hi_core:
+    path: ../hi_core
 
 dev_dependencies:
   flutter_test:

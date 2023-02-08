@@ -1,7 +1,9 @@
 library hi_network;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:hi_core/hi_core.dart';
+export 'package:get/get.dart';
+export 'package:get/get_connect/http/src/request/request.dart';
+export 'src/list.dart';
+export 'src/provider.dart';
+export 'src/response.dart';
+export 'src/service.dart';

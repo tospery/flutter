@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_network/hi_network.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    var response = HiResponse();
+    log('response: $response');
     setState(() {
       _counter++;
     });

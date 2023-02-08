@@ -14,12 +14,16 @@ class HiError implements Exception {
 
   HiError(this.code, this.message, {this.data});
 
-  static HiAppError get unknown => HiAppError(1, R.strings.unknown);
-  static HiAppError get timeout => HiAppError(2, R.strings.timeout);
-  static HiAppError get unlogin => HiAppError(3, R.strings.unlogin);
-  static HiAppError get unauthed => HiAppError(4, R.strings.unauthed);
-  static HiAppError get dataInvalid => HiAppError(5, R.strings.dataInvalid);
-  static HiAppError get dataIsEmpty => HiAppError(6, R.strings.dataIsEmpty);
+  static HiError get none => HiError(0, R.strings.none);
+  static HiError get unknown => HiError(1, R.strings.unknown);
+  static HiError get timeout => HiError(2, R.strings.timeout);
+  static HiError get navigation => HiError(3, R.strings.navigation);
+  static HiError get dataInvalid => HiError(4, R.strings.dataInvalid);
+  static HiError get dataIsEmpty => HiError(5, R.strings.dataIsEmpty);
+  // static HiError get userNotLoginedIn => HiError(6, R.strings.userNotLoginedIn);
+  // static HiError get userLoginExpired => HiError(7, R.strings.userLoginExpired);
+  // static HiError get networkNotConnected => HiError(8, R.strings.networkNotConnected);
+  // static HiError get networkNotReachable => HiError(9, R.strings.networkNotReachable);
 
   @override
   String toString() {
@@ -42,14 +46,17 @@ class HiNetworkError extends HiError {
       HiNetworkError(2, R.strings.networkNotReachable);
 }
 
-class HiClientError extends HiError {
+class HiUserError extends HiError {
   @override
   String? get displayTitle => R.strings.serverTitle;
 
   @override
   String? get displayImage => R.assets.images.errorServer;
 
-  HiClientError(super.code, super.message, {super.data});
+  static HiUserError get unlogin => HiUserError(1, R.strings.unlogin);
+  static HiUserError get unauthed => HiUserError(2, R.strings.unauthed);
+
+  HiUserError(super.code, super.message, {super.data});
 }
 
 class HiServerError extends HiError {
@@ -68,3 +75,15 @@ class HiAppError extends HiError {
   @override
   String? get displayTitle => R.strings.abnormalOperation;
 }
+
+//
+// class HiClientError extends HiError {
+//   @override
+//   String? get displayTitle => R.strings.serverTitle;
+//
+//   @override
+//   String? get displayImage => R.assets.images.errorServer;
+//
+//   HiClientError(super.code, super.message, {super.data});
+// }
+//

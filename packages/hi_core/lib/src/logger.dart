@@ -1,13 +1,13 @@
 import 'package:logger/logger.dart';
 
 class HiLogTag {
-  static const core = 'HiCore';
-  static const cache = 'HiCache';
-  static const router = 'HiRouter';
-  static const net = 'HiNet';
-  static const tabBar = 'HiTabBar';
-  static const dialog = 'HiDialog';
-  static const frame = 'HiFrame';
+  static const core = 'Core';
+  static const cache = 'Cache';
+  static const router = 'Router';
+  static const network = 'Network';
+  static const tabBar = 'TabBar';
+  static const dialog = 'Dialog';
+  static const frame = 'Frame';
   static const flutter = 'HiFlutter';
 }
 
