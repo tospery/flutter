@@ -1,0 +1,23 @@
+name: hi_network
+description: network of hi_flutter.
+version: 0.0.1
+repository: https://github.com/tospery/flutter/tree/main/packages/hi_network
+issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_network%22
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+#  shared_preferences: 2.0.15
+#  sqflite: 2.0.3+1
+#  cv: 0.2.8+1
+#  hi_core:
+#    path: ../hi_core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
