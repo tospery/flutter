@@ -8,7 +8,7 @@ class HiListController<T> extends HiBaseController {
   var pageSize = 20;
   var requestMode = HiRequestMode.none.obs;
   RefreshController? refreshController;
-  RxList<T> list = <T>[].obs;
+  RxList<T> items = <T>[].obs;
   Rx<HiError?> error = Rx<HiError?>(null);
 
   @override
@@ -28,7 +28,7 @@ class HiListController<T> extends HiBaseController {
     // }
     // items.addAll(result);
     if (this.requestMode.value != HiRequestMode.more) {
-      this.list.clear();
+      this.items.clear();
     }
     if (this.error.value != null) {
       refreshController?.onFailure(requestMode.value);
@@ -36,16 +36,7 @@ class HiListController<T> extends HiBaseController {
         toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
       }
     } else {
-      // var next = (items?.length ?? 0) == this.pageSize;
-      // var aaa = items?.length ?? 0;
-      // if (aaa == this.pageSize) {
-      //   log('has next page');
-      // } else {
-      //   log('no more data');
-      // }
-      // var next = (items?.length ?? 0) == this.pageSize;
-       // log('next value = $next, $pageSize');
-      this.list.addAll(items ?? []);
+      this.items.addAll(items ?? []);
       refreshController?.onSuccess(
           requestMode.value,
           hasNext ?? ((items?.length ?? 0) == this.pageSize),
@@ -55,33 +46,43 @@ class HiListController<T> extends HiBaseController {
     update();
   }
 
-  void onLoading(RefreshController refreshController) {
-    if (!isFirst) {
-      return;
+  void onLoading(RefreshController refreshController) async {
+    if (isFirst) {
+      isFirst = false;
+      this.refreshController = refreshController;
     }
-    this.refreshController = refreshController;
-    reloadData();
+    requestMode.value = HiRequestMode.loading;
+    update();
+    items.clear();
+    var result = await fetchLocal() ?? [];
+    if (result.length != 0) {
+      items.addAll(result);
+      refreshController?.onSuccess(
+        requestMode.value,
+        items.value.length == pageSize,
+      );
+    }
+    requestRemote(mode: requestMode.value);
   }
 
   void onRefresh(RefreshController refreshController) {
     pageIndex = 1;
     requestMode.value = HiRequestMode.refresh;
     update();
-    requestData(mode: requestMode.value);
+    requestRemote(mode: requestMode.value);
   }
 
   void onMore(RefreshController refreshController) {
     pageIndex += 1;
     requestMode.value = HiRequestMode.more;
     update();
-    requestData(mode: requestMode.value);
+    requestRemote(mode: requestMode.value);
   }
 
-  void requestData({required HiRequestMode mode}) {}
-
-  void reloadData() {
-    requestMode.value = HiRequestMode.loading;
-    update();
-    requestData(mode: requestMode.value);
+  Future<List<T>?> fetchLocal() {
+    return Future<List<T>?>.value(null);
   }
+
+  void requestRemote({required HiRequestMode mode}) {}
+
 }
