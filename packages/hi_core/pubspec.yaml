@@ -1,0 +1,20 @@
+name: hi_core
+description: core of hi_flutter.
+version: 0.0.1
+repository: https://github.com/tospery/flutter/tree/main/packages/hi_core
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  logger: 1.1.0
+  equatable: 2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
