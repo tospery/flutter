@@ -113,38 +113,9 @@ class HiCache {
     return json.map((e) => fromJson(e)).toList();
   }
 
-  // Future<bool> store<M extends HiModel>(
-  //   String key, {
-  //   M? model,
-  //   List<M>? models,
-  // }) async {
-  //   String? string;
-  //   if (model != null) {
-  //     string = model.toJson().toJsonString();
-  //   }
-  //   if (string == null && models != null) {
-  //     string = models.toJsonString();
-  //   }
-  //   if (string == null) {
-  //     return false;
-  //   }
-  //   var provider = HiDbProvider<M>();
-  //   return await provider.store(key, string);
-  // }
-  //
-  // Future<M> fetch<M extends HiModel>(
-  //   String key,
-  //     M Function(Map<String, dynamic>) fromJson,
-  // ) async {
-  //   var provider = HiDbProvider<M>();
-  //   // return await provider.fetch(key);
-  //   var json = await provider.fetch(key);
-  //   if (json is! Map<String, dynamic>) {
-  //     log('获取到的类型不匹配');
-  //   }
-  //   var object = fromJson(json);
-  //   return object;
-  // }
+  Future<void> delete<M extends HiModel>() async {
+
+  }
 
   Future<void> reset() async {
     await HiDbManager.close();
