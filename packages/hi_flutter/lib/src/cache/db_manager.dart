@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:sqflite/sqflite.dart';
+import '../core/logger.dart';
 
 class HiDbManager {
   static const _version = 1;
@@ -21,7 +22,7 @@ class HiDbManager {
     }
     _db = await openDatabase(path, version: _version,
         onCreate: (database, version) {
-      // log('数据库已创建->$path', tag: HiLogTag.cache);
+      log('数据库已创建->$path', tag: HiLogTag.cache);
     });
   }
 
