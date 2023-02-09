@@ -9,6 +9,8 @@ class HiParameter {
   static const model = 'model';
   static const extra = 'extra';
   static const index = 'index';
+  static const user = 'user';
+  static const configuration = 'configuration';
   static const pageFirst = 'pageFirst';
   static const pageIndex = 'pageIndex';
   static const pageSize = 'pageSize';

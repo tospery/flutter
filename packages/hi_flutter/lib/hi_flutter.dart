@@ -34,3 +34,14 @@ export 'src/widget/simple_cell.dart';
 export 'src/widget/navigation_bar.dart';
 export 'src/widget/refresh_view.dart';
 export 'src/widget/tab_bar_item.dart';
+
+import 'package:hi_cache/hi_cache.dart';
+import 'src/utils/package_manager.dart';
+
+class HiFlutter {
+  static Future<bool> ready() async {
+    await HiCache.ready();
+    await HiPackageManager.ready();
+    return true;
+  }
+}

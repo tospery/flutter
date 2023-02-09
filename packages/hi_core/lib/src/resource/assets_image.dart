@@ -1,4 +1,4 @@
-class AssetsImages {
+class AssetsImage {
   final appIcon = 'res/images/app_icon.png';
   final userDefault = 'res/images/user_default.png';
   final errorNetwork = 'res/images/error_network.png';
