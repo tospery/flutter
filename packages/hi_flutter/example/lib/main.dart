@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_flutter/hi_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    var aaa = eventBus;
+    var bbb = Colors.white;
+    log('aaaa: $aaa');
     setState(() {
       _counter++;
     });

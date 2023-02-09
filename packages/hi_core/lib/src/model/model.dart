@@ -1,10 +1,3 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:flutter/material.dart';
-// import 'package:hi_flutter/src/cache/cache.dart';
-// import 'package:hi_flutter/src/extension/map.dart';
-// import 'package:hi_flutter/src/extension/object.dart';
-// import '../core/logger.dart';
-// import 'hi_simple.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import '../extension/map.dart';

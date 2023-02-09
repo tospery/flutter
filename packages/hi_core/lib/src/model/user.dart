@@ -1,14 +1,4 @@
-// import 'package:get/get.dart';
-// import '../core/constant.dart';
-// import '../extension/map.dart';
-// import '../utils/hi_user_notifier.dart';
-// import 'hi_model.dart';
-//
-// // Counter _counter=new Counter()
-// HiUserNotifier userNotifier = HiUserNotifier();
-//
-
-import 'hi_model.dart';
+import 'model.dart';
 import '../extension/map.dart';
 
 class HiUser extends HiModel {

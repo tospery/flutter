@@ -1,4 +1,4 @@
-import 'hi_model.dart';
+import 'model.dart';
 import '../extension/map.dart';
 
 /// 与用户关联的本地配置

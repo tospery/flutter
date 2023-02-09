@@ -1,4 +1,4 @@
-import 'hi_model.dart';
+import 'model.dart';
 
 class HiWrap extends HiModel {
   final dynamic value;

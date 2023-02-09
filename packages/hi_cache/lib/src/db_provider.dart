@@ -60,7 +60,7 @@ create table $tableName (
     if (string?.isEmpty ?? true) {
       return null;
     }
-    return await compute(HiDbProvider.toJson, string!);
+    return await compute(HiConvert.toJson, string!);
   }
 
   Future<HiDbProvider?> _getProvider(Database db, String? key) async {
@@ -94,13 +94,6 @@ create table $tableName (
       await prepare(tableName, tableSqlString);
     }
     return await HiDbManager.getCurrentDatabase();
-  }
-
-  static dynamic toJson(String? string) {
-    if (string == null) {
-      return null;
-    }
-    return json.decode(string!);
   }
 
 }
