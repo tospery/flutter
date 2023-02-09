@@ -38,7 +38,7 @@ class HiNetworkError extends HiError {
   String? get displayTitle => R.strings.networkTitle;
 
   @override
-  String? get displayImage => R.assets.images.errorNetwork;
+  String? get displayImage => R.assets.image.errorNetwork;
 
   static HiNetworkError get disabled =>
       HiNetworkError(1, R.strings.networkDisabled);
@@ -51,7 +51,7 @@ class HiUserError extends HiError {
   String? get displayTitle => R.strings.serverTitle;
 
   @override
-  String? get displayImage => R.assets.images.errorServer;
+  String? get displayImage => R.assets.image.errorServer;
 
   static HiUserError get unlogin => HiUserError(1, R.strings.unlogin);
   static HiUserError get unauthed => HiUserError(2, R.strings.unauthed);
@@ -64,7 +64,7 @@ class HiServerError extends HiError {
   String? get displayTitle => R.strings.serverTitle;
 
   @override
-  String? get displayImage => R.assets.images.errorServer;
+  String? get displayImage => R.assets.image.errorServer;
 
   HiServerError(super.code, super.message, {super.data});
 }
