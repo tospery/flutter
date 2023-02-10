@@ -1,6 +1,8 @@
-import 'extension/bool.dart';
-import 'extension/int.dart';
-import 'extension/string.dart';
+import 'package:flutter/material.dart';
+import 'package:hi_core/src/extension/bool.dart';
+import 'package:hi_core/src/extension/int.dart';
+import 'package:hi_core/src/extension/string.dart';
+import 'package:hi_core/src/extension/build_context.dart';
 
 bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
 bool isEmpty(String? text) => text?.isEmpty ?? true;

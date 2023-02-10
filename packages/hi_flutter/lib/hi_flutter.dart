@@ -26,7 +26,6 @@ export 'src/route/list_page.dart';
 export 'src/route/web_page.dart';
 export 'src/utils/filter_formatter.dart';
 export 'src/utils/length_formatter.dart';
-export 'src/utils/over_scroll_behavior.dart';
 export 'src/utils/package_manager.dart';
 export 'src/utils/user_notifier.dart';
 export 'src/widget/cell.dart';

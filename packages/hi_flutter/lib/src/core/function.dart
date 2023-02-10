@@ -5,6 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 
+
+SizedBox hiSpace({
+  double width = 1,
+  double height = 1,
+}) =>
+    SizedBox(
+      width: width,
+      height: height,
+    );
+
 Border hiBorder({
   BuildContext? context,
   Color? color,
@@ -56,14 +66,39 @@ Icon hiIndicator({
       size: size ?? 24,
     );
 
-SizedBox hiSpace({
-  double width = 1,
-  double height = 1,
-}) =>
-    SizedBox(
-      width: width,
-      height: height,
-    );
+// ///分割线 0.5 - 20边距
+// static Widget divider1HalfPadding20 = const Divider(
+//   height: 0.5,
+//   thickness: 0.5,
+//   indent: 20,
+//   endIndent: 20,
+//   color: ColorStyle.colorShadow,
+// );
+//
+// ///分割线 0.5 - 无边距
+// static Widget divider1Half = const Divider(
+//   height: 0.5,
+//   thickness: 0.5,
+//   color: ColorStyle.colorShadow,
+// );
+//
+// ///分割线 20 - 无边距
+// static Widget divider20Half = const Divider(
+//   height: 20,
+//   thickness: 20,
+//   color: ColorStyle.color_F8F9FC,
+// );
+
+// Divider hiDivider({
+//   BuildContext? context,
+//   Color? color,
+//   double? size,
+// }) =>
+//     Icon(
+//       Icons.navigate_next,
+//       color: color ?? context?.themeData.indicatorColor,
+//       size: size ?? 24,
+//     );
 
 void removeSystemTransparent(BuildContext context) {
   if (!Platform.isAndroid) {

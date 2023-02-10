@@ -13,3 +13,7 @@ export 'src/alert.dart';
 export 'src/popup.dart';
 export 'src/sheet.dart';
 export 'src/toast.dart';
+export 'src/impl/alert_view.dart';
+export 'src/impl/dialog.dart';
+export 'src/impl/over_scroll_behavior.dart';
+export 'src/impl/toast_activity.dart';

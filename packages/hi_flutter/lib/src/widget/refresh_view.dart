@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_dialog/hi_dialog.dart';
 import '../core/function.dart';
-import '../utils/over_scroll_behavior.dart';
 import '../route/list_controller.dart';
 
 class HiRefreshView<C extends HiListController>
