@@ -19,6 +19,7 @@ dependencies:
   adaptive_dialog: 1.8.0
   adaptive_action_sheet: 2.0.2
   fluttertoast: 8.0.9
+  lottie: 1.4.2
   hi_core:
     path: ../hi_core
 

@@ -8,6 +8,7 @@ export 'package:adaptive_dialog/adaptive_dialog.dart';
 export 'package:flukit/flukit.dart';
 export 'package:getwidget/getwidget.dart' hide ToastStateFulState;
 export 'package:fluttertoast/fluttertoast.dart';
+export 'package:lottie/lottie.dart';
 export 'src/alert.dart';
 export 'src/popup.dart';
 export 'src/sheet.dart';
