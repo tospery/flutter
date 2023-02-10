@@ -1,6 +1,5 @@
-// import 'package:dartx/dartx.dart';
-// import '../core/function.dart';
-import '../function.dart';
+import 'package:hi_core/src/function.dart';
+import 'package:hi_core/src/model/model.dart';
 
 extension MapEx<K, V> on Map<K, V> {
   bool? boolForKey(K key) => hiBool(this[key]);
@@ -8,7 +7,33 @@ extension MapEx<K, V> on Map<K, V> {
   double? doubleForKey(K key) => hiDouble(this[key]);
   String? stringForKey(K key) => hiString(this[key]);
   Map<String, dynamic>? mapForKey(K key) => hiMap(this[key]);
-  List<T>? listForKey<T>(K key) => (this[key] as List?)?.cast<T>();
+  List<T>? listForKey<T>(K key) => hiList<T>(this[key]);
+
+  M? model<M extends HiModel>(K key, M Function(Map<String, dynamic>) fromJson,) {
+    var json = mapForKey(key);
+    if (json == null) {
+      return null;
+    }
+    return fromJson(json);
+  }
+
+  List<M>? list<M extends HiModel>(K key, M Function(Map<String, dynamic>) fromJson,) {
+    var value = this[key];
+    if (value == null) {
+      return null;
+    }
+    if (value is! List) {
+      return null;
+    }
+    if (value is List<M>) {
+      return value;
+    }
+    if (value is! List<Map<String, dynamic>>) {
+      return null;
+    }
+    var list = value.map((json) => fromJson(json)).toList();
+    return list;
+  }
 
   // V? valueForKey(K key, {String? delimiter}) {
   //   if (delimiter?.isEmpty ?? true) {

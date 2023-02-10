@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 
@@ -62,7 +63,7 @@ Icon hiIndicator({
 }) =>
     Icon(
       Icons.navigate_next,
-      color: color ?? context?.themeData.indicatorColor,
+      color: color ?? context?.theme.indicatorColor,
       size: size ?? 24,
     );
 

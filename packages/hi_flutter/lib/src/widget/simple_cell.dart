@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:hi_core/hi_core.dart';
-import 'cell.dart';
-import '../model/simple.dart';
-import '../core/function.dart';
+import 'package:hi_flutter/src/extension/build_context.dart';
+import 'package:hi_flutter/src/model/simple.dart';
+import 'package:hi_flutter/src/core/function.dart';
+import 'package:hi_flutter/src/widget/cell.dart';
 
 class HiSimpleCell extends HiCell<HiSimple> {
   const HiSimpleCell({

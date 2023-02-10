@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 extension BuildContextEx on BuildContext {
   // MediaQueryData get mediaQueryData => MediaQuery.of(this);
@@ -12,8 +13,7 @@ extension BuildContextEx on BuildContext {
   // ModalRoute<Object?>? get modalRoute => ModalRoute.of(this);
   // RouteSettings? get modalRouteSettings => modalRoute?.settings;
   // Object? get modalRouteSettingsArguments => modalRouteSettings?.arguments;
-
-  ThemeData get themeData => Theme.of(this);
-  ColorScheme get colorScheme => themeData.colorScheme;
-  TextTheme get primaryTextTheme => themeData.primaryTextTheme;
+  
+  ColorScheme get colorScheme => theme.colorScheme;
+  TextTheme get primaryTextTheme => theme.primaryTextTheme;
 }

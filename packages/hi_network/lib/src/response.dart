@@ -14,9 +14,9 @@ class HiResponse extends HiModel {
   });
 
   factory HiResponse.fromJson(Map<String, dynamic> json) => HiResponse(
-    code: hiInt(json.valueForKeys(['code'],),),
-    message: hiString(json.valueForKeys(['message', 'msg'],),),
-    data: json.valueForKeys(['data'],),
+    code: json.intForKey('code'),
+    message: json.stringForKey('message'),
+    data: json['data'],
     json: json,
   );
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hi_core/src/extension/bool.dart';
 import 'package:hi_core/src/extension/int.dart';
 import 'package:hi_core/src/extension/string.dart';
-import 'package:hi_core/src/extension/build_context.dart';
 
 bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
 bool isEmpty(String? text) => text?.isEmpty ?? true;
@@ -84,11 +83,19 @@ String? hiString(dynamic any) {
 }
 
 Map<String, dynamic>? hiMap(dynamic any) {
+  if (any == null || any is! Map<String, dynamic>) {
+    return null;
+  }
+  return any;
+}
+
+List<T>? hiList<T>(dynamic any) {
   if (any == null) {
     return null;
   }
-  if (any is Map<String, dynamic>) {
-    return any;
+  if (any is! List<dynamic>) {
+    return null;
   }
-  return null;
+  var list = any.cast<T>();
+  return list;
 }
