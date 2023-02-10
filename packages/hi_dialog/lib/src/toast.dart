@@ -23,9 +23,3 @@ showToastActivity({String? title}) {
   );
 }
 
-hideToastActivity() {
-  if (Get.isDialogOpen ?? false) {
-    Get.back();
-  }
-}
-
