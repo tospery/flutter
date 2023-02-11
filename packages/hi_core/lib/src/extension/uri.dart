@@ -2,6 +2,19 @@ import 'map.dart';
 
 extension UriEx on Uri {
   String get hostpath => host + path;
+  String get removedScheme {
+    var result = host;
+    if (result.isEmpty) {
+      return result;
+    }
+    if (path.isNotEmpty) {
+      result += '/$path';
+    }
+    if (query.isNotEmpty) {
+      result += '?$query';
+    }
+    return '/$result';
+  }
 
   Uri add({required Map<String, String> queries}) {
     Map<String, dynamic> parameters = {};

@@ -2,6 +2,7 @@ library hi_core;
 
 export 'package:equatable/equatable.dart';
 export 'package:logger/logger.dart';
+// export 'package:dartx/dartx.dart' as convert;
 export 'src/constant.dart';
 export 'src/convert.dart';
 export 'src/datatype.dart';
