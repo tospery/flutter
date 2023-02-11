@@ -19,8 +19,6 @@ class HiRouter {
 class HiHost {
   final splash = 'splash';
   final home = 'home';
-  final dashboard = 'dashboard';
-  final personal = 'personal';
   final profile = 'profile';
   final settings = 'settings';
   final about = 'about';
@@ -34,6 +32,8 @@ class HiHost {
 }
 
 class HiPath {
+  final dashboard = 'dashboard';
+  final personal = 'personal';
   final page = 'page';
   final list = 'list';
   final detail = 'detail';

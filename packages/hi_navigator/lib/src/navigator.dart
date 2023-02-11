@@ -19,12 +19,29 @@ class HiNavigator {
   void init() async {
   }
 
-  Future<T?>? forward<T>(
-      String url, {
-        dynamic context,
-        bool rootNavigator = false,
-      }) {
-    return null;
+  // Future<T?>? forward<T>(
+  //     String url, {
+  //       dynamic context,
+  //       bool rootNavigator = false,
+  //     }) {
+  //   return null;
+  // }
+
+  Future<T?>? forward<T>({
+    required String host,
+    String? path,
+    Map<String, dynamic>? parameters,
+    dynamic context,
+    bool rootNavigator = false,
+  }) {
+    var urlString = '/$host';
+    if (path?.isNotEmpty ?? false) {
+      urlString += '/$path';
+    }
+    if (rootNavigator) {
+      return Get.offAllNamed(urlString, arguments: parameters);
+    }
+    return Get.toNamed(urlString, arguments: parameters);
   }
 
   void back<T>({
