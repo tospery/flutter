@@ -20,9 +20,10 @@ class HiDbManager {
     } else {
       path += userid;
     }
+    log('数据库开始创建: $path', tag: HiLogTag.cache);
     _db = await openDatabase(path, version: _version,
         onCreate: (database, version) {
-      log('数据库已创建->$path', tag: HiLogTag.cache);
+      log('数据库创建成功', tag: HiLogTag.cache);
     });
   }
 

@@ -8,13 +8,6 @@ class HiModel extends Equatable {
 
   bool get isValid => id?.isNotEmpty ?? false;
 
-  Widget get separator {
-    // if (this is HiSimple) {
-    //   return (this as HiSimple).hasSeparator ? const Divider() : Container();
-    // }
-    return Container();
-  }
-
   const HiModel({this.id});
 
   factory HiModel.fromJson(Map<String, dynamic> json) => HiModel(

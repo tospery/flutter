@@ -24,21 +24,22 @@ class HiSimpleCell extends HiCell<HiSimple> {
     }
     return GFListTile(
       margin: EdgeInsets.zero,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-      color: context.colorScheme.onBackground,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      // titleText: model.title,
+      title: isNotEmpty(model.title) ? Text(model.title!, style: context.textTheme.titleSmall,) : Container(),
+      subTitleText: model.subTitle,
       avatar: model.icon?.isNotEmpty ?? false
           ? hiImage(model.icon!, height: 24)
           : null,
-      titleText: model.title,
-      subTitleText: model.subTitle,
       icon: _buildTileDetail(context),
+      color: context.theme.canvasColor, // context.colorScheme.onBackground,
       onTap: () => onPressed != null ? onPressed!(model) : null,
     );
   }
 
   Widget _buildSpace(BuildContext context) {
     return Container(
-      height: model.height ?? 20,
+      height: model.height ?? 15,
       color: model.color?.toColor() ?? Colors.transparent,
     );
   }

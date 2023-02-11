@@ -35,13 +35,15 @@ class HiListController<T> extends HiBaseController {
     requestMode.value = HiRequestMode.load;
     items.clear();
     update();
-    var result = await fetchLocal() ?? [];
-    if (result.length != 0) {
-      items.addAll(result);
+    var models = await fetchLocal();
+    if (models.isNotEmpty) {
+      log('获取到缓存数据: ${models.length}');
+      items.addAll(models);
       refreshController?.onSuccess(
         requestMode.value,
         items.value.length == pageSize,
       );
+      update();
     }
     requestRemote(requestMode.value, pageFirst);
   }
@@ -69,12 +71,10 @@ class HiListController<T> extends HiBaseController {
         toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
       }
     } else {
-      if (requestMode.value != HiRequestMode.loadingMore) {
-        pageIndex = pageFirst;
-      } else {
+      if (requestMode.value == HiRequestMode.loadingMore) {
         pageIndex += 1;
-      }
-      if (requestMode.value == HiRequestMode.pullRefresh) {
+      } else {
+        pageIndex = pageFirst;
         this.items.clear();
       }
       this.items.addAll(items ?? []);
@@ -87,9 +87,7 @@ class HiListController<T> extends HiBaseController {
     update();
   }
 
-  Future<List<T>?> fetchLocal() {
-    return Future<List<T>?>.value(null);
-  }
+  Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);
 
   void requestRemote(HiRequestMode mode, int pageIndex) {}
 

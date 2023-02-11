@@ -47,8 +47,10 @@ create table $tableName (
     Database db = await getDataBase();
     var provider = await _getProvider(db, key);
     if (provider != null) {
+      log('删除数据($tableName, $key)', tag: HiLogTag.cache);
       await db.delete(tableName, where: '$columnKey = ?', whereArgs: [key]);
     }
+    log('插入数据($tableName, $key)', tag: HiLogTag.cache);
     var result = await db.insert(tableName, toMap(key, data));
     return result != 0;
   }
@@ -69,6 +71,7 @@ create table $tableName (
         where: '$columnKey = ?',
         whereArgs: [key]);
     if (maps.isNotEmpty) {
+      log('找到数据($tableName, $key)', tag: HiLogTag.cache);
       return HiDbProvider.fromMap(maps.first);
     }
     return null;
@@ -83,7 +86,7 @@ create table $tableName (
     isTableExits = await HiDbManager.isTableExits(name);
     if (!isTableExits) {
       Database db = await HiDbManager.getCurrentDatabase();
-      log('开始创建数据表: $name');
+      log('创建数据表($name)', tag: HiLogTag.cache);
       return await db.execute(createSql!);
     }
   }
