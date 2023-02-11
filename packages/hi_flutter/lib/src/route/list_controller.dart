@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
-import 'package:hi_dialog/hi_dialog.dart';
 import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/flutter.dart';
 import 'package:hi_flutter/src/extension/refresh_controller.dart';
@@ -68,7 +67,8 @@ class HiListController<T> extends HiBaseController {
     if (this.error.value != null) {
       refreshController?.onFailure(requestMode.value);
       if (requestMode.value == HiRequestMode.loadingMore) {
-        toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
+        // toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
+        this.navigator.toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
       }
     } else {
       if (requestMode.value == HiRequestMode.loadingMore) {

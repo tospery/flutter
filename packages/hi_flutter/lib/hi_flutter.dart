@@ -2,8 +2,8 @@ library hi_flutter;
 
 export 'package:hi_core/hi_core.dart';
 export 'package:hi_cache/hi_cache.dart';
-export 'package:hi_dialog/hi_dialog.dart';
 export 'package:hi_network/hi_network.dart';
+export 'package:hi_navigator/hi_navigator.dart';
 export 'package:get/get.dart';
 export 'package:get/get_connect/http/src/request/request.dart';
 export 'package:webview_flutter/webview_flutter.dart';

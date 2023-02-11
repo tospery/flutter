@@ -21,10 +21,10 @@ dependencies:
   webview_flutter: 3.0.4
   hi_core:
     path: ../hi_core
+  hi_navigator:
+    path: ../hi_navigator
   hi_cache:
     path: ../hi_cache
-  hi_dialog:
-    path: ../hi_dialog
   hi_network:
     path: ../hi_network
 

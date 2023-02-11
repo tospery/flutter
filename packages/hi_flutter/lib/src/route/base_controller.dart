@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_network/hi_network.dart';
+import 'package:hi_navigator/hi_navigator.dart';
 import '../core/constant.dart';
 import '../core/datatype.dart';
 
@@ -13,6 +14,7 @@ class HiBaseController extends GetxController {
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
   late final HiProvider provider;
+  late final HiNavigator navigator;
   late final Map<String, dynamic> parameters;
   late final StreamSubscription eventSubscription;
 
@@ -21,6 +23,7 @@ class HiBaseController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    this.navigator = HiNavigator.shared();
     var myParameters = <String, dynamic>{};
     myParameters.addAll(Get.parameters);
     // parameters = Get.parameters;
