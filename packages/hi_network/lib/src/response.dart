@@ -1,4 +1,5 @@
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_network/src/network.dart';
 
 class HiResponse extends HiModel {
   final int? code;
@@ -14,10 +15,10 @@ class HiResponse extends HiModel {
   });
 
   factory HiResponse.fromJson(Map<String, dynamic> json) => HiResponse(
-    code: json.intForKey('code'),
-    message: json.stringForKey('message'),
-    data: json['data'],
-    json: json,
+    code: hiInt(json.valueForKeys(HiNetwork.shared().codeKeys)),
+    message: hiString(json.valueForKeys(HiNetwork.shared().messageKeys)),
+    data: json.valueForKeys(HiNetwork.shared().dataKeys),
+    json: json.valueForKeys(HiNetwork.shared().dataKeys),
   );
 
   Map<String, dynamic> toJson() => {

@@ -67,6 +67,9 @@ String? hiString(dynamic any) {
   if (any == null) {
     return null;
   }
+  if (any is String) {
+    return any;
+  }
   if (any is bool) {
     return any.toString();
   }
@@ -75,9 +78,6 @@ String? hiString(dynamic any) {
   }
   if (any is double) {
     return any.toString();
-  }
-  if (any is String) {
-    return any;
   }
   return null;
 }

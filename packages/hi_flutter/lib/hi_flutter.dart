@@ -11,6 +11,7 @@ export 'package:pull_to_refresh/pull_to_refresh.dart';
 export 'package:lottie/lottie.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:event_bus/event_bus.dart';
+export 'src/flutter.dart';
 export 'src/core/constant.dart';
 export 'src/core/datatype.dart';
 export 'src/core/function.dart';
@@ -34,14 +35,3 @@ export 'src/widget/simple_cell.dart';
 export 'src/widget/navigation_bar.dart';
 export 'src/widget/refresh_view.dart';
 export 'src/widget/tab_bar_item.dart';
-
-import 'package:hi_cache/hi_cache.dart';
-import 'src/utils/package_manager.dart';
-
-class HiFlutter {
-  static Future<bool> ready() async {
-    await HiCache.ready();
-    await HiPackageManager.ready();
-    return true;
-  }
-}

@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_dialog/hi_dialog.dart';
-import 'base_controller.dart';
-import '../core/datatype.dart';
-import '../extension/refresh_controller.dart';
+import 'package:hi_flutter/src/core/datatype.dart';
+import 'package:hi_flutter/src/flutter.dart';
+import 'package:hi_flutter/src/extension/refresh_controller.dart';
+import 'package:hi_flutter/src/route/base_controller.dart';
 
 class HiListController<T> extends HiBaseController {
   late bool enablePullRefresh;
@@ -24,7 +25,7 @@ class HiListController<T> extends HiBaseController {
     enableLoadingMore = parameters.boolForKey(HiParameter.canLoadMore) ?? false;
     pageFirst = parameters.intForKey(HiParameter.pageFirst) ?? 1;
     pageIndex = parameters.intForKey(HiParameter.pageIndex) ?? pageFirst;
-    pageSize = parameters.intForKey(HiParameter.pageSize) ?? 20;
+    pageSize = parameters.intForKey(HiParameter.pageSize) ?? HiFlutter.shared().pageSize;
   }
 
   void onLoading(RefreshController refreshController) async {
