@@ -4,8 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_navigator/hi_navigator.dart';
-import '../core/function.dart';
-import '../frame/list_controller.dart';
+import 'package:hi_flutter/src/core/function.dart';
+import 'package:hi_flutter/src/routes/list_controller.dart';
 
 class HiRefreshView<C extends HiListController>
     extends StatefulWidget {
