@@ -16,6 +16,7 @@ export 'src/core/constant.dart';
 export 'src/core/datatype.dart';
 export 'src/core/function.dart';
 export 'src/extension/build_context.dart';
+export 'src/extension/color.dart';
 export 'src/extension/get.dart';
 export 'src/extension/refresh_controller.dart';
 export 'src/model/simple.dart';

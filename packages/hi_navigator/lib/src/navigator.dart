@@ -46,7 +46,9 @@ class HiNavigator {
 
   void back<T>({
     T? result,
-  }) {}
+  }) {
+    Get.back(result: result);
+  }
 
   toast(String message) {
     Fluttertoast.cancel();

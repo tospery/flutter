@@ -1,7 +1,8 @@
 class Strings {
+  final none = 'none';
   final login = 'login';
   final loading = 'loading';
-  final none = 'none';
+  final appSlogan = 'appSlogan';
   final unknown = 'unknown';
   final timeout = 'timeout';
   final navigation = 'navigation';

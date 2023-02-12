@@ -6,6 +6,23 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 
+double metricWidth(
+    double width, {
+      BuildContext? context,
+    }) {
+  final designWidth = 393.0;
+  var deviceWidth = (context ?? Get.overlayContext)?.width ?? designWidth;
+  return width / designWidth * deviceWidth;
+}
+
+double metricHeight(
+    double height, {
+      BuildContext? context,
+    }) {
+  final designHeight = 852.0;
+  var deviceHeight = (context ?? Get.overlayContext)?.width ?? designHeight;
+  return height / designHeight * deviceHeight;
+}
 
 SizedBox hiSpace({
   double width = 1,
@@ -35,6 +52,22 @@ Border hiBorder({
     right: right ? borderSide : BorderSide.none,
     bottom: bottom ? borderSide : BorderSide.none,
     left: left ? borderSide : BorderSide.none,
+  );
+}
+
+OutlineInputBorder hiOutlineBorder({
+  Color? color,
+  double width = 1.0,
+  double radius = 4.0,
+  BuildContext? context,
+}) {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(radius)),
+    borderSide: Divider.createBorderSide(
+      context,
+      width: width,
+      color: color ?? (context ?? Get.overlayContext)?.theme.dividerTheme.color,
+    ),
   );
 }
 
