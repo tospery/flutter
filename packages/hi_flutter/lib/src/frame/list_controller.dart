@@ -5,7 +5,7 @@ import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/flutter.dart';
 import 'package:hi_flutter/src/extension/refresh_controller.dart';
-import 'package:hi_flutter/src/route/base_controller.dart';
+import 'package:hi_flutter/src/frame/base_controller.dart';
 
 class HiListController<T> extends HiBaseController {
   late bool enablePullRefresh;

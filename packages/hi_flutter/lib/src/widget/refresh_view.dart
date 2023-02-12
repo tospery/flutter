@@ -5,7 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 import '../core/function.dart';
-import '../route/list_controller.dart';
+import '../frame/list_controller.dart';
 
 class HiRefreshView<C extends HiListController>
     extends StatefulWidget {
