@@ -18,12 +18,10 @@ class HiModel extends Equatable {
         'id': id,
       };
 
-  // void save({
-  //   bool isReactive = false,
-  // }) {
-  //   var key = typeName.toLowerCase();
-  //   log('缓存key = $key');
-  //   HiCache.shared().setString(key, toJson().toJsonString());
+  // void store({bool isReactive = false}) {
+  //   // var key = typeName.toLowerCase();
+  //   // log('缓存key = $key', tag: HiLogTag);
+  //   // HiCache.shared().setString(key, toJson().toJsonString());
   // }
 
   // static dynamic fetch() {
