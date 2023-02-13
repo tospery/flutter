@@ -36,38 +36,6 @@ class HiService extends GetConnect {
     });
   }
 
-  // Future<dynamic> result(
-  //     Response<dynamic> response, {
-  //       bool checkCode = true,
-  //       bool returnData = true,
-  //     }) {
-  //   if (response.hasError) {
-  //     return Future.error(
-  //       HiServerError(
-  //         response.statusCode ?? -1,
-  //         response.statusText,
-  //         data: response.body,
-  //       ),
-  //     );
-  //   }
-  //   var base = response.body as HiResponse;
-  //   if (!checkCode) {
-  //     // return Future.value(returnData ? base.data : base.json);
-  //     // var json = base.json;
-  //     return Future.value(base.json);
-  //   }
-  //   if (base.code != HiError.okCode) {
-  //     return Future.error(
-  //       HiServerError(
-  //         base.code ?? -1,
-  //         base.message,
-  //         data: base.json,
-  //       ),
-  //     );
-  //   }
-  //   return Future.value(base.data);
-  // }
-
   Future<T> object<T>(
       Response<dynamic> response, {
         bool checkCode = true,
@@ -90,6 +58,13 @@ class HiService extends GetConnect {
     if (data is T) {
       return Future.value(data as T);
     }
+    if (data is Map<String, dynamic> && fromJson != null) {
+      var model = fromJson(data);
+      if (model is HiModel && !(model as HiModel).isValid) {
+        return Future.error(HiError.dataInvalid);
+      }
+      return Future.value(model);
+    }
     if (T == bool && hiBool(data) != null) {
       return Future.value(hiBool(data) as T);
     }
@@ -102,21 +77,6 @@ class HiService extends GetConnect {
     if (T == String && hiString(data) != null) {
       return Future.value(hiString(data) as T);
     }
-    // if (data is! List) {
-    //   return Future.error(HiError.dataInvalid);
-    // }
-    // if (data.isEmpty) {
-    //   return Future.error(HiError.dataIsEmpty);
-    // }
-    // if (fromJson == null) {
-    //   return Future.error(HiError.unknown);
-    // }
-    // var array = data.where((e) => e is Map<String, dynamic>)
-    //     .map((json) => fromJson(json))
-    //     .toList();
-    // if (array.isEmpty) {
-    //   return Future.error(HiError.dataIsEmpty);
-    // }
     return Future.error(HiError.dataInvalid);
   }
 
@@ -136,7 +96,7 @@ class HiService extends GetConnect {
       return Future.error(HiError.unknown);
     }
     var data = base.data;
-    if (!checkCode) {
+    if (!checkCode && !returnData) {
       data = base.json;
     }
     if (data is! List) {
@@ -157,24 +117,4 @@ class HiService extends GetConnect {
     return Future.value(array);
   }
 
-  Future<T> convertTo<T>(Response<dynamic> response) {
-    throw UnimplementedError();
-  }
-  
-  // Future<dynamic> getData(Response<dynamic> response) {
-  //   if (response.hasError) {
-  //     return Future.error(
-  //       HiServerError(
-  //         response.statusCode ?? -1,
-  //         response.statusText,
-  //         data: response.body,
-  //       ),
-  //     );
-  //   }
-  //   var base = response.body;
-  //   if (base is! HiResponse) {
-  //     throw HiError.unknown;
-  //   }
-  //   return Future.value(base.data);
-  // }
 }
