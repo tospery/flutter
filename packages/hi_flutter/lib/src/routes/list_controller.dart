@@ -87,6 +87,12 @@ class HiListController<T> extends HiBaseController {
     update();
   }
 
+  @override
+  void reloadData() {
+    // TODO list的onLoading调用时机
+    // onLoading(this.refreshController!);
+  }
+
   Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);
 
   void requestRemote(HiRequestMode mode, int pageIndex) {}

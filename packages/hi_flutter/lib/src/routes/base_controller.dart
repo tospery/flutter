@@ -49,6 +49,7 @@ class HiBaseController extends GetxController {
         updateConfiguration(event);
       }
     });
+    reloadData();
   }
 
   @override
@@ -65,6 +66,9 @@ class HiBaseController extends GetxController {
   void updateConfiguration(HiConfiguration configuration) {
     this.configuration.value = configuration;
     update();
+  }
+
+  void reloadData() {
   }
 
 }
