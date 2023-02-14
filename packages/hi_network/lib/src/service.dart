@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:hi_core/hi_core.dart';
 import 'response.dart';
 
@@ -6,6 +7,7 @@ class HiService extends GetConnect {
   @override
   void onInit() {
     super.onInit();
+    httpClient.defaultContentType = 'application/json';
     httpClient.defaultDecoder = (data) {
       var json = <String, dynamic>{};
       if (data is Map<String, dynamic>) {
@@ -19,9 +21,8 @@ class HiService extends GetConnect {
       return HiResponse.fromJson(json);
     };
 
-    httpClient.addRequestModifier<void>((request) {
-      log('【${request.method}】${request.url}', tag: HiLogTag.network);
-      return request;
+    httpClient.addRequestModifier((Request request) {
+      return requestModifier(request);
     });
     httpClient.addResponseModifier((request, response) {
       log('${request.url.path}(${response.statusCode}, ${response.statusText})\n${response.body}', tag: HiLogTag.network);
@@ -36,6 +37,11 @@ class HiService extends GetConnect {
     });
   }
 
+  Request requestModifier(Request request) {
+    log('【${request.method}】${request.url}', tag: HiLogTag.network);
+    return request;
+  }
+
   Future<T> object<T>(
       Response<dynamic> response, {
         bool checkCode = true,
@@ -46,6 +52,12 @@ class HiService extends GetConnect {
       return Future.error(
         HiServerError(response.statusCode ?? -1, response.statusText, data: response.body),
       );
+    }
+    var genericType = typeOf<T>();
+    var voidType = typeOf<void>();
+    // var dynamicType = typeOf<dynamic>();
+    if (genericType == voidType) {
+      return Future.value();
     }
     var base = response.body;
     if (base is! HiResponse) {

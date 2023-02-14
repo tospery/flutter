@@ -3,6 +3,8 @@ import 'package:hi_core/src/extension/bool.dart';
 import 'package:hi_core/src/extension/int.dart';
 import 'package:hi_core/src/extension/string.dart';
 
+Type typeOf<T>() => T;
+
 bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
 bool isEmpty(String? text) => text?.isEmpty ?? true;
 
