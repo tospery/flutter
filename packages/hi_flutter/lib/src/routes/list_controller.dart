@@ -27,33 +27,13 @@ class HiListController<T> extends HiBaseController {
     pageSize = parameters.intForKey(HiParameter.pageSize) ?? HiFlutter.shared().pageSize;
   }
 
-  void onLoading(RefreshController refreshController) async {
-    if (this.refreshController == null) {
-      this.refreshController = refreshController;
-    }
-    requestMode.value = HiRequestMode.load;
-    items.clear();
-    update();
-    var models = await fetchLocal();
-    if (models.isNotEmpty) {
-      log('获取到缓存数据: ${models.length}');
-      items.addAll(models);
-      refreshController?.onSuccess(
-        requestMode.value,
-        items.value.length == pageSize,
-      );
-      update();
-    }
-    requestRemote(requestMode.value, pageFirst);
-  }
-
-  void onRefresh(RefreshController refreshController) {
+  void onRefresh() {
     requestMode.value = HiRequestMode.pullRefresh;
     update();
     requestRemote(requestMode.value, pageFirst);
   }
 
-  void onMore(RefreshController refreshController) {
+  void onMore() {
     requestMode.value = HiRequestMode.loadingMore;
     update();
     requestRemote(requestMode.value, pageIndex + 1);
@@ -88,9 +68,20 @@ class HiListController<T> extends HiBaseController {
   }
 
   @override
-  void reloadData() {
-    // TODO list的onLoading调用时机
-    // onLoading(this.refreshController!);
+  void reloadData() async {
+    requestMode.value = HiRequestMode.load;
+    items.clear();
+    update();
+    var models = await fetchLocal();
+    if (models.isNotEmpty) {
+      items.addAll(models);
+      refreshController?.onSuccess(
+        requestMode.value,
+        items.value.length == pageSize,
+      );
+      update();
+    }
+    requestRemote(requestMode.value, pageFirst);
   }
 
   Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);

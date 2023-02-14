@@ -25,6 +25,7 @@ class HiBaseController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    log('HiBaseController.onInit', tag: HiLogTag.frame);
     this.navigator = HiNavigator.shared();
     var myParameters = <String, dynamic>{};
     myParameters.addAll(Get.parameters);
@@ -49,7 +50,6 @@ class HiBaseController extends GetxController {
         updateConfiguration(event);
       }
     });
-    reloadData();
   }
 
   @override

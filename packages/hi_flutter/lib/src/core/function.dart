@@ -9,6 +9,25 @@ import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_flutter/src/model/user.dart';
 import 'package:hi_flutter/src/model/configuration.dart';
 
+// storeObject<M extends HiModel>(
+//     M model, {
+//       bool isReactive = false,
+//     }) {
+//   var key = model.typeName.toLowerCase() ?? '';
+//   log('存储key = $key', tag: HiLogTag.frame);
+//   var value = model.toJson().toJsonString();
+//   log('存储value = $value', tag: HiLogTag.frame);
+//   HiCache.shared().set(key, value);
+//   if (isReactive) {
+//     if (model is HiUser) {
+//       Get.replace<HiUser>(model);
+//     }
+//     if (model is HiConfiguration) {
+//       Get.replace<HiConfiguration>(model);
+//     }
+//   }
+// }
+
 M? fetchObject<M extends HiModel>(
     M Function(Map<String, dynamic>) fromJson,
     ) {

@@ -1,6 +1,7 @@
 import 'package:hi_core/hi_core.dart';
 
 class HiSimple extends HiModel {
+  final int? style;
   final String? title;
   final String? subTitle;
   final String? detail;
@@ -17,6 +18,7 @@ class HiSimple extends HiModel {
 
   const HiSimple({
     super.id,
+    this.style,
     this.title,
     this.subTitle,
     this.detail,
@@ -29,6 +31,7 @@ class HiSimple extends HiModel {
 
   factory HiSimple.fromJson(Map<String, dynamic> json) => HiSimple(
     id: json.stringForKey('id'),
+    style: json.intForKey('style'),
     title: json.stringForKey('title'),
     subTitle: json.stringForKey('subTitle'),
     detail: json.stringForKey('detail'),
@@ -42,6 +45,7 @@ class HiSimple extends HiModel {
   @override
   Map<String, dynamic> toJson() => {
     'id': id,
+    'style': style,
     'title': title,
     'subTitle': subTitle,
     'detail': detail,
@@ -54,6 +58,7 @@ class HiSimple extends HiModel {
 
   HiSimple copyWith({
     String? id,
+    int? style,
     String? title,
     String? subTitle,
     String? detail,
@@ -65,6 +70,7 @@ class HiSimple extends HiModel {
   }) {
     return HiSimple(
       id: id ?? this.id,
+      style: style ?? this.style,
       title: title ?? this.title,
       subTitle: subTitle ?? this.subTitle,
       detail: detail ?? this.detail,
@@ -78,7 +84,7 @@ class HiSimple extends HiModel {
 
   @override
   List<Object?> get props =>  [
-    id, icon, title, subTitle, detail,
+    id, style, icon, title, subTitle, detail,
     color, height, indicated, separated,
   ];
 }

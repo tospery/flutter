@@ -1,6 +1,7 @@
 //typedef HiGetUseridFunc = String? Function();
 typedef HiVoidCallback = dynamic Function();
 typedef HiBoolCallback = dynamic Function(bool value);
+typedef DynamicCallback = dynamic Function(dynamic value);
 
 //enum HiRequestMode { none, loading, refresh, more }
 

@@ -45,30 +45,25 @@ class HiSimpleCell extends HiCell<HiSimple> {
   }
 
   Widget _buildButton(BuildContext context) {
-    // return GestureDetector(
-    //   onTap: () => onPressed != null ? onPressed!(model) : null,
-    //   child: Container(
-    //     height: model.height ?? 50,
-    //     color: model.color?.toColor() ?? context.colorScheme.onBackground,
-    //     child: Center(
-    //         child: model.title != null
-    //             ? Text(
-    //           model.title!,
-    //           style: context.textTheme.titleMedium
-    //               ?.copyWith(color: context.colorScheme.secondary),
-    //         )
-    //             : null),
-    //     // color: Colors.red,
-    //   ),
-    // );
+    if (model.style == 1) {
+      return FractionallySizedBox(
+        widthFactor: R.constants.metric.layoutPercentLarge,
+        child: GFButton(
+          onPressed: () => onPressed != null ? onPressed!(model) : null,
+          text: model.title,
+          size: model.height ?? GFSize.LARGE,
+          color: model.color?.toColor() ?? context.theme.primaryColor,
+          fullWidthButton: true,
+        ),
+      );
+    }
     return GFButton(
       onPressed: () => onPressed != null ? onPressed!(model) : null,
       text: model.title,
-      size: model.height ?? R.constants.metric.cellHeightMedium,
+      size: model.height ?? GFSize.LARGE,
       borderShape: hiBorder(width: 0),
       borderSide: BorderSide.none,
       color: model.color?.toColor() ?? context.theme.cardColor,
-      // textColor: context.theme.primaryColor,
       textStyle: context.textTheme.titleMedium?.copyWith(
         color: context.theme.primaryColor
       ),

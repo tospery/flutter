@@ -8,7 +8,6 @@ class HiLogTag {
   static const tabBar = 'TabBar';
   static const dialog = 'Dialog';
   static const frame = 'Frame';
-  static const flutter = 'HiFlutter';
   static const login = 'Login';
 }
 

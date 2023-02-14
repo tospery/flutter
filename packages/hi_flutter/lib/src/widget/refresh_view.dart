@@ -40,8 +40,10 @@ class HiRefreshViewState extends State<HiRefreshView>
   @override
   void initState() {
     super.initState();
+    log('HiRefreshViewState.initState', tag: HiLogTag.frame);
+    widget.getController.refreshController = _refreshController;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.getController.onLoading(_refreshController);
+      widget.getController.reloadData();
     });
   }
 
@@ -95,8 +97,8 @@ class HiRefreshViewState extends State<HiRefreshView>
             controller: _refreshController,
             enablePullDown: widget.enablePullRefresh,
             enablePullUp: widget.enableLoadingMore,
-            onRefresh: () => widget.getController.onRefresh(_refreshController),
-            onLoading: () => widget.getController.onMore(_refreshController),
+            onRefresh: () => widget.getController.onRefresh,
+            onLoading: () => widget.getController.onMore,
             header: CustomHeader(builder: _buildHeader),
             footer: CustomFooter(builder: _buildFooter),
             child: widget.listView,

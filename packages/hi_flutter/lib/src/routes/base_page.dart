@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_core/hi_core.dart';
 import 'package:get/get.dart';
 import 'base_controller.dart';
 
@@ -15,7 +16,9 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
   get lifecycle => null;
   C get controller => GetInstance().find<C>(tag: tag);
 
-  void initState() {}
+  void initState() {
+    log('HiBasePage.initState', tag: HiLogTag.frame);
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(

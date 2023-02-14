@@ -33,6 +33,10 @@ class HiStorable extends HiModel {
     HiCache.shared().set(key, value);
   }
 
+  // static dynamic fetch() {
+  //   return null;
+  // }
+
   @override
   bool get stringify => true;
 
