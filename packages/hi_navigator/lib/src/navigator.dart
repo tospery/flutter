@@ -6,6 +6,8 @@ import 'package:hi_navigator/src/impl/toast_activity.dart';
 
 class HiNavigator {
 
+  final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+
   static HiNavigator? _instance;
   static HiNavigator shared() {
     _instance ??= HiNavigator._();
