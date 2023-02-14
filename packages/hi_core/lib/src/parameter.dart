@@ -1,6 +1,7 @@
 class HiParameter {
   static const id = 'id';
   static const url = 'url';
+  static const key = 'key';
   static const code = 'code';
   static const data = 'data';
   static const path = 'path';
