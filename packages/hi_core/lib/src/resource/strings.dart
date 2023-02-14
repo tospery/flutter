@@ -1,6 +1,9 @@
 class Strings {
   final none = 'none';
   final login = 'login';
+  final ok = 'ok';
+  final sure = 'sure';
+  final cancel = 'cancel';
   final loading = 'loading';
   final appSlogan = 'appSlogan';
   final unknown = 'unknown';

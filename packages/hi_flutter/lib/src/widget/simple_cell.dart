@@ -81,13 +81,19 @@ class HiSimpleCell extends HiCell<HiSimple> {
       children.add(
         Text(
           model.detail!,
-          style: context.textTheme.titleMedium
-              ?.copyWith(fontWeight: FontWeight.normal),
+          // style: context.textTheme.titleMedium
+          //     ?.copyWith(fontWeight: FontWeight.normal),
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: context.theme.unselectedWidgetColor,
+          ),
         ),
       );
     }
     if (model.hasIndicator) {
-      children.add(const Icon(Icons.keyboard_arrow_right));
+      children.add(Icon(
+        Icons.keyboard_arrow_right,
+        color: context.theme.indicatorColor,
+      ));
     }
     return Row(
       children: children,
