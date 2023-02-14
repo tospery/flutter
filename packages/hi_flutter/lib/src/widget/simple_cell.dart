@@ -32,7 +32,7 @@ class HiSimpleCell extends HiCell<HiSimple> {
           ? hiImage(model.icon!, height: 24)
           : null,
       icon: _buildTileDetail(context),
-      color: context.theme.canvasColor, // context.colorScheme.onBackground,
+      color: context.theme.cardColor, // context.colorScheme.onBackground,
       onTap: () => onPressed != null ? onPressed!(model) : null,
     );
   }
@@ -45,20 +45,32 @@ class HiSimpleCell extends HiCell<HiSimple> {
   }
 
   Widget _buildButton(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onPressed != null ? onPressed!(model) : null,
-      child: Container(
-        height: model.height ?? 50,
-        color: model.color?.toColor() ?? context.colorScheme.onBackground,
-        child: Center(
-            child: model.title != null
-                ? Text(
-              model.title!,
-              style: context.textTheme.titleMedium
-                  ?.copyWith(color: context.colorScheme.secondary),
-            )
-                : null),
-        // color: Colors.red,
+    // return GestureDetector(
+    //   onTap: () => onPressed != null ? onPressed!(model) : null,
+    //   child: Container(
+    //     height: model.height ?? 50,
+    //     color: model.color?.toColor() ?? context.colorScheme.onBackground,
+    //     child: Center(
+    //         child: model.title != null
+    //             ? Text(
+    //           model.title!,
+    //           style: context.textTheme.titleMedium
+    //               ?.copyWith(color: context.colorScheme.secondary),
+    //         )
+    //             : null),
+    //     // color: Colors.red,
+    //   ),
+    // );
+    return GFButton(
+      onPressed: () => onPressed != null ? onPressed!(model) : null,
+      text: model.title,
+      size: model.height ?? R.constants.metric.cellHeightMedium,
+      borderShape: hiBorder(width: 0),
+      borderSide: BorderSide.none,
+      color: model.color?.toColor() ?? context.theme.cardColor,
+      // textColor: context.theme.primaryColor,
+      textStyle: context.textTheme.titleMedium?.copyWith(
+        color: context.theme.primaryColor
       ),
     );
   }

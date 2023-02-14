@@ -9,43 +9,13 @@ import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_flutter/src/model/user.dart';
 import 'package:hi_flutter/src/model/configuration.dart';
 
-// storeObject<M extends HiModel>(
-//     M model, {
-//       bool isReactive = false,
-//     }) {
-//   var key = model.typeName.toLowerCase();
-//   log('存储key = $key');
-//   HiCache.shared().set(key, model.toJson().toJsonString());
-//   if (isReactive) {
-//     if (model is HiUser) {
-//       Get.replace<HiUser>(model);
-//     }
-//     if (model is HiConfiguration) {
-//       Get.replace<HiConfiguration>(model);
-//     }
-//   }
-// }
-
 M? fetchObject<M extends HiModel>(
     M Function(Map<String, dynamic>) fromJson,
     ) {
   var key = M.toString().toLowerCase();
   log('提取key = $key');
-  var string = HiCache.shared().get<String>(key);
-  log('提取string = $string');
-  if (string == null) {
-    return null;
-  }
-  var json = string.toJsonObject();
-  log('提取json = $json');
-  if (json == null) {
-    return null;
-  }
-  // var model = fromJson(json);
-  // if (!model.isValid) {
-  //   return null;
-  // }
-  return fromJson(json);
+  var json = HiCache.shared().get<String>(key)?.toJsonObject();
+  return json != null ? fromJson(json) : null;
 }
 
 double metricWidth(
