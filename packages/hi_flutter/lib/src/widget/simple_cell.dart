@@ -53,6 +53,9 @@ class HiSimpleCell extends HiCell<HiSimple> {
           text: model.title,
           size: model.height ?? GFSize.LARGE,
           color: model.color?.toColor() ?? context.theme.primaryColor,
+          borderShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8)),
+          ),
           fullWidthButton: true,
         ),
       );

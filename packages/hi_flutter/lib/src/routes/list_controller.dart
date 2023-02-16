@@ -27,13 +27,13 @@ class HiListController<T> extends HiBaseController {
     pageSize = parameters.intForKey(HiParameter.pageSize) ?? HiFlutter.shared().pageSize;
   }
 
-  void onRefresh() {
+  void doRefresh() {
     requestMode.value = HiRequestMode.pullRefresh;
     update();
     requestRemote(requestMode.value, pageFirst);
   }
 
-  void onMore() {
+  void doLoadingMore() {
     requestMode.value = HiRequestMode.loadingMore;
     update();
     requestRemote(requestMode.value, pageIndex + 1);
