@@ -49,7 +49,6 @@ class HiSimpleCell extends HiCell<HiSimple> {
       return FractionallySizedBox(
         widthFactor: R.constants.metric.layoutPercentLarge,
         child: GFButton(
-          onPressed: () => onPressed != null ? onPressed!(model) : null,
           text: model.title,
           size: model.height ?? GFSize.LARGE,
           color: model.color?.toColor() ?? context.theme.primaryColor,
@@ -57,6 +56,8 @@ class HiSimpleCell extends HiCell<HiSimple> {
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           fullWidthButton: true,
+          disabledTextColor: context.theme.cardColor,
+          onPressed: onPressed != null ? () => onPressed!(model) : null,
         ),
       );
     }
