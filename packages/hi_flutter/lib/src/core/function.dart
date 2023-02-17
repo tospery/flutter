@@ -86,6 +86,21 @@ Border hiBorder({
   );
 }
 
+UnderlineInputBorder hiUnderlineBorder({
+  BuildContext? context,
+  double? width,
+  Color? color,
+}) {
+  return UnderlineInputBorder(
+    borderSide: Divider.createBorderSide(
+      context,
+      width: width ?? context?.theme.dividerTheme.thickness,
+      color: color ?? context?.theme.dividerTheme.color,
+    ),
+    borderRadius: BorderRadius.zero,
+  );
+}
+
 OutlineInputBorder hiOutlineBorder({
   Color? color,
   double width = 1.0,

@@ -1,6 +1,7 @@
 import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_network/hi_network.dart';
-import 'package:hi_flutter/src/utils/package_manager.dart';
+import 'package:hi_flutter/src/utils/app_info.dart';
+import 'package:hi_flutter/src/utils/device_info.dart';
 
 class HiFlutter {
   final int pageSize;
@@ -24,7 +25,8 @@ class HiFlutter {
     _instance ??= HiFlutter._(pageSize: pageSize);
     await HiCache.ready();
     await HiNetwork.ready(codeKeys: codeKeys, messageKeys: messageKeys, dataKeys: dataKeys,);
-    await HiPackageManager.ready();
+    await HiAppInfo.ready();
+    await HiDeviceInfo.ready();
     return true;
   }
 }

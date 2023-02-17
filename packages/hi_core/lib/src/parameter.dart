@@ -24,4 +24,10 @@ class HiParameter {
   static const canLoadMore = 'canLoadMore';
   static const routerMode = 'routerMode';
   static const routerRoot = 'routerRoot';
+  static const systemName = 'systemName';
+  static const isPhysicalDevice = 'isPhysicalDevice';
+  static const systemVersion = 'systemVersion';
+  static const name = 'name';
+  static const utsname = 'utsname';
+  static const machine = 'machine';
 }
