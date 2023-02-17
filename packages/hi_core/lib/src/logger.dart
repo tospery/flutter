@@ -3,7 +3,7 @@ import 'package:logger/logger.dart';
 class HiLogTag {
   static const core = 'Core';
   static const cache = 'Cache';
-  static const router = 'Router';
+  static const navigator = 'Navigator';
   static const network = 'Network';
   static const tabBar = 'TabBar';
   static const dialog = 'Dialog';

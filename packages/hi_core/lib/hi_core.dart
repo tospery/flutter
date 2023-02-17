@@ -27,5 +27,6 @@ export 'src/resource/assets_image.dart';
 export 'src/resource/constants.dart';
 export 'src/resource/constants_metric.dart';
 export 'src/resource/constants_vendor.dart';
+export 'src/resource/constants_config.dart';
 export 'src/resource/r.dart';
 export 'src/resource/strings.dart';

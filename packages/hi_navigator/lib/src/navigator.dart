@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hi_core/hi_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hi_navigator/src/impl/alert_view.dart';
 import 'package:hi_navigator/src/impl/toast_activity.dart';
@@ -30,20 +31,33 @@ class HiNavigator {
   // }
 
   Future<T?>? forward<T>({
-    required String host,
+    String? url,
+    String? host,
     String? path,
     Map<String, dynamic>? parameters,
     dynamic context,
     bool rootNavigator = false,
   }) {
-    var urlString = '/$host';
-    if (path?.isNotEmpty ?? false) {
-      urlString += '/$path';
+    var urlString = url;
+    if (urlString == null) {
+      if (host?.isNotEmpty ?? false) {
+        if (path?.isNotEmpty ?? false) {
+          urlString = '/$host/$path';
+        } else {
+          urlString = '/$host';
+        }
+      }
+    } else {
+      urlString = Uri.tryParse(urlString!)?.route;
     }
+    if (urlString?.isEmpty ?? true) {
+      return null;
+    }
+    log('导航->$urlString, 参数$parameters', tag: HiLogTag.navigator);
     if (rootNavigator) {
-      return Get.offAllNamed(urlString, arguments: parameters);
+      return Get.offAllNamed(urlString!, arguments: parameters);
     }
-    return Get.toNamed(urlString, arguments: parameters);
+    return Get.toNamed(urlString!, arguments: parameters);
   }
 
   void back<T>({

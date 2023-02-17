@@ -2,13 +2,13 @@ import 'map.dart';
 
 extension UriEx on Uri {
   String get hostpath => host + path;
-  String get removedScheme {
+  String get route {
     var result = host;
     if (result.isEmpty) {
       return result;
     }
     if (path.isNotEmpty) {
-      result += '/$path';
+      result += '$path';
     }
     if (query.isNotEmpty) {
       result += '?$query';

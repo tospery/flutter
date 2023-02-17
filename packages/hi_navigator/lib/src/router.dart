@@ -1,3 +1,5 @@
+import 'package:hi_core/hi_core.dart';
+
 class HiRouter {
   static final hosts = HiHost();
   static final paths = HiPath();
@@ -38,4 +40,23 @@ class HiPath {
   final page = 'page';
   final list = 'list';
   final detail = 'detail';
+}
+
+String hiURLString({
+  required String host,
+  String? path,
+  Map<String, dynamic>? parameters,
+}) {
+  var urlString = 'dthub://$host';
+  if (path?.isNotEmpty ?? false) {
+    urlString += '/$path';
+  }
+  if (parameters?.isNotEmpty ?? false) {
+    urlString += "?";
+    parameters?.forEach((key, value) {
+      urlString += '$key=$value&';
+    });
+    urlString = urlString.removeSuffix('&');
+  }
+  return urlString;
 }
