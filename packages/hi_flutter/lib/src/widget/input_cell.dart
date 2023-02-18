@@ -7,10 +7,10 @@ import 'package:hi_flutter/src/extension/context.dart';
 import 'package:hi_flutter/src/model/input.dart';
 import 'package:hi_flutter/src/widget/cell.dart';
 
-class TextFieldCell extends HiCell<HiInput> {
-  final HiCallback? onChanged;
+class HiInputCell extends HiCell<HiInput> {
+  final HiDynamicCallback? onChanged;
 
-  const TextFieldCell({
+  const HiInputCell({
     super.key,
     required super.model,
     this.onChanged,

@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/widget/tile_cell.dart';
 
 class HiTile extends HiModel {
   final int? style;
@@ -10,6 +12,15 @@ class HiTile extends HiModel {
   final double? height;
   final bool? indicated;
   final bool? separated;
+
+  @override
+  Widget? get separator => separated ?? false ? const Divider() : null;
+
+  @override
+  Widget? cell({
+    HiCellPressed? onPressed,
+    HiDynamicCallback? onChanged,
+  }) => HiTileCell(model: this, onPressed: onPressed);
 
   const HiTile({
     super.id,

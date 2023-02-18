@@ -1,8 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/widget/text_cell.dart';
 
 class HiText extends HiModel {
   final String content;
   final List<String>? links;
+
+  @override
+  Widget? cell({
+    HiCellPressed? onPressed,
+    HiDynamicCallback? onChanged,
+  }) => HiInputCell(model: this, onPressed: onPressed);
 
   const HiText(
     this.content, {

@@ -1,9 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/widget/input_cell.dart';
 
 class HiInput extends HiModel {
   final bool? autofocus;
   final String? hint;
   final String? text;
+
+  @override
+  Widget? cell({
+    HiCellPressed? onPressed,
+    HiDynamicCallback? onChanged,
+  }) => HiInputCell(model: this, onChanged: onChanged);
 
   const HiInput({
     this.autofocus,

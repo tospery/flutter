@@ -1,11 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/widget/space_cell.dart';
 
 class HiSpace extends HiModel {
   final int? style;
   final String? color;
   final double? height;
 
-  static const defaultHeight = 15.0;
+  @override
+  Widget? cell({
+    HiCellPressed? onPressed,
+    HiDynamicCallback? onChanged,
+  }) => HiInputCell(model: this);
 
   const HiSpace({
     this.style,

@@ -5,7 +5,10 @@ class ConstantsMetric {
   final layoutPercentSmall = 0.80;
   final layoutPercentMedium = 0.86;
   final layoutPercentLarge = 0.90;
-  final cellHeightSmall = 40.0;
-  final cellHeightMedium = 45.0;
-  final cellHeightLarge = 50.0;
+  final tileHeightSmall = 40.0;
+  final tileHeightMedium = 45.0;
+  final tileHeightLarge = 50.0;
+  final spaceHeightSmall = 10.0;
+  final spaceHeightMedium = 20.0;
+  final spaceHeightLarge = 30.0;
 }

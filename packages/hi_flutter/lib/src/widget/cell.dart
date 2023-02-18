@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
 
-typedef HiCellPressed<M extends HiModel> = void Function(M model,
-    {dynamic extra});
-
 class HiCell<M extends HiModel> extends StatelessWidget {
   final M model;
   final HiCellPressed<M>? onPressed;

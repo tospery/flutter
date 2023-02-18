@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import '../extension/map.dart';
 import '../extension/object.dart';
+import 'package:hi_core/src/datatype.dart';
 
 class HiModel extends Equatable {
   final String? id;
 
   bool get isValid => id?.isNotEmpty ?? false;
+  Widget? get separator => null;
+
+  Widget? cell({
+    HiCellPressed? onPressed,
+    HiDynamicCallback? onChanged,
+  }) => null;
 
   const HiModel({this.id});
 

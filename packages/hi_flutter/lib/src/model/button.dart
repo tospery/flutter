@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/widget/button_cell.dart';
 
 class HiButton extends HiModel {
   final int? style;
@@ -7,6 +9,12 @@ class HiButton extends HiModel {
   final double? height;
   final String? titleColor;
   final String? backgroundColor;
+
+  @override
+  Widget? cell({
+    HiCellPressed? onPressed,
+    HiDynamicCallback? onChanged,
+  }) => HiButtonCell(model: this, onPressed: onPressed);
 
   const HiButton({
     super.id,
