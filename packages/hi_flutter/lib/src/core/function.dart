@@ -6,50 +6,57 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_cache/hi_cache.dart';
-import 'package:hi_flutter/src/model/user.dart';
-import 'package:hi_flutter/src/model/configuration.dart';
 
-// storeObject<M extends HiModel>(
-//     M model, {
-//       bool isReactive = false,
-//     }) {
-//   var key = model.typeName.toLowerCase() ?? '';
-//   log('存储key = $key', tag: HiLogTag.frame);
-//   var value = model.toJson().toJsonString();
-//   log('存储value = $value', tag: HiLogTag.frame);
-//   HiCache.shared().set(key, value);
-//   if (isReactive) {
-//     if (model is HiUser) {
-//       Get.replace<HiUser>(model);
-//     }
-//     if (model is HiConfiguration) {
-//       Get.replace<HiConfiguration>(model);
-//     }
-//   }
-// }
-
-M? fetchObject<M extends HiModel>(
-    M Function(Map<String, dynamic>) fromJson,
-    ) {
-  var key = M.toString().toLowerCase();
-  log('提取key = $key');
-  var json = HiCache.shared().get<String>(key)?.toJsonObject();
-  return json != null ? fromJson(json) : null;
+Future<bool> storeObject<M extends HiModel>(
+  M model, {
+  String? id,
+  bool? useDatabase,
+  bool? isReactive,
+}) async {
+  await HiCache.shared().storeObject(model, id: id, useDatabase: useDatabase);
+  if (isReactive ?? false) {
+    if (model is HiUser) {
+      Get.replace<HiUser>(model);
+    }
+    if (model is HiConfiguration) {
+      Get.replace<HiConfiguration>(model);
+    }
+  }
+  return true;
 }
 
+Future<M?> fetchObject<M extends HiModel>(
+  M Function(Map<String, dynamic>) fromJson, {
+  String? id,
+  bool? useDatabase,
+}) =>
+    HiCache.shared().fetchObject(fromJson, id: id, useDatabase: useDatabase);
+
+Future<bool> storeArray<M extends HiModel>(
+  List<M> models, {
+  String? page,
+}) =>
+    HiCache.shared().storeArray(models, page: page);
+
+Future<List<M>> fetchArray<M extends HiModel>(
+  M Function(Map<String, dynamic>) fromJson, {
+  String? page,
+}) =>
+    HiCache.shared().fetchArray(fromJson);
+
 double metricWidth(
-    double width, {
-      BuildContext? context,
-    }) {
+  double width, {
+  BuildContext? context,
+}) {
   final designWidth = 393.0;
   var deviceWidth = (context ?? Get.overlayContext)?.width ?? designWidth;
   return width / designWidth * deviceWidth;
 }
 
 double metricHeight(
-    double height, {
-      BuildContext? context,
-    }) {
+  double height, {
+  BuildContext? context,
+}) {
   final designHeight = 852.0;
   var deviceHeight = (context ?? Get.overlayContext)?.width ?? designHeight;
   return height / designHeight * deviceHeight;
@@ -222,7 +229,7 @@ Widget hiImage(String url, {double? width, double? height, BoxFit? fit}) {
       placeholder: (BuildContext context, String url) =>
           Container(color: Colors.grey[200]),
       errorWidget: (BuildContext context, String url, dynamic error) =>
-      const Icon(Icons.error),
+          const Icon(Icons.error),
       imageUrl: url,
     );
   }
@@ -242,7 +249,7 @@ Widget hiImage(String url, {double? width, double? height, BoxFit? fit}) {
       placeholder: (BuildContext context, String url) =>
           Container(color: Colors.grey[200]),
       errorWidget: (BuildContext context, String url, dynamic error) =>
-      const Icon(Icons.error),
+          const Icon(Icons.error),
       imageUrl: url,
     );
   }

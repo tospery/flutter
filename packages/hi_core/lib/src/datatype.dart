@@ -1,2 +1,1 @@
-typedef HiVoidCallback = dynamic Function();
-typedef HiDynamicCallback = dynamic Function(dynamic value);
+typedef HiCallback = dynamic Function(dynamic value);

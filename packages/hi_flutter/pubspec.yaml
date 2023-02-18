@@ -20,6 +20,7 @@ dependencies:
   flutter_svg: 1.1.5
   lottie: 1.4.2
   webview_flutter: 3.0.4
+  flutter_linkify: 5.0.2
   hi_core:
     path: ../hi_core
   hi_navigator:

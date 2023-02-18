@@ -6,8 +6,6 @@ import 'package:hi_network/hi_network.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 import '../core/constant.dart';
 import '../core/datatype.dart';
-import 'package:hi_flutter/src/model/user.dart';
-import 'package:hi_flutter/src/model/configuration.dart';
 
 class HiBaseController extends FullLifeCycleController {
   /// title通常不可变，故使用非响应式，如果需要变，则在具体controller中实现特定的响应式title

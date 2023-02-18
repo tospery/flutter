@@ -6,7 +6,9 @@ class Parameters {
   final data = 'data';
   final path = 'path';
   final user = 'user';
+  final text = 'text';
   final name = 'name';
+  final links = 'links';
   final token = 'token';
   final title = 'title';
   final model = 'model';

@@ -15,11 +15,9 @@ extension BuildContextEx on BuildContext {
   // RouteSettings? get modalRouteSettings => modalRoute?.settings;
   // Object? get modalRouteSettingsArguments => modalRouteSettings?.arguments;
   
-  ColorScheme get colorScheme => theme.colorScheme;
-  Color get background => colorScheme.surface;          // 白色
-  Color get foreground => colorScheme.inverseSurface;   // 黑色
+  // ColorScheme get colorScheme => theme.colorScheme;
+  // TextTheme get primaryTextTheme => theme.primaryTextTheme;
 
-  TextTheme get primaryTextTheme => theme.primaryTextTheme;
   double metricWidth(double width) => hi_flutter.metricWidth(width, context: this);
   double metricHeight(double height) => hi_flutter.metricHeight(height, context: this);
 
