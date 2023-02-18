@@ -10,7 +10,7 @@ class HiText extends HiModel {
   Widget? cell({
     HiCellPressed? onPressed,
     HiDynamicCallback? onChanged,
-  }) => HiInputCell(model: this, onPressed: onPressed);
+  }) => HiTextCell(model: this, onPressed: onPressed);
 
   const HiText(
     this.content, {

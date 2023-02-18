@@ -11,7 +11,7 @@ class HiSpace extends HiModel {
   Widget? cell({
     HiCellPressed? onPressed,
     HiDynamicCallback? onChanged,
-  }) => HiInputCell(model: this);
+  }) => HiSpaceCell(model: this);
 
   const HiSpace({
     this.style,

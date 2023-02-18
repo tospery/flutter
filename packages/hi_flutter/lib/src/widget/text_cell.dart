@@ -6,9 +6,9 @@ import 'package:hi_flutter/src/model/text.dart';
 import 'package:hi_flutter/src/utils/text_linkifier.dart';
 import 'package:hi_flutter/src/widget/cell.dart';
 
-class TextCell extends HiCell<HiText> {
+class HiTextCell extends HiCell<HiText> {
 
-  TextCell({
+  HiTextCell({
     super.key,
     required super.model,
     super.onPressed,
