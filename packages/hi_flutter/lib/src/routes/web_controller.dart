@@ -11,7 +11,7 @@ class HiWebController extends HiBaseController {
     super.onInit();
     // var arguments = Get.arguments as Map<String, dynamic>? ?? {};
     // url.value = parameters.stringForKey(HiParameter.url) ?? '';
-    url = parameters.stringForKey(HiParameter.url) ?? '';
+    url = parameters.stringForKey(R.parameters.url) ?? '';
   }
 
   void loadFinished() {

@@ -30,12 +30,12 @@ class HiDeviceInfo {
     return _instance!;
   }
 
-  String? get name => _deviceInfo?.data.stringForKey(HiParameter.name);
-  String? get model => _deviceInfo?.data.stringForKey(HiParameter.model);
+  String? get name => _deviceInfo?.data.stringForKey(R.parameters.name);
+  String? get model => _deviceInfo?.data.stringForKey(R.parameters.model);
   String? get systemName =>
-      _deviceInfo?.data.stringForKey(HiParameter.systemName);
+      _deviceInfo?.data.stringForKey(R.parameters.systemName);
   String? get systemVersion =>
-      _deviceInfo?.data.stringForKey(HiParameter.systemVersion);
+      _deviceInfo?.data.stringForKey(R.parameters.systemVersion);
   bool? get isPhysicalDevice =>
-      _deviceInfo?.data.boolForKey(HiParameter.isPhysicalDevice);
+      _deviceInfo?.data.boolForKey(R.parameters.isPhysicalDevice);
 }

@@ -1,0 +1,35 @@
+class Parameters {
+  final id = 'id';
+  final url = 'url';
+  final key = 'key';
+  final code = 'code';
+  final data = 'data';
+  final path = 'path';
+  final user = 'user';
+  final name = 'name';
+  final token = 'token';
+  final title = 'title';
+  final model = 'model';
+  final extra = 'extra';
+  final index = 'index';
+  final value = 'value';
+  final accept = 'Accept';
+  final utsname = 'utsname';
+  final machine = 'machine';
+  final username = 'username';
+  final pageSize = 'pageSize';
+  final pageFirst = 'pageFirst';
+  final pageIndex = 'pageIndex';
+  final arguments = 'arguments';
+  final routerMode = 'routerMode';
+  final routerRoot = 'routerRoot';
+  final systemName = 'systemName';
+  final hideNavBar = 'hideNavBar';
+  final canRefresh = 'canRefresh';
+  final hideNavLine = 'hideNavLine';
+  final canLoadMore = 'canLoadMore';
+  final jsonEncoding = 'application/json';
+  final configuration = 'configuration';
+  final systemVersion = 'systemVersion';
+  final isPhysicalDevice = 'isPhysicalDevice';
+}

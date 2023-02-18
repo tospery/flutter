@@ -14,8 +14,8 @@ class HiService extends GetConnect {
         json = data;
       } else {
         json = {
-          HiParameter.code: HiError.okCode,
-          HiParameter.data: data,
+          R.parameters.code: HiError.okCode,
+          R.parameters.data: data,
         };
       }
       return HiResponse.fromJson(json);
@@ -53,12 +53,6 @@ class HiService extends GetConnect {
         HiServerError(response.statusCode ?? -1, response.statusText, data: response.body),
       );
     }
-    var genericType = typeOf<T>();
-    var voidType = typeOf<void>();
-    // var dynamicType = typeOf<dynamic>();
-    if (genericType == voidType) {
-      return Future.value();
-    }
     var base = response.body;
     if (base is! HiResponse) {
       return Future.error(HiError.unknown);
@@ -67,6 +61,16 @@ class HiService extends GetConnect {
     if (!checkCode && !returnData) {
       data = base.json;
     }
+    if (checkCode && base.code != HiError.okCode) {
+      return Future.error(HiServerError(base.code ?? -1, base.message, data: data));
+    }
+    var genericType = typeOf<T>();
+    if (genericType == typeOf<void>()) {
+      return Future.value();
+    }
+    // if (genericType == typeOf<dynamic>()) {
+    //   return Future.value(base);
+    // }
     if (data is T) {
       return Future.value(data as T);
     }
