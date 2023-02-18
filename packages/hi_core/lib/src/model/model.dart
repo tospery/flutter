@@ -13,7 +13,7 @@ class HiModel extends Equatable {
 
   Widget? cell({
     HiCellPressed? onPressed,
-    HiDynamicCallback? onChanged,
+    HiValueChanged? onChanged,
   }) => Container();
 
   const HiModel({this.id});

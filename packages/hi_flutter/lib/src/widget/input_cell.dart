@@ -8,7 +8,7 @@ import 'package:hi_flutter/src/model/input.dart';
 import 'package:hi_flutter/src/widget/cell.dart';
 
 class HiInputCell extends HiCell<HiInput> {
-  final HiDynamicCallback? onChanged;
+  final HiValueChanged? onChanged;
 
   const HiInputCell({
     super.key,

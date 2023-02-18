@@ -22,7 +22,7 @@ class HiHost {
   final splash = 'splash';
   final home = 'home';
   final profile = 'profile';
-  final settings = 'settings';
+  final setting = 'setting';
   final about = 'about';
   final search = 'search';
   final login = 'login';

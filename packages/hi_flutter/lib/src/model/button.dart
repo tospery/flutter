@@ -13,7 +13,7 @@ class HiButton extends HiModel {
   @override
   Widget? cell({
     HiCellPressed? onPressed,
-    HiDynamicCallback? onChanged,
+    HiValueChanged? onChanged,
   }) => HiButtonCell(model: this, onPressed: onPressed);
 
   const HiButton({

@@ -9,35 +9,40 @@ class HiLabel extends HiModel {
   @override
   Widget? cell({
     HiCellPressed? onPressed,
-    HiDynamicCallback? onChanged,
+    HiValueChanged? onChanged,
   }) => HiLabelCell(model: this, onPressed: onPressed);
 
   const HiLabel({
+    super.id,
     this.text,
     this.links,
   });
 
   factory HiLabel.fromJson(Map<String, dynamic> json) => HiLabel(
+        id: json.stringForKey('id'),
         text: json.stringForKey('text'),
         links: json.listForKey<String>('links'),
       );
 
   @override
   Map<String, dynamic> toJson() => {
+    'id': id,
         'text': text,
         'links': links,
       };
 
   HiLabel copyWith({
+    String? id,
     String? text,
     List<String>? links,
   }) {
     return HiLabel(
-      text: text ?? this.text ?? '',
+      id: id ?? this.id,
+      text: text ?? this.text,
       links: links ?? this.links,
     );
   }
 
   @override
-  List<Object?> get props => [text, links];
+  List<Object?> get props => [id, text, links];
 }

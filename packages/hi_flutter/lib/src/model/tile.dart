@@ -19,7 +19,7 @@ class HiTile extends HiModel {
   @override
   Widget? cell({
     HiCellPressed? onPressed,
-    HiDynamicCallback? onChanged,
+    HiValueChanged? onChanged,
   }) => HiTileCell(model: this, onPressed: onPressed);
 
   const HiTile({

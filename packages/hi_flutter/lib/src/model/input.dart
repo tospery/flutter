@@ -10,16 +10,18 @@ class HiInput extends HiModel {
   @override
   Widget? cell({
     HiCellPressed? onPressed,
-    HiDynamicCallback? onChanged,
+    HiValueChanged? onChanged,
   }) => HiInputCell(model: this, onChanged: onChanged);
 
   const HiInput({
+    super.id,
     this.autofocus,
     this.hint,
     this.text,
   });
 
   factory HiInput.fromJson(Map<String, dynamic> json) => HiInput(
+        id: json.stringForKey('id'),
         autofocus: json.boolForKey('autofocus'),
         hint: json.stringForKey('hint'),
         text: json.stringForKey('text'),
@@ -27,17 +29,20 @@ class HiInput extends HiModel {
 
   @override
   Map<String, dynamic> toJson() => {
+        'id': id,
         'autofocus': autofocus,
         'hint': hint,
         'text': text,
       };
 
   HiInput copyWith({
+    String? id,
     bool? autofocus,
     String? hint,
     String? text,
   }) {
     return HiInput(
+      id: id ?? this.id,
       autofocus: autofocus ?? this.autofocus,
       hint: hint ?? this.hint,
       text: text ?? this.text,
@@ -45,5 +50,5 @@ class HiInput extends HiModel {
   }
 
   @override
-  List<Object?> get props => [autofocus, hint, text];
+  List<Object?> get props => [id, autofocus, hint, text];
 }
