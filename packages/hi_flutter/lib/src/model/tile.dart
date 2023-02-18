@@ -31,8 +31,8 @@ class HiTile extends HiModel {
     this.icon,
     this.color,
     this.height,
-    this.indicated,
-    this.separated,
+    this.indicated = true,
+    this.separated = true,
   });
 
   factory HiTile.fromJson(Map<String, dynamic> json) => HiTile(

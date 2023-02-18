@@ -15,6 +15,6 @@ extension ColorFlutterEx on Color {
   /// 主题色
   Color get indicatorColor => this;
   /// 白色/黑色
-  Color get surface => computeLuminance() < 0.5 ? Colors.white : Colors.black;
-  Color get inverseSurface => computeLuminance() < 0.5 ? Colors.black : Colors.white;
+  Color get bgColor => computeLuminance() < 0.5 ? Colors.white : Colors.black;
+  Color get fgColor => computeLuminance() < 0.5 ? Colors.black : Colors.white;
 }

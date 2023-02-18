@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/extension/context.dart';
+import 'package:hi_flutter/src/extension/theme.dart';
 import 'package:hi_flutter/src/model/tile.dart';
 import 'package:hi_flutter/src/core/function.dart';
 import 'package:hi_flutter/src/widget/cell.dart';
@@ -25,7 +26,7 @@ class HiTileCell extends HiCell<HiTile> {
           ? hiImage(model.icon!, height: 24)
           : null,
       icon: _buildTileDetail(context),
-      color: context.theme.cardColor, // context.colorScheme.onBackground,
+      color: context.theme.bgColor, // context.colorScheme.onBackground,
       onTap: () => onPressed != null ? onPressed!(model) : null,
     );
   }
