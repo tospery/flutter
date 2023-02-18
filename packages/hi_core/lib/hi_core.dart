@@ -11,6 +11,8 @@ export 'src/function.dart';
 export 'src/logger.dart';
 export 'src/model/model.dart';
 export 'src/model/wrap.dart';
+export 'src/model/user.dart';
+export 'src/model/configuration.dart';
 export 'src/extension/bool.dart';
 export 'src/extension/color.dart';
 export 'src/extension/colors.dart';

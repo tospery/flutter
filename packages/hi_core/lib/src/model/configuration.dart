@@ -1,10 +1,9 @@
-import 'package:hi_core/hi_core.dart';
-import 'package:get/get.dart';
-import 'package:hi_flutter/src/core/constant.dart';
-import 'package:hi_flutter/src/model/storable.dart';
+import 'package:hi_core/src/constant.dart';
+import 'package:hi_core/src/model/model.dart';
+import 'package:hi_core/src/extension/map.dart';
 
 /// 与用户关联的本地配置
-class HiConfiguration extends HiStorable {
+class HiConfiguration extends HiModel {
 
   const HiConfiguration({
     super.id,
@@ -28,14 +27,14 @@ class HiConfiguration extends HiStorable {
     );
   }
 
-  @override
-  void store({bool isReactive = false}) {
-    super.store(isReactive: isReactive);
-    if (isReactive) {
-      Get.replace<HiConfiguration>(this);
-      eventBus.fire(this);
-    }
-  }
+  // @override
+  // void store({bool isReactive = false}) {
+  //   super.store(isReactive: isReactive);
+  //   if (isReactive) {
+  //     Get.replace<HiConfiguration>(this);
+  //     eventBus.fire(this);
+  //   }
+  // }
 
   @override
   bool get stringify => true;
