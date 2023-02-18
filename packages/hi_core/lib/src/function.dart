@@ -101,3 +101,13 @@ List<T>? hiList<T>(dynamic any) {
   var list = any.cast<T>();
   return list;
 }
+
+T? hiEnum<T>(dynamic any, T Function(dynamic) fromValue) {
+  if (any == null) {
+    return null;
+  }
+  if (any is T) {
+    return any as T;
+  }
+  return fromValue(any);
+}
