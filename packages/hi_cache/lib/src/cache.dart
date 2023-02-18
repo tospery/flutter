@@ -32,8 +32,8 @@ class HiCache {
 
   set(String key, dynamic value) {
     if (_prefs == null) {
-      log('SharedPreferences还没初始化');
-      // YJX_TODO 采用throw error，不采用error是为了轻量级
+      log('SharedPreferences还没初始化', tag: HiLogTag.cache);
+      // TODO 采用throw error，不采用error是为了轻量级
       // return Future<bool>.value(false);
       return;
     }
@@ -56,13 +56,13 @@ class HiCache {
 
   T? get<T>(String key) {
     if (_prefs == null) {
-      log('SharedPreferences还没初始化');
+      log('SharedPreferences还没初始化', tag: HiLogTag.cache);
     }
     var result = _prefs?.get(key);
-    if (result != null) {
-      return result as T?;
+    if (result == null || result is! T) {
+      return null;
     }
-    return null;
+    return result as T?;
   }
 
   remove(String key) {
@@ -70,63 +70,76 @@ class HiCache {
   }
 
   Future<bool> storeObject<M extends HiModel>(
-      M model, {
-        String? id,
-      }) async {
-    var provider = HiDbProvider<M>();
-    return await provider.store(
-        _objectKey(id),
-        model.toJson().toJsonString()
-    );
+    M model, {
+    String? id,
+    bool? useDatabase,
+  }) async {
+    var key = _objectKey(model.typeName.toLowerCase(), id: id);
+    log('存储对象: $key', tag: HiLogTag.cache);
+    if (useDatabase ?? false) {
+      var provider = HiDbProvider<M>();
+      return await provider.store(key, model.toJson().toJsonString());
+    }
+    set(key, model.toJson().toJsonString());
+    return true;
   }
 
-  Future<M?> fetchObject<M extends HiModel>(M Function(Map<String, dynamic>) fromJson, {
+  Future<M?> fetchObject<M extends HiModel>(
+    M Function(Map<String, dynamic>) fromJson, {
     String? id,
+    bool? useDatabase,
   }) async {
-    var provider = HiDbProvider<M>();
-    var json = await provider.fetch(_objectKey(id));
-    if (json == null || json is! Map<String, dynamic>) {
-      return null;
+    var key = _objectKey(M.toString().toLowerCase(), id: id);
+    log('提取对象: $key', tag: HiLogTag.cache);
+    if (useDatabase ?? false) {
+      var provider = HiDbProvider<M>();
+      var json = await provider.fetch(key);
+      return json != null && json is Map<String, dynamic> ? fromJson(json) : null;
     }
-    return fromJson(json);
+    var json = get<String>(key)?.toJsonObject();
+    return json != null ? fromJson(json) : null;
   }
 
   Future<bool> storeArray<M extends HiModel>(
-      List<M> models, {
-        String? page,
-      }) async {
-    var provider = HiDbProvider<M>();
-    return await provider.store(
-        _arrayKey(page),
-        models.toJsonString()
-    );
-  }
-
-  Future<List<M>> fetchArray<M extends HiModel>(M Function(Map<String, dynamic>) fromJson, {
+    List<M> models, {
     String? page,
   }) async {
+    var key = _arrayKey(M.toString().toLowerCase(), page: page);
+    log('存储数组: $key', tag: HiLogTag.cache);
     var provider = HiDbProvider<M>();
-    var json = await provider.fetch(_arrayKey(page));
-    if (json == null || json is! List) {
-      return [];
-    }
-    return json.map((e) => fromJson(e)).toList();
+    return await provider.store(key, models.toJsonString());
   }
 
-  Future<void> delete<M extends HiModel>() async {
-
+  Future<List<M>> fetchArray<M extends HiModel>(
+    M Function(Map<String, dynamic>) fromJson, {
+    String? page,
+  }) async {
+    var key = _arrayKey(M.toString().toLowerCase(), page: page);
+    log('提取数组: $key', tag: HiLogTag.cache);
+    var provider = HiDbProvider<M>();
+    var json = await provider.fetch(key);
+    return json != null && json is List ? json.map((e) => fromJson(e)).toList() : [];
   }
+
+  Future<void> delete<M extends HiModel>() async {}
 
   Future<void> reset() async {
     await HiDbManager.close();
   }
 
-  String _objectKey(String? id) {
-    return id?.isNotEmpty ?? false ? 'id#$id' : 'object';
+  String _objectKey(String type, {String? id}) {
+    var key = '$type#object';
+    if (id?.isNotEmpty ?? false) {
+      key += '#$id';
+    }
+    return key;
   }
 
-  String _arrayKey(String? page) {
-    return page?.isNotEmpty ?? false ? 'page#$page' : 'array';
+  String _arrayKey(String type, {String? page}) {
+    var key = '$type#array';
+    if (page?.isNotEmpty ?? false) {
+      key += '#$page';
+    }
+    return key;
   }
-
 }
