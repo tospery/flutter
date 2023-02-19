@@ -10,10 +10,9 @@ import 'package:hi_cache/hi_cache.dart';
 Future<bool> storeObject<M extends HiModel>(
   M model, {
   String? id,
-  bool? useDatabase,
   bool? isReactive,
 }) async {
-  await HiCache.shared().storeObject(model, id: id, useDatabase: useDatabase);
+  await HiCache.shared().storeObject(model, id: id);
   if (isReactive ?? false) {
     if (model is HiUser) {
       Get.replace<HiUser>(model);
@@ -28,9 +27,8 @@ Future<bool> storeObject<M extends HiModel>(
 Future<M?> fetchObject<M extends HiModel>(
   M Function(Map<String, dynamic>) fromJson, {
   String? id,
-  bool? useDatabase,
 }) =>
-    HiCache.shared().fetchObject(fromJson, id: id, useDatabase: useDatabase);
+    HiCache.shared().fetchObject(fromJson, id: id);
 
 Future<bool> storeArray<M extends HiModel>(
   List<M> models, {
@@ -217,17 +215,35 @@ Widget hiBlur({double? sigma, Widget? child}) {
   );
 }
 
-Widget hiImage(String url, {double? width, double? height, BoxFit? fit}) {
+Widget hiImage(String url, {
+  double? width,
+  double? height,
+  BoxFit? fit,
+  Image? placeholder,
+  BuildContext? context,
+}) {
   if (url.isEmpty) {
     return Container();
   }
-  if (url.startsWith('http://') || url.startsWith('https://')) {
+  if (url.isWebScheme) {
     return CachedNetworkImage(
       width: width,
       height: height,
       fit: fit,
-      placeholder: (BuildContext context, String url) =>
-          Container(color: Colors.grey[200]),
+      placeholder: (BuildContext context, String url) {
+        if (placeholder == null) {
+          return Container(
+            width: width,
+            height: height,
+            color: context == null ? Colors.grey : context.theme.highlightColor,
+          );
+        }
+        return SizedBox(
+          width: width,
+          height: height,
+          child: placeholder,
+        );
+      },
       errorWidget: (BuildContext context, String url, dynamic error) =>
           const Icon(Icons.error),
       imageUrl: url,

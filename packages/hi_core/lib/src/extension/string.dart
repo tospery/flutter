@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'dart:convert' as convert;
+import 'package:flutter/material.dart';
 import 'int.dart';
 
 extension StringEx on String {
@@ -31,6 +32,8 @@ extension StringEx on String {
   }
 
   Uri? toUri() => Uri.tryParse(this);
+
+  bool get isWebScheme => startsWith('http://') || startsWith('https://');
 
   String take(String value) {
     var result = '';
@@ -84,4 +87,20 @@ extension StringEx on String {
     }
     return null;
   }
+
+  int get _colorHash {
+    int hash = 0;
+    runes.forEach((code) {
+      hash = code + ((hash << 5) - hash);
+    });
+    return hash;
+  }
+
+  int get _hexInt {
+    String c = (_colorHash & 0x00FFFFFF).toRadixString(16).toUpperCase();
+    String hex = "FF00000".substring(0, 8 - c.length) + c;
+    return int.parse(hex, radix: 16);
+  }
+
+  Color get fixedColor => Color(_hexInt);
 }

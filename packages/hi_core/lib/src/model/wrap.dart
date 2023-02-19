@@ -6,11 +6,6 @@ import 'package:hi_core/src/logger.dart';
 class HiWrap extends HiModel {
   final dynamic value;
 
-  Widget? cell({
-    HiCellPressed? onPressed,
-    HiValueChanged? onChanged,
-  }) => Container();
-
   const HiWrap({
     super.id,
     this.value,

@@ -6,12 +6,6 @@ class HiLabel extends HiModel {
   final String? text;
   final List<String>? links;
 
-  @override
-  Widget? cell({
-    HiCellPressed? onPressed,
-    HiValueChanged? onChanged,
-  }) => HiLabelCell(model: this, onPressed: onPressed);
-
   const HiLabel({
     super.id,
     this.text,

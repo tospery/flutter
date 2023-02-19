@@ -72,32 +72,22 @@ class HiCache {
   Future<bool> storeObject<M extends HiModel>(
     M model, {
     String? id,
-    bool? useDatabase,
   }) async {
     var key = _objectKey(model.typeName.toLowerCase(), id: id);
     log('存储对象: $key', tag: HiLogTag.cache);
-    if (useDatabase ?? false) {
-      var provider = HiDbProvider<M>();
-      return await provider.store(key, model.toJson().toJsonString());
-    }
-    set(key, model.toJson().toJsonString());
-    return true;
+    var provider = HiDbProvider<M>();
+    return await provider.store(key, model.toJson().toJsonString());
   }
 
   Future<M?> fetchObject<M extends HiModel>(
     M Function(Map<String, dynamic>) fromJson, {
     String? id,
-    bool? useDatabase,
   }) async {
     var key = _objectKey(M.toString().toLowerCase(), id: id);
     log('提取对象: $key', tag: HiLogTag.cache);
-    if (useDatabase ?? false) {
-      var provider = HiDbProvider<M>();
-      var json = await provider.fetch(key);
-      return json != null && json is Map<String, dynamic> ? fromJson(json) : null;
-    }
-    var json = get<String>(key)?.toJsonObject();
-    return json != null ? fromJson(json) : null;
+    var provider = HiDbProvider<M>();
+    var json = await provider.fetch(key);
+    return json != null && json is Map<String, dynamic> ? fromJson(json) : null;
   }
 
   Future<bool> storeArray<M extends HiModel>(

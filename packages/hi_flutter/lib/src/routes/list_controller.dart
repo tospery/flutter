@@ -28,12 +28,14 @@ class HiListController<T> extends HiBaseController {
   }
 
   void doRefresh() {
+    log('doRefresh');
     requestMode.value = HiRequestMode.pullRefresh;
     update();
     requestRemote(requestMode.value, pageFirst);
   }
 
   void doLoadingMore() {
+    log('doLoadingMore');
     requestMode.value = HiRequestMode.loadingMore;
     update();
     requestRemote(requestMode.value, pageIndex + 1);
