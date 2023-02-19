@@ -60,14 +60,28 @@ double metricHeight(
   return height / designHeight * deviceHeight;
 }
 
-SizedBox hiSpace({
-  double width = 1,
-  double height = 1,
+SizedBox hiBox({
+  double? width,
+  double? height,
 }) =>
     SizedBox(
       width: width,
       height: height,
     );
+
+ClipRRect hiRound({
+  double radius = 0,
+  Widget? child,
+}) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(radius),
+    child: SizedBox(
+      width: radius * 2,
+      height: radius * 2,
+      child: child,
+    ),
+  );
+}
 
 Border hiBorder({
   BuildContext? context,
