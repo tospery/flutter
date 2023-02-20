@@ -1,3 +1,4 @@
+import 'package:example/plain.dart';
 import 'package:flutter/material.dart';
 import 'package:hi_flutter/hi_flutter.dart';
 
@@ -30,16 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    var aaa = eventBus;
-    var bbb = Colors.white;
-    log('aaaa: $aaa');
-    setState(() {
-      _counter++;
-    });
-  }
+  final String text = 'Made by https://cretezy.com yjx person@example.com';
 
   @override
   Widget build(BuildContext context) {
@@ -47,25 +40,23 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: GestureDetector(
+        onTap: _doTap,
+        child: Center(
+          child: Linkify(
+            text: text,
+            style: TextStyle(color: Colors.black),
+            linkStyle: TextStyle(color: Colors.red),
+            linkifiers: [PlainLinkifier('yjx')],
+            onOpen: (link) => log(link),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
     );
+  }
+
+  void _doTap() {
+    final match = RegExp('yjx').firstMatch(text);
+    log('match: $match');
   }
 }
