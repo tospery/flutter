@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import '../extension/map.dart';
 import '../extension/object.dart';
@@ -19,16 +20,8 @@ class HiModel extends Equatable {
         'id': id,
       };
 
-  // void store({bool isReactive = false}) {
-  //   // var key = typeName.toLowerCase();
-  //   // log('缓存key = $key', tag: HiLogTag);
-  //   // HiCache.shared().setString(key, toJson().toJsonString());
-  // }
-
-  // static dynamic fetch() {
-  //   // var aaa = type
-  //   // HiCache.shared().get(typeName.toLowerCase());
-  // }
+  Widget? get separator => null;
+  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => null;
 
   @override
   bool get stringify => true;

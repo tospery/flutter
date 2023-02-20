@@ -13,6 +13,9 @@ class HiTile extends HiModel {
   final bool? indicated;
   final bool? separated;
 
+  Widget? get separator => separated ?? false ? const Divider() : null;
+  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiTileCell(model: this, onPressed: onPressed,);
+
   const HiTile({
     super.id,
     this.style,

@@ -5,7 +5,9 @@ import 'package:hi_flutter/src/widget/label_cell.dart';
 class HiLabel extends HiModel {
   final String? text;
   final List<String>? links;
-
+  
+  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiLabelCell(model: this, onPressed: onPressed,);
+  
   const HiLabel({
     super.id,
     this.text,

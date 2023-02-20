@@ -9,7 +9,9 @@ class HiButton extends HiModel {
   final double? height;
   final String? titleColor;
   final String? backgroundColor;
-
+  
+  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiButtonCell(model: this, onPressed: onPressed,);
+  
   const HiButton({
     super.id,
     this.icon,

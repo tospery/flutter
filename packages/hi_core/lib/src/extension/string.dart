@@ -23,12 +23,20 @@ extension StringEx on String {
   // }
 
   Color? toColor() {
-    if (length < 7) {
+    var hexString = toUpperCase().replaceAll('#', '');
+    if (hexString.length == 6) {
+      hexString += 'FF';
+    }
+    var intValue = int.tryParse(hexString, radix: 16);
+    if (intValue == null) {
       return null;
     }
-    return Color(int.parse(substring(1, 7), radix: 16) + 0xFF000000);
+    return Color(intValue);
 
-    // Color(int.parse(c,radix:16)).withAlpha(255)
+    // if (length < 7) {
+    //   return null;
+    // }
+    // return Color(int.parse(substring(1, 7), radix: 16) + 0xFF000000);
   }
 
   Uri? toUri() => Uri.tryParse(this);

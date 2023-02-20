@@ -6,7 +6,9 @@ class HiInput extends HiModel {
   final bool? autofocus;
   final String? hint;
   final String? text;
-
+  
+  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiInputCell(model: this, onChanged: onChanged,);
+  
   const HiInput({
     super.id,
     this.autofocus,
