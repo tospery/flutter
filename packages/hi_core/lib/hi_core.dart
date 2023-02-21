@@ -20,6 +20,7 @@ export 'src/extension/int.dart';
 export 'src/extension/map.dart';
 export 'src/extension/object.dart';
 export 'src/extension/string.dart';
+export 'src/extension/theme.dart';
 export 'src/extension/uri.dart';
 export 'src/resource/assets.dart';
 export 'src/resource/assets_animtion.dart';

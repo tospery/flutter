@@ -14,6 +14,8 @@ extension ColorHiCoreEx on Color {
   }
 
   Color get bgColor => computeLuminance() < 0.5 ? Colors.white : Colors.black;
+  Color get fgColor => computeLuminance() < 0.5 ? Colors.black : Colors.white;
+
   Color get on100 => computeLuminance() < 0.5 ? Colors.grey.shade100 : Colors.grey.shade900;
   Color get on200 => computeLuminance() < 0.5 ? Colors.grey.shade200 : Colors.grey.shade800;
   Color get on300 => computeLuminance() < 0.5 ? Colors.grey.shade300 : Colors.grey.shade700;
@@ -23,5 +25,4 @@ extension ColorHiCoreEx on Color {
   Color get on700 => computeLuminance() < 0.5 ? Colors.grey.shade700 : Colors.grey.shade300;
   Color get on800 => computeLuminance() < 0.5 ? Colors.grey.shade800 : Colors.grey.shade200;
   Color get on900 => computeLuminance() < 0.5 ? Colors.grey.shade900 : Colors.grey.shade100;
-  Color get fgColor => computeLuminance() < 0.5 ? Colors.black : Colors.white;
 }
