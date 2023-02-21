@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_cache/hi_cache.dart';
+import 'package:hi_flutter/src/extension/theme.dart';
 
 Future<bool> storeObject<M extends HiModel>(
   M model, {
@@ -285,3 +286,48 @@ Widget hiImage(String url, {
   }
   return result;
 }
+
+TextStyle bgTextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.bgColor,
+);
+TextStyle fgTextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor,
+);
+TextStyle fg900TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd900,
+);
+TextStyle fg800TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd800,
+);
+TextStyle fg700TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd700,
+);
+TextStyle fg600TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd600,
+);
+TextStyle fg500TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd500,
+);
+TextStyle fg400TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd400,
+);
+TextStyle fg300TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd300,
+);
+TextStyle fg200TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd200,
+);
+TextStyle fg100TextStyle(BuildContext context, double fontSize) => TextStyle(
+  fontSize: fontSize,
+  color: context.theme.fgColor.sd100,
+);
