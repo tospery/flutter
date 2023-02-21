@@ -295,39 +295,39 @@ TextStyle fgTextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
   color: context.theme.fgColor,
 );
-TextStyle fg900TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on100TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd900,
+  color: context.theme.fgColor.on100,
 );
-TextStyle fg800TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on200TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd800,
+  color: context.theme.fgColor.on200,
 );
-TextStyle fg700TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on300TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd700,
+  color: context.theme.fgColor.on300,
 );
-TextStyle fg600TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on400TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd600,
+  color: context.theme.fgColor.on400,
 );
-TextStyle fg500TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on500TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd500,
+  color: context.theme.fgColor.on500,
 );
-TextStyle fg400TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on600TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd400,
+  color: context.theme.fgColor.on600,
 );
-TextStyle fg300TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on700TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd300,
+  color: context.theme.fgColor.on700,
 );
-TextStyle fg200TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on800TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd200,
+  color: context.theme.fgColor.on800,
 );
-TextStyle fg100TextStyle(BuildContext context, double fontSize) => TextStyle(
+TextStyle on900TextStyle(BuildContext context, double fontSize) => TextStyle(
   fontSize: fontSize,
-  color: context.theme.fgColor.sd100,
+  color: context.theme.fgColor.on900,
 );
