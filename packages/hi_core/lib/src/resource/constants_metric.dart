@@ -8,7 +8,7 @@ class ConstantsMetric {
   final tileHeightSmall = 40.0;
   final tileHeightMedium = 45.0;
   final tileHeightLarge = 50.0;
-  final spaceHeightSmall = 10.0;
-  final spaceHeightMedium = 20.0;
-  final spaceHeightLarge = 30.0;
+  final spaceHeightSmall = 5.0;
+  final spaceHeightMedium = 10.0;
+  final spaceHeightLarge = 20.0;
 }

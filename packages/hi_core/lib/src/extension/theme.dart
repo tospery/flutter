@@ -15,16 +15,16 @@ extension ThemeDataHiCoreEx on ThemeData {
   // Color get on900 => fgColor.on900;
   Color get fgColor => shadowColor; // colorScheme.inverseSurface;   // 黑色
 
-  TextStyle bgTextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: bgColor);
-  TextStyle fgTextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor);
+  TextStyle tsBg(double fontSize) => TextStyle(fontSize: fontSize, color: bgColor);
+  TextStyle tsFg(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor);
   
-  TextStyle on100TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on100);
-  TextStyle on200TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on200);
-  TextStyle on300TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on300);
-  TextStyle on400TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on400);
-  TextStyle on500TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on500);
-  TextStyle on600TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on600);
-  TextStyle on700TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on700);
-  TextStyle on800TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on800);
-  TextStyle on900TextStyle(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.on900);
+  TextStyle ts100(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd100);
+  TextStyle ts200(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd200);
+  TextStyle ts300(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd300);
+  TextStyle ts400(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd400);
+  TextStyle ts500(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd500);
+  TextStyle ts600(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd600);
+  TextStyle ts700(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd700);
+  TextStyle ts800(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd800);
+  TextStyle ts900(double fontSize) => TextStyle(fontSize: fontSize, color: fgColor.sd900);
 }

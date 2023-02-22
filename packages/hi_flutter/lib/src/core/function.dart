@@ -266,7 +266,7 @@ Widget hiImage(String url, {
   }
   Widget? result;
   try {
-    result = Image.asset(url, width: width, height: height);
+    result = Image.asset(url, width: width, height: height, color: context != null ? context.theme.primaryColor : null,);
   } catch (e) {
     var value = int.tryParse(url, radix: 16);
     if (value != null) {
@@ -287,47 +287,47 @@ Widget hiImage(String url, {
   return result;
 }
 
-TextStyle bgTextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.bgColor,
-);
-TextStyle fgTextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor,
-);
-TextStyle on100TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on100,
-);
-TextStyle on200TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on200,
-);
-TextStyle on300TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on300,
-);
-TextStyle on400TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on400,
-);
-TextStyle on500TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on500,
-);
-TextStyle on600TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on600,
-);
-TextStyle on700TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on700,
-);
-TextStyle on800TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on800,
-);
-TextStyle on900TextStyle(BuildContext context, double fontSize) => TextStyle(
-  fontSize: fontSize,
-  color: context.theme.fgColor.on900,
-);
+// TextStyle bgTextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.bgColor,
+// );
+// TextStyle fgTextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor,
+// );
+// TextStyle on100TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on100,
+// );
+// TextStyle on200TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on200,
+// );
+// TextStyle on300TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on300,
+// );
+// TextStyle on400TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on400,
+// );
+// TextStyle on500TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on500,
+// );
+// TextStyle on600TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on600,
+// );
+// TextStyle on700TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on700,
+// );
+// TextStyle on800TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on800,
+// );
+// TextStyle on900TextStyle(BuildContext context, double fontSize) => TextStyle(
+//   fontSize: fontSize,
+//   color: context.theme.fgColor.on900,
+// );

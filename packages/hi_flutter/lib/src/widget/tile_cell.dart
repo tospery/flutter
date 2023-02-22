@@ -23,10 +23,10 @@ class HiTileCell extends HiCell<HiTile> {
       title: isNotEmpty(model.title) ? Text(model.title!, style: context.textTheme.titleSmall,) : Container(),
       subTitleText: model.subTitle,
       avatar: model.icon?.isNotEmpty ?? false
-          ? hiImage(model.icon!, height: 24)
+          ? hiImage(model.icon!, height: 24, context: context)
           : null,
       icon: _buildTileDetail(context),
-      color: context.theme.bgColor, // context.colorScheme.onBackground,
+      color: context.theme.bgColor,
       onTap: () => onPressed != null ? onPressed!(model) : null,
     );
   }
