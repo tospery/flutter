@@ -12,13 +12,15 @@ public class SwiftHiSharePlugin: NSObject, FlutterPlugin {
       if call.method == "show" {
           guard
             let root = UIApplication.shared.keyWindow?.rootViewController,
-            let items = call.arguments as? [Any] /*, items.count == 3*/
+            let items = call.arguments as? [Any] , items.count == 3
           else {
               result(nil)
               return
           }
-          // let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
-          let vc = UIActivityViewController(activityItems: ["分享的标题"], applicationActivities: nil)
+          let title = items.first as? String ?? "";
+          let image = UIImage(data: items[1] as? Data ?? Data.init())!
+          let url = URL(string: items.last as? String ?? "")!
+          let vc = UIActivityViewController(activityItems: [title, image, url], applicationActivities: nil)
           root.present(vc, animated: true) {
               result("完成")
           }

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'method_channel_hi_share.dart';
 
@@ -18,9 +18,9 @@ abstract class HiSharePlatform extends PlatformInterface {
 
   Future show({
     required String title,
-    required Image image,
-    required Uri url,
+    required Uint8List imageData,
+    required String urlString,
   }) {
-    return _instance.show(title: title, image: image, url: url);
+    return _instance.show(title: title, imageData: imageData, urlString: urlString);
   }
 }

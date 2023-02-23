@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hi_share_platform_interface/hi_share_platform_interface.dart';
 
@@ -13,9 +12,9 @@ class HiShareIOS extends HiSharePlatform {
   @override
   Future show({
     required String title,
-    required Image image,
-    required Uri url,
+    required Uint8List imageData,
+    required String urlString,
   }) {
-    return _channel.invokeMethod('show', [title, image, url]);
+    return _channel.invokeMethod('show', [title, imageData, urlString]);
   }
 }

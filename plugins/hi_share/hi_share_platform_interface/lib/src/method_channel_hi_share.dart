@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'hi_share_platform.dart';
 
@@ -9,12 +9,12 @@ class MethodChannelHiShare extends HiSharePlatform {
   @override
   Future show({
     required String title,
-    required Image image,
-    required Uri url,
+    required Uint8List imageData,
+    required String urlString,
   }) async {
     final result = await methodChannel.invokeMethod(
       'show',
-      [title, image, url],
+      [title, imageData, urlString],
     );
     return result;
   }
