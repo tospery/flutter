@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     var data = await image.toByteData(format: UI.ImageByteFormat.png);
     var uint8 = data?.buffer.asUint8List();
 
-    var result = await HiShare().show(
+    var result = await HiShare.shared().show(
       title: 'aabbccc',
       imageData: uint8!,
       urlString: 'https://www.youdao.com/result?word=foobar&lang=en',
