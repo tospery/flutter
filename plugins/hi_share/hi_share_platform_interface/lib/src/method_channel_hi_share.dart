@@ -7,8 +7,8 @@ class MethodChannelHiShare extends HiSharePlatform {
   final methodChannel = const MethodChannel('hi_share');
 
   @override
-  Future<bool> show() async {
-    final result = await methodChannel.invokeMethod<bool>('show');
-    return result ?? false;
+  Future<String> show() async {
+    final result = await methodChannel.invokeMethod<String>('show');
+    return result ?? 'none';
   }
 }

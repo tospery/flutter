@@ -2,11 +2,17 @@ name: hi_share
 description: Flutter plugin for sharing native.
 repository: https://github.com/tospery/flutter/tree/main/plugins/hi_share
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_share%22
-version: 1.0.1
+version: 1.0.2
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
   flutter: ">=2.5.0"
+
+flutter:
+  plugin:
+    platforms:
+      ios:
+        default_package: hi_share_ios
 
 dependencies:
   flutter:
@@ -18,10 +24,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   plugin_platform_interface: ^2.0.0
-  test: ^1.16.3
-
-flutter:
-  plugin:
-    platforms:
-      ios:
-        default_package: hi_share_ios

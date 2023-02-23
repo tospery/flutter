@@ -2,11 +2,19 @@ name: hi_share_ios
 description: iOS implementation of the hi_share plugin.
 repository: https://github.com/tospery/flutter/tree/main/plugins/hi_share/hi_share_ios
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_share%22
-version: 1.0.1
+version: 1.0.0
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
   flutter: ">=2.5.0"
+
+flutter:
+  plugin:
+    implements: hi_share
+    platforms:
+      ios:
+        pluginClass: FLTHiSharePlugin
+        dartPluginClass: HiShareIOS
 
 dependencies:
   flutter:
@@ -17,11 +25,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.16.3
-
-flutter:
-  plugin:
-    implements: hi_share
-    platforms:
-      ios:
-        pluginClass: FLTHiSharePlugin
-        dartPluginClass: HiShareIOS

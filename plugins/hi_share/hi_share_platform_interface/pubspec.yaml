@@ -2,7 +2,7 @@ name: hi_share_platform_interface
 description: A common platform interface for the hi_share plugin.
 repository: https://github.com/tospery/flutter/tree/main/plugins/hi_share/hi_share_platform_interface
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_share%22
-version: 1.0.2
+version: 1.0.3
 
 environment:
   sdk: '>=2.18.4 <3.0.0'

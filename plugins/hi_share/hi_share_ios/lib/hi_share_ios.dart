@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:hi_share_platform_interface/hi_share_platform_interface.dart';
 
-const MethodChannel _channel =  MethodChannel('plugins.tospery.com/hi_share_ios');
+const MethodChannel _channel =  MethodChannel('plugins.jianxiang.com/hi_share_ios');
 
 class HiShareIOS extends HiSharePlatform {
 
@@ -10,10 +10,10 @@ class HiShareIOS extends HiSharePlatform {
   }
 
   @override
-  Future<bool> show() {
-    return _channel.invokeMethod<bool>(
+  Future<String> show() {
+    return _channel.invokeMethod<String>(
       'show',
-    ).then((bool? value) => value ?? false);
+    ).then((String? value) => value ?? 'ios message');
   }
 
 }

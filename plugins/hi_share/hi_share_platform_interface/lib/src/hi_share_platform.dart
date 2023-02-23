@@ -15,7 +15,7 @@ abstract class HiSharePlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<bool> show() {
+  Future<String> show() {
     return _instance.show();
   }
 }
