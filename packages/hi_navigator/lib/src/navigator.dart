@@ -37,7 +37,7 @@ class HiNavigator {
     Map<String, dynamic>? parameters,
     dynamic context,
     bool rootNavigator = false,
-  }) {
+  }) async {
     var urlString = url;
     if (urlString == null) {
       if (host?.isNotEmpty ?? false) {
@@ -57,7 +57,20 @@ class HiNavigator {
     if (rootNavigator) {
       return Get.offAllNamed(urlString!, arguments: parameters);
     }
-    return Get.toNamed(urlString!, arguments: parameters);
+    try {
+      return Get.toNamed(urlString!, arguments: parameters);
+    } catch (e) {
+      log('导航异常：$e', tag: HiLogTag.navigator);
+      // if ((url?.isNotEmpty ?? false) && ((url?.startsWith('http://') ?? false) || (url?.startsWith('https://') ?? false))) {
+      if (url?.isNotEmpty ?? false) {
+        var myParameters = parameters ?? <String, dynamic>{};
+        myParameters['url'] = url;
+        return Get.toNamed('/web', arguments: myParameters);
+      }
+      return null;
+    }
+    log('看看结果');
+    return null;
   }
 
   void back<T>({

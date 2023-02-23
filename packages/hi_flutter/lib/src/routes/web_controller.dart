@@ -3,15 +3,13 @@ import 'base_controller.dart';
 import '../core/datatype.dart';
 
 class HiWebController extends HiBaseController {
-  // var isLoading = true.obs;
-  late String url;
+  late final String url;
 
   @override
   void onInit() {
     super.onInit();
-    // var arguments = Get.arguments as Map<String, dynamic>? ?? {};
-    // url.value = parameters.stringForKey(HiParameter.url) ?? '';
     url = parameters.stringForKey(R.parameters.url) ?? '';
+    log('url: $url', tag: HiLogTag.frame);
   }
 
   void loadFinished() {
