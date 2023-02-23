@@ -9,15 +9,19 @@ public class SwiftHiSharePlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-//     let vc = UIActivityViewController(
-//         activityItems: [
-//             "分享内容的标题",
-//             URL(string: "https://github.com/tospery/flutter_hub")!
-//         ],
-//         applicationActivities: nil
-//     )
-//     UIApplication.shared.keyWindow!.rootViewController?.present(vc, animated: true, completion: nil)
-//     result(false)
-      result("ios result -> \(call.method), \(String(describing: call.arguments))")
+      if call.method == "show" {
+          guard
+            let root = UIApplication.shared.keyWindow?.rootViewController,
+            let items = call.arguments as? [Any] /*, items.count == 3*/
+          else {
+              result(nil)
+              return
+          }
+          // let vc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+          let vc = UIActivityViewController(activityItems: ["分享的标题"], applicationActivities: nil)
+          root.present(vc, animated: true) {
+              result("完成")
+          }
+      }
   }
 }
