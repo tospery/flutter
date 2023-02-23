@@ -2,7 +2,7 @@ name: hi_share_ios
 description: iOS implementation of the hi_share plugin.
 repository: https://github.com/tospery/flutter/tree/main/plugins/hi_share/hi_share_ios
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_share%22
-version: 1.0.5
+version: 1.0.6
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
