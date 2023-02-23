@@ -13,7 +13,7 @@ class HiShareIOS extends HiSharePlatform {
   Future<String> show() {
     return _channel.invokeMethod<String>(
       'show',
-    ).then((String? value) => value ?? 'ios message');
+    ).then((String? value) => value ?? 'ios default');
   }
 
 }
