@@ -8,8 +8,7 @@ import '../core/constant.dart';
 import '../core/datatype.dart';
 
 class HiBaseController extends FullLifeCycleController {
-  /// title通常不可变，故使用非响应式，如果需要变，则在具体controller中实现特定的响应式title
-  String? title;
+  RxnString title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   var requestMode = HiRequestMode.none.obs;
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
@@ -36,7 +35,7 @@ class HiBaseController extends FullLifeCycleController {
       }
     }
     parameters = myParameters;
-    title = parameters.stringForKey(R.parameters.title);
+    title.value = parameters.stringForKey(R.parameters.title);
     user = Get.find<HiUser>().obs;
     configuration = Get.find<HiConfiguration>().obs;
     provider = Get.find<HiProvider>();

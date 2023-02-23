@@ -29,7 +29,11 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
 
   PreferredSizeWidget? appBar(BuildContext context) {
     return AppBar(
-      title: Text(controller.title ?? ''),
+      title: controller.title.value != null ? Text(
+        controller.title.value!,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ) : null,
     );
   }
 
