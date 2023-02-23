@@ -53,16 +53,17 @@ class HiService extends GetConnect {
         HiServerError(response.statusCode ?? -1, response.statusText, data: response.body),
       );
     }
+
+    dynamic data = null;
     var base = response.body;
-    if (base is! HiResponse) {
-      return Future.error(HiError.unknown);
-    }
-    var data = base.data;
-    if (!checkCode && !returnData) {
-      data = base.json;
-    }
-    if (checkCode && base.code != HiError.okCode) {
-      return Future.error(HiServerError(base.code ?? -1, base.message, data: data));
+    if (base is HiResponse) {
+      data = base.data;
+      if (!checkCode && !returnData) {
+        data = base.json;
+      }
+      if (checkCode && base.code != HiError.okCode) {
+        return Future.error(HiServerError(base.code ?? -1, base.message, data: data));
+      }
     }
     var genericType = typeOf<T>();
     if (genericType == typeOf<void>()) {
