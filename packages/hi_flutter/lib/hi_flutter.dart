@@ -23,6 +23,7 @@ export 'src/extension/color.dart';
 export 'src/extension/get.dart';
 export 'src/extension/theme.dart';
 export 'src/extension/refresh_controller.dart';
+export 'src/extension/image_provider.dart';
 export 'src/model/button.dart';
 export 'src/model/input.dart';
 export 'src/model/space.dart';
