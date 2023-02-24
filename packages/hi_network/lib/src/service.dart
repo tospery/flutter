@@ -46,7 +46,7 @@ class HiService extends GetConnect {
       Response<dynamic> response, {
         bool checkCode = true,
         bool adoptData = true,
-        T Function(Map<String, dynamic>)? fromJson,
+        T Function(dynamic)? fromJson,
       }) {
     if (response.hasError) {
       return Future.error(
@@ -57,14 +57,10 @@ class HiService extends GetConnect {
     dynamic data = null;
     var base = response.body;
     if (base is HiResponse) {
-      if (checkCode) {
-        if (base.code != HiError.okCode) {
-          return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
-        }
+      if (checkCode && base.code != HiError.okCode) {
+        return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
       }
-      if (!adoptData) {
-        data = base.json;
-      }
+      data = adoptData ? base.data : base.json;
     }
     var genericType = typeOf<T>();
     if (genericType == typeOf<void>()) {
@@ -102,21 +98,23 @@ class HiService extends GetConnect {
       Response<dynamic> response, {
         bool checkCode = true,
         bool adoptData = true,
-        T Function(Map<String, dynamic>)? fromJson,
+        T Function(dynamic)? fromJson,
       }) {
     if (response.hasError) {
       return Future.error(
         HiServerError(response.statusCode ?? -1, response.statusText, data: response.body),
       );
     }
+
+    dynamic data = null;
     var base = response.body;
-    if (base is! HiResponse) {
-      return Future.error(HiError.unknown);
+    if (base is HiResponse) {
+      if (checkCode && base.code != HiError.okCode) {
+        return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
+      }
+      data = adoptData ? base.data : base.json;
     }
-    var data = base.data;
-    if (!checkCode && !adoptData) {
-      data = base.json;
-    }
+
     if (data is! List) {
       return Future.error(HiError.dataInvalid);
     }

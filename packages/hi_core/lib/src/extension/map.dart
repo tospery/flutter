@@ -10,7 +10,7 @@ extension MapEx<K, V> on Map<K, V> {
   List<T>? listForKey<T>(K key) => hiList<T>(this[key]);
   T? enumForKey<T>(K key, T Function(dynamic) fromValue) => hiEnum(this[key], fromValue);
 
-  M? model<M extends HiModel>(K key, M Function(Map<String, dynamic>) fromJson,) {
+  M? model<M extends HiModel>(K key, M Function(dynamic) fromJson,) {
     var json = mapForKey(key);
     if (json == null) {
       return null;
@@ -18,7 +18,7 @@ extension MapEx<K, V> on Map<K, V> {
     return fromJson(json);
   }
 
-  List<M>? list<M extends HiModel>(K key, M Function(Map<String, dynamic>) fromJson,) {
+  List<M>? list<M extends HiModel>(K key, M Function(dynamic) fromJson,) {
     var value = this[key];
     if (value == null) {
       return null;
