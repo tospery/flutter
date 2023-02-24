@@ -45,7 +45,7 @@ class HiService extends GetConnect {
   Future<T> object<T>(
       Response<dynamic> response, {
         bool checkCode = true,
-        bool returnData = true,
+        bool adoptData = true,
         T Function(Map<String, dynamic>)? fromJson,
       }) {
     if (response.hasError) {
@@ -58,12 +58,12 @@ class HiService extends GetConnect {
     var base = response.body;
     if (base is HiResponse) {
       if (checkCode) {
-        if (!returnData) {
-          data = base.json;
-        }
         if (base.code != HiError.okCode) {
           return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
         }
+      }
+      if (!adoptData) {
+        data = base.json;
       }
     }
     var genericType = typeOf<T>();
@@ -101,7 +101,7 @@ class HiService extends GetConnect {
   Future<List<T>> array<T>(
       Response<dynamic> response, {
         bool checkCode = true,
-        bool returnData = true,
+        bool adoptData = true,
         T Function(Map<String, dynamic>)? fromJson,
       }) {
     if (response.hasError) {
@@ -114,7 +114,7 @@ class HiService extends GetConnect {
       return Future.error(HiError.unknown);
     }
     var data = base.data;
-    if (!checkCode && !returnData) {
+    if (!checkCode && !adoptData) {
       data = base.json;
     }
     if (data is! List) {
