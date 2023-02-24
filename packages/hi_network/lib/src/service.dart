@@ -57,30 +57,24 @@ class HiService extends GetConnect {
     dynamic data = null;
     var base = response.body;
     if (base is HiResponse) {
-      data = base.data;
-      if (!checkCode && !returnData) {
-        data = base.json;
-      }
-      if (checkCode && base.code != HiError.okCode) {
-        return Future.error(HiServerError(base.code ?? -1, base.message, data: data));
+      if (checkCode) {
+        if (!returnData) {
+          data = base.json;
+        }
+        if (base.code != HiError.okCode) {
+          return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
+        }
       }
     }
     var genericType = typeOf<T>();
     if (genericType == typeOf<void>()) {
       return Future.value();
     }
-    // if (genericType == typeOf<dynamic>()) {
-    //   return Future.value(base);
-    // }
+    if (genericType == typeOf<dynamic>()) {
+      return Future.value(data);
+    }
     if (data is T) {
       return Future.value(data as T);
-    }
-    if (data is Map<String, dynamic> && fromJson != null) {
-      var model = fromJson(data);
-      if (model is HiModel && !(model as HiModel).isValid) {
-        return Future.error(HiError.dataInvalid);
-      }
-      return Future.value(model);
     }
     if (T == bool && hiBool(data) != null) {
       return Future.value(hiBool(data) as T);
@@ -93,6 +87,13 @@ class HiService extends GetConnect {
     }
     if (T == String && hiString(data) != null) {
       return Future.value(hiString(data) as T);
+    }
+    if (data is Map<String, dynamic> && fromJson != null) {
+      var model = fromJson(data);
+      if (model is HiModel && !(model as HiModel).isValid) {
+        return Future.error(HiError.dataInvalid);
+      }
+      return Future.value(model);
     }
     return Future.error(HiError.dataInvalid);
   }

@@ -11,4 +11,7 @@ class ConstantsMetric {
   final spaceHeightSmall = 5.0;
   final spaceHeightMedium = 10.0;
   final spaceHeightLarge = 20.0;
+  final marginSmall = 10;
+  final marginMedium = 20;
+  final marginLarge = 40;
 }

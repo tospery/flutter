@@ -16,7 +16,7 @@ class HiCell<M extends HiModel> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onPressed != null ? onPressed!(model) : null,
+      onTap: onPressed != null ? () => onPressed!(model) : null,
       child: Container(
         height: 50,
         color: ColorsEx.random,
