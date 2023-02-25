@@ -36,27 +36,7 @@ extension MapEx<K, V> on Map<K, V> {
     return list;
   }
 
-  // V? valueForKey(K key, {String? delimiter}) {
-  //   if (delimiter?.isEmpty ?? true) {
-  //     return this[key];
-  //   }
-  //   var keys = key.toString().split(delimiter!);
-  //   for (var element in keys) {
-  //     if (element.startsWith('!')) {
-  //       var realKey = element; // .removePrefix('!');
-  //       var result = this[realKey];
-  //       if (result == null || result is! bool) {
-  //         continue;
-  //       }
-  //       return !result as V;
-  //     }
-  //     var result = this[element];
-  //     if (result != null) {
-  //       return result;
-  //     }
-  //   }
-  //   return null;
-  // }
+  Map<String, String>? get queries => map((key, value) => MapEntry(key.toString(), value?.toString() ?? ''));
 
   V? valueForKeys(List<K> keys) {
     V? v;

@@ -13,4 +13,11 @@ extension ObjectEx on Object {
     }
     return HiAppError(-1, this.toString());
   }
+
+  Map<String, dynamic>? get map {
+    if (this is! Map<String, dynamic>) {
+      return null;
+    }
+    return this as Map<String, dynamic>;
+  }
 }

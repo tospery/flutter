@@ -8,6 +8,8 @@ class HiService extends GetConnect {
   void onInit() {
     super.onInit();
     httpClient.defaultContentType = 'application/json';
+    httpClient.addRequestModifier((request) => requestModifier(request));
+    httpClient.addResponseModifier((request, response) => responseModifier(request, response));
     httpClient.defaultDecoder = (data) {
       var json = <String, dynamic>{};
       if (data is Map<String, dynamic>) {
@@ -20,26 +22,23 @@ class HiService extends GetConnect {
       }
       return HiResponse.fromJson(json);
     };
-
-    httpClient.addRequestModifier((Request request) {
-      return requestModifier(request);
-    });
-    httpClient.addResponseModifier((request, response) {
-      log('${request.url.path}(${response.statusCode}, ${response.statusText})\n${response.body}', tag: HiLogTag.network);
-      if (response.body is HiResponse) {
-        var data = (response.body as HiResponse).data;
-        if (data is List<dynamic>) {
-          log('items count: ${data.length}', tag: HiLogTag.network);
-        }
-      }
-      log('json: ${response.bodyString}', tag: HiLogTag.network);
-      return response;
-    });
   }
 
   Request requestModifier(Request request) {
     log('【${request.method}】${request.url}', tag: HiLogTag.network);
     return request;
+  }
+
+  Response responseModifier(Request request, Response response) {
+    log('${request.url.path}(${response.statusCode}, ${response.statusText})', tag: HiLogTag.network);
+    if (response.bodyString?.isNotEmpty ?? false) {
+      log(response.bodyString);
+    } else {
+      if (response.body is HiResponse) {
+        log(response.body.data);
+      }
+    }
+    return response;
   }
 
   Future<T> object<T>(
