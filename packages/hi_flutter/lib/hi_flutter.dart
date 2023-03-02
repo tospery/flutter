@@ -7,6 +7,8 @@ export 'package:hi_navigator/hi_navigator.dart';
 export 'package:get/get.dart';
 export 'package:get/get_connect/http/src/request/request.dart';
 export 'package:webview_flutter/webview_flutter.dart';
+// export 'package:webview_flutter_android/webview_flutter_android.dart';
+// export 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 export 'package:pull_to_refresh/pull_to_refresh.dart';
 export 'package:lottie/lottie.dart';
 export 'package:flutter_svg/flutter_svg.dart';

@@ -83,7 +83,7 @@ class HiService extends GetConnect {
     if (T == String && hiString(data) != null) {
       return Future.value(hiString(data) as T);
     }
-    if (data is Map<String, dynamic> && fromJson != null) {
+    if (fromJson != null) {
       var model = fromJson(data);
       if (model is HiModel && !(model as HiModel).isValid) {
         return Future.error(HiError.dataInvalid);

@@ -2,6 +2,7 @@ class Parameters {
   final id = 'id';
   final url = 'url';
   final key = 'key';
+  final mode = 'mode';
   final code = 'code';
   final data = 'data';
   final path = 'path';
@@ -16,6 +17,7 @@ class Parameters {
   final index = 'index';
   final value = 'value';
   final accept = 'Accept';
+  final context = 'context';
   final utsname = 'utsname';
   final machine = 'machine';
   final username = 'username';
