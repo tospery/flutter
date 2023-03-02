@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'int.dart';
 
 extension StringEx on String {
+  String get base64Decoded => convert.utf8.decode(convert.base64.decode(replaceAll(RegExp(r'\s+'), '')));
+
   bool? toBool() {
     if (toLowerCase() == 'true') {
       return true;

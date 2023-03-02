@@ -58,7 +58,9 @@ class HiWebPage<WC extends HiWebController> extends HiBasePage<WC> {
     //     controller.doProgress(value);
     //   },
     // );
-    return Container();
+    // return Container();
+    // WebViewWidget(controller: controller),
+    return WebViewWidget(controller: controller.webViewController);
   }
   
   _buildLoadingView(BuildContext context) {
@@ -73,8 +75,8 @@ class HiWebPage<WC extends HiWebController> extends HiBasePage<WC> {
     );
   }
 
-  NavigationDecision navigationDecision(NavigationRequest navigation) {
-    return NavigationDecision.navigate;
-  }
+  // NavigationDecision navigationDecision(NavigationRequest navigation) {
+  //   return NavigationDecision.navigate;
+  // }
 
 }
