@@ -12,7 +12,7 @@ class HiSpaceCell extends HiCell<HiSpace> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: model.height ?? R.constants.metric.spaceHeightMedium,
+      height: model.height ?? HiConstant.spaceHeightMedium,
       color: model.color?.toColor() ?? Colors.transparent,
     );
   }

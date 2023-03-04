@@ -81,7 +81,7 @@ class HiAlertView extends StatelessWidget {
                         title,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: R.constants.metric.fontSizeLarge,
+                          fontSize: HiConstant.fontSizeLarge,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -92,7 +92,7 @@ class HiAlertView extends StatelessWidget {
                           content,
                           style: TextStyle(
                             color: Colors.red,
-                            fontSize: R.constants.metric.fontSizeMedium,
+                            fontSize: HiConstant.fontSizeMedium,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -151,7 +151,7 @@ class HiAlertView extends StatelessWidget {
               text,
               style: TextStyle(
                 color: Colors.blue,
-                fontSize: R.constants.metric.fontSizeMedium,
+                fontSize: HiConstant.fontSizeMedium,
                 fontWeight: FontWeight.normal,
               ),
             ),

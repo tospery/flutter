@@ -16,8 +16,8 @@ class HiService extends GetConnect {
         json = data;
       } else {
         json = {
-          R.parameters.code: HiError.okCode,
-          R.parameters.data: data,
+          HiParameter.code: HiError.okCode,
+          HiParameter.data: data,
         };
       }
       return HiResponse.fromJson(json);

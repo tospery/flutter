@@ -20,11 +20,11 @@ class HiListController<T> extends HiBaseController {
   @override
   void onInit() {
     super.onInit();
-    enablePullRefresh = parameters.boolForKey(R.parameters.canRefresh) ?? false;
-    enableLoadingMore = parameters.boolForKey(R.parameters.canLoadMore) ?? false;
-    pageFirst = parameters.intForKey(R.parameters.pageFirst) ?? 1;
-    pageIndex = parameters.intForKey(R.parameters.pageIndex) ?? pageFirst;
-    pageSize = parameters.intForKey(R.parameters.pageSize) ?? HiFlutter.shared().pageSize;
+    enablePullRefresh = parameters.boolForKey(HiParameter.canRefresh) ?? false;
+    enableLoadingMore = parameters.boolForKey(HiParameter.canLoadMore) ?? false;
+    pageFirst = parameters.intForKey(HiParameter.pageFirst) ?? 1;
+    pageIndex = parameters.intForKey(HiParameter.pageIndex) ?? pageFirst;
+    pageSize = parameters.intForKey(HiParameter.pageSize) ?? HiFlutter.shared().pageSize;
   }
 
   void doRefresh() {

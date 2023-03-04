@@ -18,7 +18,7 @@ class HiButtonCell extends HiCell<HiButton> {
   Widget build(BuildContext context) {
     if (model.style == 1) {
       return FractionallySizedBox(
-        widthFactor: R.constants.metric.layoutPercentLarge,
+        widthFactor: HiConstant.layoutPercentLarge,
         child: GFButton(
           text: model.title,
           size: model.height ?? GFSize.LARGE,

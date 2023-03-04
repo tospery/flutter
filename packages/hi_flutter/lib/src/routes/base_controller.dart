@@ -31,11 +31,11 @@ class HiBaseController extends FullLifeCycleController {
       if (Get.arguments is Map<String, dynamic>) {
         myParameters.addAll(Get.arguments);
       } else {
-        myParameters[R.parameters.arguments] = Get.arguments;
+        myParameters[HiParameter.arguments] = Get.arguments;
       }
     }
     parameters = myParameters;
-    title.value = parameters.stringForKey(R.parameters.title);
+    title.value = parameters.stringForKey(HiParameter.title);
     user = Get.find<HiUser>().obs;
     configuration = Get.find<HiConfiguration>().obs;
     provider = Get.find<HiProvider>();

@@ -6,6 +6,7 @@ export 'package:dartx/dartx.dart' hide ListExtension;
 export 'src/constant.dart';
 export 'src/convert.dart';
 export 'src/datatype.dart';
+export 'src/parameter.dart';
 export 'src/error.dart';
 export 'src/function.dart';
 export 'src/logger.dart';
