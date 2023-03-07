@@ -91,23 +91,23 @@ Map<String, dynamic>? hiMap(dynamic any) {
   return any;
 }
 
-List<T>? hiList<T>(dynamic any) {
-  if (any == null) {
-    return null;
-  }
-  if (any is! List<dynamic>) {
-    return null;
-  }
-  var list = any.cast<T>();
-  return list;
-}
-
-T? hiEnum<T>(dynamic any, T Function(dynamic) fromValue) {
-  if (any == null) {
-    return null;
-  }
-  if (any is T) {
-    return any as T;
-  }
-  return fromValue(any);
-}
+// List<T>? hiList<T>(dynamic any) {
+//   if (any == null) {
+//     return null;
+//   }
+//   if (any is! List<dynamic>) {
+//     return null;
+//   }
+//   var list = any.cast<T>();
+//   return list;
+// }
+//
+// T? hiEnum<T>(dynamic any, T Function(dynamic) fromValue) {
+//   if (any == null) {
+//     return null;
+//   }
+//   if (any is T) {
+//     return any as T;
+//   }
+//   return fromValue(any);
+// }

@@ -23,13 +23,13 @@ class HiButton extends HiModel {
   });
 
   factory HiButton.fromJson(Map<String, dynamic> json) => HiButton(
-        id: json.stringForKey('id'),
-        style: json.intForKey('style'),
-        height: json.doubleForKey('height'),
-        title: json.stringForKey('title'),
-        icon: json.stringForKey('icon'),
-        titleColor: json.stringForKey('titleColor'),
-        backgroundColor: json.stringForKey('backgroundColor'),
+        id: json.value<String>('id'),
+        style: json.value<int>('style'),
+        height: json.value<double>('height'),
+        title: json.value<String>('title'),
+        icon: json.value<String>('icon'),
+        titleColor: json.value<String>('titleColor'),
+        backgroundColor: json.value<String>('backgroundColor'),
       );
 
   @override

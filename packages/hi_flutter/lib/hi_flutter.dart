@@ -35,6 +35,8 @@ export 'src/routes/web_binding.dart';
 export 'src/routes/base_controller.dart';
 export 'src/routes/list_controller.dart';
 export 'src/routes/web_controller.dart';
+export 'src/routes/tabs_controller.dart';
+export 'src/routes/tabs_page.dart';
 export 'src/routes/base_page.dart';
 export 'src/routes/list_page.dart';
 export 'src/routes/web_page.dart';

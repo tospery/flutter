@@ -27,6 +27,7 @@ class HiHost {
   final search = 'search';
   final login = 'login';
   final user = 'user';
+  final tabs = 'tabs';
   final web = 'web';
   final toast = 'toast';
   final alert = 'alert';

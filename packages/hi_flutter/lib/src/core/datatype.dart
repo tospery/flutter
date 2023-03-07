@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum HiStatusBarStyle { light, dark }
 
 enum HiRequestMode { none, load, pullRefresh, loadingMore, update, reload }
@@ -14,4 +16,10 @@ enum HiSimpleStyle {
         2: HiSimpleStyle.button,
       }[value] ??
           HiSimpleStyle.tile;
+}
+
+mixin TabItemType {
+  String get id;
+  String? get title;
+  Widget? get image;
 }

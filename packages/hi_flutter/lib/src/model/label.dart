@@ -15,9 +15,9 @@ class HiLabel extends HiModel {
   });
 
   factory HiLabel.fromJson(Map<String, dynamic> json) => HiLabel(
-        id: json.stringForKey('id'),
-        text: json.stringForKey('text'),
-        links: json.listForKey<String>('links'),
+        id: json.value<String>('id'),
+        text: json.value<String>('text'),
+        links: json.list<String>('links'),
       );
 
   @override

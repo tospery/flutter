@@ -16,9 +16,9 @@ class HiSpace extends HiModel {
   });
 
   factory HiSpace.fromJson(Map<String, dynamic> json) => HiSpace(
-        style: json.intForKey('style'),
-        color: json.stringForKey('color'),
-        height: json.doubleForKey('height'),
+        style: json.value<int>('style'),
+        color: json.value<String>('color'),
+        height: json.value<double>('height'),
       );
 
   @override

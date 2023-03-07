@@ -9,6 +9,7 @@ import '../core/datatype.dart';
 
 class HiBaseController extends FullLifeCycleController {
   RxnString title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
+  var hideAppBar = false.obs;
   var requestMode = HiRequestMode.none.obs;
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
@@ -22,11 +23,9 @@ class HiBaseController extends FullLifeCycleController {
   @override
   void onInit() {
     super.onInit();
-    log('HiBaseController.onInit', tag: HiLogTag.frame);
     this.navigator = HiNavigator.shared();
     var myParameters = <String, dynamic>{};
     myParameters.addAll(Get.parameters);
-    // parameters = Get.parameters;
     if (Get.arguments != null) {
       if (Get.arguments is Map<String, dynamic>) {
         myParameters.addAll(Get.arguments);
@@ -35,7 +34,9 @@ class HiBaseController extends FullLifeCycleController {
       }
     }
     parameters = myParameters;
-    title.value = parameters.stringForKey(HiParameter.title);
+    log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
+    title.value = parameters.value<String>(HiParameter.title);
+    hideAppBar.value = parameters.value<bool>(HiParameter.hideAppBar) ?? false;
     user = Get.find<HiUser>().obs;
     configuration = Get.find<HiConfiguration>().obs;
     provider = Get.find<HiProvider>();

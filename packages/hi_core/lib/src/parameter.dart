@@ -10,6 +10,8 @@ class HiParameter {
   static const user = 'user';
   static const text = 'text';
   static const name = 'name';
+  static const tabs = 'tabs';
+  static const items = 'items';
   static const links = 'links';
   static const token = 'token';
   static const title = 'title';
@@ -29,7 +31,8 @@ class HiParameter {
   static const routerMode = 'routerMode';
   static const routerRoot = 'routerRoot';
   static const systemName = 'systemName';
-  static const hideNavBar = 'hideNavBar';
+  static const hideAppBar = 'hideAppBar';
+  static const transparentAppBar = 'transparentAppBar';
   static const canRefresh = 'canRefresh';
   static const hideNavLine = 'hideNavLine';
   static const canLoadMore = 'canLoadMore';

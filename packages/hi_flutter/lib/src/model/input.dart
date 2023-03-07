@@ -17,10 +17,10 @@ class HiInput extends HiModel {
   });
 
   factory HiInput.fromJson(Map<String, dynamic> json) => HiInput(
-        id: json.stringForKey('id'),
-        autofocus: json.boolForKey('autofocus'),
-        hint: json.stringForKey('hint'),
-        text: json.stringForKey('text'),
+        id: json.value<String>('id'),
+        autofocus: json.value<bool>('autofocus'),
+        hint: json.value<String>('hint'),
+        text: json.value<String>('text'),
       );
 
   @override

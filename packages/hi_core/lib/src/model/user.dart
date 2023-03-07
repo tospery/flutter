@@ -19,10 +19,10 @@ class HiUser extends HiModel {
   });
 
   factory HiUser.fromJson(Map<String, dynamic> json) => HiUser(
-    id: json.stringForKey('id'),
-    username: json.stringForKey('username'),
-    password: json.stringForKey('password'),
-    avatar: json.stringForKey('avatar'),
+    id: json.value<String>('id'),
+    username: json.value<String>('username'),
+    password: json.value<String>('password'),
+    avatar: json.value<String>('avatar'),
   );
 
   @override

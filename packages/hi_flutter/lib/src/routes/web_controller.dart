@@ -12,7 +12,7 @@ class HiWebController extends HiBaseController {
   @override
   void onInit() {
     super.onInit();
-    url = parameters.stringForKey(HiParameter.url) ?? '';
+    url = parameters.value<String>(HiParameter.url) ?? '';
     log('url: $url', tag: HiLogTag.frame);
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)

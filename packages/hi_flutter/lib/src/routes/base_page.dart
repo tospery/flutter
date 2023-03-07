@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:get/get.dart';
-import 'base_controller.dart';
+import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/routes/base_controller.dart';
+import 'package:hi_flutter/src/routes/tabs_controller.dart';
+import 'package:hi_navigator/hi_navigator.dart';
 
 /// 可持久化保存GetxController状态的Widget基类,用于绑定Controller
 /// 由于在TabBarView中切换页面会导致状态重置，从而GetxController销毁
 /// 再次切换时需要重新拉取所有信息，体验非常差，因此需要继承AutomaticKeepAliveClientMixin
 /// 来达到拦截状态销毁的目的
 abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
-  final String? tag = null;
+  final String? tag;
 
-  const HiBasePage({super.key});
+  const HiBasePage({super.key, this.tag});
 
   get updateId => null;
   get lifecycle => null;
@@ -28,12 +30,14 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
   }
 
   PreferredSizeWidget? appBar(BuildContext context) {
-    return AppBar(
-      title: controller.title.value != null ? Text(
+    return controller.hideAppBar.value ? null : AppBar(
+      title: controller.title.value != null
+          ? Text(
         controller.title.value!,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-      ) : null,
+      )
+          : null,
     );
   }
 
@@ -46,12 +50,19 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
 }
 
 class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
-    with AutomaticKeepAliveClientMixin<HiBasePage>, WidgetsBindingObserver {
+    with
+        SingleTickerProviderStateMixin,
+        AutomaticKeepAliveClientMixin<HiBasePage>,
+        WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
     if (widget.lifecycle != null) {
       WidgetsBinding.instance.addObserver(this);
+    }
+    if (widget.controller is HiTabsController) {
+      var tabsController = widget.controller as HiTabsController;
+      tabsController.tabController = TabController(length: tabsController.tabs.length, vsync: this);
     }
     widget.initState();
   }
@@ -61,6 +72,7 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
     super.build(context);
     return GetBuilder<C>(
       id: widget.updateId,
+      tag: widget.tag,
       builder: (controller) {
         return widget.build(context);
       },
@@ -69,7 +81,11 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
 
   @override
   void dispose() {
-    Get.delete<C>();
+    if (widget.controller is HiTabsController) {
+      var tabsController = widget.controller as HiTabsController;
+      tabsController.tabController.dispose();
+    }
+    Get.delete<C>(tag: widget.tag);
     if (widget.lifecycle != null) {
       WidgetsBinding.instance.removeObserver(this);
     }
