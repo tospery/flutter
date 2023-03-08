@@ -24,9 +24,9 @@ class HiParameter {
   static const utsname = 'utsname';
   static const machine = 'machine';
   static const username = 'username';
-  static const pageSize = 'pageSize';
   static const pageFirst = 'pageFirst';
   static const pageIndex = 'pageIndex';
+  static const pageSize = 'pageSize';
   static const arguments = 'arguments';
   static const routerMode = 'routerMode';
   static const routerRoot = 'routerRoot';
