@@ -15,11 +15,13 @@ class HiBaseController extends FullLifeCycleController {
   late Rx<HiConfiguration> configuration;
   late final HiProvider provider;
   late final HiNavigator navigator;
-  late final Map<String, dynamic> parameters;
   late final StreamSubscription eventSubscription;
+  Map<String, dynamic> parameters;
 
   bool get isLoading => requestMode.value == HiRequestMode.load;
-  
+
+  HiBaseController({this.parameters = const {}});
+
   @override
   void onInit() {
     super.onInit();
@@ -33,6 +35,7 @@ class HiBaseController extends FullLifeCycleController {
         myParameters[HiParameter.arguments] = Get.arguments;
       }
     }
+    myParameters.addAll(parameters);
     parameters = myParameters;
     log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
     title.value = parameters.value<String>(HiParameter.title);
@@ -66,7 +69,5 @@ class HiBaseController extends FullLifeCycleController {
     update();
   }
 
-  void reloadData() {
-  }
-
+  void reloadData() {}
 }

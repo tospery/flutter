@@ -17,6 +17,8 @@ class HiListController<T> extends HiBaseController {
   RxList<T> items = <T>[].obs;
   Rx<HiError?> error = Rx<HiError?>(null);
 
+  HiListController({super.parameters = const {}});
+
   @override
   void onInit() {
     super.onInit();

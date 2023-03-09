@@ -9,6 +9,8 @@ class HiWebController extends HiBaseController {
   var progress = 0.0.obs;
   late final String url;
 
+  HiWebController({super.parameters = const {}});
+
   @override
   void onInit() {
     super.onInit();
