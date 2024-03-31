@@ -8,7 +8,7 @@ class HiService extends GetConnect {
   void onInit() {
     super.onInit();
     httpClient.defaultContentType = 'application/json';
-    // httpClient.addRequestModifier((request) => requestModifier(request));
+    httpClient.addRequestModifier<dynamic>((request) => requestModifier(request));
     httpClient.addResponseModifier((request, response) => responseModifier(request, response));
     httpClient.defaultDecoder = (data) {
       var json = <String, dynamic>{};
@@ -24,10 +24,10 @@ class HiService extends GetConnect {
     };
   }
 
-  // Request requestModifier(Request request) {
-  //   log('【${request.method}】${request.url}', tag: HiLogTag.network);
-  //   return request;
-  // }
+  Request requestModifier(Request request) {
+    log('【${request.method}】${request.url}', tag: HiLogTag.network);
+    return request;
+  }
 
   Response responseModifier(Request request, Response response) {
     log('${request.url.path}(${response.statusCode}, ${response.statusText})', tag: HiLogTag.network);
