@@ -9,8 +9,8 @@ class Plan extends HiModel {
   });
 
   factory Plan.fromJson(Map<String, dynamic> json) => Plan(
-    id: json.stringForKey('id'),
-    space: json.intForKey('space'),
+    id: json.value<String>('id'),
+    space: json.value<int>('space'),
   );
 
   @override
