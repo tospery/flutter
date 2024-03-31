@@ -5,25 +5,25 @@ repository: https://github.com/tospery/flutter/tree/main/packages/hi_navigator
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_navigator%22
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=3.3.3 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  get: 4.6.5
+  get: 4.6.6
   flukit: 3.0.1
-  getwidget: 3.0.1
-  flutter_spinkit: 5.1.0
+  getwidget: 4.0.0
+  flutter_spinkit: 5.2.1
   flutter_easyloading: 3.0.5
-  adaptive_dialog: 1.8.0
-  adaptive_action_sheet: 2.0.2
-  fluttertoast: 8.0.9
-  lottie: 1.4.2
+  adaptive_dialog: 2.1.0
+  adaptive_action_sheet: 2.0.3
+  fluttertoast: 8.2.4
+  lottie: 3.1.0
   hi_core:
     path: ../hi_core
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
