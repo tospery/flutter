@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_dialog/hi_dialog.dart';
 import 'package:hi_dialog/src/impl/dialog.dart';
 import 'package:hi_dialog/src/impl/over_scroll_behavior.dart';
 
@@ -81,7 +82,7 @@ class HiAlertView extends StatelessWidget {
                         title,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: R.constants.metric.fontSizeLarge,
+                          fontSize: context.textTheme.titleLarge?.fontSize,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -92,7 +93,7 @@ class HiAlertView extends StatelessWidget {
                           content,
                           style: TextStyle(
                             color: Colors.red,
-                            fontSize: R.constants.metric.fontSizeMedium,
+                            fontSize: context.textTheme.titleMedium?.fontSize,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
@@ -147,9 +148,9 @@ class HiAlertView extends StatelessWidget {
             height: 60,
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.blue,
-                fontSize: R.constants.metric.fontSizeMedium,
+                fontSize: 14, // R.constants.metric.fontSizeMedium,
                 fontWeight: FontWeight.normal,
               ),
             ),
