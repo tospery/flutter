@@ -25,7 +25,6 @@ class HiHost {
   final setting = 'setting';
   final about = 'about';
   final search = 'search';
-  final login = 'login';
   final user = 'user';
   final tabs = 'tabs';
   final web = 'web';
@@ -33,6 +32,7 @@ class HiHost {
   final alert = 'alert';
   final sheet = 'sheet';
   final popup = 'popup';
+  final login = 'login';
 }
 
 class HiPath {
