@@ -5,8 +5,7 @@ repository: https://github.com/tospery/flutter/tree/main/packages/hi_core
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_core%22
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=2.19.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -18,5 +17,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
 
