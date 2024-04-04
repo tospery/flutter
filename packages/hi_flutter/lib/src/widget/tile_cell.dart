@@ -20,6 +20,7 @@ class HiTileCell extends HiCell<HiTile> {
     return GFListTile(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      radius: 0,
       title: isNotEmpty(model.title) ? Text(model.title!, style: context.textTheme.titleSmall,) : Container(),
       subTitleText: model.subTitle,
       avatar: model.icon?.isNotEmpty ?? false
@@ -28,6 +29,7 @@ class HiTileCell extends HiCell<HiTile> {
       icon: _buildTileDetail(context),
       color: context.theme.bgColor,
       onTap: () => onPressed != null ? onPressed!(model) : null,
+      shadow: BoxShadow(),
     );
   }
 
