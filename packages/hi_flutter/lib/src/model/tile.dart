@@ -2,6 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/widget/tile_cell.dart';
 
+enum HiTileStyle {
+  plain,
+  check;
+
+  factory HiTileStyle.fromValue(int value) =>
+    {
+      0: HiTileStyle.plain,
+      1: HiTileStyle.check,
+    }[value] ??
+        HiTileStyle.plain;
+}
+
 class HiTile extends HiModel {
   final int? style;
   final String? title;

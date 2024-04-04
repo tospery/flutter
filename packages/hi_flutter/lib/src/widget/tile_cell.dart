@@ -17,6 +17,23 @@ class HiTileCell extends HiCell<HiTile> {
 
   @override
   Widget build(BuildContext context) {
+    // if (model.style == 1) {
+    //   return GFCheckboxListTile(
+    //     margin: EdgeInsets.zero,
+    //     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+    //     title: isNotEmpty(model.title) ? Text(model.title!, style: context.textTheme.titleSmall,) : Container(),
+    //     subTitleText: model.subTitle,
+    //     avatar: model.icon?.isNotEmpty ?? false
+    //         ? hiImage(model.icon!, height: 24, context: context)
+    //         : null,
+    //     icon: _buildTileDetail(context),
+    //     color: context.theme.bgColor,
+    //     // onChanged: (value) => onChanged != null ? onChanged!(value) : null,
+    //     onChanged: (dds){
+    //     },
+    //     value: true,
+    //   );
+    // }
     return GFListTile(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
