@@ -48,7 +48,8 @@ String hiURLString({
   String? path,
   Map<String, dynamic>? parameters,
 }) {
-  var urlString = 'dthub://$host';
+  // YJX_TODO 临时固定wehub
+  var urlString = 'wehub://$host';
   if (path?.isNotEmpty ?? false) {
     urlString += '/$path';
   }
