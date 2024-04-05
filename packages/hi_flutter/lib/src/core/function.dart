@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:event_bus/event_bus.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_cache/hi_cache.dart';
@@ -17,9 +18,11 @@ Future<bool> storeObject<M extends HiModel>(
   if (isReactive ?? false) {
     if (model is HiUser) {
       Get.replace<HiUser>(model);
+      eventBus.fire(model); // YJX_TODO 检查是否合理
     }
     if (model is HiConfiguration) {
       Get.replace<HiConfiguration>(model);
+      eventBus.fire(model);
     }
   }
   return true;
