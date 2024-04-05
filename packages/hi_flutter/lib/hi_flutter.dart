@@ -16,6 +16,7 @@ export 'package:event_bus/event_bus.dart';
 export 'package:linkify/linkify.dart';
 export 'package:package_info_plus/package_info_plus.dart';
 export 'package:device_info_plus/device_info_plus.dart';
+export 'package:tuple/tuple.dart';
 export 'src/flutter.dart';
 export 'src/core/constant.dart';
 export 'src/core/datatype.dart';
