@@ -3,10 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:event_bus/event_bus.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_cache/hi_cache.dart';
+import 'package:hi_flutter/src/core/constant.dart';
 import 'package:hi_flutter/src/extension/theme.dart';
 
 Future<bool> storeObject<M extends HiModel>(
