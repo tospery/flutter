@@ -3,19 +3,20 @@ import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/widget/tile_cell.dart';
 
 enum HiTileStyle {
-  plain,
-  check;
+  space,
+  button,
+  information;
 
-  factory HiTileStyle.fromValue(int value) =>
+  factory HiTileStyle.fromValue(dynamic value) =>
     {
-      0: HiTileStyle.plain,
-      1: HiTileStyle.check,
-    }[value] ??
-        HiTileStyle.plain;
+      HiTileStyle.space.instanceName: HiTileStyle.space,
+      HiTileStyle.button.instanceName: HiTileStyle.button,
+      HiTileStyle.information.instanceName: HiTileStyle.information,
+    }[hiString(value) ?? ''] ??
+        HiTileStyle.information;
 }
 
 class HiTile extends HiModel {
-  final int? style;
   final String? title;
   final String? subTitle;
   final String? detail;
@@ -25,12 +26,21 @@ class HiTile extends HiModel {
   final bool? indicated;
   final bool? separated;
 
+  HiTileStyle get style {
+    if (this.id == 'space') {
+      return HiTileStyle.space;
+    }
+    if (this.id == 'button') {
+      return HiTileStyle.button;
+    }
+    return HiTileStyle.information;
+  }
+
   Widget? get separator => separated ?? false ? const Divider() : null;
   Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiTileCell(model: this, onPressed: onPressed,);
 
   const HiTile({
     super.id,
-    this.style,
     this.title,
     this.subTitle,
     this.detail,
@@ -43,7 +53,6 @@ class HiTile extends HiModel {
 
   factory HiTile.fromJson(Map<String, dynamic> json) => HiTile(
         id: json.value<String>('id'),
-        style: json.value<int>('style'),
         title: json.value<String>('title'),
         subTitle: json.value<String>('subTitle'),
         detail: json.value<String>('detail'),
@@ -57,7 +66,6 @@ class HiTile extends HiModel {
   @override
   Map<String, dynamic> toJson() => {
         'id': id,
-        'style': style,
         'title': title,
         'subTitle': subTitle,
         'detail': detail,
@@ -70,7 +78,6 @@ class HiTile extends HiModel {
 
   HiTile copyWith({
     String? id,
-    int? style,
     String? title,
     String? subTitle,
     String? detail,
@@ -82,7 +89,6 @@ class HiTile extends HiModel {
   }) {
     return HiTile(
       id: id ?? this.id,
-      style: style ?? this.style,
       title: title ?? this.title,
       subTitle: subTitle ?? this.subTitle,
       detail: detail ?? this.detail,
@@ -97,7 +103,6 @@ class HiTile extends HiModel {
   @override
   List<Object?> get props => [
         id,
-        style,
         icon,
         title,
         subTitle,
