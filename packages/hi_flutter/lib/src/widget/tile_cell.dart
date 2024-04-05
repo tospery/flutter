@@ -36,7 +36,7 @@ class HiTileCell extends HiCell<HiTile> {
     // }
     return GFListTile(
       margin: EdgeInsets.zero,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
       radius: 0,
       title: _buildTileTitle(context),
       subTitleText: model.subTitle,
