@@ -38,7 +38,7 @@ class HiTileCell extends HiCell<HiTile> {
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       radius: 0,
-      title: isNotEmpty(model.title) ? Text(model.title!, style: context.textTheme.titleSmall,) : Container(),
+      title: _buildTileTitle(context),
       subTitleText: model.subTitle,
       avatar: model.icon?.isNotEmpty ?? false
           ? hiImage(model.icon!, height: 24, context: context)
@@ -48,6 +48,13 @@ class HiTileCell extends HiCell<HiTile> {
       onTap: () => onPressed != null ? onPressed!(model) : null,
       shadow: BoxShadow(),
     );
+  }
+
+  _buildTileTitle(BuildContext context) {
+    if (isEmpty(model.title)) {
+      return Container();
+    }
+    return Text(model.title!, style: context.textTheme.titleMedium,);
   }
 
   _buildTileDetail(BuildContext context) {
@@ -67,6 +74,7 @@ class HiTileCell extends HiCell<HiTile> {
         Icons.keyboard_arrow_right,
         color: context.theme.indicatorColor,
       ));
+      children.add(hiBox(width: 8));
     }
     return Row(
       children: children,
