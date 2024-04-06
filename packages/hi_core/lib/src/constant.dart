@@ -11,8 +11,8 @@ class HiConstant {
   static const tileHeightMedium = 45.0;
   static const tileHeightLarge = 50.0;
   static const spaceHeightSmall = 5.0;
-  static const spaceHeightMedium = 10.0;
-  static const spaceHeightLarge = 20.0;
+  static const spaceHeightMedium = 15.0;
+  static const spaceHeightLarge = 30.0;
   static const marginSmall = EdgeInsets.all(10);
   static const marginMedium = EdgeInsets.all(20);
   static const marginLarge = EdgeInsets.all(40);
