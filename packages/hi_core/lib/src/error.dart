@@ -1,5 +1,8 @@
+import 'parameter.dart';
+import 'function.dart';
 import 'resource/r.dart';
 import 'extension/object.dart';
+import 'extension/map.dart';
 
 class HiError implements Exception {
   final int code;
@@ -15,15 +18,6 @@ class HiError implements Exception {
   HiError(this.code, this.message, {this.data});
 
   static HiError get none => HiError(0, R.strings.none);
-  static HiError get unknown => HiError(1, R.strings.unknown);
-  static HiError get timeout => HiError(2, R.strings.timeout);
-  static HiError get navigation => HiError(3, R.strings.navigation);
-  static HiError get dataInvalid => HiError(4, R.strings.dataInvalid);
-  static HiError get dataIsEmpty => HiError(5, R.strings.dataIsEmpty);
-  // static HiError get userNotLoginedIn => HiError(6, R.strings.userNotLoginedIn);
-  // static HiError get userLoginExpired => HiError(7, R.strings.userLoginExpired);
-  // static HiError get networkNotConnected => HiError(8, R.strings.networkNotConnected);
-  // static HiError get networkNotReachable => HiError(9, R.strings.networkNotReachable);
 
   @override
   String toString() {
@@ -35,15 +29,15 @@ class HiNetworkError extends HiError {
   HiNetworkError(super.code, super.message, {super.data});
 
   @override
-  String? get displayTitle => R.strings.networkTitle;
+  String? get displayTitle => hiJson(data)?.value<String>(HiParameter.title) ?? R.strings.networkErrorTitle;
 
   @override
   String? get displayImage => R.assets.image.errorNetwork;
 
   static HiNetworkError get disabled =>
-      HiNetworkError(1, R.strings.networkDisabled);
+      HiNetworkError(1, R.strings.networkDisabledMessage);
   static HiNetworkError get unreachable =>
-      HiNetworkError(2, R.strings.networkNotReachable);
+      HiNetworkError(2, R.strings.networkUnreachableMessage);
 }
 
 class HiUserError extends HiError {
@@ -54,7 +48,7 @@ class HiUserError extends HiError {
   String? get displayImage => R.assets.image.errorServer;
 
   static HiUserError get unlogin => HiUserError(1, R.strings.unlogin);
-  static HiUserError get unauthed => HiUserError(2, R.strings.unauthed);
+  static HiUserError get expired => HiUserError(2, R.strings.expired);
 
   HiUserError(super.code, super.message, {super.data});
 }
@@ -66,24 +60,18 @@ class HiServerError extends HiError {
   @override
   String? get displayImage => R.assets.image.errorServer;
 
+  static HiServerError get dataInvalid => HiServerError(1, R.strings.dataInvalid);
+  static HiServerError get dataIsEmpty => HiServerError(2, R.strings.dataIsEmpty);
+
   HiServerError(super.code, super.message, {super.data});
 }
 
 class HiAppError extends HiError {
   HiAppError(super.code, super.message, {super.data});
 
+  static HiAppError get unknown => HiAppError(1, R.strings.unknown);
+  static HiAppError get navigation => HiAppError(2, R.strings.navigation);
+
   @override
   String? get displayTitle => R.strings.abnormalOperation;
 }
-
-//
-// class HiClientError extends HiError {
-//   @override
-//   String? get displayTitle => R.strings.serverTitle;
-//
-//   @override
-//   String? get displayImage => R.assets.images.errorServer;
-//
-//   HiClientError(super.code, super.message, {super.data});
-// }
-//

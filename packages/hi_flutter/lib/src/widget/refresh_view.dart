@@ -206,7 +206,7 @@ class HiRefreshViewState extends State<HiRefreshView>
   }
 
   _displayErrorTitle() {
-    var title = widget.getController.error.value?.displayTitle;
+    var title = widget.getController.error.value?.displayTitle?.tr;
     if (title?.isEmpty ?? true) {
       return Container();
     }
@@ -217,7 +217,7 @@ class HiRefreshViewState extends State<HiRefreshView>
   }
 
   _displayErrorMessage() {
-    var message = widget.getController.error.value?.displayMessage;
+    var message = widget.getController.error.value?.displayMessage?.tr;
     if (message?.isEmpty ?? true) {
       return Container();
     }

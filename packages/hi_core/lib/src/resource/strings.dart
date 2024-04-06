@@ -6,19 +6,7 @@ class Strings {
   final cancel = 'cancel';
   final loading = 'loading';
   final appSlogan = 'appSlogan';
-  final unknown = 'unknown';
   final timeout = 'timeout';
-  final navigation = 'navigation';
-  final unlogin = 'unlogin';
-  final unauthed = 'unauthed';
-  final dataInvalid = 'dataInvalid';
-  final dataIsEmpty = 'dataIsEmpty';
-  final userNotLoginedIn = 'userNotLoginedIn';
-  final userLoginExpired = 'userLoginExpired';
-  final networkTitle = 'networkTitle';
-  final networkDisabled = 'networkDisabled';
-  final networkNotConnected = 'networkNotConnected';
-  final networkNotReachable = 'networkNotReachable';
   final serverTitle = 'serverTitle';
   final abnormalOperation = 'abnormalOperation';
   final pullRefreshIdle = 'pullRefreshIdle';
@@ -28,6 +16,25 @@ class Strings {
   final loadingMoreIdle = 'loadingMoreIdle';
   final loadingMoreNoData = 'loadingMoreNoData';
   final loadingMoreFailure = 'loadingMoreFailure';
+// ===============
+// refresh-related
+// ===============
+
+// ===============
+// error-related
+// ===============
+  final unknown = 'unknown';
+  final navigation = 'navigation';
+  final unlogin = 'unlogin';
+  final expired = 'expired';
+  final dataInvalid = 'dataInvalid';
+  final dataIsEmpty = 'dataIsEmpty';
+  final userNotLoginedIn = 'userNotLoginedIn';
+  final userLoginExpired = 'userLoginExpired';
+  final networkErrorTitle = 'networkErrorTitle';
+  final networkDisabledMessage = 'networkDisabledMessage';
+  final networkUnreachableMessage = 'networkUnreachableMessage';
+
   // final appName = 'appName';
   // final loadEmpty = 'loadEmpty';
   // final setting = 'setting';

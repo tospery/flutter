@@ -86,11 +86,11 @@ class HiService extends GetConnect {
     if (fromJson != null) {
       var model = fromJson(data);
       if (model is HiModel && !(model as HiModel).isValid) {
-        return Future.error(HiError.dataInvalid);
+        return Future.error(HiServerError.dataInvalid);
       }
       return Future.value(model);
     }
-    return Future.error(HiError.dataInvalid);
+    return Future.error(HiServerError.dataInvalid);
   }
 
   Future<List<T>> array<T>(
@@ -115,19 +115,19 @@ class HiService extends GetConnect {
     }
 
     if (data is! List) {
-      return Future.error(HiError.dataInvalid);
+      return Future.error(HiServerError.dataInvalid);
     }
     if (data.isEmpty) {
-      return Future.error(HiError.dataIsEmpty);
+      return Future.error(HiServerError.dataIsEmpty);
     }
     if (fromJson == null) {
-      return Future.error(HiError.unknown);
+      return Future.error(HiAppError.unknown);
     }
     var array = data.where((e) => e is Map<String, dynamic>)
         .map((json) => fromJson(json))
         .toList();
     if (array.isEmpty) {
-      return Future.error(HiError.dataIsEmpty);
+      return Future.error(HiServerError.dataIsEmpty);
     }
     return Future.value(array);
   }
