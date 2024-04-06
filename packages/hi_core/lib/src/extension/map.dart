@@ -27,7 +27,7 @@ extension MapEx<K, V> on Map<K, V> {
       return hiString(value) as T?;
     }
     if (T == Map) {
-      return hiMap(value) as T?;
+      return hiJson(value) as T?;
     }
     if (fromValue != null) {
       return fromValue!(value);

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/widget/tile_cell.dart';
 
-enum HiTileStyle {
-  space,
-  button,
-  information;
-
-  factory HiTileStyle.fromValue(dynamic value) =>
-    {
-      HiTileStyle.space.instanceName: HiTileStyle.space,
-      HiTileStyle.button.instanceName: HiTileStyle.button,
-      HiTileStyle.information.instanceName: HiTileStyle.information,
-    }[hiString(value) ?? ''] ??
-        HiTileStyle.information;
-}
+// enum HiTileStyle {
+//   space,
+//   button,
+//   information;
+//
+//   factory HiTileStyle.fromValue(dynamic value) =>
+//     {
+//       HiTileStyle.space.instanceName: HiTileStyle.space,
+//       HiTileStyle.button.instanceName: HiTileStyle.button,
+//       HiTileStyle.information.instanceName: HiTileStyle.information,
+//     }[hiString(value) ?? ''] ??
+//         HiTileStyle.information;
+// }
 
 class HiTile extends HiModel {
   final String? title;
@@ -26,15 +26,15 @@ class HiTile extends HiModel {
   final bool? indicated;
   final bool? separated;
 
-  HiTileStyle get style {
-    if (this.id == 'space') {
-      return HiTileStyle.space;
-    }
-    if (this.id == 'button') {
-      return HiTileStyle.button;
-    }
-    return HiTileStyle.information;
-  }
+  // HiTileStyle get style {
+  //   if (this.id == 'space') {
+  //     return HiTileStyle.space;
+  //   }
+  //   if (this.id == 'button') {
+  //     return HiTileStyle.button;
+  //   }
+  //   return HiTileStyle.information;
+  // }
 
   Widget? get separator => separated ?? false ? const Divider() : null;
   Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiTileCell(model: this, onPressed: onPressed,);

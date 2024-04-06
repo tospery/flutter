@@ -84,7 +84,7 @@ String? hiString(dynamic any) {
   return null;
 }
 
-Map<String, dynamic>? hiMap(dynamic any) {
+Map<String, dynamic>? hiJson(dynamic any) {
   if (any == null || any is! Map<String, dynamic>) {
     return null;
   }
