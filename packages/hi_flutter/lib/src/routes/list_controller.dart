@@ -74,6 +74,7 @@ class HiListController<T> extends HiBaseController {
   @override
   void reloadData() async {
     requestMode.value = HiRequestMode.load;
+    error.value = null;
     items.clear();
     update();
     var models = await fetchLocal();

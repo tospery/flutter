@@ -5,6 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 import 'package:hi_flutter/src/core/function.dart';
+import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/routes/list_controller.dart';
 
 class HiRefreshView<C extends HiListController>
@@ -73,6 +74,8 @@ class HiRefreshViewState extends State<HiRefreshView>
           () => Visibility(
         visible: widget.getController.items.isEmpty &&
             widget.getController.error.value == null,
+            // visible: widget.getController.requestMode.value == HiRequestMode.load &&
+            //     widget.getController.error.value == null,
         child: SizedBox(
           width: 200,
           height: 200,
@@ -113,14 +116,22 @@ class HiRefreshViewState extends State<HiRefreshView>
           () => Visibility(
         visible: widget.getController.items.isEmpty &&
             widget.getController.error.value != null,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _displayErrorImage(),
-            _displayErrorTitle(),
-            _displayErrorMessage(),
-          ],
-        ),
+            child: GestureDetector(
+              onTap: widget.getController.reloadData,
+              child: Container(
+                color: Colors.transparent,
+                width: double.infinity,
+                height: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _displayErrorImage(),
+                    _displayErrorTitle(),
+                    _displayErrorMessage(),
+                  ],
+                ),
+              ),
+            ),
       ),
     );
   }
