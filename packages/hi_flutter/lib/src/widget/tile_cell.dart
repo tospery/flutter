@@ -71,7 +71,7 @@ class HiTileCell extends HiCell<HiTile> {
           ),
         );
       }
-      if (model.indicated ?? false) {
+      if (model.indicated ?? true) {
         children.add(Icon(
           Icons.keyboard_arrow_right,
           color: context.theme.indicatorColor,

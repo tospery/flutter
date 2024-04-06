@@ -13,7 +13,7 @@ class HiTile extends HiModel {
   final bool? indicated;
   final bool? separated;
 
-  Widget? get separator => separated ?? false ? const Divider() : null;
+  Widget? get separator => separated ?? true ? const Divider() : null;
   Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => HiTileCell(model: this, onPressed: onPressed,);
 
   const HiTile({
@@ -25,8 +25,8 @@ class HiTile extends HiModel {
     this.color,
     this.height,
     this.checked,
-    this.indicated = true,
-    this.separated = true,
+    this.indicated,
+    this.separated,
   });
 
   factory HiTile.fromJson(Map<String, dynamic> data) => HiTile(

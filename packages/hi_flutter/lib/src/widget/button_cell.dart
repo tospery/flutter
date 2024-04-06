@@ -21,7 +21,7 @@ class HiButtonCell extends HiCell<HiButton> {
         widthFactor: 0.9,
         child: GFButton(
           text: model.title,
-          size: model.height ?? GFSize.LARGE,
+          size: model.height ?? (context.width * HiConstant.heightRatioMedium),
           color: model.titleColor?.toColor() ?? context.theme.primaryColor,
           borderShape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -35,7 +35,7 @@ class HiButtonCell extends HiCell<HiButton> {
     return GFButton(
       onPressed: () => onPressed != null ? onPressed!(model) : null,
       text: model.title,
-      size: model.height ?? GFSize.LARGE,
+      size: model.height ?? (context.width * HiConstant.heightRatioMedium),
       borderShape: hiBorder(width: 0),
       borderSide: BorderSide.none,
       color: model.backgroundColor?.toColor() ?? context.theme.cardColor,

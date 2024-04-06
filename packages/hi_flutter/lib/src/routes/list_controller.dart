@@ -92,4 +92,5 @@ class HiListController<T> extends HiBaseController {
 
   void requestRemote(HiRequestMode mode, int pageIndex) {}
 
+  void doPressed(T model, {extra}) async {}
 }

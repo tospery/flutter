@@ -35,6 +35,8 @@ class HiParameter {
   static const routerMode = 'routerMode';
   static const routerRoot = 'routerRoot';
   static const systemName = 'systemName';
+  static const indicated = 'indicated';
+  static const separated = 'separated';
   static const hideAppBar = 'hideAppBar';
   static const transparentAppBar = 'transparentAppBar';
   static const canRefresh = 'canRefresh';
