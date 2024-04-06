@@ -19,7 +19,9 @@ class HiParameter {
   static const extra = 'extra';
   static const index = 'index';
   static const value = 'value';
+  static const color = 'color';
   static const accept = 'Accept';
+  static const height = 'height';
   static const context = 'context';
   static const utsname = 'utsname';
   static const machine = 'machine';
