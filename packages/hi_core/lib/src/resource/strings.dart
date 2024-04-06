@@ -7,7 +7,8 @@ class Strings {
   final loading = 'loading';
   final appSlogan = 'appSlogan';
   final timeout = 'timeout';
-  final serverTitle = 'serverTitle';
+  final unlogin = 'unlogin';
+  final expired = 'expired';
   final abnormalOperation = 'abnormalOperation';
   final pullRefreshIdle = 'pullRefreshIdle';
   final pullRefreshFreed = 'pullRefreshFreed';
@@ -25,15 +26,15 @@ class Strings {
 // ===============
   final unknown = 'unknown';
   final navigation = 'navigation';
-  final unlogin = 'unlogin';
-  final expired = 'expired';
-  final dataInvalid = 'dataInvalid';
-  final dataIsEmpty = 'dataIsEmpty';
-  final userNotLoginedIn = 'userNotLoginedIn';
-  final userLoginExpired = 'userLoginExpired';
   final networkErrorTitle = 'networkErrorTitle';
   final networkDisabledMessage = 'networkDisabledMessage';
   final networkUnreachableMessage = 'networkUnreachableMessage';
+  final serverErrorTitle = 'serverErrorTitle';
+  final serverDataInvalidMessage = 'serverDataInvalidMessage';
+  final serverListIsEmptyMessage = 'serverListIsEmptyMessage';
+  final userErrorTitle = 'userErrorTitle';
+  final userNotLoginedIn = 'userNotLoginedIn';
+  final userLoginExpired = 'userLoginExpired';
 
   // final appName = 'appName';
   // final loadEmpty = 'loadEmpty';

@@ -118,16 +118,16 @@ class HiService extends GetConnect {
       return Future.error(HiServerError.dataInvalid);
     }
     if (data.isEmpty) {
-      return Future.error(HiServerError.dataIsEmpty);
+      return Future.error(HiServerError.listIsEmpty);
     }
     if (fromJson == null) {
-      return Future.error(HiAppError.unknown);
+      return Future.error(HiError.unknown);
     }
     var array = data.where((e) => e is Map<String, dynamic>)
         .map((json) => fromJson(json))
         .toList();
     if (array.isEmpty) {
-      return Future.error(HiServerError.dataIsEmpty);
+      return Future.error(HiServerError.listIsEmpty);
     }
     return Future.value(array);
   }

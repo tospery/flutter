@@ -45,14 +45,13 @@ class HiListController<T> extends HiBaseController {
 
   void finish({List<T>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
-    // if (requestMode.value != HiRequestMode.more) {
-    //   this.items.clear();
-    // }
     if (this.error.value != null) {
       refreshController?.onFailure(requestMode.value);
+      if (requestMode.value == HiRequestMode.pullRefresh) {
+        this.navigator.toast(error?.displayMessage?.tr ?? R.strings.pullRefreshFailure.tr);
+      }
       if (requestMode.value == HiRequestMode.loadingMore) {
-        // toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
-        this.navigator.toast(error?.displayMessage ?? R.strings.loadingMoreFailure.tr);
+        this.navigator.toast(error?.displayMessage?.tr ?? R.strings.loadingMoreFailure.tr);
       }
     } else {
       if (requestMode.value == HiRequestMode.loadingMore) {
@@ -73,8 +72,8 @@ class HiListController<T> extends HiBaseController {
 
   @override
   void reloadData() async {
-    requestMode.value = HiRequestMode.load;
     error.value = null;
+    requestMode.value = HiRequestMode.load;
     items.clear();
     update();
     var models = await fetchLocal();
