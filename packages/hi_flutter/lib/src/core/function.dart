@@ -8,6 +8,14 @@ import 'package:hi_core/hi_core.dart';
 import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_flutter/src/core/constant.dart';
 import 'package:hi_flutter/src/extension/theme.dart';
+import 'package:hi_flutter/src/model/tile.dart';
+
+HiTile? convert2Tile(dynamic data) {
+  if (data == null || data is! HiTile) {
+    return null;
+  }
+  return data as HiTile? ?? null;
+}
 
 Future<bool> storeObject<M extends HiModel>(
   M model, {

@@ -8,83 +8,83 @@ Type typeOf<T>() => T;
 bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
 bool isEmpty(String? text) => text?.isEmpty ?? true;
 
-bool? hiBool(dynamic any) {
-  if (any == null) {
+bool? convert2Bool(dynamic data) {
+  if (data == null) {
     return null;
   }
-  if (any is bool) {
-    return any;
+  if (data is bool) {
+    return data;
   }
-  if (any is int) {
-    return any.toBool();
+  if (data is int) {
+    return data.toBool();
   }
-  if (any is double) {
-    return any.toInt().toBool();
+  if (data is double) {
+    return data.toInt().toBool();
   }
-  if (any is String) {
-    return any.toBool();
+  if (data is String) {
+    return data.toBool();
   }
   return null;
 }
 
-int? hiInt(dynamic any) {
-  if (any == null) {
+int? convert2Int(dynamic data) {
+  if (data == null) {
     return null;
   }
-  if (any is bool) {
-    return any.toInt();
+  if (data is bool) {
+    return data.toInt();
   }
-  if (any is int) {
-    return any;
+  if (data is int) {
+    return data;
   }
-  if (any is double) {
-    return any.toInt();
+  if (data is double) {
+    return data.toInt();
   }
-  if (any is String) {
-    return any.toInt();
+  if (data is String) {
+    return data.toInt();
   }
   return null;
 }
 
-double? hiDouble(dynamic any) {
-  if (any == null) {
+double? convert2Double(dynamic data) {
+  if (data == null) {
     return null;
   }
-  if (any is bool) {
-    return any.toInt().toDouble();
+  if (data is bool) {
+    return data.toInt().toDouble();
   }
-  if (any is int) {
-    return any.toDouble();
+  if (data is int) {
+    return data.toDouble();
   }
-  if (any is double) {
-    return any;
+  if (data is double) {
+    return data;
   }
-  if (any is String) {
-    return any.toDouble();
+  if (data is String) {
+    return data.toDouble();
   }
   return null;
 }
 
-String? hiString(dynamic any) {
-  if (any == null) {
+String? convert2String(dynamic data) {
+  if (data == null) {
     return null;
   }
-  if (any is String) {
-    return any;
+  if (data is String) {
+    return data;
   }
-  if (any is bool) {
-    return any.toString();
+  if (data is bool) {
+    return data.toString();
   }
-  if (any is int) {
-    return any.toString();
+  if (data is int) {
+    return data.toString();
   }
-  if (any is double) {
-    return any.toString();
+  if (data is double) {
+    return data.toString();
   }
   return null;
 }
 
-Map<K, V>? hiMap<K, V>(dynamic data) {
+Map<K, V>? convert2Map<K, V>(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -103,7 +103,7 @@ Map<K, V>? hiMap<K, V>(dynamic data) {
   return map;
 }
 
-Map<String, dynamic>? hiJson(dynamic data) => hiMap<String, dynamic>(data);
+Map<String, dynamic>? convert2JSON(dynamic data) => convert2Map<String, dynamic>(data);
 
 // List<T>? hiList<T>(dynamic any) {
 //   if (any == null) {

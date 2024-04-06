@@ -15,8 +15,8 @@ class HiResponse extends HiModel {
   });
 
   factory HiResponse.fromJson(Map<String, dynamic> json) => HiResponse(
-    code: hiInt(json.valueForKeys(HiNetwork.shared().codeKeys)),
-    message: hiString(json.valueForKeys(HiNetwork.shared().messageKeys)),
+    code: convert2Int(json.valueForKeys(HiNetwork.shared().codeKeys)),
+    message: convert2String(json.valueForKeys(HiNetwork.shared().messageKeys)),
     data: json.valueForKeys(HiNetwork.shared().dataKeys),
     json: json,
   );

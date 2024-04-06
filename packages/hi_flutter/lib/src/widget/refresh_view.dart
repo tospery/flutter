@@ -100,7 +100,7 @@ class HiRefreshViewState extends State<HiRefreshView>
             controller: _refreshController,
             enablePullDown: widget.enablePullRefresh,
             enablePullUp: widget.enableLoadingMore,
-            onRefresh: widget.getController.doRefresh,
+            onRefresh: widget.getController.doPullRefresh,
             onLoading: widget.getController.doLoadingMore,
             header: CustomHeader(builder: _buildHeader),
             footer: CustomFooter(builder: _buildFooter),

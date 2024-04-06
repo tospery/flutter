@@ -30,16 +30,16 @@ class HiTile extends HiModel {
   });
 
   factory HiTile.fromJson(Map<String, dynamic> data) => HiTile(
-        id: hiJson(data)?.value<String>('id'),
-        title: hiJson(data)?.value<String>('title'),
-        subTitle: hiJson(data)?.value<String>('subTitle'),
-        detail: hiJson(data)?.value<String>('detail'),
-        icon: hiJson(data)?.value<String>('icon'),
-        color: hiJson(data)?.value<String>('color'),
-        height: hiJson(data)?.value<double>('height'),
-        checked: hiJson(data)?.value<bool>('checked'),
-        indicated: hiJson(data)?.value<bool>('indicated'),
-        separated: hiJson(data)?.value<bool>('separated'),
+        id: convert2JSON(data)?.value<String>('id'),
+        title: convert2JSON(data)?.value<String>('title'),
+        subTitle: convert2JSON(data)?.value<String>('subTitle'),
+        detail: convert2JSON(data)?.value<String>('detail'),
+        icon: convert2JSON(data)?.value<String>('icon'),
+        color: convert2JSON(data)?.value<String>('color'),
+        height: convert2JSON(data)?.value<double>('height'),
+        checked: convert2JSON(data)?.value<bool>('checked'),
+        indicated: convert2JSON(data)?.value<bool>('indicated'),
+        separated: convert2JSON(data)?.value<bool>('separated'),
       );
 
   @override

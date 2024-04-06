@@ -29,8 +29,8 @@ class HiListController<T> extends HiBaseController {
     pageSize = parameters.value<int>(HiParameter.pageSize) ?? HiFlutter.shared().pageSize;
   }
 
-  void doRefresh() {
-    log('doRefresh');
+  void doPullRefresh() {
+    log('doPullRefresh');
     requestMode.value = HiRequestMode.pullRefresh;
     update();
     requestRemote(requestMode.value, pageFirst);

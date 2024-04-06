@@ -15,19 +15,19 @@ extension MapEx<K, V> on Map<K, V> {
       return value as T;
     }
     if (T == bool) {
-      return hiBool(value) as T?;
+      return convert2Bool(value) as T?;
     }
     if (T == int) {
-      return hiInt(value) as T?;
+      return convert2Int(value) as T?;
     }
     if (T == double) {
-      return hiDouble(value) as T?;
+      return convert2Double(value) as T?;
     }
     if (T == String) {
-      return hiString(value) as T?;
+      return convert2String(value) as T?;
     }
     if (T == Map) {
-      return hiJson(value) as T?;
+      return convert2JSON(value) as T?;
     }
     if (fromValue != null) {
       return fromValue!(value);
