@@ -17,29 +17,12 @@ class HiTileCell extends HiCell<HiTile> {
 
   @override
   Widget build(BuildContext context) {
-    // if (model.style == 1) {
-    //   return GFCheckboxListTile(
-    //     margin: EdgeInsets.zero,
-    //     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-    //     title: isNotEmpty(model.title) ? Text(model.title!, style: context.textTheme.titleSmall,) : Container(),
-    //     subTitleText: model.subTitle,
-    //     avatar: model.icon?.isNotEmpty ?? false
-    //         ? hiImage(model.icon!, height: 24, context: context)
-    //         : null,
-    //     icon: _buildTileDetail(context),
-    //     color: context.theme.bgColor,
-    //     // onChanged: (value) => onChanged != null ? onChanged!(value) : null,
-    //     onChanged: (dds){
-    //     },
-    //     value: true,
-    //   );
-    // }
     return GFListTile(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
       radius: 0,
       title: _buildTileTitle(context),
-      subTitleText: model.subTitle,
+      subTitle: _buildTileSubtitle(context),
       avatar: model.icon?.isNotEmpty ?? false
           ? hiImage(model.icon!, height: 24, context: context)
           : null,
@@ -57,24 +40,44 @@ class HiTileCell extends HiCell<HiTile> {
     return Text(model.title!, style: context.textTheme.titleMedium,);
   }
 
+  _buildTileSubtitle(BuildContext context) {
+    if (isEmpty(model.subTitle)) {
+      return Container();
+    }
+    return Text(model.subTitle!, style: context.textTheme.titleSmall,);
+  }
+
   _buildTileDetail(BuildContext context) {
     var children = <Widget>[];
-    if (model.detail?.isNotEmpty ?? false) {
-      children.add(
-        Text(
-          model.detail!,
-          style: context.textTheme.bodyMedium?.copyWith(
-            color: context.theme.unselectedWidgetColor,
+    if (model.checked != null) {
+      if (model.checked ?? false) {
+        children.addAll([
+          Icon(
+            Icons.check,
+            size: 24,
+            color: context.theme.primaryColor,
           ),
-        ),
-      );
-    }
-    if (model.indicated ?? false) {
-      children.add(Icon(
-        Icons.keyboard_arrow_right,
-        color: context.theme.indicatorColor,
-      ));
-      children.add(hiBox(width: 8));
+          hiBox(width: 20),
+        ]);
+      }
+    } else {
+      if (model.detail?.isNotEmpty ?? false) {
+        children.add(
+          Text(
+            model.detail!,
+            style: context.textTheme.bodyMedium?.copyWith(
+              color: context.theme.unselectedWidgetColor,
+            ),
+          ),
+        );
+      }
+      if (model.indicated ?? false) {
+        children.add(Icon(
+          Icons.keyboard_arrow_right,
+          color: context.theme.indicatorColor,
+        ));
+        children.add(hiBox(width: 8));
+      }
     }
     return Row(
       children: children,

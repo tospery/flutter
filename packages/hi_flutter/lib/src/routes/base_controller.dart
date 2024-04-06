@@ -67,6 +67,7 @@ class HiBaseController extends FullLifeCycleController {
   void updateConfiguration(HiConfiguration configuration) {
     this.configuration.value = configuration;
     update();
+    reloadData();
   }
 
   void reloadData() {}

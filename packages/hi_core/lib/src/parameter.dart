@@ -20,6 +20,7 @@ class HiParameter {
   static const index = 'index';
   static const value = 'value';
   static const color = 'color';
+  static const detail = 'detail';
   static const accept = 'Accept';
   static const height = 'height';
   static const context = 'context';
