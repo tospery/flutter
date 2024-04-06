@@ -44,11 +44,16 @@ class HiBaseController extends FullLifeCycleController {
     configuration = Get.find<HiConfiguration>().obs;
     provider = Get.find<HiProvider>();
     eventSubscription = eventBus.on().listen((event) {
-      if (event is HiUser) {
-        updateUser(event);
+      if (event is! Map<String, dynamic>) {
+        return;
       }
-      if (event is HiConfiguration) {
-        updateConfiguration(event);
+      final model = event[HiParameter.model];
+      final needReload = event.value<bool>(HiParameter.needReload) ?? false;
+      if (model is HiUser) {
+        updateUser(model, needReload: needReload);
+      }
+      if (model is HiConfiguration) {
+        updateConfiguration(model, needReload: needReload);
       }
     });
   }
@@ -59,15 +64,20 @@ class HiBaseController extends FullLifeCycleController {
     super.dispose();
   }
 
-  void updateUser(HiUser user) {
+  void updateUser(HiUser user, {bool? needReload}) {
     this.user.value = user;
     update();
+    if (needReload ?? false) {
+      reloadData();
+    }
   }
 
-  void updateConfiguration(HiConfiguration configuration) {
+  void updateConfiguration(HiConfiguration configuration, {bool? needReload}) {
     this.configuration.value = configuration;
     update();
-    reloadData();
+    if (needReload ?? false) {
+      reloadData();
+    }
   }
 
   void reloadData() {}

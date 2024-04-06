@@ -40,8 +40,9 @@ class HiParameter {
   static const canRefresh = 'canRefresh';
   static const hideNavLine = 'hideNavLine';
   static const canLoadMore = 'canLoadMore';
-  static const jsonEncoding = 'application/json';
   static const configuration = 'configuration';
+  static const jsonEncoding = 'application/json';
+  static const needReload = 'needReload';
   static const systemVersion = 'systemVersion';
   static const isPhysicalDevice = 'isPhysicalDevice';
 }

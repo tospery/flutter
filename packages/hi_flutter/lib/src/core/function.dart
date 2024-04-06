@@ -13,18 +13,21 @@ Future<bool> storeObject<M extends HiModel>(
   M model, {
   String? id,
   bool? isReactive,
+  bool? needReload,
 }) async {
   await HiCache.shared().storeObject(model, id: id);
   if (isReactive ?? false) {
     if (model is HiUser) {
       Get.replace<HiUser>(model);
-      eventBus.fire(model); // YJX_TODO 检查是否合理
     }
     if (model is HiConfiguration) {
       Get.replace<HiConfiguration>(model);
-      eventBus.fire(model);
     }
   }
+  eventBus.fire({
+    HiParameter.model: model,
+    HiParameter.needReload: needReload,
+  }); // YJX_TODO 检查是否合理
   return true;
 }
 
