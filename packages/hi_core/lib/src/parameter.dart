@@ -27,6 +27,7 @@ class HiParameter {
   static const utsname = 'utsname';
   static const machine = 'machine';
   static const username = 'username';
+  static const selected = 'selected';
   static const pageFirst = 'pageFirst';
   static const pageIndex = 'pageIndex';
   static const pageSize = 'pageSize';

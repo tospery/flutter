@@ -66,7 +66,6 @@ class HiTile extends HiModel {
     double? height,
     bool? checked,
     bool? indicated,
-    bool? separated,
   }) {
     return HiTile(
       id: id ?? this.id,
@@ -78,7 +77,6 @@ class HiTile extends HiModel {
       height: height ?? this.height,
       checked: checked ?? this.checked,
       indicated: indicated ?? this.indicated,
-      separated: separated ?? this.separated,
     );
   }
 
