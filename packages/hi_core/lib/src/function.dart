@@ -84,12 +84,26 @@ String? hiString(dynamic any) {
   return null;
 }
 
-Map<String, dynamic>? hiJson(dynamic any) {
-  if (any == null || any is! Map<String, dynamic>) {
+Map<K, V>? hiMap<K, V>(dynamic data) {
+  if (data == null) {
     return null;
   }
-  return any;
+  if (data is Map<K, V>) {
+    return data as Map<K, V>? ?? {};
+  }
+  if (data is! Map<dynamic, dynamic>) {
+    return null;
+  }
+  Map<K, V> map = {};
+  data.forEach((key, value) {
+    if (key is K && value is V) {
+      map[key] = value;
+    }
+  });
+  return map;
 }
+
+Map<String, dynamic>? hiJson(dynamic data) => hiMap<String, dynamic>(data);
 
 // List<T>? hiList<T>(dynamic any) {
 //   if (any == null) {
