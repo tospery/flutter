@@ -55,7 +55,7 @@ Future<List<M>> fetchArray<M extends HiModel>(
   M Function(Map<String, dynamic>) fromJson, {
   String? page,
 }) =>
-    HiCache.shared().fetchArray(fromJson);
+    HiCache.shared().fetchArray(fromJson, page: page);
 
 double metricWidth(
   double width, {
