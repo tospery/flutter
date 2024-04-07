@@ -19,7 +19,7 @@ class HiTileCell extends HiCell<HiTile> {
   Widget build(BuildContext context) {
     return GFListTile(
       margin: EdgeInsets.zero,
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       radius: 0,
       title: _buildTileTitle(context),
       subTitle: _buildTileSubtitle(context),

@@ -8,7 +8,7 @@ Type typeOf<T>() => T;
 bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
 bool isEmpty(String? text) => text?.isEmpty ?? true;
 
-bool? toBool(dynamic data) {
+bool? convertBool(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -27,7 +27,7 @@ bool? toBool(dynamic data) {
   return null;
 }
 
-int? toInt(dynamic data) {
+int? convertInt(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -46,7 +46,7 @@ int? toInt(dynamic data) {
   return null;
 }
 
-double? toDouble(dynamic data) {
+double? convertDouble(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -65,7 +65,7 @@ double? toDouble(dynamic data) {
   return null;
 }
 
-String? toString(dynamic data) {
+String? convertString(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -84,7 +84,7 @@ String? toString(dynamic data) {
   return null;
 }
 
-Map<K, V>? toMap<K, V>(dynamic data) {
+Map<K, V>? convertMap<K, V>(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -103,4 +103,4 @@ Map<K, V>? toMap<K, V>(dynamic data) {
   return map;
 }
 
-Map<String, dynamic>? toJSON(dynamic data) => toMap<String, dynamic>(data);
+Map<String, dynamic>? convertJSON(dynamic data) => convertMap<String, dynamic>(data);

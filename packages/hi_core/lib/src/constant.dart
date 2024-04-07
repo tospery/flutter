@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HiConstant {
-  static const heightRatioSmall = 0.11;
-  static const heightRatioMedium = 0.11;
-  static const heightRatioLarge = 0.11;
+  static const heightRatioSmall = 0.12;
+  static const heightRatioMedium = 0.12;
+  static const heightRatioLarge = 0.12;
   static const fontSizeSmall = 14.0;
   static const fontSizeMedium = 16.0;
   static const fontSizeLarge = 18.0;
