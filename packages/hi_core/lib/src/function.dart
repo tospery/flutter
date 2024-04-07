@@ -8,7 +8,7 @@ Type typeOf<T>() => T;
 bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
 bool isEmpty(String? text) => text?.isEmpty ?? true;
 
-bool? convert2Bool(dynamic data) {
+bool? toBool(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -27,7 +27,7 @@ bool? convert2Bool(dynamic data) {
   return null;
 }
 
-int? convert2Int(dynamic data) {
+int? toInt(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -46,7 +46,7 @@ int? convert2Int(dynamic data) {
   return null;
 }
 
-double? convert2Double(dynamic data) {
+double? toDouble(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -65,7 +65,7 @@ double? convert2Double(dynamic data) {
   return null;
 }
 
-String? convert2String(dynamic data) {
+String? toString(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -84,7 +84,7 @@ String? convert2String(dynamic data) {
   return null;
 }
 
-Map<K, V>? convert2Map<K, V>(dynamic data) {
+Map<K, V>? toMap<K, V>(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -103,25 +103,4 @@ Map<K, V>? convert2Map<K, V>(dynamic data) {
   return map;
 }
 
-Map<String, dynamic>? convert2JSON(dynamic data) => convert2Map<String, dynamic>(data);
-
-// List<T>? hiList<T>(dynamic any) {
-//   if (any == null) {
-//     return null;
-//   }
-//   if (any is! List<dynamic>) {
-//     return null;
-//   }
-//   var list = any.cast<T>();
-//   return list;
-// }
-//
-// T? hiEnum<T>(dynamic any, T Function(dynamic) fromValue) {
-//   if (any == null) {
-//     return null;
-//   }
-//   if (any is T) {
-//     return any as T;
-//   }
-//   return fromValue(any);
-// }
+Map<String, dynamic>? toJSON(dynamic data) => toMap<String, dynamic>(data);
