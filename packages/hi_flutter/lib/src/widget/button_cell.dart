@@ -16,22 +16,14 @@ class HiButtonCell extends HiCell<HiButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (model.style == 1) {
-      return FractionallySizedBox(
-        widthFactor: 0.9,
-        child: GFButton(
-          text: model.title,
-          size: model.height ?? (context.width * HiConstant.heightRatioMedium),
-          color: model.titleColor?.toColor() ?? context.theme.primaryColor,
-          borderShape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-          ),
-          fullWidthButton: true,
-          disabledTextColor: context.theme.cardColor,
-          onPressed: onPressed != null ? () => onPressed!(model) : null,
-        ),
-      );
+    final style = model.style ?? HiButtonStyle.fullWidth;
+    if (style == HiButtonStyle.rounded) {
+      return _buildRoundedButton(context);
     }
+    return _buildFullWidthButton(context);
+  }
+
+  Widget _buildFullWidthButton(BuildContext context) {
     return GFButton(
       onPressed: () => onPressed != null ? onPressed!(model) : null,
       text: model.title,
@@ -41,6 +33,23 @@ class HiButtonCell extends HiCell<HiButton> {
       color: model.backgroundColor?.toColor() ?? context.theme.cardColor,
       textStyle: context.textTheme.titleMedium?.copyWith(
           color: context.theme.primaryColor
+      ),
+    );
+  }
+
+  Widget _buildRoundedButton(BuildContext context) {
+    return FractionallySizedBox(
+      widthFactor: 0.9,
+      child: GFButton(
+        text: model.title,
+        size: model.height ?? (context.width * HiConstant.heightRatioMedium),
+        color: model.titleColor?.toColor() ?? context.theme.primaryColor,
+        borderShape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        fullWidthButton: true,
+        disabledTextColor: context.theme.cardColor,
+        onPressed: onPressed != null ? () => onPressed!(model) : null,
       ),
     );
   }
