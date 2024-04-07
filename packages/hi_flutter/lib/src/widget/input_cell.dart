@@ -18,6 +18,14 @@ class HiInputCell extends HiCell<HiInput> {
 
   @override
   Widget build(BuildContext context) {
+    final style = model.style ?? HiInputStyle.textField;
+    if (style == HiInputStyle.textView) {
+      return _buildTextView(context);
+    }
+    return _buildTextField(context);
+  }
+
+  Widget _buildTextField(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
         filled: true,
@@ -33,4 +41,31 @@ class HiInputCell extends HiCell<HiInput> {
       onChanged: (value) => onChanged != null ? onChanged!(value) : null,
     );
   }
+
+  Widget _buildTextView(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: context.theme.cardColor,
+          contentPadding: EdgeInsets.all(10),
+          border: hiOutlineBorder(width: 0, radius: 0, context: context),
+          enabledBorder: hiOutlineBorder(width: 0, radius: 0, context: context),
+          focusedBorder: hiOutlineBorder(width: 0, radius: 0, context: context),
+          disabledBorder: hiOutlineBorder(width: 0, radius: 0, context: context),
+          errorBorder: hiOutlineBorder(width: 0, radius: 0, context: context),
+          focusedErrorBorder: hiOutlineBorder(width: 0, radius: 0, context: context),
+        ),
+        maxLines: 7,
+        minLines: 5,
+        maxLength: 160,
+        autofocus: true,
+        keyboardType: TextInputType.multiline,
+        controller: TextEditingController(text: model.text),
+        onChanged: (value) => onChanged != null ? onChanged!(value) : null,
+      ),
+    );
+  }
+
 }
