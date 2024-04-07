@@ -22,6 +22,10 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
     log('HiBasePage.initState', tag: HiLogTag.frame);
   }
 
+  void dispose() {
+    log('HiBasePage.dispose', tag: HiLogTag.frame);
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
@@ -85,6 +89,7 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
       var tabsController = widget.controller as HiTabsController;
       tabsController.tabController.dispose();
     }
+    widget.dispose();
     Get.delete<C>(tag: widget.tag);
     if (widget.lifecycle != null) {
       WidgetsBinding.instance.removeObserver(this);
