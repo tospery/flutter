@@ -10,7 +10,7 @@ import 'package:hi_flutter/src/core/constant.dart';
 import 'package:hi_flutter/src/extension/theme.dart';
 import 'package:hi_flutter/src/model/tile.dart';
 
-HiTile? convert2Tile(dynamic data) {
+HiTile? convertTile(dynamic data) {
   if (data == null || data is! HiTile) {
     return null;
   }
@@ -73,6 +73,14 @@ double metricHeight(
   final designHeight = 852.0;
   var deviceHeight = (context ?? Get.overlayContext)?.width ?? designHeight;
   return height / designHeight * deviceHeight;
+}
+
+double pixelOne(BuildContext? context) {
+  final ctx = context ?? Get.overlayContext;
+  if (ctx == null) {
+    return 1;
+  }
+  return 1 / MediaQuery.of(ctx!).devicePixelRatio;
 }
 
 SizedBox hiBox({
@@ -248,6 +256,7 @@ Widget hiImage(String url, {
   double? width,
   double? height,
   BoxFit? fit,
+  Color? blendedColor,
   Image? placeholder,
   BuildContext? context,
 }) {
@@ -280,7 +289,7 @@ Widget hiImage(String url, {
   }
   Widget? result;
   try {
-    result = Image.asset(url, width: width, height: height, color: context != null ? context.theme.primaryColor : null,);
+    result = Image.asset(url, width: width, height: height, color: blendedColor,);
   } catch (e) {
     var value = int.tryParse(url, radix: 16);
     if (value != null) {
