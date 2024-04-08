@@ -3,7 +3,7 @@ import 'dart:ui' as UI;
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-extension ImageProviderEx on ImageProvider {
+extension ImageProviderHiFlutterEx on ImageProvider {
   Future<UI.Image> image({
     ImageConfiguration configuration = ImageConfiguration.empty,
   }) async {

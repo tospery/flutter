@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-extension GetEx on GetInterface {
+extension GetHiFlutterEx on GetInterface {
   //
   // void loading({String? title}) {
   //   if (Get.isDialogOpen ?? false) {

@@ -1,7 +1,7 @@
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../core/datatype.dart';
 
-extension RefreshControllerEx on RefreshController {
+extension RefreshControllerHiFlutterEx on RefreshController {
   void onSuccess(HiRequestMode mode, bool hasNext) {
     if (mode == HiRequestMode.pullRefresh) {
       refreshCompleted();
