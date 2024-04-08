@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-extension ColorHiCoreEx on Color {
+extension ColorEx on Color {
   // String get hexString =>
   //     '#${(value & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
 

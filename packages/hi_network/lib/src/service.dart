@@ -25,12 +25,12 @@ class HiService extends GetConnect {
   }
 
   Request requestModifier(Request request) {
-    log('【${request.method}】${request.url}', tag: HiLogTag.network);
+    log('RESTful Request ->【${request.method}】${request.url}', tag: HiLogTag.network);
     return request;
   }
 
   Response responseModifier(Request request, Response response) {
-    log('${request.url.path}(${response.statusCode}, ${response.statusText})', tag: HiLogTag.network);
+    log('RESTful Response ->【${request.url.path}】(${response.statusCode}, ${response.statusText})', tag: HiLogTag.network);
     if (response.bodyString?.isNotEmpty ?? false) {
       log(response.bodyString);
     } else {

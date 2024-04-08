@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension ColorFlutterEx on Color {
+// extension ColorFlutterEx on Color {
   /// 背景色（白色->灰色->黑色）
   // Color get bgColor => computeLuminance() < 0.5 ? Colors.white : Colors.black;
   // Color get canvasColor => computeLuminance() < 0.5 ? Colors.grey[50]! : Colors.grey[50]!;
@@ -16,5 +16,4 @@ extension ColorFlutterEx on Color {
   // Color get disabledColor => computeLuminance() < 0.5 ? Colors.grey[850]! : Colors.grey[850]!;
   // Color get shadowColor => computeLuminance() < 0.5 ? Colors.grey[900]! : Colors.grey[900]!;
   // Color get fgColor => computeLuminance() < 0.5 ? Colors.black : Colors.white;
-
-}
+//}

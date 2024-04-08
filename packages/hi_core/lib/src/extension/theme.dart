@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hi_core/src/extension/color.dart';
 
-extension ThemeDataHiCoreEx on ThemeData {
+extension ThemeDataEx on ThemeData {
 
   Color get bgColor => cardColor;   // colorScheme.surface;          // 白色
   // Color get on100 => fgColor.on100;
