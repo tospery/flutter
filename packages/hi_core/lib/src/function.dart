@@ -1,14 +1,13 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hi_core/src/extension/bool.dart';
 import 'package:hi_core/src/extension/int.dart';
 import 'package:hi_core/src/extension/string.dart';
+import 'package:hi_core/src/logger.dart';
 
 Type typeOf<T>() => T;
 
-bool isNotEmpty(String? text) => text?.isNotEmpty ?? false;
-bool isEmpty(String? text) => text?.isEmpty ?? true;
-
-bool? convertBool(dynamic data) {
+bool? tryBool(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -27,7 +26,7 @@ bool? convertBool(dynamic data) {
   return null;
 }
 
-int? convertInt(dynamic data) {
+int? tryInt(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -46,7 +45,7 @@ int? convertInt(dynamic data) {
   return null;
 }
 
-double? convertDouble(dynamic data) {
+double? tryDouble(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -65,7 +64,7 @@ double? convertDouble(dynamic data) {
   return null;
 }
 
-String? convertString(dynamic data) {
+String? tryString(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -84,7 +83,7 @@ String? convertString(dynamic data) {
   return null;
 }
 
-Map<K, V>? convertMap<K, V>(dynamic data) {
+Map<K, V>? tryMap<K, V>(dynamic data) {
   if (data == null) {
     return null;
   }
@@ -103,4 +102,11 @@ Map<K, V>? convertMap<K, V>(dynamic data) {
   return map;
 }
 
-Map<String, dynamic>? convertJSON(dynamic data) => convertMap<String, dynamic>(data);
+Map<String, dynamic>? tryJSON(dynamic data) => tryMap<String, dynamic>(data);
+
+Color randomColor() => Color.fromRGBO(
+  Random().nextInt(256),
+  Random().nextInt(256),
+  Random().nextInt(256),
+  1,
+);

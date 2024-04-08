@@ -35,7 +35,7 @@ class HiToastActivity extends StatelessWidget {
                     animate: true,
                   ),
                 ),
-                isNotEmpty(title) ?
+                title?.isNotEmpty ?? false ?
                 Text(
                   title!,
                   style: const TextStyle(fontSize: 14, color: Colors.white),

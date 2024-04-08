@@ -10,7 +10,7 @@ enum HiInputStyle {
       {
         0: HiInputStyle.textField,
         1: HiInputStyle.textView,
-      }[convertInt(value) ?? 0] ??
+      }[tryInt(value) ?? 0] ??
           HiInputStyle.textField;
 
   int toInt() => {
@@ -36,11 +36,11 @@ class HiInput extends HiModel {
   });
 
   factory HiInput.fromJson(dynamic data) => HiInput(
-        id: convertJSON(data)?.value<String>('id'),
-        style: convertJSON(data)?.value<HiInputStyle>('style', fromValue: HiInputStyle.fromValue),
-        autofocus: convertJSON(data)?.value<bool>('autofocus'),
-        hint: convertJSON(data)?.value<String>('hint'),
-        text: convertJSON(data)?.value<String>('text'),
+        id: tryJSON(data)?.value<String>('id'),
+        style: tryJSON(data)?.value<HiInputStyle>('style', fromValue: HiInputStyle.fromValue),
+        autofocus: tryJSON(data)?.value<bool>('autofocus'),
+        hint: tryJSON(data)?.value<String>('hint'),
+        text: tryJSON(data)?.value<String>('text'),
       );
 
   @override

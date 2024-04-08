@@ -71,17 +71,17 @@ class HiService extends GetConnect {
     if (data is T) {
       return Future.value(data as T);
     }
-    if (T == bool && convertBool(data) != null) {
-      return Future.value(convertBool(data) as T);
+    if (T == bool && tryBool(data) != null) {
+      return Future.value(tryBool(data) as T);
     }
-    if (T == double && convertDouble(data) != null) {
-      return Future.value(convertDouble(data) as T);
+    if (T == double && tryDouble(data) != null) {
+      return Future.value(tryDouble(data) as T);
     }
-    if (T == int && convertInt(data) != null) {
-      return Future.value(convertInt(data) as T);
+    if (T == int && tryInt(data) != null) {
+      return Future.value(tryInt(data) as T);
     }
-    if (T == String && convertString(data) != null) {
-      return Future.value(convertString(data) as T);
+    if (T == String && tryString(data) != null) {
+      return Future.value(tryString(data) as T);
     }
     if (fromJson != null) {
       var model = fromJson(data);

@@ -10,7 +10,7 @@ enum HiButtonStyle {
       {
         0: HiButtonStyle.fullWidth,
         1: HiButtonStyle.rounded,
-      }[convertInt(value) ?? 0] ??
+      }[tryInt(value) ?? 0] ??
           HiButtonStyle.fullWidth;
 }
 
@@ -35,13 +35,13 @@ class HiButton extends HiModel {
   });
 
   factory HiButton.fromJson(dynamic data) => HiButton(
-        id: convertJSON(data)?.value<String>('id'),
-        style: convertJSON(data)?.value<HiButtonStyle>('style', fromValue: HiButtonStyle.fromValue),
-        height: convertJSON(data)?.value<double>('height'),
-        title: convertJSON(data)?.value<String>('title'),
-        icon: convertJSON(data)?.value<String>('icon'),
-        titleColor: convertJSON(data)?.value<String>('titleColor'),
-        backgroundColor: convertJSON(data)?.value<String>('backgroundColor'),
+        id: tryJSON(data)?.value<String>('id'),
+        style: tryJSON(data)?.value<HiButtonStyle>('style', fromValue: HiButtonStyle.fromValue),
+        height: tryJSON(data)?.value<double>('height'),
+        title: tryJSON(data)?.value<String>('title'),
+        icon: tryJSON(data)?.value<String>('icon'),
+        titleColor: tryJSON(data)?.value<String>('titleColor'),
+        backgroundColor: tryJSON(data)?.value<String>('backgroundColor'),
       );
 
   @override

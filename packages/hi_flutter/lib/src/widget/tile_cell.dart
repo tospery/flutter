@@ -34,14 +34,14 @@ class HiTileCell extends HiCell<HiTile> {
   }
 
   _buildTileTitle(BuildContext context) {
-    if (isEmpty(model.title)) {
+    if (model.title?.isEmpty ?? true) {
       return Container();
     }
     return Text(model.title!, style: context.textTheme.titleMedium,);
   }
 
   _buildTileSubtitle(BuildContext context) {
-    if (isEmpty(model.subTitle)) {
+    if (model.subTitle?.isEmpty ?? true) {
       return Container();
     }
     return Text(model.subTitle!, style: context.textTheme.titleSmall,);

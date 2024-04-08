@@ -19,7 +19,7 @@ class HiCell<M extends HiModel> extends StatelessWidget {
       onTap: onPressed != null ? () => onPressed!(model) : null,
       child: Container(
         height: 50,
-        color: ColorsEx.random,
+        color: randomColor(),
       ),
     );
   }

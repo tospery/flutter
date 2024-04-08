@@ -1,6 +1,6 @@
 import 'dart:math' as Math;
 
-extension IntEx on int {
+extension IntHiCoreEx on int {
   bool toBool() => this != 0;
 
   String formatBytes({int decimals = 0}) {

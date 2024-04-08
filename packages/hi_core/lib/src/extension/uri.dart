@@ -1,6 +1,6 @@
 import 'map.dart';
 
-extension UriEx on Uri {
+extension UriHiCoreEx on Uri {
   String get hostpath => host + path;
   String get route {
     var result = host;

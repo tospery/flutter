@@ -1,7 +1,7 @@
 import 'package:hi_core/src/function.dart';
 import 'package:hi_core/src/model/model.dart';
 
-extension MapEx<K, V> on Map<K, V> {
+extension MapHiCoreEx<K, V> on Map<K, V> {
   T? value<T>(
       K key, {
         T Function(dynamic)? fromValue,
@@ -15,19 +15,19 @@ extension MapEx<K, V> on Map<K, V> {
       return value as T;
     }
     if (T == bool) {
-      return convertBool(value) as T?;
+      return tryBool(value) as T?;
     }
     if (T == int) {
-      return convertInt(value) as T?;
+      return tryInt(value) as T?;
     }
     if (T == double) {
-      return convertDouble(value) as T?;
+      return tryDouble(value) as T?;
     }
     if (T == String) {
-      return convertString(value) as T?;
+      return tryString(value) as T?;
     }
     if (T == Map) {
-      return convertJSON(value) as T?;
+      return tryJSON(value) as T?;
     }
     if (fromValue != null) {
       return fromValue!(value);

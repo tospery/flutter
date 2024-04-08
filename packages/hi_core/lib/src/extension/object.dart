@@ -1,7 +1,7 @@
 import 'dart:convert';
 import '../error.dart';
 
-extension ObjectEx on Object {
+extension ObjectHiCoreEx on Object {
   String get typeName => runtimeType.toString();
   String get instanceName => toString().split('.').last;
   String toJsonString() => jsonEncode(this);

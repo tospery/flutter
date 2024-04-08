@@ -15,10 +15,10 @@ class HiList<T> extends HiModel {
   });
 
   factory HiList.fromJson(dynamic data) => HiList(
-    hasNext: convertBool(convertJSON(data)?.valueForKeys(['has_next', '!over'])),
-    count: convertInt(convertJSON(data)?.valueForKeys(['count', 'total'])),
+    hasNext: tryBool(tryJSON(data)?.valueForKeys(['has_next', '!over'])),
+    count: tryInt(tryJSON(data)?.valueForKeys(['count', 'total'])),
     //   items: json.valueForKeys(['items', 'datas']) as List<T>?,
-    items: (convertJSON(data)?.valueForKeys(['items', 'datas']) as List?)?.cast<T>(),
+    items: (tryJSON(data)?.valueForKeys(['items', 'datas']) as List?)?.cast<T>(),
   );
 
   @override
