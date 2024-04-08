@@ -16,6 +16,29 @@ extension UriHiCoreEx on Uri {
     return '/$result';
   }
 
+  bool get isValidImageUrl => ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp',].contains(this.pathSegments.last.split('.').last.toLowerCase());
+
+  Uri removeAllQueries() {
+    var result = this.replace(queryParameters: {});
+    if (result.query.isEmpty && result.hasQuery) {
+      final string = result.toString();
+      final uri = Uri.tryParse(string.substring(0, string.length - 1));
+      if (uri != null) {
+        result = uri;
+      }
+    }
+    return result;
+  }
+
+  Uri removeLastPath() {
+    var paths = List<String>.from(this.pathSegments);
+    if (paths.isNotEmpty) {
+      paths.removeLast();
+      return this.replace(pathSegments: paths);
+    }
+    return this;
+  }
+
   Uri add({required Map<String, String> queries}) {
     Map<String, dynamic> parameters = {};
     parameters.addAll(queryParameters);
