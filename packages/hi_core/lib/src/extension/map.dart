@@ -101,7 +101,7 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
 
   // String toJsonString() => convert.json.encode(this);
 
-  Map<K, V> addIfNeed(Map<K, V> other) {
+  Map<K, V> append(Map<K, V> other) {
     if (other.isEmpty) {
       return this;
     }

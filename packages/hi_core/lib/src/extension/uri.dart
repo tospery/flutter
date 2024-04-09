@@ -40,12 +40,12 @@ extension UriHiCoreEx on Uri {
         scheme: scheme, host: host, path: path, queryParameters: parameters);
   }
 
-  Uri addIfNotExist({required Map<String, String> queries}) {
+  Uri append({required Map<String, String> queries}) {
     if (queries.isEmpty) {
       return this;
     }
     var parameters = queryParameters;
-    parameters = parameters.addIfNeed(queries);
+    parameters = parameters.append(queries);
     return Uri(
         scheme: scheme, host: host, path: path, queryParameters: parameters);
   }
