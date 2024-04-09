@@ -37,7 +37,9 @@ class HiTileCell extends HiCell<HiTile> {
     if (model.title?.isEmpty ?? true) {
       return Container();
     }
-    return Text(model.title!, style: context.textTheme.titleMedium,);
+    return Text(model.title!, style: context.textTheme.titleMedium?.copyWith(
+      color: model.titleColor?.toColor(),
+    ),);
   }
 
   _buildTileSubtitle(BuildContext context) {

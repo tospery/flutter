@@ -7,7 +7,8 @@ class HiTile extends HiModel {
   final String? subTitle;
   final String? detail;
   final String? icon;
-  final String? color;
+  final String? titleColor;
+  final String? backgroundColor;
   final double? height;
   final bool? checked;
   final bool? indicated;
@@ -22,7 +23,8 @@ class HiTile extends HiModel {
     this.subTitle,
     this.detail,
     this.icon,
-    this.color,
+    this.titleColor,
+    this.backgroundColor,
     this.height,
     this.checked,
     this.indicated,
@@ -35,7 +37,8 @@ class HiTile extends HiModel {
         subTitle: tryJSON(data)?.value<String>('subTitle'),
         detail: tryJSON(data)?.value<String>('detail'),
         icon: tryJSON(data)?.value<String>('icon'),
-        color: tryJSON(data)?.value<String>('color'),
+    titleColor: tryJSON(data)?.value<String>('titleColor'),
+    backgroundColor: tryJSON(data)?.value<String>('backgroundColor'),
         height: tryJSON(data)?.value<double>('height'),
         checked: tryJSON(data)?.value<bool>('checked'),
         indicated: tryJSON(data)?.value<bool>('indicated'),
@@ -49,7 +52,8 @@ class HiTile extends HiModel {
         'subTitle': subTitle,
         'detail': detail,
         'icon': icon,
-        'color': color,
+        'titleColor': titleColor,
+        'backgroundColor': backgroundColor,
         'height': height,
         'checked': checked,
         'indicated': indicated,
@@ -62,7 +66,8 @@ class HiTile extends HiModel {
     String? subTitle,
     String? detail,
     String? icon,
-    String? color,
+    String? titleColor,
+    String? backgroundColor,
     double? height,
     bool? checked,
     bool? indicated,
@@ -73,7 +78,8 @@ class HiTile extends HiModel {
       subTitle: subTitle ?? this.subTitle,
       detail: detail ?? this.detail,
       icon: icon ?? this.icon,
-      color: color ?? this.color,
+      titleColor: titleColor ?? this.titleColor,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
       height: height ?? this.height,
       checked: checked ?? this.checked,
       indicated: indicated ?? this.indicated,
@@ -87,7 +93,8 @@ class HiTile extends HiModel {
         title,
         subTitle,
         detail,
-        color,
+        titleColor,
+        backgroundColor,
         height,
         checked,
         indicated,
