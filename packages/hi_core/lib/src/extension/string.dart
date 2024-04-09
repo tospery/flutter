@@ -113,4 +113,20 @@ extension StringHiCoreEx on String {
   }
 
   Color get fixedColor => Color(_hexInt);
+
+  List<String> splitChunk(int chunkSize) {
+    List<String> chunks = [];
+    int startIndex = 0;
+
+    while (startIndex < this.length) {
+      int endIndex = startIndex + chunkSize;
+      if (endIndex > this.length) {
+        endIndex = this.length;
+      }
+      chunks.add(this.substring(startIndex, endIndex));
+      startIndex = endIndex;
+    }
+
+    return chunks;
+  }
 }
