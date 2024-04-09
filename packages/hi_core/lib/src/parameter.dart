@@ -2,6 +2,7 @@ class HiParameter {
   static const id = 'id';
   static const url = 'url';
   static const key = 'key';
+  static const tab = 'tab';
   static const type = 'type';
   static const mode = 'mode';
   static const code = 'code';
