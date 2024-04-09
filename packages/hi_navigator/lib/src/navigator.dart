@@ -4,6 +4,7 @@ import 'package:hi_core/hi_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hi_navigator/src/impl/alert_view.dart';
 import 'package:hi_navigator/src/impl/toast_activity.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HiNavigator {
 
@@ -38,27 +39,43 @@ class HiNavigator {
     dynamic context,
     bool rootNavigator = false,
   }) async {
-    var urlString = url;
-    if (urlString == null) {
+    var route = url;
+    if (url == null) {
       if (host?.isNotEmpty ?? false) {
         if (path?.isNotEmpty ?? false) {
-          urlString = '/$host/$path';
+          route = '/$host/$path';
         } else {
-          urlString = '/$host';
+          route = '/$host';
         }
       }
     } else {
-      urlString = Uri.tryParse(urlString!)?.route;
+      route = url.toRoute();
     }
-    if (urlString?.isEmpty ?? true) {
+    if (route?.isEmpty ?? true) {
       return null;
     }
-    log('导航->$urlString, 参数$parameters', tag: HiLogTag.navigator);
+    log('导航->$route, 参数$parameters', tag: HiLogTag.navigator);
+    // 打开第三方应用
+    if (route?.isValidThirdUrl ?? false) {
+      final thirdUrl = route?.toUri();
+      if (thirdUrl == null) {
+        return null;
+      }
+      final result = await launchUrl(thirdUrl);
+      if (!result)  {
+        log('打开第三方失败', tag: HiLogTag.navigator);
+      }
+      if (T == bool) {
+        return Future.value(result as T);
+      }
+      return null;
+    }
+
     if (rootNavigator) {
-      return Get.offAllNamed(urlString!, arguments: parameters);
+      return Get.offAllNamed(route!, arguments: parameters);
     }
     try {
-      return Get.toNamed(urlString!, arguments: parameters);
+      return Get.toNamed(route!, arguments: parameters);
     } catch (e) {
       log('导航异常：$e', tag: HiLogTag.navigator);
       // if ((url?.isNotEmpty ?? false) && ((url?.startsWith('http://') ?? false) || (url?.startsWith('https://') ?? false))) {

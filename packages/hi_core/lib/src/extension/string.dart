@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 import 'int.dart';
+import 'package:hi_core/hi_core.dart';
 
 extension StringHiCoreEx on String {
   String get base64Decoded => convert.utf8.decode(convert.base64.decode(replaceAll(RegExp(r'\s+'), '')));
@@ -43,7 +44,64 @@ extension StringHiCoreEx on String {
 
   Uri? toUri() => Uri.tryParse(this);
 
-  bool get isWebScheme => startsWith('http://') || startsWith('https://');
+  String? toRoute() {
+    final uri = toUri();
+    if (uri == null || uri.host.isEmpty) {
+      // 邮件
+      var prefix = 'mailto:';
+      if (this.startsWith(prefix) ) {
+        return this;
+      }
+      if (this.isValidEmail) {
+        return prefix + this;
+      }
+      log('HTTP URL转Route URL失败', tag: HiLogTag.navigator);
+      return null;
+    }
+    var route = uri.host;
+    final path = uri.path;
+    if (path.isNotEmpty) {
+      route += '$path';
+    }
+    final query = uri.query;
+    if (query.isNotEmpty) {
+      route += '?$query';
+    }
+    return '/$route';
+  }
+
+  bool get isValidThirdUrl {
+    if (this.isValidHttpUrl) {
+      return false;
+    }
+    final items = this.split(':');
+    if (items.length <= 1) {
+      return false;
+    }
+    if (items.first.isEmpty) {
+      return false;
+    }
+    if (items.second.isEmpty) {
+      return false;
+    }
+    return true;
+  }
+
+  bool get isValidEmail => RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(this);
+
+  bool get isValidHttpUrl => [
+    'https', 'http'
+  ].contains(this.toUri()?.scheme.toLowerCase());
+
+  bool get isValidImageUrl => [
+    'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'
+  ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
+
+  bool get isValidMarkdownUrl => [
+    'md', 'mdx'
+  ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
+
+  // bool get isValidFileExUrl => this.toUri()?.pathSegments.last.contains('.');
 
   String take(String value) {
     var result = '';

@@ -263,7 +263,7 @@ Widget hiImage(String url, {
   if (url.isEmpty) {
     return Container();
   }
-  if (url.isWebScheme) {
+  if (url.isValidHttpUrl) {
     return CachedNetworkImage(
       width: width,
       height: height,

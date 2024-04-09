@@ -2,33 +2,6 @@ import 'map.dart';
 
 extension UriHiCoreEx on Uri {
   String get hostpath => host + path;
-  String get route {
-    var result = host;
-    if (result.isEmpty) {
-      return result;
-    }
-    if (path.isNotEmpty) {
-      result += '$path';
-    }
-    if (query.isNotEmpty) {
-      result += '?$query';
-    }
-    return '/$result';
-  }
-
-  bool get isValidHttpUrl => [
-    'https', 'http'
-  ].contains(this.scheme.toLowerCase());
-
-  bool get isValidImageUrl => [
-    'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'
-  ].contains(this.pathSegments.last.split('.').last.toLowerCase());
-
-  bool get isValidMarkdownUrl => [
-    'md', 'mdx'
-  ].contains(this.pathSegments.last.split('.').last.toLowerCase());
-
-  bool get isValidFileUrl => this.pathSegments.last.contains('.');
 
   Uri removeAllQueries() {
     var result = this.replace(queryParameters: {});

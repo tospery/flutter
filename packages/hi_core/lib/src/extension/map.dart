@@ -116,6 +116,22 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
     return result;
   }
 
+  Map<String, String> get urlEncoded {
+    var queries = <String, String>{};
+    this.forEach((key, value) {
+      final myKey = tryString(key);
+      final myValue = tryString(value);
+      if ((myKey?.isNotEmpty ?? false) && ( myValue?.isNotEmpty ?? false)) {
+        queries[Uri.encodeComponent(myKey!)] = Uri.encodeComponent(myValue!);
+      }
+    });
+    return queries;
+  }
+
+  // => this.entries.map((e) => {
+  //   Uri.encodeComponent(tryString(e.key) ?? ''): Uri.encodeComponent(tryString(e.value) ?? ''),
+  // });
+
   Map<K, V> operator +(Map<K, V> other) {
     addAll(other);
     return this;
