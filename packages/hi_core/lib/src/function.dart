@@ -90,13 +90,28 @@ Map<K, V>? tryMap<K, V>(dynamic data) {
   if (data is Map<K, V>) {
     return data as Map<K, V>? ?? {};
   }
-  if (data is! Map<dynamic, dynamic>) {
+  if (data is! Map) {
     return null;
   }
   Map<K, V> map = {};
-  data.forEach((key, value) {
-    if (key is K && value is V) {
-      map[key] = value;
+  data.forEach((k, value) {
+    if (K == int) {
+      final key = tryInt(k);
+      if (key != null) {
+        map[key as K] = value;
+      }
+    }
+    if (K == double) {
+      final key = tryDouble(k);
+      if (key != null) {
+        map[key as K] = value;
+      }
+    }
+    if (K == String) {
+      final key = tryString(k);
+      if (key != null) {
+        map[key as K] = value;
+      }
     }
   });
   return map;

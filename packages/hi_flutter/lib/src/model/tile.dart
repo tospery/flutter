@@ -31,18 +31,18 @@ class HiTile extends HiModel {
     this.separated,
   });
 
-  factory HiTile.fromJson(Map<String, dynamic> data) => HiTile(
-        id: tryJSON(data)?.value<String>('id'),
-        title: tryJSON(data)?.value<String>('title'),
-        subTitle: tryJSON(data)?.value<String>('subTitle'),
-        detail: tryJSON(data)?.value<String>('detail'),
-        icon: tryJSON(data)?.value<String>('icon'),
-    titleColor: tryJSON(data)?.value<String>('titleColor'),
-    backgroundColor: tryJSON(data)?.value<String>('backgroundColor'),
-        height: tryJSON(data)?.value<double>('height'),
-        checked: tryJSON(data)?.value<bool>('checked'),
-        indicated: tryJSON(data)?.value<bool>('indicated'),
-        separated: tryJSON(data)?.value<bool>('separated'),
+  factory HiTile.fromJson(dynamic data) => HiTile(
+        id: tryJSON(data)?.stringValue('id'),
+        title: tryJSON(data)?.stringValue('title'),
+        subTitle: tryJSON(data)?.stringValue('subTitle'),
+        detail: tryJSON(data)?.stringValue('detail'),
+        icon: tryJSON(data)?.stringValue('icon'),
+        titleColor: tryJSON(data)?.stringValue('titleColor'),
+        backgroundColor: tryJSON(data)?.stringValue('backgroundColor'),
+        height: tryJSON(data)?.doubleValue('height'),
+        checked: tryJSON(data)?.boolValue('checked'),
+        indicated: tryJSON(data)?.boolValue('indicated'),
+        separated: tryJSON(data)?.boolValue('separated'),
       );
 
   @override

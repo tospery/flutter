@@ -13,7 +13,7 @@ class HiModel extends Equatable {
   const HiModel({this.id});
 
   factory HiModel.fromJson(Map<String, dynamic> json) => HiModel(
-        id: json.value<String>('id'),
+        id: json.stringValue('id'),
       );
 
   Map<String, dynamic> toJson() => {

@@ -49,11 +49,6 @@ class HiLogger {
   HiLogger._();
 
   void log(dynamic message, {HiLogLevel level = HiLogLevel.debug}) {
-    // 临时解决日志打印不全的问题 YJX_TODO
-    if (message is String && message.length > 940) {
-      dev.log(message);
-      return;
-    }
     _logger.log(level.rawValue, message);
   }
 }

@@ -11,7 +11,7 @@ class HiConfiguration extends HiModel {
 
   factory HiConfiguration.fromJson(Map<String, dynamic> json) =>
       HiConfiguration(
-        id: json.value<String>('id'),
+        id: json.stringValue('id'),
       );
 
   @override

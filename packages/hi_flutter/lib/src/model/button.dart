@@ -35,13 +35,13 @@ class HiButton extends HiModel {
   });
 
   factory HiButton.fromJson(dynamic data) => HiButton(
-        id: tryJSON(data)?.value<String>('id'),
-        style: tryJSON(data)?.value<HiButtonStyle>('style', fromValue: HiButtonStyle.fromValue),
-        height: tryJSON(data)?.value<double>('height'),
-        title: tryJSON(data)?.value<String>('title'),
-        icon: tryJSON(data)?.value<String>('icon'),
-        titleColor: tryJSON(data)?.value<String>('titleColor'),
-        backgroundColor: tryJSON(data)?.value<String>('backgroundColor'),
+        id: tryJSON(data)?.stringValue('id'),
+        style: tryJSON(data)?.enumValue('style', fromValue: HiButtonStyle.fromValue),
+        height: tryJSON(data)?.doubleValue('height'),
+        title: tryJSON(data)?.stringValue('title'),
+        icon: tryJSON(data)?.stringValue('icon'),
+        titleColor: tryJSON(data)?.stringValue('titleColor'),
+        backgroundColor: tryJSON(data)?.stringValue('backgroundColor'),
       );
 
   @override

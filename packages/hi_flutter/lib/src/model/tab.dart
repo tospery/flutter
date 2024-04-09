@@ -11,9 +11,9 @@ class HiTab extends HiModel {
   });
 
   factory HiTab.fromJson(dynamic json) => HiTab(
-    id: hiMap(json)?.value<String>('id'),
-    title: hiMap(json)?.value<String>('title'),
-    style: hiMap(json)?.value<int>('style'),
+    id: hiMap(json)?.stringValue('id'),
+    title: hiMap(json)?.stringValue('title'),
+    style: hiMap(json)?.intValue('style'),
   );
 
   @override

@@ -45,7 +45,7 @@ extension UriHiCoreEx on Uri {
       return this;
     }
     var parameters = queryParameters;
-    parameters = parameters.addIfNotExist(queries);
+    parameters = parameters.addIfNeed(queries);
     return Uri(
         scheme: scheme, host: host, path: path, queryParameters: parameters);
   }

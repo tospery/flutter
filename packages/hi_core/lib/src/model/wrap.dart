@@ -13,7 +13,7 @@ class HiWrap extends HiModel {
   });
 
   factory HiWrap.fromJson(Map<String, dynamic> json) => HiWrap(
-    id: json.value<String>('id'),
+    id: json.stringValue('id'),
     data: json['data'],
   );
 

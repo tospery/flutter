@@ -31,7 +31,7 @@ class HiNetworkError extends HiError {
   HiNetworkError(super.code, super.message, {super.data});
 
   @override
-  String? get displayTitle => tryJSON(data)?.value<String>(HiParameter.title) ?? R.strings.networkErrorTitle;
+  String? get displayTitle => tryJSON(data)?.stringValue(HiParameter.title) ?? R.strings.networkErrorTitle;
 
   @override
   String? get displayImage => R.assets.image.errorNetwork;

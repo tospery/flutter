@@ -38,8 +38,8 @@ class HiBaseController extends FullLifeCycleController {
     myParameters.addAll(parameters);
     parameters = myParameters;
     log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
-    title.value = parameters.value<String>(HiParameter.title);
-    hideAppBar.value = parameters.value<bool>(HiParameter.hideAppBar) ?? false;
+    title.value = parameters.stringValue(HiParameter.title);
+    hideAppBar.value = parameters.boolValue(HiParameter.hideAppBar) ?? false;
     user = Get.find<HiUser>().obs;
     configuration = Get.find<HiConfiguration>().obs;
     provider = Get.find<HiProvider>();
@@ -48,7 +48,7 @@ class HiBaseController extends FullLifeCycleController {
         return;
       }
       final model = event[HiParameter.model];
-      final needReload = event.value<bool>(HiParameter.needReload) ?? false;
+      final needReload = event.boolValue(HiParameter.needReload) ?? false;
       if (model is HiUser) {
         updateUser(model, needReload: needReload);
       }
