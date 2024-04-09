@@ -16,7 +16,19 @@ extension UriHiCoreEx on Uri {
     return '/$result';
   }
 
-  bool get isValidImageUrl => ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp',].contains(this.pathSegments.last.split('.').last.toLowerCase());
+  bool get isValidHttpUrl => [
+    'https', 'http'
+  ].contains(this.scheme.toLowerCase());
+
+  bool get isValidImageUrl => [
+    'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'
+  ].contains(this.pathSegments.last.split('.').last.toLowerCase());
+
+  bool get isValidMarkdownUrl => [
+    'md', 'mdx'
+  ].contains(this.pathSegments.last.split('.').last.toLowerCase());
+
+  bool get isValidFileUrl => this.pathSegments.last.contains('.');
 
   Uri removeAllQueries() {
     var result = this.replace(queryParameters: {});
@@ -35,6 +47,14 @@ extension UriHiCoreEx on Uri {
     if (paths.isNotEmpty) {
       paths.removeLast();
       return this.replace(pathSegments: paths);
+    }
+    return this;
+  }
+
+  Uri ensureTrailingSlash() {
+    if (!this.path.endsWith('/')) {
+      String newPath = '${this.path}/';
+      return this.replace(path: newPath);
     }
     return this;
   }
