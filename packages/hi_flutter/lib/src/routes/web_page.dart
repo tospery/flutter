@@ -37,29 +37,6 @@ class HiWebPage<WC extends HiWebController> extends HiBasePage<WC> {
   }
 
   _buildWebView(BuildContext context) {
-    // return WebView(
-    //   initialUrl: controller.url,
-    //   javascriptMode: JavascriptMode.unrestricted,
-    //   initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
-    //   navigationDelegate: (NavigationRequest navigation) {
-    //     return navigationDecision(navigation);
-    //   },
-    //   onWebViewCreated:(webViewController){
-    //     _webViewController = webViewController;
-    //   },
-    //   onPageStarted: (_){
-    //     controller.doPageStarted();
-    //   },
-    //   onPageFinished: (_) async {
-    //     var title = await _webViewController?.getTitle();
-    //     controller.doPageFinished(title);
-    //   },
-    //   onProgress: (value){
-    //     controller.doProgress(value);
-    //   },
-    // );
-    // return Container();
-    // WebViewWidget(controller: controller),
     return WebViewWidget(controller: controller.webViewController);
   }
   
@@ -74,9 +51,5 @@ class HiWebPage<WC extends HiWebController> extends HiBasePage<WC> {
       ),
     );
   }
-
-  // NavigationDecision navigationDecision(NavigationRequest navigation) {
-  //   return NavigationDecision.navigate;
-  // }
 
 }
