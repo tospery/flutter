@@ -28,7 +28,7 @@ class HiButtonCell extends HiCell<HiButton> {
       onPressed: () => onPressed != null ? onPressed!(model) : null,
       text: model.title,
       size: model.height ?? (context.width * HiConstant.heightRatioMedium),
-      borderShape: hiBorder(width: 0),
+      borderShape: newBorder(width: 0),
       borderSide: BorderSide.none,
       color: model.backgroundColor?.toColor() ?? context.theme.cardColor,
       textStyle: context.textTheme.titleMedium?.copyWith(

@@ -213,7 +213,7 @@ class HiRefreshViewState extends State<HiRefreshView>
     if (urlString?.isEmpty ?? true) {
       return Container();
     }
-    return hiImage(urlString!, width: context.width / 4.0);
+    return newImageWidget(urlString!, width: context.width / 4.0);
   }
 
   _displayErrorTitle() {

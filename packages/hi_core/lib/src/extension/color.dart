@@ -2,8 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 extension ColorHiCoreEx on Color {
-  // String get hexString =>
-  //     '#${(value & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
 
   String toHexString() {
     var string = '#${alpha.toRadixString(16).padLeft(2, '0')}';
@@ -25,4 +23,5 @@ extension ColorHiCoreEx on Color {
   Color get sd700 => computeLuminance() < 0.5 ? Colors.grey.shade700 : Colors.grey.shade300;
   Color get sd800 => computeLuminance() < 0.5 ? Colors.grey.shade800 : Colors.grey.shade200;
   Color get sd900 => computeLuminance() < 0.5 ? Colors.grey.shade900 : Colors.grey.shade100;
+  
 }

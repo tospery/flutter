@@ -21,7 +21,7 @@ class HiImageCell extends HiCell<HiImage> {
       width: context.width,
       height: model.height ?? context.height - top - kToolbarHeight - bottom,
       child: Center(
-        child: hiImage(model.image!),
+        child: newImageWidget(model.image!),
       ),
     );
   }

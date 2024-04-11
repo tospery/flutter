@@ -4,15 +4,6 @@ import 'package:hi_core/src/extension/color.dart';
 extension ThemeDataHiCoreEx on ThemeData {
 
   Color get bgColor => cardColor;   // colorScheme.surface;          // 白色
-  // Color get on100 => fgColor.on100;
-  // Color get on200 => fgColor.on200;
-  // Color get on300 => fgColor.on300;
-  // Color get on400 => fgColor.on400;
-  // Color get on500 => fgColor.on500;
-  // Color get on600 => fgColor.on600;
-  // Color get on700 => fgColor.on700;
-  // Color get on800 => fgColor.on800;
-  // Color get on900 => fgColor.on900;
   Color get fgColor => shadowColor; // colorScheme.inverseSurface;   // 黑色
 
   TextStyle tsBg(double fontSize) => TextStyle(fontSize: fontSize, color: bgColor);

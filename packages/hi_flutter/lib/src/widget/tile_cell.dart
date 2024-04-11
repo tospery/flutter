@@ -24,7 +24,7 @@ class HiTileCell extends HiCell<HiTile> {
       title: _buildTileTitle(context),
       subTitle: _buildTileSubtitle(context),
       avatar: model.icon?.isNotEmpty ?? false
-          ? hiImage(model.icon!, height: 24, context: context)
+          ? newImageWidget(model.icon!, height: 24, context: context)
           : null,
       icon: _buildTileDetail(context),
       color: context.theme.bgColor,
@@ -59,7 +59,7 @@ class HiTileCell extends HiCell<HiTile> {
             size: 24,
             color: context.theme.primaryColor,
           ),
-          hiBox(width: 20),
+          newBox(width: 20),
         ]);
       }
     } else {
@@ -78,7 +78,7 @@ class HiTileCell extends HiCell<HiTile> {
           Icons.keyboard_arrow_right,
           color: context.theme.indicatorColor,
         ));
-        children.add(hiBox(width: 8));
+        children.add(newBox(width: 8));
       }
     }
     return Row(

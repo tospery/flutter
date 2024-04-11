@@ -10,7 +10,7 @@ import 'package:hi_flutter/src/core/constant.dart';
 import 'package:hi_flutter/src/extension/theme.dart';
 import 'package:hi_flutter/src/model/tile.dart';
 
-HiTile? convertTile(dynamic data) {
+HiTile? tryTile(dynamic data) {
   if (data == null || data is! HiTile) {
     return null;
   }
@@ -62,7 +62,7 @@ double metricWidth(
   BuildContext? context,
 }) {
   final designWidth = 393.0;
-  var deviceWidth = (context ?? Get.overlayContext)?.width ?? designWidth;
+  var deviceWidth = (context ?? Get.context ?? Get.overlayContext)?.width ?? designWidth;
   return width / designWidth * deviceWidth;
 }
 
@@ -71,7 +71,7 @@ double metricHeight(
   BuildContext? context,
 }) {
   final designHeight = 852.0;
-  var deviceHeight = (context ?? Get.overlayContext)?.width ?? designHeight;
+  var deviceHeight = (context ?? Get.context ?? Get.overlayContext)?.width ?? designHeight;
   return height / designHeight * deviceHeight;
 }
 
@@ -83,176 +83,103 @@ double pixelOne(BuildContext? context) {
   return 1 / MediaQuery.of(ctx!).devicePixelRatio;
 }
 
-SizedBox hiBox({
-  double? width,
-  double? height,
-}) =>
-    SizedBox(
-      width: width,
-      height: height,
-    );
+SizedBox newBox({double? width, double? height}) =>
+    SizedBox(width: width, height: height);
 
-ClipRRect hiRound({
-  double radius = 0,
-  Widget? child,
-}) {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(radius),
-    child: SizedBox(
-      width: radius * 2,
-      height: radius * 2,
-      child: child,
-    ),
-  );
-}
+ClipRRect newRoundedRect({double? radius, Widget? child}) => ClipRRect(
+  borderRadius: BorderRadius.circular(radius ?? 0),
+  child: SizedBox(
+    width: (radius ?? 0) * 2,
+    height: (radius ?? 0) * 2,
+    child: child,
+  ),
+);
 
-Border hiBorder({
+Border newBorder({
   BuildContext? context,
   Color? color,
   double? width,
-  bool top = false,
-  bool right = false,
-  bool bottom = false,
-  bool left = false,
+  bool? top,
+  bool? right,
+  bool? bottom,
+  bool? left,
 }) {
-  var borderSide = Divider.createBorderSide(
+  final borderSide = Divider.createBorderSide(
     context,
     width: width,
     color: color,
   );
   return Border(
-    top: top ? borderSide : BorderSide.none,
-    right: right ? borderSide : BorderSide.none,
-    bottom: bottom ? borderSide : BorderSide.none,
-    left: left ? borderSide : BorderSide.none,
+    top: top ?? false ? borderSide : BorderSide.none,
+    right: right ?? false ? borderSide : BorderSide.none,
+    bottom: bottom ?? false ? borderSide : BorderSide.none,
+    left: left ?? false ? borderSide : BorderSide.none,
   );
 }
 
-UnderlineInputBorder hiUnderlineBorder({
+UnderlineInputBorder newUnderlineBorder({
   BuildContext? context,
   double? width,
   Color? color,
-}) {
-  return UnderlineInputBorder(
-    borderSide: Divider.createBorderSide(
-      context,
-      width: width ?? context?.theme.dividerTheme.thickness,
-      color: color ?? context?.theme.dividerTheme.color,
-    ),
-    borderRadius: BorderRadius.zero,
-  );
-}
+}) => UnderlineInputBorder(
+  borderSide: Divider.createBorderSide(
+    context,
+    width: width ?? context?.theme.dividerTheme.thickness,
+    color: color ?? context?.theme.dividerTheme.color,
+  ),
+  borderRadius: BorderRadius.zero,
+);
 
-OutlineInputBorder hiOutlineBorder({
+OutlineInputBorder newOutlineBorder({
   Color? color,
-  double width = 1.0,
+  double? width = 1.0,
   double radius = 4.0,
   BuildContext? context,
-}) {
-  return OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(radius)),
-    borderSide: Divider.createBorderSide(
-      context,
-      width: width,
-      color: color ?? (context ?? Get.overlayContext)?.theme.dividerTheme.color,
-    ),
-  );
-}
+}) => OutlineInputBorder(
+  borderRadius: BorderRadius.all(Radius.circular(radius)),
+  borderSide: Divider.createBorderSide(
+    context,
+    width: width,
+    color: color ?? (context ?? Get.overlayContext)?.theme.dividerTheme.color,
+  ),
+);
 
-BoxDecoration hiShadowDecoration({
+BoxDecoration newShadowDecoration({
   Color? color = Colors.white,
   double radius = 10,
-}) {
-  return BoxDecoration(
-    color: color,
-    borderRadius: BorderRadius.circular(radius),
-    boxShadow: const [
-      BoxShadow(
-        offset: Offset(-3.0, 3.0),
-        blurRadius: 10,
-        color: Color(0x66E0E6FD),
-        spreadRadius: 4,
-      )
-    ],
-  );
-}
+}) => BoxDecoration(
+  color: color,
+  borderRadius: BorderRadius.circular(radius),
+  boxShadow: const [
+    BoxShadow(
+      offset: Offset(-3.0, 3.0),
+      blurRadius: 10,
+      color: Color(0x66E0E6FD),
+      spreadRadius: 4,
+    )
+  ],
+);
 
-Icon hiIndicator({
+Icon newIndicator({
   BuildContext? context,
   Color? color,
-  double? size,
+  double? size = 24,
 }) =>
     Icon(
       Icons.navigate_next,
       color: color ?? context?.theme.indicatorColor,
-      size: size ?? 24,
+      size: size,
     );
 
-// ///分割线 0.5 - 20边距
-// static Widget divider1HalfPadding20 = const Divider(
-//   height: 0.5,
-//   thickness: 0.5,
-//   indent: 20,
-//   endIndent: 20,
-//   color: ColorStyle.colorShadow,
-// );
-//
-// ///分割线 0.5 - 无边距
-// static Widget divider1Half = const Divider(
-//   height: 0.5,
-//   thickness: 0.5,
-//   color: ColorStyle.colorShadow,
-// );
-//
-// ///分割线 20 - 无边距
-// static Widget divider20Half = const Divider(
-//   height: 20,
-//   thickness: 20,
-//   color: ColorStyle.color_F8F9FC,
-// );
+Widget newBlur({double sigma = 10, Widget? child}) => BackdropFilter(
+  filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
+  child: Container(
+    color: Colors.white10,
+    child: child,
+  ),
+);
 
-// Divider hiDivider({
-//   BuildContext? context,
-//   Color? color,
-//   double? size,
-// }) =>
-//     Icon(
-//       Icons.navigate_next,
-//       color: color ?? context?.themeData.indicatorColor,
-//       size: size ?? 24,
-//     );
-
-void removeSystemTransparent(BuildContext context) {
-  if (!Platform.isAndroid) {
-    return;
-  }
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.dark,
-    ),
-  );
-}
-
-void hideKeyboard(BuildContext context) {
-  FocusScopeNode currentFocus = FocusScope.of(context);
-  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
-    FocusManager.instance.primaryFocus?.unfocus();
-  }
-}
-
-Widget hiBlur({double? sigma, Widget? child}) {
-  return BackdropFilter(
-    filter: ImageFilter.blur(sigmaX: sigma ?? 10, sigmaY: sigma ?? 10),
-    child: Container(
-      color: Colors.white10,
-      child: child,
-    ),
-  );
-}
-
-Widget hiImage(String url, {
+Widget newImageWidget(String url, {
   double? width,
   double? height,
   BoxFit? fit,
@@ -311,7 +238,7 @@ Widget hiImage(String url, {
   return result;
 }
 
-ImageProvider? hiImageProvider(String url) {
+ImageProvider? newImageProvider(String url) {
   if (url.isEmpty) {
     return null;
   }
@@ -325,47 +252,22 @@ ImageProvider? hiImageProvider(String url) {
   }
 }
 
-// TextStyle bgTextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.bgColor,
-// );
-// TextStyle fgTextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor,
-// );
-// TextStyle on100TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on100,
-// );
-// TextStyle on200TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on200,
-// );
-// TextStyle on300TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on300,
-// );
-// TextStyle on400TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on400,
-// );
-// TextStyle on500TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on500,
-// );
-// TextStyle on600TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on600,
-// );
-// TextStyle on700TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on700,
-// );
-// TextStyle on800TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on800,
-// );
-// TextStyle on900TextStyle(BuildContext context, double fontSize) => TextStyle(
-//   fontSize: fontSize,
-//   color: context.theme.fgColor.on900,
-// );
+void removeSystemTransparent(BuildContext context) {
+  if (!Platform.isAndroid) {
+    return;
+  }
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+}
+
+void hideKeyboard(BuildContext context) {
+  FocusScopeNode currentFocus = FocusScope.of(context);
+  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
+}
