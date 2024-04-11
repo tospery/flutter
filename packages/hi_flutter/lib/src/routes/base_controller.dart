@@ -19,6 +19,7 @@ class HiBaseController extends FullLifeCycleController {
   Map<String, dynamic> parameters;
 
   bool get isLoading => requestMode.value == HiRequestMode.load;
+  bool get isUpdating => requestMode.value == HiRequestMode.update;
 
   HiBaseController({this.parameters = const {}});
 
