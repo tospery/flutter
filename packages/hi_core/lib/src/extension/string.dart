@@ -44,6 +44,18 @@ extension StringHiCoreEx on String {
 
   Uri? toUri() => Uri.tryParse(this);
 
+  String? get baseURL {
+    final uri = toUri();
+    if (uri == null) {
+      return null;
+    }
+    return "${uri.scheme}://${uri.host}";
+  }
+
+  String? get urlPath => toUri()?.path;
+
+  Map<String, String>? get urlQueries => toUri()?.queryParameters;
+
   String? toRoute() {
     final uri = toUri();
     if (uri == null || uri.host.isEmpty) {
@@ -187,4 +199,64 @@ extension StringHiCoreEx on String {
 
     return chunks;
   }
+
+  String appendURLQueries(Map<String, String> queries) {
+    final uri = toUri();
+    if (uri == null) {
+      return this;
+    }
+    var existing = Uri.splitQueryString(uri.query);
+    existing.addAll(queries);
+    return uri.replace(queryParameters: existing).toString();
+  }
+
+  String? get urlHostpath {
+    final uri = toUri();
+    if (uri == null) {
+      return null;
+    }
+    return uri.host + uri.path;
+  }
+
+  String removeAllQueries() {
+    final uri = toUri();
+    if (uri == null) {
+      return this;
+    }
+    var result = uri.replace(queryParameters: null);
+    if (result.hasQuery) {
+      final string = result.toString();
+      final current = Uri.tryParse(string.substring(0, string.length - 1));
+      if (current != null) {
+        result = current;
+      }
+    }
+    return result.toString();
+  }
+
+  String removeLastPath() {
+    final uri = toUri();
+    if (uri == null) {
+      return this;
+    }
+    var paths = List<String>.from(uri.pathSegments);
+    if (paths.isNotEmpty) {
+      paths.removeLast();
+      return uri.replace(pathSegments: paths).toString();
+    }
+    return this;
+  }
+
+  String ensureTrailingSlash() {
+    final uri = toUri();
+    if (uri == null) {
+      return this;
+    }
+    if (!uri.path.endsWith('/')) {
+      String newPath = '${uri.path}/';
+      return uri.replace(path: newPath).toString();
+    }
+    return this;
+  }
+
 }
