@@ -257,6 +257,7 @@ Widget hiImage(String url, {
   double? height,
   BoxFit? fit,
   Color? blendedColor,
+  Color? placeholderColor,
   Image? placeholder,
   BuildContext? context,
 }) {
@@ -273,7 +274,7 @@ Widget hiImage(String url, {
           return Container(
             width: width,
             height: height,
-            color: context == null ? Colors.grey : context.theme.highlightColor,
+            color: placeholderColor != null ? placeholderColor! : context == null ? Colors.grey : context.theme.highlightColor,
           );
         }
         return SizedBox(
@@ -308,6 +309,20 @@ Widget hiImage(String url, {
     );
   }
   return result;
+}
+
+ImageProvider? hiImageProvider(String url) {
+  if (url.isEmpty) {
+    return null;
+  }
+  if (url.isValidHttpUrl) {
+    return NetworkImage(url);
+  }
+  try {
+    return AssetImage(url);
+  } catch (e) {
+    return null;
+  }
 }
 
 // TextStyle bgTextStyle(BuildContext context, double fontSize) => TextStyle(
