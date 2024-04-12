@@ -8,6 +8,7 @@ class HiService extends GetConnect {
   void onInit() {
     super.onInit();
     httpClient.defaultContentType = 'application/json';
+    httpClient.addAuthenticator<dynamic>((request) => authenticator(request));
     httpClient.addRequestModifier<dynamic>((request) => requestModifier(request));
     httpClient.addResponseModifier((request, response) => responseModifier(request, response));
     httpClient.defaultDecoder = (data) {
@@ -22,6 +23,10 @@ class HiService extends GetConnect {
       }
       return HiResponse.fromJson(json);
     };
+  }
+
+  Request authenticator(Request request) {
+    return request;
   }
 
   Request requestModifier(Request request) {
@@ -47,16 +52,27 @@ class HiService extends GetConnect {
         bool adoptData = true,
         T Function(dynamic)? fromJson,
       }) {
+    dynamic data = null;
+    var base = response.body;
+    var code = response.statusCode;
+    var message = response.statusText;
+    if (base is HiResponse) {
+      if (base.code != null) {
+        code = base.code;
+      }
+      if (base.message != null) {
+        message = base.message;
+      }
+    }
+
     if (response.hasError) {
       return Future.error(
-        HiServerError(response.statusCode ?? -1, response.statusText, data: response.body),
+        HiServerError(code ?? -1, message, data: response.body),
       );
     }
 
-    dynamic data = null;
-    var base = response.body;
     if (base is HiResponse) {
-      if (checkCode && base.code != HiError.okCode) {
+      if (checkCode && code != HiError.okCode) {
         return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
       }
       data = adoptData ? base.data : base.json;
