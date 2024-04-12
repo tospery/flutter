@@ -22,7 +22,7 @@ class HiLabel extends HiModel {
 
   @override
   Map<String, dynamic> toJson() => {
-    'id': id,
+        'id': id,
         'text': text,
         'links': links,
       };

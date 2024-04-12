@@ -20,9 +20,10 @@ class PlainLinkifier extends Linkifier {
               list.add(LinkableElement(plain, plain));
             } else {
               list.add(TextElement(string));
-              if (i != array.length - 1) {
-                list.add(PlainElement(plain));
-              }
+              // YJX_TODO
+              // if (i != array.length - 1) {
+              //   list.add(PlainElement(plain));
+              // }
             }
           }
         }
