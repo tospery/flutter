@@ -93,7 +93,7 @@ class HiListController<T> extends HiBaseController {
   void requestRemote(HiRequestMode mode, int pageIndex) {}
 
   void doPressed(T model, {extra}) async {
-    log('doPressed: model = $model, extra = $extra');
+    log('doPressed: model = ${(model as HiModel?)?.id ?? ""}, extra = $extra');
   }
 
 }
