@@ -70,16 +70,12 @@ extension StringHiCoreEx on String {
       log('HTTP URL转Route URL失败', tag: HiLogTag.navigator);
       return null;
     }
-    var route = uri.host;
-    final path = uri.path;
-    if (path.isNotEmpty) {
-      route += '$path';
-    }
+    var route = uri.path;
     final query = uri.query;
     if (query.isNotEmpty) {
       route += '?$query';
     }
-    return '/$route';
+    return route;
   }
 
   bool get isValidThirdUrl {
@@ -106,7 +102,7 @@ extension StringHiCoreEx on String {
   ].contains(this.toUri()?.scheme.toLowerCase());
 
   bool get isValidImageUrl => [
-    'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'
+    'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'
   ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
 
   bool get isValidMarkdownUrl => [
