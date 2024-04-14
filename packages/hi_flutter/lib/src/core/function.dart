@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_flutter/src/core/constant.dart';
-import 'package:hi_flutter/src/extension/theme.dart';
 import 'package:hi_flutter/src/model/tile.dart';
 
 HiTile? tryTile(dynamic data) {
@@ -80,7 +78,7 @@ double pixelOne(BuildContext? context) {
   if (ctx == null) {
     return 1;
   }
-  return 1 / MediaQuery.of(ctx!).devicePixelRatio;
+  return 1 / MediaQuery.of(ctx).devicePixelRatio;
 }
 
 SizedBox newBox({double? width, double? height}) =>
@@ -201,7 +199,7 @@ Widget newImageWidget(String url, {
           return Container(
             width: width,
             height: height,
-            color: placeholderColor != null ? placeholderColor! : context == null ? Colors.grey : context.theme.highlightColor,
+            color: placeholderColor != null ? placeholderColor : context.theme.highlightColor,
           );
         }
         return SizedBox(

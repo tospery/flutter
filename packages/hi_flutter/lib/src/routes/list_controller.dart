@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:hi_core/hi_core.dart';
@@ -42,7 +41,7 @@ class HiListController<T> extends HiBaseController<T> {
     var models = await fetchLocal();
     if (models.isNotEmpty) {
       items.addAll(models);
-      refreshController?.onSuccess(
+      refreshController.onSuccess(
         requestMode.value,
         dataSource.value.length == pageSize,
       );
@@ -67,7 +66,7 @@ class HiListController<T> extends HiBaseController<T> {
   void finish({List<T>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
     if (this.error.value != null) {
-      refreshController?.onFailure(requestMode.value);
+      refreshController.onFailure(requestMode.value);
       if (requestMode.value == HiRequestMode.pullRefresh) {
         this.navigator.toast(
             error?.displayMessage?.tr ?? R.strings.pullRefreshFailure.tr);
@@ -84,7 +83,7 @@ class HiListController<T> extends HiBaseController<T> {
         this.items.clear();
       }
       this.items.addAll(items ?? []);
-      refreshController?.onSuccess(
+      refreshController.onSuccess(
         requestMode.value,
         hasNext ?? ((items?.length ?? 0) == this.pageSize),
       );

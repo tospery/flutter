@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 import 'package:hi_flutter/src/routes/tabs_controller.dart';
 import 'package:hi_flutter/src/core/function.dart';

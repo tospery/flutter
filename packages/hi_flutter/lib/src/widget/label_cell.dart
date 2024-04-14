@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/model/label.dart';
 import 'package:hi_flutter/src/utils/plain_linkifier.dart';
 import 'package:hi_flutter/src/widget/cell.dart';

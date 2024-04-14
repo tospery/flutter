@@ -46,7 +46,7 @@ class HiWebController extends HiBaseController {
 
   void doPageFinished(String url) async {
     if (this.title.value == null) {
-      this.title.value = await webViewController?.getTitle();
+      this.title.value = await webViewController.getTitle();
     }
     requestMode.value = HiRequestMode.none;
     update();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hi_flutter/src/core/function.dart' as hi_flutter;
 
 extension BuildContextHiFlutterEx on BuildContext {

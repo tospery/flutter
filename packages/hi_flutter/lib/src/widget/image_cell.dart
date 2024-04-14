@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:hi_flutter/src/model/image.dart';
 import 'package:hi_flutter/src/core/function.dart';
 import 'package:hi_flutter/src/extension/context.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/widget/cell.dart';
 
 class HiImageCell extends HiCell<HiImage> {
