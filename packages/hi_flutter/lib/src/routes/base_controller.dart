@@ -7,17 +7,21 @@ import 'package:hi_navigator/hi_navigator.dart';
 import '../core/constant.dart';
 import '../core/datatype.dart';
 
-class HiBaseController extends FullLifeCycleController {
-  RxnString title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
+class HiBaseController<T> extends FullLifeCycleController {
+  var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   var hideAppBar = false.obs;
   var requestMode = HiRequestMode.none.obs;
-  Rx<HiError?> error = Rx<HiError?>(null);
+  var dataSource = Rx<dynamic>(null);
+  var error = Rx<HiError?>(null);
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
+  late final String url;
   late final HiProvider provider;
   late final HiNavigator navigator;
   late final StreamSubscription eventSubscription;
   Map<String, dynamic> parameters;
+
+  T? get model => (dataSource.value is T) ? dataSource.value as T? : null;
 
   bool get isLoading => requestMode.value == HiRequestMode.load;
   bool get isUpdating => requestMode.value == HiRequestMode.update;
@@ -40,6 +44,7 @@ class HiBaseController extends FullLifeCycleController {
     myParameters.addAll(parameters);
     parameters = myParameters;
     log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
+    url = parameters.stringValue(HiParameter.url) ?? "";
     title.value = parameters.stringValue(HiParameter.title);
     hideAppBar.value = parameters.boolValue(HiParameter.hideAppBar) ?? false;
     user = Get.find<HiUser>().obs;
@@ -59,7 +64,7 @@ class HiBaseController extends FullLifeCycleController {
       }
     });
   }
-  
+
   @override
   void onReady() {
     super.onReady();

@@ -7,7 +7,7 @@ import 'package:hi_flutter/src/flutter.dart';
 import 'package:hi_flutter/src/extension/refresh_controller.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 
-class HiListController<T> extends HiBaseController {
+class HiListController<T> extends HiBaseController<T> {
   late bool enablePullRefresh;
   late bool enableLoadingMore;
   late int pageFirst;
