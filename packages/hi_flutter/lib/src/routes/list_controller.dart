@@ -13,8 +13,11 @@ class HiListController<T> extends HiBaseController<T> {
   late int pageFirst;
   late int pageIndex;
   late int pageSize;
-  RefreshController? refreshController;
-  RxList<T> items = <T>[].obs;
+  late RefreshController refreshController;
+  // RxList<T> items = <T>[].obs;
+
+  List<T> get items =>
+      (dataSource.value is List<T>) ? dataSource.value as List<T>? ?? [] : [];
 
   HiListController({super.parameters = const {}});
 
@@ -25,11 +28,30 @@ class HiListController<T> extends HiBaseController<T> {
     enableLoadingMore = parameters.boolValue(HiParameter.canLoadMore) ?? false;
     pageFirst = parameters.intValue(HiParameter.pageFirst) ?? 1;
     pageIndex = parameters.intValue(HiParameter.pageIndex) ?? pageFirst;
-    pageSize = parameters.intValue(HiParameter.pageSize) ?? HiFlutter.shared().pageSize;
+    pageSize = parameters.intValue(HiParameter.pageSize) ??
+        HiFlutter.shared().pageSize;
+    refreshController = RefreshController(initialRefresh: false);
+  }
+
+  @override
+  void reloadData() async {
+    error.value = null;
+    requestMode.value = HiRequestMode.load;
+    items.clear();
+    update();
+    var models = await fetchLocal();
+    if (models.isNotEmpty) {
+      items.addAll(models);
+      refreshController?.onSuccess(
+        requestMode.value,
+        dataSource.value.length == pageSize,
+      );
+      update();
+    }
+    requestRemote(requestMode.value, pageFirst);
   }
 
   void doPullRefresh() {
-    log('doPullRefresh');
     requestMode.value = HiRequestMode.pullRefresh;
     update();
     requestRemote(requestMode.value, pageFirst);
@@ -47,10 +69,12 @@ class HiListController<T> extends HiBaseController<T> {
     if (this.error.value != null) {
       refreshController?.onFailure(requestMode.value);
       if (requestMode.value == HiRequestMode.pullRefresh) {
-        this.navigator.toast(error?.displayMessage?.tr ?? R.strings.pullRefreshFailure.tr);
+        this.navigator.toast(
+            error?.displayMessage?.tr ?? R.strings.pullRefreshFailure.tr);
       }
       if (requestMode.value == HiRequestMode.loadingMore) {
-        this.navigator.toast(error?.displayMessage?.tr ?? R.strings.loadingMoreFailure.tr);
+        this.navigator.toast(
+            error?.displayMessage?.tr ?? R.strings.loadingMoreFailure.tr);
       }
     } else {
       if (requestMode.value == HiRequestMode.loadingMore) {
@@ -69,24 +93,6 @@ class HiListController<T> extends HiBaseController<T> {
     update();
   }
 
-  @override
-  void reloadData() async {
-    error.value = null;
-    requestMode.value = HiRequestMode.load;
-    items.clear();
-    update();
-    var models = await fetchLocal();
-    if (models.isNotEmpty) {
-      items.addAll(models);
-      refreshController?.onSuccess(
-        requestMode.value,
-        items.value.length == pageSize,
-      );
-      update();
-    }
-    requestRemote(requestMode.value, pageFirst);
-  }
-
   Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);
 
   void requestRemote(HiRequestMode mode, int pageIndex) {}
@@ -94,5 +100,4 @@ class HiListController<T> extends HiBaseController<T> {
   void doPressed(T model, {extra}) async {
     log('doPressed: model = ${(model as HiModel?)?.id ?? ""}, extra = $extra');
   }
-
 }

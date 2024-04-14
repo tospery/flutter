@@ -1,11 +1,8 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:hi_core/hi_core.dart';
+import 'package:hi_flutter/src/core/constant.dart';
+import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_network/hi_network.dart';
 import 'package:hi_navigator/hi_navigator.dart';
-import '../core/constant.dart';
-import '../core/datatype.dart';
 
 class HiBaseController<T> extends FullLifeCycleController {
   var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用

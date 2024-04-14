@@ -31,15 +31,17 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
   }
 
   PreferredSizeWidget? appBar(BuildContext context) {
-    return controller.hideAppBar.value ? null : AppBar(
-      title: controller.title.value != null
-          ? Text(
-        controller.title.value!,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      )
-          : null,
-    );
+    return controller.hideAppBar.value
+        ? null
+        : AppBar(
+            title: controller.title.value != null
+                ? Text(
+                    controller.title.value!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                : null,
+          );
   }
 
   Widget body(BuildContext context) {
@@ -49,94 +51,76 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          buildLoadingView(context),
-          buildSuccessView(context),
+          Obx(
+            () => Visibility(
+              visible: controller.isLoading,
+              child: buildLoadingView(context),
+            ),
+          ),
+          Obx(
+            () => Visibility(
+              visible: controller.isLoading == false &&
+                  controller.error.value == null,
+              child: buildSuccessView(context),
+            ),
+          ),
+          Obx(
+            () => Visibility(
+              visible: controller.isLoading == false &&
+                  controller.error.value != null,
+              child: buildFailureView(context),
+            ),
+          ),
           buildFailureView(context),
         ],
       ),
     );
   }
 
-  Widget buildLoadingView(BuildContext context) {
-    return Obx(
-          () => Visibility(
-        visible: controller.isLoading,
-        child: SizedBox(
+  Widget buildLoadingView(BuildContext context) => SizedBox(
+        width: 200,
+        height: 200,
+        child: Lottie.asset(
+          R.assets.animation.loading,
           width: 200,
           height: 200,
-          child: Lottie.asset(
-            R.assets.animation.loading,
-            width: 200,
-            height: 200,
-            animate: true,
+          animate: true,
+        ),
+      );
+
+  Widget buildSuccessView(BuildContext context) => Container();
+
+  Widget buildFailureView(BuildContext context) => GestureDetector(
+        onTap: controller.reloadData,
+        child: Container(
+          color: Colors.transparent,
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              controller.error.value?.displayImage?.isEmpty ?? true
+                  ? Container()
+                  : newImageWidget(
+                      controller.error.value!.displayImage!,
+                      width: context.width / 4.0,
+                    ),
+              controller.error.value?.displayTitle?.tr.isEmpty ?? true
+                  ? Container()
+                  : Text(
+                      controller.error.value!.displayTitle!.tr,
+                      style: context.textTheme.titleLarge,
+                    ),
+              controller.error.value?.displayMessage?.tr.isEmpty ?? true
+                  ? Container()
+                  : Text(
+                      controller.error.value!.displayMessage!.tr,
+                      style: context.textTheme.titleMedium,
+                    ),
+            ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget buildSuccessView(BuildContext context) {
-    return Obx(
-          () => Visibility(
-            visible: controller.isLoading == false && controller.error.value == null,
-        child: Container(),
-      ),
-    );
-  }
-
-  Widget buildFailureView(BuildContext context) {
-    return Obx(
-          () => Visibility(
-            visible: controller.isLoading == false && controller.error.value != null,
-        child: GestureDetector(
-          onTap: controller.reloadData,
-          child: Container(
-            color: Colors.transparent,
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _displayErrorImage(context),
-                _displayErrorTitle(context),
-                _displayErrorMessage(context),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  _displayErrorImage(BuildContext context) {
-    var urlString = controller.error.value?.displayImage;
-    if (urlString?.isEmpty ?? true) {
-      return Container();
-    }
-    return newImageWidget(urlString!, width: context.width / 4.0);
-  }
-
-  _displayErrorTitle(BuildContext context) {
-    var title = controller.error.value?.displayTitle?.tr;
-    if (title?.isEmpty ?? true) {
-      return Container();
-    }
-    return Text(
-      title!,
-      style: context.textTheme.titleLarge,
-    );
-  }
-
-  _displayErrorMessage(BuildContext context) {
-    var message = controller.error.value?.displayMessage?.tr;
-    if (message?.isEmpty ?? true) {
-      return Container();
-    }
-    return Text(
-      message!,
-      style: context.textTheme.titleMedium,
-    );
-  }
+      );
 
   @override
   HiBasePageState createState() => HiBasePageState<C>();
@@ -155,7 +139,8 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
     }
     if (widget.controller is HiTabsController) {
       var tabsController = widget.controller as HiTabsController;
-      tabsController.tabController = TabController(length: tabsController.tabs.length, vsync: this);
+      tabsController.tabController =
+          TabController(length: tabsController.tabs.length, vsync: this);
     }
     widget.initState();
   }

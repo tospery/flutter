@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'base_page.dart';
-import 'list_controller.dart';
-import '../widget/refresh_view.dart';
+import 'package:hi_flutter/src/routes/base_page.dart';
+import 'package:hi_flutter/src/routes/list_controller.dart';
+import 'package:hi_flutter/src/widget/refresh_view.dart';
 import 'package:hi_navigator/hi_navigator.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
   const HiListPage({super.key, super.tag});
@@ -13,30 +14,101 @@ abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
       tag: tag,
       enablePullRefresh: controller.enablePullRefresh,
       enableLoadingMore: controller.enableLoadingMore,
+      buildLoadingView: buildLoadingView,
+      buildSuccessView: buildSuccessView,
+      buildFailureView: buildFailureView,
+      buildHeaderView: buildHeaderView,
+      buildFooterView: buildFooterView,
       listView: listView(context),
     );
   }
 
-  ListView listView(BuildContext context) {
-    return ListView();
+  @override
+  Widget buildSuccessView(BuildContext context) => ScrollConfiguration(
+        behavior: HiOverScrollBehavior(),
+        child: SmartRefresher(
+          controller: controller.refreshController,
+          enablePullDown: controller.enablePullRefresh,
+          enablePullUp: controller.enableLoadingMore,
+          onRefresh: controller.doPullRefresh,
+          onLoading: controller.doLoadingMore,
+          header: CustomHeader(builder: buildHeaderView),
+          footer: CustomFooter(builder: buildFooterView),
+          child: listView(context),
+        ),
+      );
+
+  ListView listView(BuildContext context) => ListView();
+
+  Widget buildHeaderView(BuildContext context, RefreshStatus? mode) {
+    Widget header;
+    log('刷新状态: $mode');
+    if (mode == RefreshStatus.idle) {
+      header = Text(
+        R.strings.pullRefreshIdle.tr,
+        style: context.textTheme.titleSmall,
+      );
+    } else if (mode == RefreshStatus.refreshing) {
+      header = Lottie.asset(
+        R.assets.animation.pullRefresh,
+        width: 100,
+        animate: true,
+      );
+    } else if (mode == RefreshStatus.failed) {
+      header = Text(
+        R.strings.pullRefreshFailure.tr,
+        style: context.textTheme.titleSmall,
+      );
+    } else if (mode == RefreshStatus.completed) {
+      header = Text(
+        R.strings.pullRefreshSuccess.tr,
+        style: context.textTheme.titleSmall,
+      );
+    } else {
+      header = Text(
+        R.strings.pullRefreshFreed.tr,
+        style: context.textTheme.titleSmall,
+      );
+    }
+    return SizedBox(
+      height: 64,
+      child: Center(child: header),
+    );
   }
 
-  @override
-  Widget buildLoadingView(BuildContext context) {
-    return Obx(
-          () => Visibility(
-        visible: controller.isLoading,
-        child: SizedBox(
-          width: 200,
-          height: 200,
-          child: Lottie.asset(
-            R.assets.animation.loading,
-            width: 200,
-            height: 200,
-            animate: true,
-          ),
-        ),
-      ),
+  Widget buildFooterView(BuildContext context, LoadStatus? mode) {
+    Widget footer;
+    log('更多状态: $mode');
+    if (mode == LoadStatus.idle) {
+      footer = Text(
+        R.strings.loadingMoreIdle.tr,
+        style: context.textTheme.titleSmall,
+      );
+    } else if (mode == LoadStatus.loading) {
+      footer = Lottie.asset(
+        R.assets.animation.loadingMore,
+        width: 200,
+        animate: true,
+      );
+    } else if (mode == LoadStatus.failed) {
+      footer = Text(
+        R.strings.loadingMoreFailure.tr,
+        style: context.textTheme.titleSmall,
+      );
+    } else if (mode == LoadStatus.noMore) {
+      footer = Text(
+        R.strings.loadingMoreNoData.tr,
+        style: context.textTheme.titleSmall,
+      );
+    } else {
+      footer = Text(
+        R.strings.loadingMoreIdle.tr,
+        style: context.textTheme.titleSmall,
+      );
+    }
+    return SizedBox(
+      height: 60,
+      child: Center(child: footer),
     );
   }
 }
