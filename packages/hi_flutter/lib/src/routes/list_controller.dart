@@ -15,8 +15,8 @@ class HiListController<T> extends HiBaseController<T> {
   late RefreshController refreshController;
   // RxList<T> items = <T>[].obs;
 
-  List<T> get items =>
-      (dataSource.value is List<T>) ? dataSource.value as List<T>? ?? [] : [];
+  // List<T> get items =>
+  //     (dataSource.value is List<T>) ? dataSource.value as List<T>? ?? [] : [];
 
   HiListController({super.parameters = const {}});
 
@@ -36,14 +36,14 @@ class HiListController<T> extends HiBaseController<T> {
   void reloadData() async {
     error.value = null;
     requestMode.value = HiRequestMode.load;
-    items.clear();
+    dataSource.clear();
     update();
     var models = await fetchLocal();
     if (models.isNotEmpty) {
-      items.addAll(models);
+      dataSource.addAll(models);
       refreshController.onSuccess(
         requestMode.value,
-        dataSource.value.length == pageSize,
+        dataSource.length == pageSize,
       );
       update();
     }
@@ -80,9 +80,9 @@ class HiListController<T> extends HiBaseController<T> {
         pageIndex += 1;
       } else {
         pageIndex = pageFirst;
-        this.items.clear();
+        dataSource.clear();
       }
-      this.items.addAll(items ?? []);
+      dataSource.addAll(items ?? []);
       refreshController.onSuccess(
         requestMode.value,
         hasNext ?? ((items?.length ?? 0) == this.pageSize),

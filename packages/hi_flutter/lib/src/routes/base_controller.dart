@@ -8,7 +8,7 @@ class HiBaseController<T> extends FullLifeCycleController {
   var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   var hideAppBar = false.obs;
   var requestMode = HiRequestMode.none.obs;
-  var dataSource = Rx<dynamic>(null);
+  var dataSource = <T>[].obs;
   var error = Rx<HiError?>(null);
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
@@ -17,8 +17,6 @@ class HiBaseController<T> extends FullLifeCycleController {
   late final HiNavigator navigator;
   late final StreamSubscription eventSubscription;
   Map<String, dynamic> parameters;
-
-  T? get model => (dataSource.value is T) ? dataSource.value as T? : null;
 
   bool get isLoading => requestMode.value == HiRequestMode.load;
   bool get isUpdating => requestMode.value == HiRequestMode.update;

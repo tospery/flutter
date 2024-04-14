@@ -78,7 +78,7 @@ class HiRefreshViewState extends State<HiRefreshView>
             () => Visibility(
               visible: !widget.getController.isLoading &&
                   widget.getController.error.value == null &&
-                  widget.getController.items.isNotEmpty,
+                  widget.getController.dataSource.isNotEmpty,
               child: widget.buildSuccessView == null
                   ? Container()
                   : widget.buildSuccessView!(context),
@@ -88,7 +88,7 @@ class HiRefreshViewState extends State<HiRefreshView>
             () => Visibility(
               visible: !widget.getController.isLoading &&
                   widget.getController.error.value != null &&
-                  widget.getController.items.isEmpty,
+                  widget.getController.dataSource.isEmpty,
               child: widget.buildFailureView == null
                   ? Container()
                   : widget.buildFailureView!(context),
