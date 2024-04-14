@@ -97,12 +97,18 @@ extension StringHiCoreEx on String {
 
   bool get isValidEmail => RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(this);
 
+  bool get isValidResourceUrl => this.toUri()?.pathSegments.last.split(".").isNotEmpty ?? false;
+
   bool get isValidHttpUrl => [
     'https', 'http'
   ].contains(this.toUri()?.scheme.toLowerCase());
 
   bool get isValidImageUrl => [
     'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'
+  ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
+
+  bool get isValidPdfUrl => [
+    'pdf'
   ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
 
   bool get isValidMarkdownUrl => [
