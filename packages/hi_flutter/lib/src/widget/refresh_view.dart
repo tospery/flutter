@@ -43,9 +43,9 @@ class HiRefreshViewState extends State<HiRefreshView>
     super.initState();
     log('HiRefreshViewState.initState', tag: HiLogTag.frame);
     widget.getController.refreshController = _refreshController;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.getController.reloadData();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   widget.getController.reloadData();
+    // });
   }
 
   @override

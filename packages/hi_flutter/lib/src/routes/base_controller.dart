@@ -11,6 +11,7 @@ class HiBaseController extends FullLifeCycleController {
   RxnString title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   var hideAppBar = false.obs;
   var requestMode = HiRequestMode.none.obs;
+  Rx<HiError?> error = Rx<HiError?>(null);
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
   late final HiProvider provider;
@@ -57,6 +58,12 @@ class HiBaseController extends FullLifeCycleController {
         updateConfiguration(model, needReload: needReload);
       }
     });
+  }
+  
+  @override
+  void onReady() {
+    super.onReady();
+    reloadData();
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 import 'package:hi_flutter/src/routes/tabs_controller.dart';
+import 'package:hi_flutter/src/core/function.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
 /// 可持久化保存GetxController状态的Widget基类,用于绑定Controller
@@ -42,7 +43,99 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
   }
 
   Widget body(BuildContext context) {
-    return Container();
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          buildLoadingView(context),
+          buildSuccessView(context),
+          buildFailureView(context),
+        ],
+      ),
+    );
+  }
+
+  Widget buildLoadingView(BuildContext context) {
+    return Obx(
+          () => Visibility(
+        visible: controller.isLoading,
+        child: SizedBox(
+          width: 200,
+          height: 200,
+          child: Lottie.asset(
+            R.assets.animation.loading,
+            width: 200,
+            height: 200,
+            animate: true,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildSuccessView(BuildContext context) {
+    return Obx(
+          () => Visibility(
+            visible: controller.isLoading == false && controller.error.value == null,
+        child: Container(),
+      ),
+    );
+  }
+
+  Widget buildFailureView(BuildContext context) {
+    return Obx(
+          () => Visibility(
+            visible: controller.isLoading == false && controller.error.value != null,
+        child: GestureDetector(
+          onTap: controller.reloadData,
+          child: Container(
+            color: Colors.transparent,
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _displayErrorImage(context),
+                _displayErrorTitle(context),
+                _displayErrorMessage(context),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  _displayErrorImage(BuildContext context) {
+    var urlString = controller.error.value?.displayImage;
+    if (urlString?.isEmpty ?? true) {
+      return Container();
+    }
+    return newImageWidget(urlString!, width: context.width / 4.0);
+  }
+
+  _displayErrorTitle(BuildContext context) {
+    var title = controller.error.value?.displayTitle?.tr;
+    if (title?.isEmpty ?? true) {
+      return Container();
+    }
+    return Text(
+      title!,
+      style: context.textTheme.titleLarge,
+    );
+  }
+
+  _displayErrorMessage(BuildContext context) {
+    var message = controller.error.value?.displayMessage?.tr;
+    if (message?.isEmpty ?? true) {
+      return Container();
+    }
+    return Text(
+      message!,
+      style: context.textTheme.titleMedium,
+    );
   }
 
   @override

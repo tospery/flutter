@@ -15,7 +15,6 @@ class HiListController<T> extends HiBaseController {
   late int pageSize;
   RefreshController? refreshController;
   RxList<T> items = <T>[].obs;
-  Rx<HiError?> error = Rx<HiError?>(null);
 
   HiListController({super.parameters = const {}});
 
