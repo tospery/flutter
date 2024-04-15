@@ -43,21 +43,21 @@ class HiPath {
   final detail = 'detail';
 }
 
-String newRouteString ({
-  required String host,
-  String? path,
-  Map<String, dynamic>? parameters,
-}) {
-  var urlString = '/$host';
-  if (path?.isNotEmpty ?? false) {
-    urlString += '/$path';
-  }
-  if (parameters?.isNotEmpty ?? false) {
-    urlString += "?";
-    parameters?.forEach((key, value) {
-      urlString += '$key=$value&';
-    });
-    urlString = urlString.removeSuffix('&');
-  }
-  return urlString;
-}
+// String newRouteString ({
+//   required String host,
+//   String? path,
+//   Map<String, dynamic>? parameters,
+// }) {
+//   var urlString = '/$host';
+//   if (path?.isNotEmpty ?? false) {
+//     urlString += '/$path';
+//   }
+//   if (parameters?.isNotEmpty ?? false) {
+//     urlString += "?";
+//     parameters?.forEach((key, value) {
+//       urlString += '$key=$value&';
+//     });
+//     urlString = urlString.removeSuffix('&');
+//   }
+//   return urlString;
+// }

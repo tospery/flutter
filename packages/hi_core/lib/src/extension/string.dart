@@ -57,6 +57,9 @@ extension StringHiCoreEx on String {
   Map<String, String>? get urlQueries => toUri()?.queryParameters;
 
   String? toRoute() {
+    if (startsWith("//")) {
+      return this.substring(1);
+    }
     if (startsWith("/")) {
       return this;
     }
