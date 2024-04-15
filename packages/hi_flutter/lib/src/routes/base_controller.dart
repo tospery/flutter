@@ -4,11 +4,11 @@ import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_network/hi_network.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
-class HiBaseController<T> extends FullLifeCycleController {
+class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   var hideAppBar = false.obs;
   var requestMode = HiRequestMode.none.obs;
-  var dataSource = <T>[].obs;
+  var dataSource = <M>[].obs;
   var error = Rx<HiError?>(null);
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
@@ -91,7 +91,7 @@ class HiBaseController<T> extends FullLifeCycleController {
 
   void reloadData() {}
 
-  Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);
+  Future<List<M>> fetchLocal() async => Future<List<M>>.value([]);
 
   void requestRemote(HiRequestMode mode, int pageIndex) {}
 }

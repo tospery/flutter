@@ -6,7 +6,7 @@ import 'package:hi_flutter/src/flutter.dart';
 import 'package:hi_flutter/src/extension/refresh_controller.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 
-class HiListController<T> extends HiBaseController<T> {
+class HiListController<M extends HiModel> extends HiBaseController<M> {
   late bool enablePullRefresh;
   late bool enableLoadingMore;
   late int pageFirst;
@@ -58,7 +58,7 @@ class HiListController<T> extends HiBaseController<T> {
     requestRemote(requestMode.value, pageIndex + 1);
   }
 
-  void finish({List<T>? items, bool? hasNext, HiError? error}) {
+  void finish({List<M>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
     if (this.error.value != null) {
       refreshController.onFailure(requestMode.value);
@@ -87,7 +87,7 @@ class HiListController<T> extends HiBaseController<T> {
     update();
   }
 
-  void doPressed(T model, {extra}) async {
-    log('doPressed: model = ${(model as HiModel?)?.id ?? ""}, extra = $extra');
+  void doPressed(M model, {extra}) async {
+    log('doPressed: model = ${model.id}, extra = $extra');
   }
 }
