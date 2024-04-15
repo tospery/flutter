@@ -17,7 +17,7 @@ class HiRefreshView<C extends HiListController> extends StatefulWidget {
   final HiBuildWidget? buildFailureView;
   final HiBuildHeaderView? buildHeaderView;
   final HiBuildFooterView? buildFooterView;
-  final ListView listView;
+  // final ListView listView;
 
   C get getController => GetInstance().find<C>(tag: tag);
 
@@ -33,7 +33,7 @@ class HiRefreshView<C extends HiListController> extends StatefulWidget {
     this.buildFailureView,
     this.buildHeaderView,
     this.buildFooterView,
-    required this.listView,
+    //required this.listView,
   });
 
   @override
@@ -87,6 +87,7 @@ class HiRefreshViewState extends State<HiRefreshView>
                 header: widget.buildHeaderView == null ? null : CustomHeader(builder: widget.buildHeaderView!),
                 footer: widget.buildFooterView == null ? null : CustomFooter(builder: widget.buildFooterView!),
                 child: widget.buildSuccessView == null ? null : widget.buildSuccessView!(context),
+                  // child: widget.listView,
                 ),
               ),
             ),

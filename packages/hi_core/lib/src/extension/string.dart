@@ -104,7 +104,7 @@ extension StringHiCoreEx on String {
 
   bool get isValidEmail => RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(this);
 
-  bool get isValidResourceUrl => this.toUri()?.pathSegments.last.split(".").isNotEmpty ?? false;
+  bool get isValidFileUrl => this.toUri()?.pathSegments.safeLast?.split(".").isNotEmpty ?? false;
 
   bool get isValidHttpUrl => [
     'https', 'http'

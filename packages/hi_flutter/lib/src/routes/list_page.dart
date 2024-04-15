@@ -19,14 +19,18 @@ abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
       buildFailureView: buildFailureView,
       buildHeaderView: buildHeaderView,
       buildFooterView: buildFooterView,
-      listView: listView(context),
+      // listView: listView(context),
     );
   }
 
   @override
-  Widget buildSuccessView(BuildContext context) => listView(context);
-
-  ListView listView(BuildContext context) => ListView();
+  Widget buildSuccessView(BuildContext context) => ListView.separated(
+    padding: EdgeInsets.zero,
+    shrinkWrap: true,
+    itemCount: controller.dataSource.length,
+    itemBuilder: (context, index) => controller.dataSource[index].cell(onPressed: controller.doPressed),
+    separatorBuilder: (context, index) => controller.dataSource[index].separator ?? Container(),
+  );
 
   Widget buildHeaderView(BuildContext context, RefreshStatus? mode) {
     Widget header;
