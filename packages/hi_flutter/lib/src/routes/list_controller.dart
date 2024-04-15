@@ -88,6 +88,6 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
   }
 
   void doPressed(M model, {extra}) async {
-    log('doPressed: model = ${model.id}, extra = $extra');
+    log('doPressed: model = (${model.typeName}, ${model.id}), extra = $extra');
   }
 }
