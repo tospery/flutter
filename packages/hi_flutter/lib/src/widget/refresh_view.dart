@@ -42,17 +42,13 @@ class HiRefreshView<C extends HiListController> extends StatefulWidget {
 
 class HiRefreshViewState extends State<HiRefreshView>
     with AutomaticKeepAliveClientMixin {
-  // final RefreshController _refreshController =
-  //     RefreshController(initialRefresh: false);
+  final RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
   @override
   void initState() {
     super.initState();
-    log('HiRefreshViewState.initState', tag: HiLogTag.frame);
-    // widget.getController.refreshController = _refreshController;
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   widget.getController.reloadData();
-    // });
+    widget.getController.refreshController = _refreshController;
   }
 
   @override
@@ -66,8 +62,6 @@ class HiRefreshViewState extends State<HiRefreshView>
         children: [
           Obx(
             () => Visibility(
-              // visible: widget.getController.items.isEmpty &&
-              //     widget.getController.error.value == null,
               visible: widget.getController.isLoading,
               child: widget.buildLoadingView == null
                   ? Container()
@@ -79,9 +73,22 @@ class HiRefreshViewState extends State<HiRefreshView>
               visible: !widget.getController.isLoading &&
                   widget.getController.error.value == null &&
                   widget.getController.dataSource.isNotEmpty,
-              child: widget.buildSuccessView == null
-                  ? Container()
-                  : widget.buildSuccessView!(context),
+              // child: widget.buildSuccessView == null
+              //     ? Container()
+              //     : widget.buildSuccessView!(context),
+              child: ScrollConfiguration(
+                behavior: HiOverScrollBehavior(),
+                child: SmartRefresher(
+                controller: _refreshController,
+                enablePullDown: widget.enablePullRefresh,
+                enablePullUp: widget.enableLoadingMore,
+                onRefresh: widget.getController.doPullRefresh,
+                onLoading: widget.getController.doLoadingMore,
+                header: widget.buildHeaderView == null ? null : CustomHeader(builder: widget.buildHeaderView!),
+                footer: widget.buildFooterView == null ? null : CustomFooter(builder: widget.buildFooterView!),
+                child: widget.buildSuccessView == null ? null : widget.buildSuccessView!(context),
+                ),
+              ),
             ),
           ),
           Obx(

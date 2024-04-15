@@ -12,7 +12,7 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
   late int pageFirst;
   late int pageIndex;
   late int pageSize;
-  late RefreshController refreshController;
+  RefreshController? refreshController;
 
   HiListController({super.parameters = const {}});
 
@@ -37,7 +37,7 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
     var models = await fetchLocal();
     if (models.isNotEmpty) {
       dataSource.addAll(models);
-      refreshController.onSuccess(
+      refreshController?.onSuccess(
         requestMode.value,
         dataSource.length == pageSize,
       );
@@ -61,7 +61,7 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
   void finish({List<M>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
     if (this.error.value != null) {
-      refreshController.onFailure(requestMode.value);
+      refreshController?.onFailure(requestMode.value);
       if (requestMode.value == HiRequestMode.pullRefresh) {
         this.navigator.toast(
             error?.displayMessage?.tr ?? R.strings.pullRefreshFailure.tr);
@@ -78,7 +78,7 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
         dataSource.clear();
       }
       dataSource.addAll(items ?? []);
-      refreshController.onSuccess(
+      refreshController?.onSuccess(
         requestMode.value,
         hasNext ?? ((items?.length ?? 0) == this.pageSize),
       );

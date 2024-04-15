@@ -24,19 +24,7 @@ abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
   }
 
   @override
-  Widget buildSuccessView(BuildContext context) => ScrollConfiguration(
-        behavior: HiOverScrollBehavior(),
-        child: SmartRefresher(
-          controller: controller.refreshController,
-          enablePullDown: controller.enablePullRefresh,
-          enablePullUp: controller.enableLoadingMore,
-          onRefresh: controller.doPullRefresh,
-          onLoading: controller.doLoadingMore,
-          header: CustomHeader(builder: buildHeaderView),
-          footer: CustomFooter(builder: buildFooterView),
-          child: listView(context),
-        ),
-      );
+  Widget buildSuccessView(BuildContext context) => listView(context);
 
   ListView listView(BuildContext context) => ListView();
 
