@@ -56,6 +56,7 @@ extension StringHiCoreEx on String {
 
   Map<String, String>? get urlQueries => toUri()?.queryParameters;
 
+  /// mailto:recipient@example.com?subject=Example Subject&body=This is the email body.
   String? toRoute() {
     if (startsWith("//")) {
       return this.substring(1);
