@@ -28,9 +28,12 @@ abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
     padding: EdgeInsets.zero,
     shrinkWrap: true,
     itemCount: controller.dataSource.length,
-    itemBuilder: (context, index) => controller.dataSource[index].cell(onPressed: controller.doPressed),
-    separatorBuilder: (context, index) => controller.dataSource[index].separator ?? Container(),
+    itemBuilder: buildItemView,
+    separatorBuilder: buildSeparator,
   );
+
+  Widget? buildItemView(BuildContext context, int index) => controller.dataSource[index].cell(onPressed: controller.doPressed, onChanged: controller.doChanged);
+  Widget buildSeparator(BuildContext context, int index) => controller.dataSource[index].separator ?? Container();
 
   Widget buildHeaderView(BuildContext context, RefreshStatus? mode) {
     Widget header;

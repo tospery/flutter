@@ -125,4 +125,8 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   void doPressed(M model, {extra}) async {
     log('doPressed: model = (${model.typeName}, ${model.id}), extra = $extra');
   }
+
+  void doChanged(value) {
+  }
+
 }
