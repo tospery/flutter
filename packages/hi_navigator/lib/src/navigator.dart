@@ -77,7 +77,6 @@ class HiNavigator {
     try {
       return Get.toNamed(route!, arguments: parameters);
     } catch (e) {
-      log('导航异常：$e', tag: HiLogTag.navigator);
       // if ((url?.isNotEmpty ?? false) && ((url?.startsWith('http://') ?? false) || (url?.startsWith('https://') ?? false))) {
       if (url?.isNotEmpty ?? false) {
         var myParameters = parameters ?? <String, dynamic>{};
@@ -86,7 +85,6 @@ class HiNavigator {
       }
       return null;
     }
-    log('看看结果');
     return null;
   }
 

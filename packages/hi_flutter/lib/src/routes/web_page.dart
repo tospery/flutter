@@ -23,10 +23,21 @@ class HiWebPage<WC extends HiWebController> extends HiBasePage<WC> {
       children: [
         _buildFocus(context),
         _buildWebView(context),
-        _buildLoadingView(context),
+        buildLoadingView(context),
       ],
     );
   }
+
+  @override
+  Widget buildLoadingView(BuildContext context) => Visibility(
+    visible: controller.progress.value < 1.0,
+    child: LinearProgressIndicator(
+      minHeight: 2,
+      backgroundColor: Colors.transparent,
+      color: context.theme.primaryColor,
+      value: controller.progress.value,
+    ),
+  );
 
   _buildFocus(BuildContext context) {
     return TextField(focusNode: _focusNode);
@@ -34,18 +45,6 @@ class HiWebPage<WC extends HiWebController> extends HiBasePage<WC> {
 
   _buildWebView(BuildContext context) {
     return WebViewWidget(controller: controller.webViewController);
-  }
-  
-  _buildLoadingView(BuildContext context) {
-    return Visibility(
-      visible: controller.progress.value < 1.0,
-      child: LinearProgressIndicator(
-        minHeight: 2,
-        backgroundColor: Colors.transparent,
-        color: context.theme.primaryColor,
-        value: controller.progress.value,
-      ),
-    );
   }
 
 }

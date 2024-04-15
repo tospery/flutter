@@ -7,15 +7,12 @@ import 'package:webview_flutter/webview_flutter.dart';
 class HiWebController extends HiBaseController {
   late final WebViewController webViewController;
   var progress = 0.0.obs;
-  late final String url;
 
   HiWebController({super.parameters = const {}});
 
   @override
   void onInit() {
     super.onInit();
-    url = parameters.stringValue(HiParameter.url) ?? '';
-    log('url: $url', tag: HiLogTag.frame);
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       // ..setBackgroundColor(const Color(0x00000000))

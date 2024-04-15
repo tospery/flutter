@@ -40,6 +40,7 @@ class HiBaseController<T> extends FullLifeCycleController {
     parameters = myParameters;
     log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
     url = parameters.stringValue(HiParameter.url) ?? "";
+    log('url: $url', tag: HiLogTag.frame);
     title.value = parameters.stringValue(HiParameter.title);
     hideAppBar.value = parameters.boolValue(HiParameter.hideAppBar) ?? false;
     user = Get.find<HiUser>().obs;
