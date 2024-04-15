@@ -4,6 +4,7 @@ import 'package:hi_core/hi_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hi_navigator/src/impl/alert_view.dart';
 import 'package:hi_navigator/src/impl/toast_activity.dart';
+import 'package:hi_navigator/src/router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HiNavigator {
@@ -80,8 +81,8 @@ class HiNavigator {
       // if ((url?.isNotEmpty ?? false) && ((url?.startsWith('http://') ?? false) || (url?.startsWith('https://') ?? false))) {
       if (url?.isNotEmpty ?? false) {
         var myParameters = parameters ?? <String, dynamic>{};
-        myParameters['url'] = url;
-        return Get.toNamed('/web', arguments: myParameters);
+        myParameters[HiParameter.url] = url;
+        return Get.toNamed('/${HiRouter.hosts.web}', arguments: myParameters);
       }
       return null;
     }
