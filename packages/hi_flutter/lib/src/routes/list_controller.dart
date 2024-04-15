@@ -13,10 +13,6 @@ class HiListController<T> extends HiBaseController<T> {
   late int pageIndex;
   late int pageSize;
   late RefreshController refreshController;
-  // RxList<T> items = <T>[].obs;
-
-  // List<T> get items =>
-  //     (dataSource.value is List<T>) ? dataSource.value as List<T>? ?? [] : [];
 
   HiListController({super.parameters = const {}});
 
@@ -57,7 +53,6 @@ class HiListController<T> extends HiBaseController<T> {
   }
 
   void doLoadingMore() {
-    log('doLoadingMore');
     requestMode.value = HiRequestMode.loadingMore;
     update();
     requestRemote(requestMode.value, pageIndex + 1);
@@ -91,10 +86,6 @@ class HiListController<T> extends HiBaseController<T> {
     requestMode.value = HiRequestMode.none;
     update();
   }
-
-  Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);
-
-  void requestRemote(HiRequestMode mode, int pageIndex) {}
 
   void doPressed(T model, {extra}) async {
     log('doPressed: model = ${(model as HiModel?)?.id ?? ""}, extra = $extra');

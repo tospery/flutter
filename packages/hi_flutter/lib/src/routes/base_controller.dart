@@ -89,4 +89,8 @@ class HiBaseController<T> extends FullLifeCycleController {
   }
 
   void reloadData() {}
+
+  Future<List<T>> fetchLocal() async => Future<List<T>>.value([]);
+
+  void requestRemote(HiRequestMode mode, int pageIndex) {}
 }

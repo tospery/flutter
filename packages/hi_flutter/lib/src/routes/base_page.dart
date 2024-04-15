@@ -39,6 +39,14 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
                     overflow: TextOverflow.ellipsis,
                   )
                 : null,
+      bottom: PreferredSize(
+        preferredSize: Size.fromHeight(2.0),
+        child: Divider(
+          color: context.theme.fgColor.sd600,
+          height: 2.0,
+          indent: 0,
+        ),
+      ),
           );
   }
 
@@ -75,16 +83,12 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
     );
   }
 
-  Widget buildLoadingView(BuildContext context) => SizedBox(
-        width: 200,
-        height: 200,
-        child: Lottie.asset(
-          R.assets.animation.loading,
-          width: 200,
-          height: 200,
-          animate: true,
-        ),
-      );
+  Widget buildLoadingView(BuildContext context) => Lottie.asset(
+    R.assets.animation.loading,
+    width: 120,
+    height: 120,
+    animate: true,
+  );
 
   Widget buildSuccessView(BuildContext context) => Container();
 
@@ -103,17 +107,19 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
                       controller.error.value!.displayImage!,
                       width: context.width / 4.0,
                     ),
+              newBox(height: 20),
               controller.error.value?.displayTitle?.tr.isEmpty ?? true
                   ? Container()
                   : Text(
                       controller.error.value!.displayTitle!.tr,
-                      style: context.textTheme.titleLarge,
+                      style: context.theme.ts900(18),
                     ),
+              newBox(height: 2),
               controller.error.value?.displayMessage?.tr.isEmpty ?? true
                   ? Container()
                   : Text(
                       controller.error.value!.displayMessage!.tr,
-                      style: context.textTheme.titleMedium,
+                      style: context.theme.ts800(16),
                     ),
             ],
           ),
