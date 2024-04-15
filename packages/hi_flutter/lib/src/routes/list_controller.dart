@@ -9,7 +9,6 @@ import 'package:hi_flutter/src/routes/base_controller.dart';
 class HiListController<M extends HiModel> extends HiBaseController<M> {
   late bool enablePullRefresh;
   late bool enableLoadingMore;
-  late int pageFirst;
   late int pageIndex;
   late int pageSize;
   RefreshController? refreshController;
@@ -21,7 +20,6 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
     super.onInit();
     enablePullRefresh = parameters.boolValue(HiParameter.canRefresh) ?? false;
     enableLoadingMore = parameters.boolValue(HiParameter.canLoadMore) ?? false;
-    pageFirst = parameters.intValue(HiParameter.pageFirst) ?? 1;
     pageIndex = parameters.intValue(HiParameter.pageIndex) ?? pageFirst;
     pageSize = parameters.intValue(HiParameter.pageSize) ??
         HiFlutter.shared().pageSize;
@@ -29,35 +27,6 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
   }
 
   @override
-  void reloadData() async {
-    error.value = null;
-    requestMode.value = HiRequestMode.load;
-    dataSource.clear();
-    update();
-    var models = await fetchLocal();
-    if (models.isNotEmpty) {
-      dataSource.addAll(models);
-      refreshController?.onSuccess(
-        requestMode.value,
-        dataSource.length == pageSize,
-      );
-      update();
-    }
-    requestRemote(requestMode.value, pageFirst);
-  }
-
-  void doPullRefresh() {
-    requestMode.value = HiRequestMode.pullRefresh;
-    update();
-    requestRemote(requestMode.value, pageFirst);
-  }
-
-  void doLoadingMore() {
-    requestMode.value = HiRequestMode.loadingMore;
-    update();
-    requestRemote(requestMode.value, pageIndex + 1);
-  }
-
   void finish({List<M>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
     if (this.error.value != null) {
@@ -87,7 +56,15 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
     update();
   }
 
-  void doPressed(M model, {extra}) async {
-    log('doPressed: model = (${model.typeName}, ${model.id}), extra = $extra');
+  void doPullRefresh() {
+    requestMode.value = HiRequestMode.pullRefresh;
+    update();
+    requestRemote(requestMode.value, pageFirst);
+  }
+
+  void doLoadingMore() {
+    requestMode.value = HiRequestMode.loadingMore;
+    update();
+    requestRemote(requestMode.value, pageIndex + 1);
   }
 }

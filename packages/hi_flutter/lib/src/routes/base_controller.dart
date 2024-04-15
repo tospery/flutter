@@ -10,6 +10,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   var requestMode = HiRequestMode.none.obs;
   var dataSource = <M>[].obs;
   var error = Rx<HiError?>(null);
+  late int pageFirst;
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
   late final String url;
@@ -43,6 +44,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     log('url: $url', tag: HiLogTag.frame);
     title.value = parameters.stringValue(HiParameter.title);
     hideAppBar.value = parameters.boolValue(HiParameter.hideAppBar) ?? false;
+    pageFirst = parameters.intValue(HiParameter.pageFirst) ?? 1;
     user = Get.find<HiUser>().obs;
     configuration = Get.find<HiConfiguration>().obs;
     provider = Get.find<HiProvider>();
@@ -89,9 +91,38 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     }
   }
 
-  void reloadData() {}
+  void reloadData() async {
+    error.value = null;
+    requestMode.value = HiRequestMode.load;
+    dataSource.clear();
+    update();
+    var models = await fetchLocal();
+    if (models.isNotEmpty) {
+      finish(items: models);
+    }
+    requestRemote(requestMode.value, pageFirst);
+  }
+
+  void finish({List<M>? items, bool? hasNext, HiError? error}) {
+    this.error.value = error;
+    if (this.error.value != null) {
+      this.navigator.toast(
+          error?.displayMessage?.tr ?? R.strings.loadFailure.tr);
+    } else {
+      dataSource.clear();
+      dataSource.addAll(items ?? []);
+    }
+    requestMode.value = HiRequestMode.none;
+    update();
+  }
 
   Future<List<M>> fetchLocal() async => Future<List<M>>.value([]);
 
-  void requestRemote(HiRequestMode mode, int pageIndex) {}
+  void requestRemote(HiRequestMode mode, int pageIndex) {
+
+  }
+
+  void doPressed(M model, {extra}) async {
+    log('doPressed: model = (${model.typeName}, ${model.id}), extra = $extra');
+  }
 }

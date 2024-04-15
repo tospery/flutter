@@ -18,6 +18,7 @@ export 'src/extension/bool.dart';
 export 'src/extension/color.dart';
 export 'src/extension/colors.dart';
 export 'src/extension/int.dart';
+export 'src/extension/list.dart';
 export 'src/extension/map.dart';
 export 'src/extension/object.dart';
 export 'src/extension/string.dart';

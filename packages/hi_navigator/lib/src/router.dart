@@ -4,18 +4,18 @@ class HiRouter {
   static final hosts = HiHost();
   static final paths = HiPath();
 
-  static String urlString(
-      String host, {
-        String? path,
-        Map<String, dynamic>? parameters,
-      }) {
-    // var uri = Uri.http('', '', parameters);
-    var result = '/$host';
-    if (path?.isNotEmpty ?? false) {
-      result += '/$path';
-    }
-    return result;
-  }
+  // static String urlString(
+  //     String host, {
+  //       String? path,
+  //       Map<String, dynamic>? parameters,
+  //     }) {
+  //   // var uri = Uri.http('', '', parameters);
+  //   var result = '/$host';
+  //   if (path?.isNotEmpty ?? false) {
+  //     result += '/$path';
+  //   }
+  //   return result;
+  // }
 }
 
 class HiHost {
@@ -43,13 +43,12 @@ class HiPath {
   final detail = 'detail';
 }
 
-String hiURLString({
+String newRouteString ({
   required String host,
   String? path,
   Map<String, dynamic>? parameters,
 }) {
-  // YJX_TODO 临时固定wehub
-  var urlString = 'wehub://$host';
+  var urlString = '/$host';
   if (path?.isNotEmpty ?? false) {
     urlString += '/$path';
   }

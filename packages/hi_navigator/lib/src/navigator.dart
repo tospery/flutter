@@ -41,16 +41,15 @@ class HiNavigator {
     bool rootNavigator = false,
   }) async {
     var route = url;
-    if (url == null) {
+    if (route == null) {
       if (host?.isNotEmpty ?? false) {
+        route = "/$host";
         if (path?.isNotEmpty ?? false) {
-          route = '/$host/$path';
-        } else {
-          route = '/$host';
+          route += "/$path";
         }
       }
     } else {
-      route = url.toRoute();
+      route = route?.toRoute();
     }
     if (route?.isEmpty ?? true) {
       return null;

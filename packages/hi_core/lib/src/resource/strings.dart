@@ -9,6 +9,7 @@ class Strings {
   final timeout = 'timeout';
   final unlogin = 'unlogin';
   final expired = 'expired';
+  final loadFailure = 'loadFailure';
   final abnormalOperation = 'abnormalOperation';
   final pullRefreshIdle = 'pullRefreshIdle';
   final pullRefreshFreed = 'pullRefreshFreed';
