@@ -19,3 +19,4 @@ export 'src/navigator.dart';
 export 'src/impl/alert_view.dart';
 export 'src/impl/over_scroll_behavior.dart';
 export 'src/impl/toast_activity.dart';
+export 'src/impl/popup_view.dart';

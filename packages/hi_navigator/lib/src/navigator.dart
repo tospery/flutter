@@ -10,7 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 class HiNavigator {
   final String? baseWeb;
 
-  final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+  final RouteObserver<ModalRoute<void>> routeObserver =
+      RouteObserver<ModalRoute<void>>();
 
   static HiNavigator? _instance;
   static HiNavigator shared() {
@@ -18,14 +19,10 @@ class HiNavigator {
     return _instance!;
   }
 
-  HiNavigator._({String? baseWeb})  : this.baseWeb = baseWeb;
+  HiNavigator._({String? baseWeb}) : this.baseWeb = baseWeb;
 
-  static Future<bool> ready({
-    String? baseWeb
-  }) async {
-    _instance ??= HiNavigator._(
-        baseWeb: baseWeb
-    );
+  static Future<bool> ready({String? baseWeb}) async {
+    _instance ??= HiNavigator._(baseWeb: baseWeb);
     return true;
   }
 
@@ -72,7 +69,7 @@ class HiNavigator {
           return null;
         }
         final result = await launchUrl(thirdUrl);
-        if (!result)  {
+        if (!result) {
           log('打开第三方失败', tag: HiLogTag.navigator);
         }
         if (T == bool) {
@@ -139,16 +136,42 @@ class HiNavigator {
       HiAlertView(
         title: title ?? '',
         content: content ?? '',
-        backText : backText ?? '',
-        nextText : nextText ?? '',
-        backVisible : backVisible ?? false,
-        nextVisible : nextVisible ?? false,
-        backTap : backTap,
-        nextTap : nextTap,
+        backText: backText ?? '',
+        nextText: nextText ?? '',
+        backVisible: backVisible ?? false,
+        nextVisible: nextVisible ?? false,
+        backTap: backTap,
+        nextTap: nextTap,
       ),
-      transitionDuration:  const Duration(milliseconds: 500),
+      transitionDuration: const Duration(milliseconds: 500),
       barrierDismissible: backKey,
     );
   }
 
+  Future<T?> popup<T>(
+    Widget widget, {
+    bool barrierDismissible = true,
+    Color? barrierColor,
+    bool useSafeArea = true,
+    GlobalKey<NavigatorState>? navigatorKey,
+    Object? arguments,
+    Duration? transitionDuration,
+    Curve? transitionCurve,
+    String? name,
+    RouteSettings? routeSettings,
+  }) {
+    dismiss();
+    return Get.dialog<T>(
+      widget,
+      barrierDismissible: barrierDismissible,
+      barrierColor: barrierColor,
+      useSafeArea: useSafeArea,
+      navigatorKey: navigatorKey,
+      arguments: arguments,
+      transitionDuration: transitionDuration,
+      transitionCurve: transitionCurve,
+      name: name,
+      routeSettings: routeSettings,
+    );
+  }
 }
