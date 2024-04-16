@@ -58,7 +58,7 @@ extension StringHiCoreEx on String {
 
   Map<String, String>? get urlQueries => toUri()?.queryParameters;
 
-  String toRoute() {
+  String toRoute({String? baseWeb}) {
     final url = toUri();
     if (url == null) {
       return this;
@@ -69,6 +69,9 @@ extension StringHiCoreEx on String {
     }
     var result = this;
     if (["http", "https"].contains(scheme)) {
+      if (url.host != baseWeb) {
+        return this;
+      }
       result = Uri(path: url.path, query: url.query).toString();
     }
     if (scheme.isEmpty) {

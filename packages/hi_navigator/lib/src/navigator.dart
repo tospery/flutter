@@ -48,7 +48,7 @@ class HiNavigator {
     dynamic context,
     bool rootNavigator = false,
   }) async {
-    var route = url?.toRoute();
+    var route = url?.toRoute(baseWeb: HiNavigator.shared().baseWeb);
     if (route?.isEmpty ?? true) {
       if (host?.isNotEmpty ?? false) {
         route = "/$host";
@@ -58,37 +58,34 @@ class HiNavigator {
       }
     }
     log('导航->$route, 参数$parameters', tag: HiLogTag.navigator);
-    if (route?.isEmpty ?? true) {
-      return null;
-    }
-    // 打开第三方应用
-    if (route?.isValidThirdUrl ?? false) {
-      final thirdUrl = route?.toUri();
-      if (thirdUrl == null) {
-        return null;
-      }
-      final result = await launchUrl(thirdUrl);
-      if (!result)  {
-        log('打开第三方失败', tag: HiLogTag.navigator);
-      }
-      if (T == bool) {
-        return Future.value(result as T);
-      }
-      return null;
-    }
-
-    if (rootNavigator) {
-      return Get.offAllNamed(route!, arguments: parameters);
-    }
     try {
-      return Get.toNamed(route!, arguments: parameters);
-    } catch (e) {
-      // if ((url?.isNotEmpty ?? false) && ((url?.startsWith('http://') ?? false) || (url?.startsWith('https://') ?? false))) {
-      if (url?.isNotEmpty ?? false) {
+      // 网页
+      if (route?.isValidHttpUrl ?? false) {
         var myParameters = parameters ?? <String, dynamic>{};
-        myParameters[HiParameter.url] = url;
+        myParameters[HiParameter.url] = route;
         return Get.toNamed('/${HiRouter.hosts.web}', arguments: myParameters);
       }
+      // 打开第三方应用
+      if (route?.isValidThirdUrl ?? false) {
+        final thirdUrl = route?.toUri();
+        if (thirdUrl == null) {
+          return null;
+        }
+        final result = await launchUrl(thirdUrl);
+        if (!result)  {
+          log('打开第三方失败', tag: HiLogTag.navigator);
+        }
+        if (T == bool) {
+          return Future.value(result as T);
+        }
+        return null;
+      }
+      if (rootNavigator) {
+        return Get.offAllNamed(route!, arguments: parameters);
+      }
+      return Get.toNamed(route!, arguments: parameters);
+    } catch (e) {
+      log("导航错误：$e");
       return null;
     }
     return null;
