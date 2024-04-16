@@ -54,35 +54,35 @@ extension StringHiCoreEx on String {
 
   String? get urlPath => toUri()?.path;
 
+  String? get lastPath => toUri()?.pathSegments.safeLast;
+
   Map<String, String>? get urlQueries => toUri()?.queryParameters;
 
-  /// mailto:recipient@example.com?subject=Example Subject&body=This is the email body.
-  String? toRoute() {
-    if (startsWith("//")) {
-      return this.substring(1);
-    }
-    if (startsWith("/")) {
+  String toRoute() {
+    final url = toUri();
+    if (url == null) {
       return this;
     }
-    final uri = toUri();
-    if (uri == null || uri.host.isEmpty) {
-      // 邮件
-      var prefix = 'mailto:';
-      if (this.startsWith(prefix) ) {
-        return this;
-      }
-      if (this.isValidEmail) {
-        return prefix + this;
-      }
-      log('HTTP URL转Route URL失败', tag: HiLogTag.navigator);
-      return null;
+    final scheme = url.scheme.toLowerCase();
+    if (["mailto", "tel", "sms", "file"].contains(scheme)) {
+      return this;
     }
-    var route = uri.path;
-    final query = uri.query;
-    if (query.isNotEmpty) {
-      route += '?$query';
+    var result = this;
+    if (["http", "https"].contains(scheme)) {
+      result = Uri(path: url.path, query: url.query).toString();
     }
-    return route;
+    if (scheme.isEmpty) {
+      result = Uri(host: url.host, path: url.path, query: url.query).toString();
+    }
+    result = result.removeLeading("/");
+    result = "/$result";
+    return result;
+  }
+
+  String removeLeading(String char) {
+    final pattern = '^[$char]*';
+    final regex = RegExp(pattern);
+    return this.replaceAll(regex, '');
   }
 
   bool get isValidThirdUrl {

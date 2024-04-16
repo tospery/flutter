@@ -40,16 +40,14 @@ class HiNavigator {
     dynamic context,
     bool rootNavigator = false,
   }) async {
-    var route = url;
-    if (route == null) {
+    var route = url?.toRoute();
+    if (route?.isEmpty ?? true) {
       if (host?.isNotEmpty ?? false) {
         route = "/$host";
         if (path?.isNotEmpty ?? false) {
           route += "/$path";
         }
       }
-    } else {
-      route = route?.toRoute();
     }
     if (route?.isEmpty ?? true) {
       return null;
