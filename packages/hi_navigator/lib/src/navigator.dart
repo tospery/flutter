@@ -8,6 +8,7 @@ import 'package:hi_navigator/src/router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HiNavigator {
+  final String? baseWeb;
 
   final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
 
@@ -17,12 +18,19 @@ class HiNavigator {
     return _instance!;
   }
 
-  HiNavigator._() {
-    init();
+  HiNavigator._({String? baseWeb})  : this.baseWeb = baseWeb;
+
+  static Future<bool> ready({
+    String? baseWeb
+  }) async {
+    _instance ??= HiNavigator._(
+        baseWeb: baseWeb
+    );
+    return true;
   }
 
-  void init() async {
-  }
+  // void init() async {
+  // }
 
   // Future<T?>? forward<T>(
   //     String url, {
@@ -49,10 +57,10 @@ class HiNavigator {
         }
       }
     }
+    log('导航->$route, 参数$parameters', tag: HiLogTag.navigator);
     if (route?.isEmpty ?? true) {
       return null;
     }
-    log('导航->$route, 参数$parameters', tag: HiLogTag.navigator);
     // 打开第三方应用
     if (route?.isValidThirdUrl ?? false) {
       final thirdUrl = route?.toUri();

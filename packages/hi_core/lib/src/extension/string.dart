@@ -72,6 +72,9 @@ extension StringHiCoreEx on String {
       result = Uri(path: url.path, query: url.query).toString();
     }
     if (scheme.isEmpty) {
+      if (this.isValidEmail) {
+        return "mailto:$this";
+      }
       result = Uri(host: url.host, path: url.path, query: url.query).toString();
     }
     result = result.removeLeading("/");
@@ -86,17 +89,14 @@ extension StringHiCoreEx on String {
   }
 
   bool get isValidThirdUrl {
-    if (this.isValidHttpUrl) {
+    final url = toUri();
+    if (url == null) {
       return false;
     }
-    final items = this.split(':');
-    if (items.length <= 1) {
+    if (url.scheme.isEmpty) {
       return false;
     }
-    if (items.first.isEmpty) {
-      return false;
-    }
-    if (items.second.isEmpty) {
+    if (["http", "https"].contains(url.scheme.toLowerCase())) {
       return false;
     }
     return true;

@@ -17,7 +17,7 @@ class HiTileCell extends HiCell<HiTile> {
   Widget build(BuildContext context) {
     return GFListTile(
       margin: EdgeInsets.zero,
-      padding: const EdgeInsets.only(left: 12, top: 10, right: 6, bottom: 10),
+      padding: const EdgeInsets.only(left: 12, top: 10, right: 0, bottom: 10),
       radius: 0,
       title: _buildTileTitle(context),
       subTitle: _buildTileSubtitle(context),
@@ -37,7 +37,7 @@ class HiTileCell extends HiCell<HiTile> {
     }
     return Text(model.title!, style: context.textTheme.titleMedium?.copyWith(
       color: model.titleColor?.toColor(),
-    ),);
+    ), maxLines: 1, overflow: TextOverflow.ellipsis,);
   }
 
   _buildTileSubtitle(BuildContext context) {

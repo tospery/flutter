@@ -1,5 +1,6 @@
 import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_network/hi_network.dart';
+import 'package:hi_navigator/hi_navigator.dart';
 import 'package:hi_flutter/src/utils/app_info.dart';
 import 'package:hi_flutter/src/utils/device_info.dart';
 
@@ -18,12 +19,14 @@ class HiFlutter {
 
   static Future<bool> ready({
     int? pageSize,
+    String? baseWeb,
     List<String>? codeKeys,
     List<String>? messageKeys,
     List<String>? dataKeys,
   }) async {
     _instance ??= HiFlutter._(pageSize: pageSize);
     await HiCache.ready();
+    await HiNavigator.ready(baseWeb: baseWeb);
     await HiNetwork.ready(codeKeys: codeKeys, messageKeys: messageKeys, dataKeys: dataKeys,);
     await HiAppInfo.ready();
     await HiDeviceInfo.ready();
