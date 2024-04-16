@@ -126,15 +126,15 @@ extension StringHiCoreEx on String {
 
   bool get isValidImageUrl => [
     'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'
-  ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
+  ].contains(this.toUri()?.pathSegments.safeLast?.split('.').safeLast?.toLowerCase());
 
   bool get isValidPdfUrl => [
     'pdf'
-  ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
+  ].contains(this.toUri()?.pathSegments.safeLast?.split('.').safeLast?.toLowerCase());
 
   bool get isValidMarkdownUrl => [
     'md', 'mdx'
-  ].contains(this.toUri()?.pathSegments.last.split('.').last.toLowerCase());
+  ].contains(this.toUri()?.pathSegments.safeLast?.split('.').safeLast?.toLowerCase());
 
   // bool get isValidFileExUrl => this.toUri()?.pathSegments.last.contains('.');
 
