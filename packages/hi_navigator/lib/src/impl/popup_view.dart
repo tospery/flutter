@@ -27,12 +27,12 @@ class _BaseDialogState extends State<HiPopupView>
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 360),
+      duration: const Duration(milliseconds: 100),
     );
-    animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-      parent: animationController!,
-      curve: Curves.easeIn,
-    ));
+    // animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+    //   parent: animationController!,
+    //   curve: Curves.easeIn,
+    // ));
   }
 
   @override
@@ -52,17 +52,21 @@ class _BaseDialogState extends State<HiPopupView>
                 Container(
                   width: double.infinity,
                   margin: EdgeInsets.symmetric(horizontal: widget.horizontal),
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(widget.shape),
-                        ),
-                      ),
-                    ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(widget.shape),
                     child: widget.child,
                   ),
+                  // child: Container(
+                  //   decoration: ShapeDecoration(
+                  //     color: Colors.green,
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.all(
+                  //         Radius.circular(widget.shape),
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   child: widget.child,
+                  // ),
                 ),
               ],
             ),

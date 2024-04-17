@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hi_core/hi_core.dart';
+
+Map<String, dynamic> routeParameters(Map<String, dynamic> parameters, dynamic context) {
+  var myParameters = <String, dynamic>{};
+  myParameters.addAll(parameters);
+  if (context != null) {
+    if (context is Map<String, dynamic>) {
+      myParameters.addAll(context);
+    } else {
+      myParameters[HiParameter.context] = context;
+    }
+  }
+  return myParameters;
+}
 
 GetMaterialApp? routeApp({BuildContext? context, bool? isOverlay}) {
   var ctx = context;

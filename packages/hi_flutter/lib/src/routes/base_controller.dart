@@ -28,17 +28,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   void onInit() {
     super.onInit();
     this.navigator = HiNavigator.shared();
-    var myParameters = <String, dynamic>{};
-    myParameters.addAll(Get.parameters);
-    if (Get.arguments != null) {
-      if (Get.arguments is Map<String, dynamic>) {
-        myParameters.addAll(Get.arguments);
-      } else {
-        myParameters[HiParameter.arguments] = Get.arguments;
-      }
-    }
-    myParameters.addAll(parameters);
-    parameters = myParameters;
+    parameters = routeParameters(Get.parameters, Get.arguments);
     log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
     url = parameters.stringValue(HiParameter.url) ?? "";
     log('url: $url', tag: HiLogTag.frame);

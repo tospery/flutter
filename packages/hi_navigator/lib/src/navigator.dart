@@ -44,18 +44,18 @@ class HiNavigator {
         }
       }
     }
-    log('导航->$route, 参数$parameters', tag: HiLogTag.navigator);
+    var myParameters = routeParameters(parameters ?? {}, context);
+    log('导航->$route, 参数$myParameters', tag: HiLogTag.navigator);
     try {
       // 网页
       if (route?.isValidHttpUrl ?? false) {
-        var myParameters = parameters ?? <String, dynamic>{};
         myParameters[HiParameter.url] = route;
         return Get.toNamed('/${HiRouter.hosts.web}', arguments: myParameters);
       }
       // 弹窗
       final paths = route?.toUri()?.pathSegments ?? [];
       if (paths.length == 2 && paths.firstOrNull == HiRouter.hosts.popup) {
-        return popup(route ?? "", parameters: parameters);
+        return popup(route ?? "", parameters: myParameters);
       }
       // 打开第三方应用
       if (route?.isValidThirdUrl ?? false) {
@@ -73,9 +73,9 @@ class HiNavigator {
         return null;
       }
       if (rootNavigator) {
-        return Get.offAllNamed(route!, arguments: parameters);
+        return Get.offAllNamed(route!, arguments: myParameters);
       }
-      return Get.toNamed(route!, arguments: parameters);
+      return Get.toNamed(route!, arguments: myParameters);
     } catch (e) {
       log("导航错误：$e");
       return null;
