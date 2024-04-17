@@ -3,19 +3,6 @@ import 'package:hi_core/hi_core.dart';
 class HiRouter {
   static final hosts = HiHost();
   static final paths = HiPath();
-
-  // static String urlString(
-  //     String host, {
-  //       String? path,
-  //       Map<String, dynamic>? parameters,
-  //     }) {
-  //   // var uri = Uri.http('', '', parameters);
-  //   var result = '/$host';
-  //   if (path?.isNotEmpty ?? false) {
-  //     result += '/$path';
-  //   }
-  //   return result;
-  // }
 }
 
 class HiHost {
@@ -42,22 +29,3 @@ class HiPath {
   final list = 'list';
   final detail = 'detail';
 }
-
-// String newRouteString ({
-//   required String host,
-//   String? path,
-//   Map<String, dynamic>? parameters,
-// }) {
-//   var urlString = '/$host';
-//   if (path?.isNotEmpty ?? false) {
-//     urlString += '/$path';
-//   }
-//   if (parameters?.isNotEmpty ?? false) {
-//     urlString += "?";
-//     parameters?.forEach((key, value) {
-//       urlString += '$key=$value&';
-//     });
-//     urlString = urlString.removeSuffix('&');
-//   }
-//   return urlString;
-// }

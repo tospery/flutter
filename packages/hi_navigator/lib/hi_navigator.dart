@@ -11,6 +11,7 @@ export 'package:fluttertoast/fluttertoast.dart';
 export 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:lottie/lottie.dart';
+export 'src/function.dart';
 export 'src/router.dart';
 export 'src/page.dart';
 export 'src/web.dart';

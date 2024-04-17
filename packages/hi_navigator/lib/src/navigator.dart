@@ -4,6 +4,7 @@ import 'package:hi_core/hi_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hi_navigator/src/impl/alert_view.dart';
 import 'package:hi_navigator/src/impl/toast_activity.dart';
+import 'package:hi_navigator/src/function.dart';
 import 'package:hi_navigator/src/router.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,17 +27,6 @@ class HiNavigator {
     return true;
   }
 
-  // void init() async {
-  // }
-
-  // Future<T?>? forward<T>(
-  //     String url, {
-  //       dynamic context,
-  //       bool rootNavigator = false,
-  //     }) {
-  //   return null;
-  // }
-
   Future<T?>? forward<T>({
     String? url,
     String? host,
@@ -45,7 +35,7 @@ class HiNavigator {
     dynamic context,
     bool rootNavigator = false,
   }) async {
-    var route = url?.toRoute(baseWeb: HiNavigator.shared().baseWeb);
+    var route = url?.toRoute(baseWeb: baseWeb);
     if (route?.isEmpty ?? true) {
       if (host?.isNotEmpty ?? false) {
         route = "/$host";
@@ -61,6 +51,11 @@ class HiNavigator {
         var myParameters = parameters ?? <String, dynamic>{};
         myParameters[HiParameter.url] = route;
         return Get.toNamed('/${HiRouter.hosts.web}', arguments: myParameters);
+      }
+      // 弹窗
+      final paths = route?.toUri()?.pathSegments ?? [];
+      if (paths.length == 2 && paths.firstOrNull == HiRouter.hosts.popup) {
+        return popup(route ?? "", parameters: parameters);
       }
       // 打开第三方应用
       if (route?.isValidThirdUrl ?? false) {
@@ -120,7 +115,7 @@ class HiNavigator {
     }
   }
 
-  alert({
+  Future<T?> alert<T>({
     String? title,
     String? content,
     String? backText,
@@ -132,7 +127,7 @@ class HiNavigator {
     backKey = false,
   }) {
     dismiss();
-    Get.dialog(
+    return Get.dialog<T>(
       HiAlertView(
         title: title ?? '',
         content: content ?? '',
@@ -149,29 +144,29 @@ class HiNavigator {
   }
 
   Future<T?> popup<T>(
-    Widget widget, {
-    bool barrierDismissible = true,
-    Color? barrierColor,
-    bool useSafeArea = true,
-    GlobalKey<NavigatorState>? navigatorKey,
-    Object? arguments,
-    Duration? transitionDuration,
-    Curve? transitionCurve,
-    String? name,
-    RouteSettings? routeSettings,
+    String url, {
+      Object? parameters,
+      bool barrierDismissible = true,
+      Color? barrierColor,
+      bool useSafeArea = true,
+      GlobalKey<NavigatorState>? navigatorKey,
+      Duration? transitionDuration,
+      Curve? transitionCurve,
   }) {
     dismiss();
+    final widget = routeWidget(url.toRoute(baseWeb: baseWeb));
+    if (widget == null) {
+      return Future<T?>.value(null);
+    }
     return Get.dialog<T>(
       widget,
       barrierDismissible: barrierDismissible,
       barrierColor: barrierColor,
       useSafeArea: useSafeArea,
       navigatorKey: navigatorKey,
-      arguments: arguments,
       transitionDuration: transitionDuration,
       transitionCurve: transitionCurve,
-      name: name,
-      routeSettings: routeSettings,
+      routeSettings: RouteSettings(name: url, arguments: parameters),
     );
   }
 }

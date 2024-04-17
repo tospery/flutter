@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
+import 'package:dartx/dartx.dart';
 import 'int.dart';
-import 'package:hi_core/hi_core.dart';
 
 extension StringHiCoreEx on String {
   String get base64Decoded => convert.utf8.decode(convert.base64.decode(replaceAll(RegExp(r'\s+'), '')));
@@ -54,7 +54,7 @@ extension StringHiCoreEx on String {
 
   String? get urlPath => toUri()?.path;
 
-  String? get lastPath => toUri()?.pathSegments.safeLast;
+  String? get lastPath => toUri()?.pathSegments.lastOrNull;
 
   Map<String, String>? get urlQueries => toUri()?.queryParameters;
 
@@ -112,7 +112,7 @@ extension StringHiCoreEx on String {
     if (uri == null) {
       return false;
     }
-    final last = uri.pathSegments.safeLast;
+    final last = uri.pathSegments.lastOrNull;
     if (last?.isEmpty ?? true) {
       return false;
     }
@@ -120,7 +120,7 @@ extension StringHiCoreEx on String {
     if (components.length <= 1) {
       return false;
     }
-    return components.safeLast?.isNotEmpty ?? false;
+    return components.lastOrNull?.isNotEmpty ?? false;
   }
 
   bool get isValidHttpUrl => [
@@ -129,15 +129,15 @@ extension StringHiCoreEx on String {
 
   bool get isValidImageUrl => [
     'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'
-  ].contains(this.toUri()?.pathSegments.safeLast?.split('.').safeLast?.toLowerCase());
+  ].contains(this.toUri()?.pathSegments.lastOrNull?.split('.').lastOrNull?.toLowerCase());
 
   bool get isValidPdfUrl => [
     'pdf'
-  ].contains(this.toUri()?.pathSegments.safeLast?.split('.').safeLast?.toLowerCase());
+  ].contains(this.toUri()?.pathSegments.lastOrNull?.split('.').lastOrNull?.toLowerCase());
 
   bool get isValidMarkdownUrl => [
     'md', 'mdx'
-  ].contains(this.toUri()?.pathSegments.safeLast?.split('.').safeLast?.toLowerCase());
+  ].contains(this.toUri()?.pathSegments.lastOrNull?.split('.').lastOrNull?.toLowerCase());
 
   // bool get isValidFileExUrl => this.toUri()?.pathSegments.last.contains('.');
 
