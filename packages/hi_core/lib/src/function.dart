@@ -4,6 +4,7 @@ import 'package:hi_core/src/extension/bool.dart';
 import 'package:hi_core/src/extension/int.dart';
 import 'package:hi_core/src/extension/string.dart';
 import 'package:hi_core/src/logger.dart';
+import 'package:hi_core/src/error.dart';
 
 Type typeOf<T>() => T;
 
@@ -118,6 +119,13 @@ Map<K, V>? tryMap<K, V>(dynamic data) {
 }
 
 Map<String, dynamic>? tryJSON(dynamic data) => tryMap<String, dynamic>(data);
+
+HiError forceError(dynamic data) {
+  if (data is HiError) {
+    return data;
+  }
+  return HiError.unknown;
+}
 
 Color randomColor() => Color.fromRGBO(
   Random().nextInt(256),

@@ -49,6 +49,8 @@ class HiServerError extends HiError {
   @override
   String? get displayImage => R.assets.image.errorServer;
 
+  static const notFoundCode = 404;
+
   static HiServerError get dataInvalid => HiServerError(1, R.strings.serverDataInvalidMessage);
   static HiServerError get listIsEmpty => HiServerError(2, R.strings.serverListIsEmptyMessage);
 
