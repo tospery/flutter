@@ -15,7 +15,7 @@ class HiTileCell extends HiCell<HiTile> {
 
   @override
   Widget build(BuildContext context) {
-    return GFListTile(
+    final tile = GFListTile(
       margin: EdgeInsets.zero,
       padding: const EdgeInsets.only(left: 12, top: 10, right: 0, bottom: 10),
       radius: 0,
@@ -28,6 +28,11 @@ class HiTileCell extends HiCell<HiTile> {
       color: context.theme.bgColor,
       onTap: () => onPressed != null ? onPressed!(model) : null,
       shadow: BoxShadow(),
+    );
+    return ((model.height ?? 0) == 0) ? tile :
+     Container(
+      height: model.height,
+      child: tile,
     );
   }
 
