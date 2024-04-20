@@ -32,22 +32,22 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
     return controller.hideAppBar.value
         ? null
         : AppBar(
-            title: controller.title.value != null
-                ? Text(
-                    controller.title.value!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  )
-                : null,
+      title: controller.title.value != null
+          ? Text(
+        controller.title.value!,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      )
+          : null,
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(2.0),
+        preferredSize: Size.fromHeight(1.0),
         child: Divider(
           color: context.theme.fgColor.sd600,
-          height: 2.0,
+          height: 1.0,
           indent: 0,
         ),
       ),
-          );
+    );
   }
 
   Widget body(BuildContext context) {
@@ -58,20 +58,20 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
         alignment: Alignment.center,
         children: [
           Obx(
-            () => Visibility(
+                () => Visibility(
               visible: controller.isLoading,
               child: buildLoadingView(context),
             ),
           ),
           Obx(
-            () => Visibility(
+                () => Visibility(
               visible: controller.isLoading == false &&
                   controller.error.value == null,
               child: buildSuccessView(context),
             ),
           ),
           Obx(
-            () => Visibility(
+                () => Visibility(
               visible: controller.isLoading == false &&
                   controller.error.value != null,
               child: buildFailureView(context),
@@ -93,38 +93,38 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
   Widget buildSuccessView(BuildContext context) => Container();
 
   Widget buildFailureView(BuildContext context) => GestureDetector(
-        onTap: controller.reloadData,
-        child: Container(
-          color: Colors.transparent,
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              controller.error.value?.displayImage?.isEmpty ?? true
-                  ? Container()
-                  : newImageWidget(
-                      controller.error.value!.displayImage!,
-                      width: context.width / 4.0,
-                    ),
-              newBox(height: 20),
-              controller.error.value?.displayTitle?.tr.isEmpty ?? true
-                  ? Container()
-                  : Text(
-                      controller.error.value!.displayTitle!.tr,
-                      style: context.theme.ts900(18),
-                    ),
-              newBox(height: 2),
-              controller.error.value?.displayMessage?.tr.isEmpty ?? true
-                  ? Container()
-                  : Text(
-                      controller.error.value!.displayMessage!.tr,
-                      style: context.theme.ts800(16),
-                    ),
-            ],
+    onTap: controller.reloadData,
+    child: Container(
+      color: Colors.transparent,
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          controller.error.value?.displayImage?.isEmpty ?? true
+              ? Container()
+              : newImageWidget(
+            controller.error.value!.displayImage!,
+            width: context.width / 4.0,
           ),
-        ),
-      );
+          newBox(height: 20),
+          controller.error.value?.displayTitle?.tr.isEmpty ?? true
+              ? Container()
+              : Text(
+            controller.error.value!.displayTitle!.tr,
+            style: context.theme.ts900(18),
+          ),
+          newBox(height: 2),
+          controller.error.value?.displayMessage?.tr.isEmpty ?? true
+              ? Container()
+              : Text(
+            controller.error.value!.displayMessage!.tr,
+            style: context.theme.ts800(16),
+          ),
+        ],
+      ),
+    ),
+  );
 
   @override
   HiBasePageState createState() => HiBasePageState<C>();

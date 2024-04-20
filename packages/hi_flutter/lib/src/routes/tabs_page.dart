@@ -5,7 +5,12 @@ import 'package:hi_flutter/src/routes/tabs_controller.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
 abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
+
   const HiTabsPage({super.key});
+
+  initState() {
+    super.initState();
+  }
 
   @override
   Widget body(BuildContext context) {
@@ -38,12 +43,16 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
   }
 
   _buildTabBarView(BuildContext context) {
-    return Container(
-      height: context.height - kToolbarHeight - 50,
-      child: GFTabBarView(
+    // return Container(
+    //   height: context.height - kToolbarHeight - 50,
+    //   child: GFTabBarView(
+    //   controller: controller.tabController,
+    //   children: controller.tabs.map((e) => buildTabPage(context, e)).toList(),
+    // ),
+    // );
+    return GFTabBarView(
       controller: controller.tabController,
       children: controller.tabs.map((e) => buildTabPage(context, e)).toList(),
-    ),
     );
   }
 
