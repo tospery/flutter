@@ -13,7 +13,7 @@ class HiListController<M extends HiModel> extends HiBaseController<M> {
   late int pageSize;
   RefreshController? refreshController;
 
-  HiListController({super.parameters = const {}});
+  HiListController({super.arguments = const {}});
 
   @override
   void onInit() {

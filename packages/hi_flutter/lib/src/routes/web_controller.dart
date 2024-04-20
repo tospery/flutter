@@ -8,7 +8,7 @@ class HiWebController extends HiBaseController {
   late final WebViewController webViewController;
   var progress = 0.0.obs;
 
-  HiWebController({super.parameters = const {}});
+  HiWebController({super.arguments = const {}});
 
   @override
   void onInit() {

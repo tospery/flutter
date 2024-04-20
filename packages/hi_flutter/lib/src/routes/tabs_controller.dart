@@ -6,5 +6,5 @@ class HiTabsController<T extends TabItemType> extends HiBaseController {
   late final List<T> tabs;
   late final TabController tabController;
 
-  HiTabsController({super.parameters = const {}});
+  HiTabsController({super.arguments = const {}});
 }

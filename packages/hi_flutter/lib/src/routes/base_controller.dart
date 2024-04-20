@@ -17,19 +17,23 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   late final HiProvider provider;
   late final HiNavigator navigator;
   late final StreamSubscription eventSubscription;
-  Map<String, dynamic> parameters;
+  final Map<String, dynamic> arguments;
+  late final Map<String, dynamic> parameters;
 
   bool get isLoading => requestMode.value == HiRequestMode.load;
   bool get isUpdating => requestMode.value == HiRequestMode.update;
 
-  HiBaseController({this.parameters = const {}});
+  HiBaseController({this.arguments = const {}});
 
   @override
   void onInit() {
     super.onInit();
     this.navigator = HiNavigator.shared();
-    parameters = routeParameters(Get.parameters, Get.arguments);
+    var myParameters = Map<String, dynamic>.from(this.arguments);
+    myParameters.addAll(routeParameters(Get.parameters, Get.arguments));
+    this.parameters = myParameters;
     log('页面参数($instanceName)：$parameters', tag: HiLogTag.frame);
+
     url = parameters.stringValue(HiParameter.url) ?? "";
     log('url: $url', tag: HiLogTag.frame);
     title.value = parameters.stringValue(HiParameter.title);
