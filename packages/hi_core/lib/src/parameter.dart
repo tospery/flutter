@@ -40,6 +40,7 @@ class HiParameter {
   static const separated = 'separated';
   static const hideAppBar = 'hideAppBar';
   static const hideIcon = 'hideIcon';
+  static const tabBarHeight = 'tabBarHeight';
   static const transparentAppBar = 'transparentAppBar';
   static const canRefresh = 'canRefresh';
   static const hideNavLine = 'hideNavLine';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 import 'package:hi_flutter/src/routes/tabs_controller.dart';
 import 'package:hi_flutter/src/core/function.dart';
@@ -31,23 +32,50 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
   PreferredSizeWidget? appBar(BuildContext context) {
     return controller.hideAppBar.value
         ? null
-        : AppBar(
-      title: controller.title.value != null
-          ? Text(
-        controller.title.value!,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      )
-          : null,
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(1.0),
-        child: Divider(
-          color: context.theme.fgColor.sd600,
-          height: 1.0,
-          indent: 0,
-        ),
-      ),
-    );
+        :
+        GFAppBar(
+          title: (controller.title.value?.isEmpty ?? true) ? null : Text(
+              controller.title.value!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: context.theme.tsFg(22),
+          ),
+          // navigator.canPop() == false || navigator.userGestureInProgress == false
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              CupertinoIcons.back,
+              color: context.theme.fgColor,
+            ),
+          ),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1.0),
+            child: Divider(
+              color: context.theme.fgColor.sd600,
+              height: 1.0,
+              indent: 0,
+            ),
+          ),
+        );
+    // AppBar(
+    //   title: controller.title.value != null
+    //       ? Text(
+    //     controller.title.value!,
+    //     maxLines: 1,
+    //     overflow: TextOverflow.ellipsis,
+    //   )
+    //       : null,
+    //   bottom: PreferredSize(
+    //     preferredSize: Size.fromHeight(1.0),
+    //     child: Divider(
+    //       color: context.theme.fgColor.sd600,
+    //       height: 1.0,
+    //       indent: 0,
+    //     ),
+    //   ),
+    // );
   }
 
   Widget body(BuildContext context) {

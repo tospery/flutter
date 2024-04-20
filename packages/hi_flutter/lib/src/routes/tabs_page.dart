@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/routes/base_page.dart';
+import 'package:hi_flutter/src/extension/context.dart';
 import 'package:hi_flutter/src/routes/tabs_controller.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
@@ -8,20 +9,27 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
 
   const HiTabsPage({super.key});
 
+  @override
   initState() {
     super.initState();
   }
 
   @override
   Widget body(BuildContext context) {
-    return SafeArea(
-      top: true,
-      child: ListView(
-        children: [
-          _buildTabBar(context),
-          _buildTabBarView(context),
-        ],
-      ),
+    // return SafeArea(
+    //   top: true,
+    //   child: ListView(
+    //     children: [
+    //       _buildTabBar(context),
+    //       _buildTabBarView(context),
+    //     ],
+    //   ),
+    // );
+    return ListView(
+      children: [
+        _buildTabBar(context),
+        _buildTabBarView(context),
+      ],
     );
   }
 
@@ -35,7 +43,7 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
       labelPadding: EdgeInsets.zero, // const EdgeInsets.all(8),
       tabBarColor: context.theme.bgColor,
       unselectedLabelColor: context.theme.fgColor,
-      tabBarHeight: 50,
+      tabBarHeight: controller.tabBarHeight,
       indicatorSize: TabBarIndicatorSize.label,
       labelStyle: const TextStyle(fontWeight: FontWeight.w600),
       unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
@@ -44,13 +52,15 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
 
   _buildTabBarView(BuildContext context) {
     // return Container(
-    //   height: context.height - kToolbarHeight - 50,
+    //   height: context.height - kToolbarHeight - controller.tabBarHeight,
     //   child: GFTabBarView(
     //   controller: controller.tabController,
     //   children: controller.tabs.map((e) => buildTabPage(context, e)).toList(),
     // ),
     // );
+    // log("看看上下：${context.safeArea}");
     return GFTabBarView(
+      height: context.height - context.safeArea.top - kToolbarHeight - controller.tabBarHeight,
       controller: controller.tabController,
       children: controller.tabs.map((e) => buildTabPage(context, e)).toList(),
     );
