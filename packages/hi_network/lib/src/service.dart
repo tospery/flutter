@@ -52,31 +52,24 @@ class HiService extends GetConnect {
         bool adoptData = true,
         T Function(dynamic)? fromJson,
       }) {
-    dynamic data = null;
     var base = response.body;
-    var code = response.statusCode;
+    var code = response.statusCode ?? -1;
+    var data = response.body;
     var message = response.statusText;
     if (base is HiResponse) {
       if (base.code != null) {
-        code = base.code;
+        code = base.code!;
       }
       if (base.message != null) {
         message = base.message;
       }
-    }
-
-    if (response.hasError) {
-      return Future.error(
-        HiServerError(code ?? -1, message, data: response.body),
-      );
-    }
-
-    if (base is HiResponse) {
-      if (checkCode && code != HiError.okCode) {
-        return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
-      }
       data = adoptData ? base.data : base.json;
     }
+
+    if (response.hasError || (checkCode && code != HiError.okCode)) {
+      return Future.error(HiServerError(code, message, data:data ?? response.body));
+    }
+
     var genericType = typeOf<T>();
     if (genericType == typeOf<void>()) {
       return Future.value();
