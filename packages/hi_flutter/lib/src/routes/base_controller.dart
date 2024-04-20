@@ -10,6 +10,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   var requestMode = HiRequestMode.none.obs;
   var dataSource = <M>[].obs;
   var error = Rx<HiError?>(null);
+  final Map<String, dynamic> arguments;
   late int pageFirst;
   late Rx<HiUser> user;
   late Rx<HiConfiguration> configuration;
@@ -17,7 +18,6 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   late final HiProvider provider;
   late final HiNavigator navigator;
   late final StreamSubscription eventSubscription;
-  final Map<String, dynamic> arguments;
   late final Map<String, dynamic> parameters;
 
   bool get isLoading => requestMode.value == HiRequestMode.load;
