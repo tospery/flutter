@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import '../extension/map.dart';
 import '../extension/object.dart';
 import 'package:hi_core/src/datatype.dart';
+import 'package:hi_core/src/function.dart';
 import 'package:hi_core/src/logger.dart';
 
 class HiModel extends Equatable {
@@ -12,20 +13,20 @@ class HiModel extends Equatable {
 
   const HiModel({this.id});
 
-  factory HiModel.fromJson(Map<String, dynamic> json) => HiModel(
-        id: json.stringValue('id'),
+  factory HiModel.fromJson(dynamic data) => HiModel(
+        id: tryJSON(data)?.stringValue('id'),
       );
 
   Map<String, dynamic> toJson() => {
         'id': id,
       };
 
-  Widget? get separator => null;
-  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => null;
-
   @override
   bool get stringify => true;
   
   @override
   List<Object?> get props => [id];
+
+  Widget? get separator => const Divider();
+  Widget? cell({HiCellPressed? onPressed, HiValueChanged? onChanged}) => null;
 }

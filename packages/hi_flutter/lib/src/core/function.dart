@@ -8,6 +8,14 @@ import 'package:hi_cache/hi_cache.dart';
 import 'package:hi_flutter/src/core/constant.dart';
 import 'package:hi_flutter/src/model/tile.dart';
 
+EdgeInsets get safeArea {
+  final context = Get.context ?? Get.overlayContext;
+  if (context == null) {
+    return EdgeInsets.zero;
+  }
+  return context.mediaQueryPadding;
+}
+
 HiTile? tryTile(dynamic data) {
   if (data == null || data is! HiTile) {
     return null;
@@ -180,6 +188,7 @@ Widget newBlur({double sigma = 10, Widget? child}) => BackdropFilter(
 Widget newImageWidget(String url, {
   double? width,
   double? height,
+  double? radius,
   BoxFit? fit,
   Color? blendedColor,
   Color? placeholderColor,
@@ -190,27 +199,30 @@ Widget newImageWidget(String url, {
     return Container();
   }
   if (url.isValidHttpUrl) {
-    return CachedNetworkImage(
-      width: width,
-      height: height,
-      fit: fit,
-      placeholder: (BuildContext context, String url) {
-        if (placeholder == null) {
-          return Container(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(radius ?? 0),
+      child: CachedNetworkImage(
+        width: width,
+        height: height,
+        fit: fit,
+        placeholder: (BuildContext context, String url) {
+          if (placeholder == null) {
+            return Container(
+              width: width,
+              height: height,
+              color: placeholderColor != null ? placeholderColor : context.theme.highlightColor,
+            );
+          }
+          return SizedBox(
             width: width,
             height: height,
-            color: placeholderColor != null ? placeholderColor : context.theme.highlightColor,
+            child: placeholder,
           );
-        }
-        return SizedBox(
-          width: width,
-          height: height,
-          child: placeholder,
-        );
-      },
-      errorWidget: (BuildContext context, String url, dynamic error) =>
-          const Icon(Icons.error),
-      imageUrl: url,
+        },
+        errorWidget: (BuildContext context, String url, dynamic error) =>
+        const Icon(Icons.error),
+        imageUrl: url,
+      ),
     );
   }
   Widget? result;

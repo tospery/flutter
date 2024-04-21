@@ -77,6 +77,10 @@ class HiNavigator {
       }
       return Get.toNamed(route!, arguments: myParameters);
     } catch (e) {
+      if (url?.isValidHttpUrl ?? false) {
+        myParameters[HiParameter.url] = url;
+        return Get.toNamed('/${HiRouter.hosts.web}', arguments: myParameters);
+      }
       log("导航错误：$e");
       return null;
     }

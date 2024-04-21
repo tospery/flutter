@@ -3,6 +3,7 @@ import 'package:hi_flutter/src/routes/base_page.dart';
 import 'package:hi_flutter/src/routes/list_controller.dart';
 import 'package:hi_flutter/src/widget/refresh_view.dart';
 import 'package:hi_flutter/src/extension/context.dart';
+import 'package:hi_flutter/src/core/function.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -25,13 +26,15 @@ abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
   }
 
   @override
-  Widget buildSuccessView(BuildContext context) => ListView.separated(
-    padding: EdgeInsets.only(bottom: context.safeArea.bottom),
-    shrinkWrap: true,
-    itemCount: controller.dataSource.length,
-    itemBuilder: buildItemView,
-    separatorBuilder: buildSeparator,
-  );
+  Widget buildSuccessView(BuildContext context) {
+    return ListView.separated(
+      padding: EdgeInsets.only(bottom: safeArea.bottom),
+      shrinkWrap: true,
+      itemCount: controller.dataSource.length,
+      itemBuilder: buildItemView,
+      separatorBuilder: buildSeparator,
+    );
+  }
 
   Widget? buildItemView(BuildContext context, int index) => controller.dataSource[index].cell(onPressed: controller.doPressed, onChanged: controller.doChanged);
   Widget buildSeparator(BuildContext context, int index) => controller.dataSource[index].separator ?? Container();
