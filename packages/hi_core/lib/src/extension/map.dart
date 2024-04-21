@@ -53,7 +53,7 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
       return value.map((e) => fromValue!(e)).toList();
     }
     if (fromJson != null) {
-      value.map((e) => fromJson!(e)).toList();
+      return value.map((e) => fromJson!(e)).toList();
     }
     return null;
   }

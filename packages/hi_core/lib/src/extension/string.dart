@@ -26,15 +26,26 @@ extension StringHiCoreEx on String {
   // }
 
   Color? toColor() {
-    var hexString = toUpperCase().replaceAll('#', '');
+    // // 去掉可能包含的#符号
+    // hexColor = hexColor.replaceAll("#", "");
+    // // 将字符串解析为整数，然后将其转换为Color对象
+    // return Color(int.parse('0xff$hexColor'));
+
+    final hexString = this.replaceAll("#", "");
     if (hexString.length == 6) {
-      hexString += 'FF';
+      return Color(int.tryParse("0xFF$hexString") ?? 0);
     }
-    var intValue = int.tryParse(hexString, radix: 16);
-    if (intValue == null) {
-      return null;
-    }
-    return Color(intValue);
+    return Color(int.tryParse("0x$hexString") ?? 0);
+
+    // var hexString = toUpperCase().replaceAll('#', '');
+    // if (hexString.length == 6) {
+    //   hexString += 'FF';
+    // }
+    // var intValue = int.tryParse(hexString, radix: 16);
+    // if (intValue == null) {
+    //   return null;
+    // }
+    // return Color(intValue);
 
     // if (length < 7) {
     //   return null;
