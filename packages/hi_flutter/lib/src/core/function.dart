@@ -73,7 +73,7 @@ double metricHeight(
   return height / designHeight * deviceHeight;
 }
 
-double pixelOne(BuildContext? context) {
+double pixelOne({BuildContext? context}) {
   final ctx = context ?? Get.overlayContext;
   if (ctx == null) {
     return 1;

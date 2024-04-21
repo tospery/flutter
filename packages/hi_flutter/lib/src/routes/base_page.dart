@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 import 'package:hi_flutter/src/routes/tabs_controller.dart';
 import 'package:hi_flutter/src/core/function.dart';
@@ -40,16 +40,16 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
             overflow: TextOverflow.ellipsis,
             style: context.theme.tsFg(22),
           ),
-          // navigator.canPop() == false || navigator.userGestureInProgress == false
-          leading: InkWell(
+          leading: ((navigator?.canPop() ?? false) || (navigator?.userGestureInProgress ?? false)) ? InkWell(
             onTap: () {
               Get.back();
             },
             child: Icon(
-              CupertinoIcons.back,
+              Icons.arrow_back_ios_new_rounded,
               color: context.theme.fgColor,
+              size: 24,
             ),
-          ),
+          ) : null,
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(1.0),
             child: Divider(
