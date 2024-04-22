@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/cupertino.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
-import 'package:hi_flutter/src/routes/tabs_controller.dart';
+import 'package:hi_flutter/src/routes/tabbar_controller.dart';
 import 'package:hi_flutter/src/core/function.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
@@ -173,18 +172,18 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
     if (widget.lifecycle != null) {
       WidgetsBinding.instance.addObserver(this);
     }
-    if (widget.controller is HiTabsController) {
-      var tabsController = widget.controller as HiTabsController;
-      tabsController.tabController =
-          TabController(length: tabsController.tabs.length, vsync: this);
-      tabsController.tabController.addListener(() {
-        if (!tabsController.tabController.indexIsChanging) {
-          log('选中tab: ${tabsController.tabController.index}');
-          appear(tabsController.tabController.index);
+    if (widget.controller is HiTabBarController) {
+      var tabBarController = widget.controller as HiTabBarController;
+      tabBarController.tabController =
+          TabController(length: tabBarController.tabs.length, vsync: this);
+      tabBarController.tabController.addListener(() {
+        if (!tabBarController.tabController.indexIsChanging) {
+          log('选中tab: ${tabBarController.tabController.index}');
+          appear(tabBarController.tabController.index);
         }
       });
       var index = Get.parameters.intValue(HiParameter.index) ?? 0;
-      tabsController.tabController.index = index;
+      tabBarController.tabController.index = index;
     }
     widget.initState();
   }
@@ -210,9 +209,9 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
 
   @override
   void dispose() {
-    if (widget.controller is HiTabsController) {
-      var tabsController = widget.controller as HiTabsController;
-      tabsController.tabController.dispose();
+    if (widget.controller is HiTabBarController) {
+      var tabBarController = widget.controller as HiTabBarController;
+      tabBarController.tabController.dispose();
     }
     Get.delete<C>(tag: widget.tag);
     if (widget.lifecycle != null) {
@@ -247,9 +246,9 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
   @override
   void didPopNext() {
     log('首页生命周期: didPopNext->viewWillAppear');
-    if (widget.controller is HiTabsController) {
-      var tabsController = widget.controller as HiTabsController;
-      appear(tabsController.tabController.index);
+    if (widget.controller is HiTabBarController) {
+      var tabBarController = widget.controller as HiTabBarController;
+      appear(tabBarController.tabController.index);
     }
   }
 

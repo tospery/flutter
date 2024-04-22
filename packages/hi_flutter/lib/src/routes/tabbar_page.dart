@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/routes/base_page.dart';
 import 'package:hi_flutter/src/extension/context.dart';
-import 'package:hi_flutter/src/routes/tabs_controller.dart';
-import 'package:hi_flutter/src/widget/tab_bar_item.dart';
+import 'package:hi_flutter/src/routes/tabbar_controller.dart';
+import 'package:hi_flutter/src/widget/tabbar_item.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
-abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
+abstract class HiTabBarPage<C extends HiTabBarController> extends HiBasePage<C> {
 
-  const HiTabsPage({super.key});
+  const HiTabBarPage({super.key});
 
   @override
   initState() {
