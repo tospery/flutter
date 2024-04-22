@@ -5,8 +5,10 @@ import 'package:hi_network/hi_network.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
 class HiBaseController<M extends HiModel> extends FullLifeCycleController {
-  var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   late var hideAppBar;
+  late String host;
+  late String? path;
+  var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
   var requestMode = HiRequestMode.none.obs;
   var dataSource = <M>[].obs;
   var error = Rx<HiError?>(null);
