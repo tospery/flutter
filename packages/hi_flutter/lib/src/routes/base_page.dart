@@ -26,11 +26,12 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
     return Scaffold(
       appBar: appBar(context),
       body: body(context),
+      bottomNavigationBar: bottomNavigationBar(context),
     );
   }
 
   PreferredSizeWidget? appBar(BuildContext context) {
-    return controller.hideAppBar.value
+    return controller.hideAppBar
         ? null
         :
         GFAppBar(
@@ -110,6 +111,8 @@ abstract class HiBasePage<C extends HiBaseController> extends StatefulWidget {
       ),
     );
   }
+
+  Widget? bottomNavigationBar(BuildContext context) => null;
 
   Widget buildLoadingView(BuildContext context) => Lottie.asset(
     R.assets.animation.loading,

@@ -6,7 +6,7 @@ import 'package:hi_navigator/hi_navigator.dart';
 
 class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   var title = RxnString(null); // 采用响应式的原因在于便于在Web页面中使用
-  var hideAppBar = false.obs;
+  late var hideAppBar;
   var requestMode = HiRequestMode.none.obs;
   var dataSource = <M>[].obs;
   var error = Rx<HiError?>(null);
@@ -37,7 +37,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     url = parameters.stringValue(HiParameter.url) ?? "";
     log('url: $url', tag: HiLogTag.frame);
     title.value = parameters.stringValue(HiParameter.title);
-    hideAppBar.value = parameters.boolValue(HiParameter.hideAppBar) ?? false;
+    hideAppBar = parameters.boolValue(HiParameter.hideAppBar) ?? false;
     pageFirst = parameters.intValue(HiParameter.pageFirst) ?? 1;
     user = Get.find<HiUser>().obs;
     configuration = Get.find<HiConfiguration>().obs;

@@ -3,6 +3,7 @@ import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/routes/base_page.dart';
 import 'package:hi_flutter/src/extension/context.dart';
 import 'package:hi_flutter/src/routes/tabs_controller.dart';
+import 'package:hi_flutter/src/widget/tab_bar_item.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 
 abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
@@ -25,12 +26,67 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
     //     ],
     //   ),
     // );
-    return ListView(
-      children: [
-        _buildTabBar(context),
-        _buildTabBarView(context),
-      ],
+    if (!controller.isTop) {
+      return ListView(
+        children: [
+          _buildTabBar(context),
+          _buildTabBarView(context),
+        ],
+      );
+    }
+    return _buildTabBarView(context);
+  }
+
+  Widget? bottomNavigationBar(BuildContext context) {
+    if (!controller.isTop) {
+      return null;
+    }
+    return Container(
+      child: GFTabBar(
+        length: controller.tabs.length,
+        controller: controller.tabController,
+        tabs: controller.tabs.map((e) => HiTabBarItem(title: e.title, image: e.image,)).toList(),
+        indicator: const BoxDecoration(),
+        labelColor: context.theme.primaryColor,
+        tabBarColor: context.theme.bgColor,
+        unselectedLabelColor: context.theme.fgColor,
+      ),
     );
+    // return Container(
+    //   color: Colors.white,
+    //   child: SafeArea(
+    //     bottom: true,
+    //     child: Container(
+    //       height: 65,
+    //       color: Colors.white,
+    //       // decoration: hiShadowDecoration(radius: 0),
+    //       child: TabBar(
+    //         indicator: const BoxDecoration(),
+    //         labelColor: context.theme.primaryColor, //Colors.red,
+    //         unselectedLabelColor: Colors.black,
+    //         controller: tabController,
+    //         tabs: [
+    //           HiTabBarItem(
+    //             title: R.strings.trending.tr,
+    //             iconData: Icons.turned_in,
+    //           ),
+    //           HiTabBarItem(
+    //             title: R.strings.events.tr,
+    //             iconData: Icons.send,
+    //           ),
+    //           HiTabBarItem(
+    //             title: R.strings.favorited.tr,
+    //             iconData: Icons.favorite,
+    //           ),
+    //           HiTabBarItem(
+    //             title: R.strings.personal.tr,
+    //             iconData: Icons.person,
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 
   _buildTabBar(BuildContext context) {

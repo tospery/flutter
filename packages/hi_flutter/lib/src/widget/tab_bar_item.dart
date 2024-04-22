@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class HiTabBarItem extends StatelessWidget {
   final String? title;
-  final IconData? iconData;
+  final Widget? image;
 
   const HiTabBarItem({
     super.key,
     this.title,
-    this.iconData,
+    this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Tab(
       text: title,
-      icon: Icon(iconData),
+      icon: image,
       iconMargin: const EdgeInsets.all(4),
     );
   }

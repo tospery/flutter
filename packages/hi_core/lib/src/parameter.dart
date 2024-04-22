@@ -12,6 +12,7 @@ class HiParameter {
   static const text = 'text';
   static const name = 'name';
   static const tabs = 'tabs';
+  static const isTop = 'isTop';
   static const items = 'items';
   static const links = 'links';
   static const token = 'token';
