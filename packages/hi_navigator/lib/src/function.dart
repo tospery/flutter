@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hi_core/hi_core.dart';
+import 'package:hi_navigator/src/navigator.dart';
 
-Map<String, dynamic> routeParameters(Map<String, dynamic> parameters, dynamic context) {
+Map<String, dynamic> routeParameters(
+    Map<String, dynamic> parameters, dynamic context) {
   var myParameters = <String, dynamic>{};
   myParameters.addAll(parameters);
   if (context != null) {
@@ -38,3 +40,9 @@ Widget? routeWidget(String url, {BuildContext? context, bool? isOverlay}) {
   }
   return page.page();
 }
+
+String routeString(String host,
+        {String? path, Map<String, dynamic>? parameters}) =>
+    Uri(host: host, path: path, queryParameters: parameters)
+        .toString()
+        .toRoute(baseWeb: HiNavigator.shared().baseWeb);
