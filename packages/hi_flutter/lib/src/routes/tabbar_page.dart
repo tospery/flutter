@@ -8,7 +8,7 @@ import 'package:hi_navigator/hi_navigator.dart';
 
 abstract class HiTabBarPage<C extends HiTabBarController> extends HiBasePage<C> {
 
-  const HiTabBarPage({super.key});
+  const HiTabBarPage({super.key, super.tag});
 
   @override
   initState() {
@@ -26,7 +26,7 @@ abstract class HiTabBarPage<C extends HiTabBarController> extends HiBasePage<C> 
     //     ],
     //   ),
     // );
-    if (!controller.isTop) {
+    if (controller.isTop) {
       return ListView(
         children: [
           _buildTabBar(context),
@@ -38,7 +38,7 @@ abstract class HiTabBarPage<C extends HiTabBarController> extends HiBasePage<C> 
   }
 
   Widget? bottomNavigationBar(BuildContext context) {
-    if (!controller.isTop) {
+    if (controller.isTop) {
       return null;
     }
     return GFTabBar(
