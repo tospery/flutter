@@ -41,16 +41,15 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
     if (!controller.isTop) {
       return null;
     }
-    return Container(
-      child: GFTabBar(
-        length: controller.tabs.length,
-        controller: controller.tabController,
-        tabs: controller.tabs.map((e) => HiTabBarItem(title: e.title, image: e.image,)).toList(),
-        indicator: const BoxDecoration(),
-        labelColor: context.theme.primaryColor,
-        tabBarColor: context.theme.bgColor,
-        unselectedLabelColor: context.theme.fgColor,
-      ),
+    return GFTabBar(
+      length: controller.tabs.length,
+      controller: controller.tabController,
+      tabs: controller.tabs.map((e) => HiTabBarItem(title: e.title, image: e.image,)).toList(),
+      indicator: const BoxDecoration(),
+      labelColor: context.theme.primaryColor,
+      tabBarHeight: controller.tabBarHeight + context.safeArea.bottom,
+      tabBarColor: context.theme.bgColor,
+      unselectedLabelColor: context.theme.fgColor,
     );
     // return Container(
     //   color: Colors.white,
@@ -115,8 +114,9 @@ abstract class HiTabsPage<C extends HiTabsController> extends HiBasePage<C> {
     // ),
     // );
     // log("看看上下：${context.safeArea}");
+    // log("看看高度: ${context.height}, ${context.safeArea}");
     return GFTabBarView(
-      height: context.height - context.safeArea.top - kToolbarHeight - controller.tabBarHeight,
+      height: context.height - controller.tabBarHeight - context.safeArea.bottom,
       controller: controller.tabController,
       children: controller.tabs.map((e) => buildTabPage(context, e)).toList(),
     );

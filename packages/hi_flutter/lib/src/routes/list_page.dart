@@ -28,7 +28,7 @@ abstract class HiListPage<C extends HiListController> extends HiBasePage<C> {
   @override
   Widget buildSuccessView(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.only(bottom: safeArea.bottom),
+      // padding: EdgeInsets.only(bottom: safeArea.bottom),
       shrinkWrap: true,
       itemCount: controller.dataSource.length,
       itemBuilder: buildItemView,

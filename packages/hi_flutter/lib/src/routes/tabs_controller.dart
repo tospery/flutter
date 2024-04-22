@@ -16,7 +16,7 @@ class HiTabsController<T extends TabItemType> extends HiBaseController {
     super.onInit();
     hideAppBar = parameters.boolValue(HiParameter.hideAppBar) ?? true;
     isTop = parameters.boolValue(HiParameter.isTop) ?? false;
-    tabBarHeight = parameters.doubleValue(HiParameter.tabBarHeight) ?? 50;
+    tabBarHeight = parameters.doubleValue(HiParameter.tabBarHeight) ?? kBottomNavigationBarHeight;
   }
 
 }

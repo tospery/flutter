@@ -165,7 +165,8 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
     with
         SingleTickerProviderStateMixin,
         AutomaticKeepAliveClientMixin<HiBasePage>,
-        WidgetsBindingObserver {
+        WidgetsBindingObserver,
+        RouteAware {
   @override
   void initState() {
     super.initState();
@@ -176,8 +177,23 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
       var tabsController = widget.controller as HiTabsController;
       tabsController.tabController =
           TabController(length: tabsController.tabs.length, vsync: this);
+      tabsController.tabController.addListener(() {
+        if (!tabsController.tabController.indexIsChanging) {
+          log('选中tab: ${tabsController.tabController.index}');
+          appear(tabsController.tabController.index);
+        }
+      });
+      var index = Get.parameters.intValue(HiParameter.index) ?? 0;
+      tabsController.tabController.index = index;
     }
     widget.initState();
+  }
+
+  void appear(int index) {
+    // if (index == 3) {
+    //   var personalPage = pages[index] as PersonalPage;
+    //   personalPage.controller.appear();
+    // }
   }
 
   @override
@@ -202,6 +218,7 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
     if (widget.lifecycle != null) {
       WidgetsBinding.instance.removeObserver(this);
     }
+    HiNavigator.shared().routeObserver.unsubscribe(this);
     super.dispose();
   }
 
@@ -211,8 +228,33 @@ class HiBasePageState<C extends HiBaseController> extends State<HiBasePage>
     if (widget.lifecycle != null) {
       widget.lifecycle(state);
     }
+    HiNavigator.shared().routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void didPush() {
+    log('首页生命周期: didPush->viewWillAppear');
+  }
+
+  @override
+  void didPop() {
+    log('首页生命周期: didPop->viewWillDisappear');
+  }
+
+  @override
+  void didPopNext() {
+    log('首页生命周期: didPopNext->viewWillAppear');
+    if (widget.controller is HiTabsController) {
+      var tabsController = widget.controller as HiTabsController;
+      appear(tabsController.tabController.index);
+    }
+  }
+
+  @override
+  void didPushNext() {
+    log('首页生命周期: didPushNext->viewWillDisappear');
+  }
 }
