@@ -1,0 +1,1 @@
+hi config platform interface
