@@ -7,15 +7,11 @@ class MethodChannelHiConfig extends HiConfigPlatform {
   final methodChannel = const MethodChannel('hi_config');
 
   @override
-  Future show({
-    required String title,
-    required Uint8List imageData,
-    required String urlString,
-  }) async {
-    final result = await methodChannel.invokeMethod(
-      'show',
-      [title, imageData, urlString],
-    );
+  Future<String?> baseLink() async {
+    final result = await methodChannel.invokeMethod('baseLink');
+    if (result is! String) {
+      return null;
+    }
     return result;
   }
 }
