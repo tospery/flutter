@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - hi_config_ios (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - hi_config_ios (from `.symlinks/plugins/hi_config_ios/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  hi_config_ios:
+    :path: ".symlinks/plugins/hi_config_ios/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  hi_config_ios: b52b649e68ab086d88d1e9e82cf4468f998c563f
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.15.2

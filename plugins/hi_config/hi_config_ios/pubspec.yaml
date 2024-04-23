@@ -2,16 +2,24 @@ name: hi_config_ios
 description: iOS implementation of the hi_config plugin.
 repository: https://github.com/tospery/flutter/tree/main/plugins/hi_config/hi_config_ios
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_config%22
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: '>=2.19.0 <4.0.0'
   flutter: ">=2.5.0"
 
+flutter:
+  plugin:
+    implements: hi_config
+    platforms:
+      ios:
+        pluginClass: FLTHiConfigPlugin
+        dartPluginClass: HiConfigIOS
+
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.0
+  hi_config_platform_interface: ^1.0.0
 
 dev_dependencies:
   flutter_test:
