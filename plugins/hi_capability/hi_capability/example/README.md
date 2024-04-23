@@ -1,6 +1,6 @@
-# hi_capability_example
+# hi_share_example
 
-Demonstrates how to use the hi_capability plugin.
+Demonstrates how to use the hi_share plugin.
 
 ## Getting Started
 

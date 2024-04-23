@@ -1,0 +1,27 @@
+name: hi_capability_ios
+description: iOS implementation of the hi_capability plugin.
+repository: https://github.com/tospery/flutter/tree/main/plugins/hi_capability/hi_capability_ios
+issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_capability%22
+version: 1.0.0
+
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+  flutter: ">=2.5.0"
+
+flutter:
+  plugin:
+    implements: hi_capability
+    platforms:
+      ios:
+        pluginClass: FLTHiCapabilityPlugin
+        dartPluginClass: HiCapabilityIOS
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hi_capability_platform_interface: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  test: ^1.16.3

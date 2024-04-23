@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'dart:developer';
+import 'dart:ui' as UI;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hi_capability/hi_capability.dart';
+import 'package:hi_share/hi_share.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,48 +17,69 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _hiCapabilityPlugin = HiCapability();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _hiCapabilityPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('hi_share'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: InkWell(
+            onTap: _doTap,
+            child: const Text('调用方法'),
+          ),
         ),
       ),
     );
   }
+
+  void _doTap() async {
+    var asset = AssetImage('res/event_icon.png');
+    var image = await myloadImageByProvider(asset);
+    var data = await image.toByteData(format: UI.ImageByteFormat.png);
+    var uint8 = data?.buffer.asUint8List();
+
+    var result = await HiShare.shared().show(
+      title: 'aabbccc',
+      imageData: uint8!,
+      urlString: 'https://www.youdao.com/result?word=foobar&lang=en',
+    );
+    log('result: $result');
+  }
+}
+
+// https://www.jianshu.com/p/ffb4b58f0aa9/
+
+// Future<UI.Image> loadImageByProvider(
+//   ImageProvider provider, {
+//   ImageConfiguration config = ImageConfiguration.empty,
+// }) async {
+//   Completer<UI.Image> completer = Completer<UI.Image>(); //完成的回调
+//   ImageStream stream = provider.resolve(config); //获取图片流
+//   ImageStreamListener listener =
+//       ImageStreamListener((ImageInfo frame, bool sync) {
+//     final UI.Image image = frame.image;
+//     completer.complete(image); //完成
+//     // stream.removeListener(listener); //移除监听
+//   });
+//   stream.addListener(listener); //添加监听
+//   return completer.future; //返回
+// }
+
+Future<UI.Image> myloadImageByProvider(
+  ImageProvider provider, {
+  ImageConfiguration config = ImageConfiguration.empty,
+}) async {
+  Completer<UI.Image> completer = Completer<UI.Image>(); //完成的回调
+  ImageStreamListener? listener;
+  ImageStream stream = provider.resolve(config); //获取图片流
+  listener = ImageStreamListener((ImageInfo frame, bool sync) {
+//监听
+    final UI.Image image = frame.image;
+    completer.complete(image); //完成
+    stream.removeListener(listener!); //移除监听
+  });
+  stream.addListener(listener); //添加监听
+  return completer.future; //返回
 }
