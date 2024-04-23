@@ -11,8 +11,7 @@ public class SwiftHiConfigPlugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
       if call.method == "baseLink" {
           guard
-            let info = Bundle.main.infoDictionary,
-            let types = info["CFBundleURLName"] as? Array<Dictionary<String, Any>>
+            let types = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? Array<Dictionary<String, Any>>
           else {
               result(nil)
               return
