@@ -8,10 +8,6 @@ class MethodChannelHiConfig extends HiConfigPlatform {
 
   @override
   Future<String?> baseLink() async {
-    final result = await methodChannel.invokeMethod('baseLink');
-    if (result is! String) {
-      return null;
-    }
-    return result;
+    return methodChannel.invokeMethod<String>('baseLink');
   }
 }
