@@ -8,10 +8,19 @@ environment:
   sdk: '>=2.19.0 <4.0.0'
   flutter: ">=2.5.0"
 
+flutter:
+  plugin:
+    implements: hi_config
+    platforms:
+      android:
+        package: com.jianxiang.plugins.hiconfig
+        pluginClass: HiConfigPlugin
+        dartPluginClass: HiConfigAndroid
+
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.0
+  hi_config_platform_interface: ^1.0.0
 
 dev_dependencies:
   flutter_test:
