@@ -1,6 +1,5 @@
 package com.jianxiang.plugins.hiconfig
 
-import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -11,13 +10,13 @@ class HiConfigPlugin: FlutterPlugin, MethodCallHandler {
     private lateinit var channel : MethodChannel
 
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "plugins.jianxiang.com/hi_config_config")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "plugins.jianxiang.com/hi_config_android")
         channel.setMethodCallHandler(this)
     }
 
     override fun onMethodCall(call: MethodCall, result: Result) {
-        if (call.method == "getPlatformVersion") {
-            result.success("Android ${android.os.Build.VERSION.RELEASE}")
+        if (call.method == "baseLink") {
+            result.success("Android result")
         } else {
             result.notImplemented()
         }
