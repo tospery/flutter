@@ -4,7 +4,7 @@ import 'hi_config_platform.dart';
 
 class MethodChannelHiConfig extends HiConfigPlatform {
   @visibleForTesting
-  final methodChannel = const MethodChannel('hi_config');
+  final methodChannel = const MethodChannel('plugins.jianxiang.com/hi_config');
 
   @override
   Future<String?> baseLink() async {

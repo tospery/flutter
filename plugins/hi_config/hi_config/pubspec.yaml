@@ -2,16 +2,26 @@ name: hi_config
 description: Flutter plugin for native configuration.
 repository: https://github.com/tospery/flutter/tree/main/plugins/hi_config
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_config%22
-version: 1.0.0
+version: 1.0.1
 
 environment:
   sdk: '>=2.19.0 <4.0.0'
   flutter: ">=2.5.0"
 
+flutter:
+  plugin:
+    platforms:
+      android:
+        default_package: hi_config_android
+      ios:
+        default_package: hi_config_ios
+
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.0
+  hi_config_android: ^1.0.0
+  hi_config_ios: ^1.0.0
+  hi_config_platform_interface: ^1.0.0
 
 dev_dependencies:
   flutter_test:

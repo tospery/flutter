@@ -4,7 +4,7 @@ import 'hi_share_platform.dart';
 
 class MethodChannelHiShare extends HiSharePlatform {
   @visibleForTesting
-  final methodChannel = const MethodChannel('hi_share');
+  final methodChannel = const MethodChannel('plugins.jianxiang.com/hi_config_ios');
 
   @override
   Future show({
