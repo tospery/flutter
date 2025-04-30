@@ -22,11 +22,15 @@ class LogValueNotifier extends SafeValueNotifier<List<LogInfo>> {
   }
 }
 
-typedef LogPanelBuilder = Widget Function(
-    LogValueNotifier? listenable, BoxConstraints constraints);
+typedef LogPanelBuilder =
+    Widget Function(LogValueNotifier? listenable, BoxConstraints constraints);
 
-typedef VerticalLogPanelBuilder = Widget Function(LogValueNotifier? listenable,
-    BoxConstraints constraints, bool mergeDuplicateLogs);
+typedef VerticalLogPanelBuilder =
+    Widget Function(
+      LogValueNotifier? listenable,
+      BoxConstraints constraints,
+      bool mergeDuplicateLogs,
+    );
 
 class LogNotifier extends ValueNotifier<LogInfo> {
   LogNotifier(LogInfo value) : super(value);
@@ -34,7 +38,7 @@ class LogNotifier extends ValueNotifier<LogInfo> {
 
 class LogListener extends LogValueNotifier {
   LogListener(this.emitter, [List<LogInfo>? value])
-      : super(value ?? <LogInfo>[]);
+    : super(value ?? <LogInfo>[]);
 
   static const logEvent = '_log';
 
@@ -92,7 +96,9 @@ class LogInfo {
 }
 
 Widget defaultLogPanelBuilder(
-    LogValueNotifier? listenable, BoxConstraints constraints) {
+  LogValueNotifier? listenable,
+  BoxConstraints constraints,
+) {
   return LogPanel(
     minHeight: constraints.minHeight,
     maxHeight: constraints.maxHeight,
@@ -113,67 +119,71 @@ mixin LogPanelMixin {
     double? minHeight,
   }) {
     if (!showLogPanel) return child;
-    return LayoutBuilder(builder: (context, constraints) {
-      child = MediaQuery.removePadding(
-        context: context,
-        removeBottom: true,
-        child: child,
-      );
-      minHeight = minHeight ?? (constraints.maxHeight / 3);
-      _maxHeight = _maxHeight ?? minHeight!;
-      //Zone.root.print('LayoutBuilder');
-      return StatefulBuilder(builder: (context, setState) {
-        return Stack(
-          children: [
-            Positioned(
-              top: 0,
-              child: AfterLayout(
-                callback: (RenderAfterLayout ral) {
-                  final newMaxLogHeight =
-                      constraints.maxHeight - ral.size.height;
-                  // newMaxLogHeight:274.33333333333326, minHeight:274.3333333333333
-                  // newMaxLogHeight may less than minHeight a bit.
-                  if (newMaxLogHeight - minHeight! >= 0 &&
-                      _maxHeight != newMaxLogHeight) {
-                    setState(() => _maxHeight = newMaxLogHeight);
-                  }
-                },
-                child: ConstrainedBox(
-                  constraints: constraints.copyWith(
-                    minHeight: 0,
-                    maxHeight: constraints.maxHeight - minHeight!,
-                  ),
-                  // 防止绘制阶段调用print显示log而触发重绘导致死循环。
-                  child: RepaintBoundary(child: child),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: RepaintBoundary(
-                child: Builder(
-                  builder: (context) {
-                    return MediaQuery.removePadding(
-                      removeTop: true,
-                      context: context,
-                      child: logPanelBuilder(
-                        logNotifier,
-                        constraints.copyWith(
-                          minHeight: minHeight,
-                          maxHeight: _maxHeight,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        child = MediaQuery.removePadding(
+          context: context,
+          removeBottom: true,
+          child: child,
         );
-      });
-    });
+        minHeight = minHeight ?? (constraints.maxHeight / 3);
+        _maxHeight = _maxHeight ?? minHeight!;
+        //Zone.root.print('LayoutBuilder');
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  child: AfterLayout(
+                    callback: (RenderAfterLayout ral) {
+                      final newMaxLogHeight =
+                          constraints.maxHeight - ral.size.height;
+                      // newMaxLogHeight:274.33333333333326, minHeight:274.3333333333333
+                      // newMaxLogHeight may less than minHeight a bit.
+                      if (newMaxLogHeight - minHeight! >= 0 &&
+                          _maxHeight != newMaxLogHeight) {
+                        setState(() => _maxHeight = newMaxLogHeight);
+                      }
+                    },
+                    child: ConstrainedBox(
+                      constraints: constraints.copyWith(
+                        minHeight: 0,
+                        maxHeight: constraints.maxHeight - minHeight!,
+                      ),
+                      // 防止绘制阶段调用print显示log而触发重绘导致死循环。
+                      child: RepaintBoundary(child: child),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: RepaintBoundary(
+                    child: Builder(
+                      builder: (context) {
+                        return MediaQuery.removePadding(
+                          removeTop: true,
+                          context: context,
+                          child: logPanelBuilder(
+                            logNotifier,
+                            constraints.copyWith(
+                              minHeight: minHeight,
+                              maxHeight: _maxHeight,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 }
 
@@ -215,8 +225,11 @@ class VerticalLogPanel extends StatefulWidget {
   /// Merge adjacent duplicate logs
   final bool mergeDuplicateLogs;
 
-  static Widget defaultLogBuilder(LogValueNotifier? listenable,
-      BoxConstraints constraints, bool mergeDuplicateLogs) {
+  static Widget defaultLogBuilder(
+    LogValueNotifier? listenable,
+    BoxConstraints constraints,
+    bool mergeDuplicateLogs,
+  ) {
     return LogPanel(
       minHeight: constraints.minHeight,
       maxHeight: constraints.maxHeight,
@@ -383,15 +396,12 @@ class LogListenerScopeState extends LogState<LogListenerScope> {
 
   @override
   Widget build(BuildContext context) {
-    return super.buildLogPanel(
-      widget.child,
-      showLogPanel: widget.showLogPanel,
-    );
+    return super.buildLogPanel(widget.child, showLogPanel: widget.showLogPanel);
   }
 }
 
-typedef LogItemBuilder = Widget Function(
-    BuildContext context, LogInfo logInfo, bool isFullScreen);
+typedef LogItemBuilder =
+    Widget Function(BuildContext context, LogInfo logInfo, bool isFullScreen);
 
 /// A widget to show redirected logs from `print`.
 ///
@@ -424,7 +434,10 @@ class LogPanel extends StatefulWidget {
   final bool mergeDuplicateLogs;
 
   static Widget defaultItemBuilder(
-      BuildContext context, LogInfo logInfo, bool isFullScreen) {
+    BuildContext context,
+    LogInfo logInfo,
+    bool isFullScreen,
+  ) {
     Widget? times;
 
     if (logInfo.times > 1) {
@@ -435,8 +448,10 @@ class LogPanel extends StatefulWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-          child: Text('${logInfo.times}',
-              textScaler: const TextScaler.linear(0.9)),
+          child: Text(
+            '${logInfo.times}',
+            textScaler: const TextScaler.linear(0.9),
+          ),
         ),
       );
     }
@@ -481,14 +496,10 @@ class _LogPanelState extends State<LogPanel> {
   void _jumpToListEnd() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        _controller.jumpTo(
-          _controller.position.maxScrollExtent,
-        );
+        _controller.jumpTo(_controller.position.maxScrollExtent);
       }
     });
-    _controller.jumpTo(
-      _controller.position.maxScrollExtent,
-    );
+    _controller.jumpTo(_controller.position.maxScrollExtent);
   }
 
   //合并相邻重复日志
@@ -511,24 +522,24 @@ class _LogPanelState extends State<LogPanel> {
         return;
       }
       // 对重复日志进行合并
-      final newLogs = list.sublist(_lastLength, list.length).fold(
-        <LogInfo>[],
-        (List<LogInfo> previousValue, element) {
-          if (_last == null) {
-            _last = element..times = 1;
-            return previousValue..add(_last!);
-          } else {
-            if (_last!.isEqual(element)) {
-              //如果日志和上一条相同，则更新上一条日志的times
-              _last!.times++;
-              return previousValue;
-            }
-            //和上一条不同
-            _last = element..times = 1;
-            return previousValue..add(_last!);
+      final newLogs = list.sublist(_lastLength, list.length).fold(<LogInfo>[], (
+        List<LogInfo> previousValue,
+        element,
+      ) {
+        if (_last == null) {
+          _last = element..times = 1;
+          return previousValue..add(_last!);
+        } else {
+          if (_last!.isEqual(element)) {
+            //如果日志和上一条相同，则更新上一条日志的times
+            _last!.times++;
+            return previousValue;
           }
-        },
-      );
+          //和上一条不同
+          _last = element..times = 1;
+          return previousValue..add(_last!);
+        }
+      });
       _lastLength = list.length;
       _listenable.value.addAll(newLogs);
     }
@@ -592,9 +603,7 @@ class _LogPanelState extends State<LogPanel> {
     return Material(
       child: SizedBox(
         height: _height,
-        child: Column(
-          children: [wTools(context), Expanded(child: wLogList())],
-        ),
+        child: Column(children: [wTools(context), Expanded(child: wLogList())]),
       ),
     );
   }
@@ -611,58 +620,60 @@ class _LogPanelState extends State<LogPanel> {
     return Material(
       color: _drag ? Colors.blue.shade100 : Colors.grey.shade100,
       elevation: 1,
-      child: Row(children: [
-        const Text('  日志', style: TextStyle(fontWeight: FontWeight.bold)),
-        if (_draggable)
-          Expanded(
-            child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onVerticalDragUpdate: (details) {
-                var newHeight = _height - details.delta.dy;
-                if (newHeight != _height) {
-                  setState(() {
-                    height = newHeight;
-                  });
-                }
-              },
-              onVerticalDragDown: (details) {
-                if (_draggable) {
-                  setState(() {
-                    _drag = true;
-                  });
-                }
-              },
-              onVerticalDragEnd: dragEnd,
-              onVerticalDragCancel: () => dragEnd(null),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 14.0),
-                  child: Text(
-                    _canExpanded ? '向上拖动可增大日志显示空间' : '向下拖动可缩小日志显示空间',
-                    textScaler: const TextScaler.linear(0.9),
-                    style: const TextStyle(color: Colors.grey),
+      child: Row(
+        children: [
+          const Text('  日志', style: TextStyle(fontWeight: FontWeight.bold)),
+          if (_draggable)
+            Expanded(
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onVerticalDragUpdate: (details) {
+                  var newHeight = _height - details.delta.dy;
+                  if (newHeight != _height) {
+                    setState(() {
+                      height = newHeight;
+                    });
+                  }
+                },
+                onVerticalDragDown: (details) {
+                  if (_draggable) {
+                    setState(() {
+                      _drag = true;
+                    });
+                  }
+                },
+                onVerticalDragEnd: dragEnd,
+                onVerticalDragCancel: () => dragEnd(null),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 14.0),
+                    child: Text(
+                      _canExpanded ? '向上拖动可增大日志显示空间' : '向下拖动可缩小日志显示空间',
+                      textScaler: const TextScaler.linear(.9),
+                      style: const TextStyle(color: Colors.grey),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        else
-          const Spacer(),
-        IconButton(
-          onPressed: () {
-            // 清空日志
-            _originalListenable.value.clear();
-            _listenable.value.clear();
-            // 触发_mergeLog执行，最终会通知 ValueListenableBuilder 重新 build
-            _originalListenable.notifyListenersUnsafe();
-          },
-          icon: const Icon(Icons.delete_outline),
-        ),
-        IconButton(
-          onPressed: () => _openFullScreen(context),
-          icon: const Icon(Icons.fullscreen_exit_sharp),
-        ),
-      ]),
+            )
+          else
+            const Spacer(),
+          IconButton(
+            onPressed: () {
+              // 清空日志
+              _originalListenable.value.clear();
+              _listenable.value.clear();
+              // 触发_mergeLog执行，最终会通知 ValueListenableBuilder 重新 build
+              _originalListenable.notifyListenersUnsafe();
+            },
+            icon: const Icon(Icons.delete_outline),
+          ),
+          IconButton(
+            onPressed: () => _openFullScreen(context),
+            icon: const Icon(Icons.fullscreen_exit_sharp),
+          ),
+        ],
+      ),
     );
   }
 
@@ -680,10 +691,7 @@ class _LogPanelState extends State<LogPanel> {
         );
       },
     );
-    return Scrollbar(
-      controller: fullScreen ? null : _controller,
-      child: child,
-    );
+    return Scrollbar(controller: fullScreen ? null : _controller, child: child);
   }
 
   _openFullScreen(BuildContext context) {

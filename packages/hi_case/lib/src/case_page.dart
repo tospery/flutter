@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'log_panel.dart';
 
-class PageScaffold extends StatefulWidget {
-  const PageScaffold({
-    Key? key,
+class CasePage extends StatefulWidget {
+  const CasePage({
+    super.key,
     required this.title,
     required this.body,
     this.padding = false,
     this.showLog = false,
-  }) : super(key: key);
+  });
 
   final String title;
   final Widget body;
@@ -16,10 +16,10 @@ class PageScaffold extends StatefulWidget {
   final bool showLog;
 
   @override
-  State<PageScaffold> createState() => _PageScaffoldState();
+  State<CasePage> createState() => _CasePageState();
 }
 
-class _PageScaffoldState extends State<PageScaffold> {
+class _CasePageState extends State<CasePage> {
   late bool _showLog;
 
   @override
@@ -29,7 +29,7 @@ class _PageScaffoldState extends State<PageScaffold> {
   }
 
   @override
-  void didUpdateWidget(covariant PageScaffold oldWidget) {
+  void didUpdateWidget(covariant CasePage oldWidget) {
     if (oldWidget.showLog != widget.showLog) {
       _showLog = widget.showLog;
     }
@@ -49,28 +49,22 @@ class _PageScaffoldState extends State<PageScaffold> {
               });
             },
             icon: const Icon(Icons.print),
-          )
+          ),
         ],
       ),
-      body: VerticalLogPanel(
-        showLogPanel: _showLog,
-        child: wBody(),
-      ),
+      body: VerticalLogPanel(showLogPanel: _showLog, child: wBody()),
     );
   }
 
   wBody() {
     return widget.padding
-        ? Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: widget.body,
-          )
+        ? Padding(padding: const EdgeInsets.all(16.0), child: widget.body)
         : widget.body;
   }
 }
 
-class Page {
-  Page(
+class Case {
+  Case(
     this.title,
     Widget child, {
     this.withScaffold = true,
@@ -78,7 +72,7 @@ class Page {
     this.showLog = false,
   }) : builder = ((_) => child);
 
-  Page.builder(
+  Case.builder(
     this.title,
     this.builder, {
     this.withScaffold = true,
@@ -95,7 +89,7 @@ class Page {
   Widget build(BuildContext context) {
     Widget widget = builder(context);
     if (withScaffold) {
-      widget = PageScaffold(
+      widget = CasePage(
         title: title,
         padding: padding,
         showLog: showLog,
@@ -115,21 +109,15 @@ class Page {
     return widget;
   }
 
-  Future<T?> openPage<T>(BuildContext context) {
-    return Navigator.push<T>(
-      context,
-      MaterialPageRoute<T>(builder: build),
-    );
+  Future<T?> openCase<T>(BuildContext context) {
+    return Navigator.push<T>(context, MaterialPageRoute<T>(builder: build));
   }
 }
 
-class ListPage extends StatelessWidget {
-  const ListPage({
-    Key? key,
-    required this.children,
-  }) : super(key: key);
+class CaseList extends StatelessWidget {
+  const CaseList({Key? key, required this.children}) : super(key: key);
 
-  final List<Page> children;
+  final List<Case> children;
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +129,7 @@ class ListPage extends StatelessWidget {
       return ListTile(
         title: Text(page.title),
         trailing: const Icon(Icons.keyboard_arrow_right),
-        onTap: () => page.openPage(context),
+        onTap: () => page.openCase(context),
       );
     }).toList();
   }

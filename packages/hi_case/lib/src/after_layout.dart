@@ -13,11 +13,8 @@ typedef AfterLayoutCallback = Function(RenderAfterLayout ral);
 ///
 /// Call `setState` in callback is **allowed**, it is safe!
 class AfterLayout extends SingleChildRenderObjectWidget {
-  const AfterLayout({
-    Key? key,
-    required this.callback,
-    Widget? child,
-  }) : super(key: key, child: child);
+  const AfterLayout({Key? key, required this.callback, Widget? child})
+    : super(key: key, child: child);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -45,8 +42,9 @@ class RenderAfterLayout extends RenderProxyBox {
     // 如果callback中又触发了UI更新（比如调用了 setState）则会报错。因此，我们
     // 在 frame 结束的时候再去触发回调。
     // callback(this);
-    SchedulerBinding.instance
-        .addPostFrameCallback((timeStamp) => callback(this));
+    SchedulerBinding.instance.addPostFrameCallback(
+      (timeStamp) => callback(this),
+    );
   }
 
   /// 组件在在屏幕坐标中的起始偏移坐标
