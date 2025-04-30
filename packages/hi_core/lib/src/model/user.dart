@@ -1,4 +1,3 @@
-import 'package:hi_core/src/constant.dart';
 import 'package:hi_core/src/model/model.dart';
 import 'package:hi_core/src/extension/map.dart';
 
@@ -19,19 +18,19 @@ class HiUser extends HiModel {
   });
 
   factory HiUser.fromJson(Map<String, dynamic> json) => HiUser(
-    id: json.stringValue('id'),
-    username: json.stringValue('username'),
-    password: json.stringValue('password'),
-    avatar: json.stringValue('avatar'),
-  );
+        id: json.stringValue('id'),
+        username: json.stringValue('username'),
+        password: json.stringValue('password'),
+        avatar: json.stringValue('avatar'),
+      );
 
   @override
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'username': username,
-    'password': password,
-    'avatar': avatar,
-  };
+        'id': id,
+        'username': username,
+        'password': password,
+        'avatar': avatar,
+      };
 
   HiUser copyWith({
     String? id,

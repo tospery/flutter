@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import '../extension/map.dart';
-import '../extension/object.dart';
 import 'package:hi_core/src/datatype.dart';
 import 'package:hi_core/src/function.dart';
-import 'package:hi_core/src/logger.dart';
 
 class HiModel extends Equatable {
   final String? id;
@@ -23,7 +21,7 @@ class HiModel extends Equatable {
 
   @override
   bool get stringify => true;
-  
+
   @override
   List<Object?> get props => [id];
 

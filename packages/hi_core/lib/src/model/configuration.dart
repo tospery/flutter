@@ -1,10 +1,8 @@
-import 'package:hi_core/src/constant.dart';
-import 'package:hi_core/src/model/model.dart';
 import 'package:hi_core/src/extension/map.dart';
+import 'model.dart';
 
 /// 与用户关联的本地配置
 class HiConfiguration extends HiModel {
-
   const HiConfiguration({
     super.id,
   });
@@ -16,8 +14,8 @@ class HiConfiguration extends HiModel {
 
   @override
   Map<String, dynamic> toJson() => {
-    'id': id,
-  };
+        'id': id,
+      };
 
   HiConfiguration copyWith({
     String? id,

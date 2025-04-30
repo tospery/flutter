@@ -1,13 +1,12 @@
 import 'package:hi_core/src/function.dart';
-import 'package:hi_core/src/model/model.dart';
 
 extension MapHiCoreEx<K, V> on Map<K, V> {
-
   bool? boolValue(K key) => tryBool(this[key]);
   int? intValue(K key) => tryInt(this[key]);
   double? doubleValue(K key) => tryDouble(this[key]);
   String? stringValue(K key) => tryString(this[key]);
-  Map<KType, VType>? mapValue<KType, VType>(K key) => tryMap<KType, VType>(this[key]);
+  Map<KType, VType>? mapValue<KType, VType>(K key) =>
+      tryMap<KType, VType>(this[key]);
   Map<String, dynamic>? jsonValue(K key) => tryJSON(this[key]);
 
   E? enumValue<E>(K key, {E Function(dynamic)? fromValue}) {
@@ -19,7 +18,7 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
       return value as E;
     }
     if (fromValue != null) {
-      return fromValue!(value);
+      return fromValue(value);
     }
     return null;
   }
@@ -33,12 +32,13 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
       return value as M;
     }
     if (fromJson != null) {
-      return fromJson!(value);
+      return fromJson(value);
     }
     return null;
   }
 
-  List<T>? list<T>(K key, {
+  List<T>? list<T>(
+    K key, {
     T Function(dynamic)? fromValue,
     T Function(dynamic)? fromJson,
   }) {
@@ -50,10 +50,10 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
       return value;
     }
     if (fromValue != null) {
-      return value.map((e) => fromValue!(e)).toList();
+      return value.map((e) => fromValue(e)).toList();
     }
     if (fromJson != null) {
-      return value.map((e) => fromJson!(e)).toList();
+      return value.map((e) => fromJson(e)).toList();
     }
     return null;
   }
@@ -69,11 +69,12 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
     if (fromValue == null) {
       return null;
     }
-    var enums = value.map((e) => fromValue!(e)).toList();
+    var enums = value.map((e) => fromValue(e)).toList();
     return enums;
   }
 
-  Map<String, String>? get queries => map((key, value) => MapEntry(key.toString(), value?.toString() ?? ''));
+  Map<String, String>? get queries =>
+      map((key, value) => MapEntry(key.toString(), value?.toString() ?? ''));
 
   V? value(List<K> keys) {
     V? v;
@@ -121,7 +122,7 @@ extension MapHiCoreEx<K, V> on Map<K, V> {
     this.forEach((key, value) {
       final myKey = tryString(key);
       final myValue = tryString(value);
-      if ((myKey?.isNotEmpty ?? false) && ( myValue?.isNotEmpty ?? false)) {
+      if ((myKey?.isNotEmpty ?? false) && (myValue?.isNotEmpty ?? false)) {
         queries[Uri.encodeComponent(myKey!)] = Uri.encodeComponent(myValue!);
       }
     });

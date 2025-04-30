@@ -1,10 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:hi_core/src/extension/bool.dart';
-import 'package:hi_core/src/extension/int.dart';
-import 'package:hi_core/src/extension/string.dart';
-import 'package:hi_core/src/logger.dart';
-import 'package:hi_core/src/error.dart';
+import 'extension/bool.dart';
+import 'extension/int.dart';
+import 'extension/string.dart';
+import 'error.dart';
 
 Type typeOf<T>() => T;
 
@@ -128,8 +127,8 @@ HiError forceError(dynamic data) {
 }
 
 Color randomColor() => Color.fromRGBO(
-  Random().nextInt(256),
-  Random().nextInt(256),
-  Random().nextInt(256),
-  1,
-);
+      Random().nextInt(256),
+      Random().nextInt(256),
+      Random().nextInt(256),
+      1,
+    );

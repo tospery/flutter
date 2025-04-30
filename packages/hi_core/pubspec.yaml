@@ -1,17 +1,17 @@
 name: hi_core
 description: core of hi_flutter.
-version: 0.0.1
+version: 1.0.1
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_core
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_core%22
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=2.19.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  logger: 2.2.0
-  equatable: 2.0.5
+  logger: 2.5.0
+  equatable: 2.0.7
   dartx: 1.2.0
 
 dev_dependencies:

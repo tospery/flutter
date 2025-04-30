@@ -1,5 +1,1 @@
-import 'map.dart';
-
-extension UriHiCoreEx on Uri {
-
-}
+extension UriHiCoreEx on Uri {}

@@ -1,4 +1,3 @@
-import 'dart:developer' as dev;
 import 'package:logger/logger.dart';
 
 class HiLogTag {
