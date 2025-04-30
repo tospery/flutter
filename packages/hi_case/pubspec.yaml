@@ -5,7 +5,7 @@ repository: https://github.com/tospery/flutter/tree/main/packages/hi_case
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_case%22
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=2.19.0 <4.0.0'
 
 dependencies:
   flutter:
