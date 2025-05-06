@@ -22,23 +22,22 @@ class LogValueNotifier extends SafeValueNotifier<List<LogInfo>> {
   }
 }
 
-typedef LogPanelBuilder =
-    Widget Function(LogValueNotifier? listenable, BoxConstraints constraints);
+typedef LogPanelBuilder = Widget Function(
+    LogValueNotifier? listenable, BoxConstraints constraints);
 
-typedef VerticalLogPanelBuilder =
-    Widget Function(
-      LogValueNotifier? listenable,
-      BoxConstraints constraints,
-      bool mergeDuplicateLogs,
-    );
+typedef VerticalLogPanelBuilder = Widget Function(
+  LogValueNotifier? listenable,
+  BoxConstraints constraints,
+  bool mergeDuplicateLogs,
+);
 
 class LogNotifier extends ValueNotifier<LogInfo> {
-  LogNotifier(LogInfo value) : super(value);
+  LogNotifier(super.value);
 }
 
 class LogListener extends LogValueNotifier {
   LogListener(this.emitter, [List<LogInfo>? value])
-    : super(value ?? <LogInfo>[]);
+      : super(value ?? <LogInfo>[]);
 
   static const logEvent = '_log';
 
@@ -204,13 +203,13 @@ mixin LogPanelMixin {
 /// See also [LogPanel]
 class VerticalLogPanel extends StatefulWidget {
   const VerticalLogPanel({
-    Key? key,
+    super.key,
     this.showLogPanel = true,
     this.logPanelBuilder = VerticalLogPanel.defaultLogBuilder,
     this.minHeight,
     this.child,
     this.mergeDuplicateLogs = true,
-  }) : super(key: key);
+  });
   final Widget? child;
 
   /// Min height for log panel.
@@ -342,12 +341,12 @@ abstract class LogState<T extends StatefulWidget> extends State<T>
 /// ...
 class LogListenerScope extends StatefulWidget {
   const LogListenerScope({
-    Key? key,
+    super.key,
     this.showLogPanel = false,
     required this.logEmitter,
     required this.child,
     this.logPanelBuilder,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -400,8 +399,8 @@ class LogListenerScopeState extends LogState<LogListenerScope> {
   }
 }
 
-typedef LogItemBuilder =
-    Widget Function(BuildContext context, LogInfo logInfo, bool isFullScreen);
+typedef LogItemBuilder = Widget Function(
+    BuildContext context, LogInfo logInfo, bool isFullScreen);
 
 /// A widget to show redirected logs from `print`.
 ///
@@ -417,13 +416,13 @@ typedef LogItemBuilder =
 /// See also [VerticalLogPanel].
 class LogPanel extends StatefulWidget {
   const LogPanel({
-    Key? key,
+    super.key,
     required this.minHeight,
     this.maxHeight = double.infinity,
     this.listenable,
     this.mergeDuplicateLogs = true,
     this.itemBuilder = LogPanel.defaultItemBuilder,
-  }) : super(key: key);
+  });
 
   final double minHeight;
   final double maxHeight;
@@ -467,7 +466,7 @@ class LogPanel extends StatefulWidget {
   }
 
   @override
-  _LogPanelState createState() => _LogPanelState();
+  State<LogPanel> createState() => _LogPanelState();
 }
 
 class _LogPanelState extends State<LogPanel> {

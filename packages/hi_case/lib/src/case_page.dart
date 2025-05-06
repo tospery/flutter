@@ -96,14 +96,14 @@ class Case {
         body: widget,
       );
       widget = LogListenerScope(
-        child: widget,
         logEmitter: getGlobalLogEmitter(),
+        child: widget,
       );
     } else if (showLog) {
       widget = VerticalLogPanel(child: widget);
       widget = LogListenerScope(
-        child: widget,
         logEmitter: getGlobalLogEmitter(),
+        child: widget,
       );
     }
     return widget;
@@ -114,8 +114,8 @@ class Case {
   }
 }
 
-class CaseList extends StatelessWidget {
-  const CaseList({Key? key, required this.children}) : super(key: key);
+class ListCase extends StatelessWidget {
+  const ListCase({super.key, required this.children});
 
   final List<Case> children;
 

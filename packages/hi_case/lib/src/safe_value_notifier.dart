@@ -10,7 +10,7 @@ import 'package:flutter/widgets.dart';
 /// that case. [SafeValueNotifier] can resolve this problem by delaying
 /// to call `setState` during build/layout/paint phase.
 class SafeValueNotifier<T> extends ValueNotifier<T> {
-  SafeValueNotifier(T value) : super(value);
+  SafeValueNotifier(super.value);
 
   @override
   void notifyListeners() {

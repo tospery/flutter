@@ -1,4 +1,4 @@
-library hi_case;
+library;
 
 export 'src/log_panel.dart';
 export 'src/case_page.dart';

@@ -13,8 +13,7 @@ typedef AfterLayoutCallback = Function(RenderAfterLayout ral);
 ///
 /// Call `setState` in callback is **allowed**, it is safe!
 class AfterLayout extends SingleChildRenderObjectWidget {
-  const AfterLayout({Key? key, required this.callback, Widget? child})
-    : super(key: key, child: child);
+  const AfterLayout({super.key, required this.callback, super.child});
 
   @override
   RenderObject createRenderObject(BuildContext context) {
