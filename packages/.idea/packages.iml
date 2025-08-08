@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/hi_cache/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_cache/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_cache/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_cache/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_cache/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_cache/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_case/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_case/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_case/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_case/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_case/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_case/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_core/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_core/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_core/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_core/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_core/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_core/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_dialog/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_dialog/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_dialog/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_dialog/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_dialog/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_dialog/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_flutter/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_flutter/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_flutter/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_navigator/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_navigator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_navigator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_navigator/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_navigator/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_navigator/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_network/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_network/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_network/build" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_network/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_network/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/hi_network/example/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
