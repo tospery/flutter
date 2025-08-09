@@ -1,4 +1,3 @@
-import 'parameter.dart';
 import 'function.dart';
 import 'resource/r.dart';
 import 'extension/object.dart';
@@ -31,7 +30,9 @@ class HiNetworkError extends HiError {
   HiNetworkError(super.code, super.message, {super.data});
 
   @override
-  String? get displayTitle => tryJSON(data)?.stringValue(HiParameter.title) ?? R.strings.networkErrorTitle;
+  String? get displayTitle =>
+      tryJSON(data)?.stringValue(HiParameter.title) ??
+      R.strings.networkErrorTitle;
 
   @override
   String? get displayImage => R.assets.image.errorNetwork;
@@ -51,8 +52,10 @@ class HiServerError extends HiError {
 
   static const notFoundCode = 404;
 
-  static HiServerError get dataInvalid => HiServerError(1, R.strings.serverDataInvalidMessage);
-  static HiServerError get listIsEmpty => HiServerError(2, R.strings.serverListIsEmptyMessage);
+  static HiServerError get dataInvalid =>
+      HiServerError(1, R.strings.serverDataInvalidMessage);
+  static HiServerError get listIsEmpty =>
+      HiServerError(2, R.strings.serverListIsEmptyMessage);
 
   HiServerError(super.code, super.message, {super.data});
 }

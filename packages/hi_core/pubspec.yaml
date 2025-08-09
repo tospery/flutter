@@ -10,9 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  logger: 2.5.0
-  equatable: 2.0.7
-  dartx: 1.2.0
+  dartx: ^1.2.0
 
 dev_dependencies:
   flutter_test:
