@@ -1,6 +1,6 @@
 name: hi_log
-description: log of hi_flutter.
-version: 1.0.0
+description: An abstraction layer for a basic logging library, implemented using the third-party library logger.
+version: 1.0.1
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_log
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_log%22
 
@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  logger: ^2.6.1
 
 dev_dependencies:
   flutter_test:

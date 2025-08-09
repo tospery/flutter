@@ -1,5 +1,5 @@
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+library hi_log;
+
+export 'package:logger/logger.dart';
+export 'src/datatype.dart';
+export 'src/logger.dart';
