@@ -1,16 +1,12 @@
 library hi_core;
 
 export 'package:dartx/dartx.dart' hide ListExtension;
-export 'src/constant.dart';
+export 'package:hi_base/hi_base.dart';
 export 'src/convert.dart';
-export 'src/datatype.dart';
-export 'src/parameter.dart';
 export 'src/error.dart';
 export 'src/function.dart';
-export 'src/extension/bool.dart';
 export 'src/extension/color.dart';
 export 'src/extension/colors.dart';
-export 'src/extension/int.dart';
 export 'src/extension/list.dart';
 export 'src/extension/map.dart';
 export 'src/extension/object.dart';

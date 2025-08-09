@@ -1,4 +1,4 @@
-import 'extension/string.dart';
+import 'package:hi_base/hi_base.dart';
 
 class HiConvert {
   static String toJsonString(String string) => string.toJsonString();

@@ -1,3 +1,19 @@
-## 1.0.1
+# Changelog
 
-* 核心功能
+## 1.0.2 - 2025-08-09
+
+### Fixed
+
+- Update CHANGELOG and README.
+
+## 1.0.1 - 2025-08-09
+
+### Added
+
+- Remove some function to hi_base.
+
+## 1.0.0 - 2025-08-08
+
+### Added
+
+- Initial version.

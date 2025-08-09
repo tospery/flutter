@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hi_core/hi_core.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    log('${HiError.unknown}');
+    // log('${HiError.unknown}');
     setState(() {
       _counter++;
     });

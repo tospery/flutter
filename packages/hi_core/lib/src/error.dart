@@ -1,7 +1,5 @@
-import 'function.dart';
-import 'resource/r.dart';
-import 'extension/object.dart';
-import 'extension/map.dart';
+import 'package:hi_base/hi_base.dart';
+import 'package:hi_core/src/resource/r.dart';
 
 class HiError implements Exception {
   final int code;
