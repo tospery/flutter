@@ -1,6 +1,6 @@
 name: hi_base
 description: base of hi_flutter.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_base
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_base%22
 
