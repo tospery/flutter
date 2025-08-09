@@ -183,14 +183,6 @@ extension StringHiBaseEx on String {
     return null;
   }
 
-  int get _colorHash {
-    int hash = 0;
-    runes.forEach((code) {
-      hash = code + ((hash << 5) - hash);
-    });
-    return hash;
-  }
-
   List<String> splitChunk(int chunkSize) {
     List<String> chunks = [];
     int startIndex = 0;
