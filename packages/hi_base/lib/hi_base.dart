@@ -1,5 +1,6 @@
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+library hi_base;
+
+export 'package:equatable/equatable.dart';
+export 'src/constant.dart';
+export 'src/datatype.dart';
+export 'src/parameter.dart';

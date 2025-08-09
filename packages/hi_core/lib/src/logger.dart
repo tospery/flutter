@@ -21,7 +21,7 @@ enum HiLogLevel {
   Level get rawValue {
     switch (this) {
       case HiLogLevel.verbose:
-        return Level.verbose;
+        return Level.trace;
       case HiLogLevel.debug:
         return Level.debug;
       case HiLogLevel.info:

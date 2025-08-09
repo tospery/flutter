@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 extension ColorHiCoreEx on Color {
   String toHexString() {
-    var string = '#${alpha.toRadixString(16).padLeft(2, '0')}';
-    string += '${red.toRadixString(16).padLeft(2, '0')}';
-    string += '${green.toRadixString(16).padLeft(2, '0')}';
-    string += '${blue.toRadixString(16).padLeft(2, '0')}';
-    return string;
+    var alphaValue =
+        ((a * 255.0).round() & 0xff).toRadixString(16).padLeft(2, '0');
+    var redValue =
+        ((r * 255.0).round() & 0xff).toRadixString(16).padLeft(2, '0');
+    var greenValue =
+        ((g * 255.0).round() & 0xff).toRadixString(16).padLeft(2, '0');
+    var blueValue =
+        ((b * 255.0).round() & 0xff).toRadixString(16).padLeft(2, '0');
+    return '#$alphaValue$redValue$greenValue$blueValue';
   }
 
   Color get bgColor => computeLuminance() < 0.5 ? Colors.white : Colors.black;
