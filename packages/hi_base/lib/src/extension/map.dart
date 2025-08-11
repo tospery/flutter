@@ -1,10 +1,14 @@
 import 'package:hi_base/hi_base.dart';
 
 extension MapHiBaseEx<K, V> on Map<K, V> {
-  bool? boolValue(K key) => tryBool(this[key]);
-  int? intValue(K key) => tryInt(this[key]);
-  double? doubleValue(K key) => tryDouble(this[key]);
-  String? stringValue(K key) => tryString(this[key]);
+  bool? boolValue(K key, {String? delimiter}) =>
+      tryBool(value(key, delimiter: delimiter));
+  int? intValue(K key, {String? delimiter}) =>
+      tryInt(value(key, delimiter: delimiter));
+  double? doubleValue(K key, {String? delimiter}) =>
+      tryDouble(value(key, delimiter: delimiter));
+  String? stringValue(K key, {String? delimiter}) =>
+      tryString(value(key, delimiter: delimiter));
   Map<KType, VType>? mapValue<KType, VType>(K key) =>
       tryMap<KType, VType>(this[key]);
   Map<String, dynamic>? jsonValue(K key) => tryJSON(this[key]);
@@ -73,12 +77,17 @@ extension MapHiBaseEx<K, V> on Map<K, V> {
     return enums;
   }
 
-  Map<String, String>? get queries =>
-      map((key, value) => MapEntry(key.toString(), value?.toString() ?? ''));
-
-  V? value(List<K> keys) {
+  V? value(K key, {String? delimiter}) {
+    if (delimiter == null) {
+      return this[key];
+    }
+    final keys = key
+        .toString()
+        .split(delimiter)
+        .where((item) => item.isNotEmpty)
+        .toList();
     V? v;
-    for (K k in keys) {
+    for (String k in keys) {
       V? temp = this[k];
       if (temp != null) {
         v = temp;
@@ -87,6 +96,9 @@ extension MapHiBaseEx<K, V> on Map<K, V> {
     }
     return v;
   }
+
+  Map<String, String>? get queries =>
+      map((key, value) => MapEntry(key.toString(), value?.toString() ?? ''));
 
   Map<K, dynamic> get simplex {
     Map<K, dynamic> result = {};

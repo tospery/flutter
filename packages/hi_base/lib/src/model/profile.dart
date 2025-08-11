@@ -1,4 +1,5 @@
 import 'package:hi_base/src/extension/map.dart';
+import 'package:hi_base/src/function.dart';
 import 'package:hi_base/src/model/model.dart';
 
 /// 与用户关联的本地配置

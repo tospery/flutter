@@ -1,22 +1,21 @@
 import 'package:hi_base/src/extension/map.dart';
+import 'package:hi_base/src/function.dart';
 import 'package:hi_base/src/model/model.dart';
 
 class HiUser extends HiModel {
   final String? username;
   final String? password;
-  final String? avatar;
 
   @override
   bool get isValid =>
       (id?.isNotEmpty ?? false) || (username?.isNotEmpty ?? false);
 
-  const HiUser({super.id, this.username, this.password, this.avatar});
+  const HiUser({super.id, this.username, this.password});
 
-  factory HiUser.fromJson(Map<String, dynamic> json) => HiUser(
-    id: json.stringValue('id'),
-    username: json.stringValue('username'),
-    password: json.stringValue('password'),
-    avatar: json.stringValue('avatar'),
+  factory HiUser.fromJson(dynamic data) => HiUser(
+    id: tryJSON(data)?.stringValue('id'),
+    username: tryJSON(data)?.stringValue('username'),
+    password: tryJSON(data)?.stringValue('password'),
   );
 
   @override
@@ -24,22 +23,13 @@ class HiUser extends HiModel {
     'id': id,
     'username': username,
     'password': password,
-    'avatar': avatar,
   };
 
-  HiUser copyWith({
-    String? id,
-    String? username,
-    String? password,
-    String? avatar,
-  }) {
-    return HiUser(
-      id: id ?? this.id,
-      username: username ?? this.username,
-      password: password ?? this.password,
-      avatar: avatar ?? this.avatar,
-    );
-  }
+  HiUser copyWith({String? id, String? username, String? password}) => HiUser(
+    id: id ?? this.id,
+    username: username ?? this.username,
+    password: password ?? this.password,
+  );
 
   // @override
   // void store({bool isReactive = false}) {
@@ -55,6 +45,6 @@ class HiUser extends HiModel {
 
   @override
   List<Object?> get props {
-    return [id, username, password, avatar];
+    return [id, username, password];
   }
 }

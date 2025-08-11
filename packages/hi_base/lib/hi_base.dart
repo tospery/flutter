@@ -1,6 +1,7 @@
 library hi_base;
 
 export 'package:equatable/equatable.dart';
+export 'package:dartx/dartx.dart';
 export 'src/constant.dart';
 export 'src/datatype.dart';
 export 'src/function.dart';
