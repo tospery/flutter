@@ -6,3 +6,9 @@ typedef HiCellPressed<M extends HiModel> =
     void Function(M model, {dynamic extra});
 typedef HiDynamicCallback = dynamic Function(dynamic value);
 typedef HiBuildWidget = Widget Function(BuildContext context);
+
+mixin TabItemType {
+  String get id;
+  String? get title;
+  Widget? get image;
+}

@@ -5,8 +5,8 @@ import 'package:hi_base/src/model/model.dart';
 class HiProfile extends HiModel {
   const HiProfile({super.id});
 
-  factory HiProfile.fromJson(Map<String, dynamic> json) =>
-      HiProfile(id: json.stringValue('id'));
+  factory HiProfile.fromJson(dynamic data) =>
+      HiProfile(id: tryJSON(data)?.stringValue('id'));
 
   @override
   Map<String, dynamic> toJson() => {'id': id};
