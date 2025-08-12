@@ -12,3 +12,7 @@ mixin TabItemType {
   String? get title;
   Widget? get image;
 }
+
+abstract class HiBaseServiceProvider {}
+
+// abstract class HiBaseProviderProtocol {}
