@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/routes/base_page.dart';
 import 'package:hi_flutter/src/extension/context.dart';
 import 'package:hi_flutter/src/routes/tabbar_controller.dart';

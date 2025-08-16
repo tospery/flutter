@@ -44,8 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Linkify(
             text: text,
-            style: TextStyle(color: Colors.black),
-            linkStyle: TextStyle(color: Colors.red),
+            style: const TextStyle(color: Colors.black),
+            linkStyle: const TextStyle(color: Colors.red),
             linkifiers: [PlainLinkifier('yjx')],
             onOpen: (link) => log(link),
           ),

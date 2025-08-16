@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hi_flutter/src/routes/base_page.dart';
 import 'package:hi_flutter/src/routes/list_controller.dart';
 import 'package:hi_flutter/src/widget/refresh_view.dart';
-import 'package:hi_flutter/src/extension/context.dart';
-import 'package:hi_flutter/src/core/function.dart';
 import 'package:hi_navigator/hi_navigator.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

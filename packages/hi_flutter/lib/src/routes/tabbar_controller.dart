@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hi_core/hi_core.dart';
-import 'package:hi_flutter/src/core/datatype.dart';
 import 'package:hi_flutter/src/routes/base_controller.dart';
 
 class HiTabBarController<T extends TabItemType> extends HiBaseController {

@@ -1,4 +1,3 @@
-import 'package:hi_core/hi_core.dart';
 import 'package:get/get.dart';
 import 'base_controller.dart';
 import '../core/datatype.dart';
