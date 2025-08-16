@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // var result3 = await HiCache.shared().fetchArray(Plan.fromJson, page: 'page111');
     // log('result3 = $result3');
 
-    var plan1 = Plan(id: 'aaa', space: 111);
+    var plan1 = const Plan(id: 'aaa', space: 111);
     // await HiCache.shared().storeObject(plan1);
     // var myPlan1SP = await HiCache.shared().fetchObject(Plan.fromJson);
     // log('myPlan1SP: $myPlan1SP');
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // var myPlan1DBa1 = await HiCache.shared().fetchObject(Plan.fromJson, useDatabase: true, id: 'a1');
     // log('myPlan1DBa1: $myPlan1DBa1');
 
-    var plan2 = Plan(id: 'bbb', space: 222);
+    var plan2 = const Plan(id: 'bbb', space: 222);
     await HiCache.shared().storeArray([plan1, plan2]);
     var my1 = await HiCache.shared().fetchArray(Plan.fromJson);
     log('my1: $my1');

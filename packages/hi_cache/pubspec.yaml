@@ -1,6 +1,7 @@
 name: hi_cache
-description: cache of hi_flutter.
-version: 0.0.1
+description: Abstract layer for local data storage.
+version: 1.1.1
+publish_to: 'none'
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_cache
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_cache%22
 

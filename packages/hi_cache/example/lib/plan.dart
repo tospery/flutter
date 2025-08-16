@@ -8,16 +8,16 @@ class Plan extends HiModel {
     this.space,
   });
 
-  factory Plan.fromJson(Map<String, dynamic> json) => Plan(
-    id: json.value<String>('id'),
-    space: json.value<int>('space'),
-  );
+  factory Plan.fromJson(dynamic json) => Plan(
+        id: tryJSON(json)?.stringValue('id'),
+        space: tryJSON(json)?.intValue('space'),
+      );
 
   @override
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'space': space,
-  };
+        'id': id,
+        'space': space,
+      };
 
   Plan copyWith({
     String? id,

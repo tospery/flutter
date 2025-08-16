@@ -80,7 +80,7 @@ class HiCache {
   }
 
   Future<M?> fetchObject<M extends HiModel>(
-    M Function(Map<String, dynamic>) fromJson, {
+    M Function(dynamic) fromJson, {
     String? id,
   }) async {
     var key = _objectKey(M.toString().toLowerCase(), id: id);
@@ -101,14 +101,16 @@ class HiCache {
   }
 
   Future<List<M>> fetchArray<M extends HiModel>(
-    M Function(Map<String, dynamic>) fromJson, {
+    M Function(dynamic) fromJson, {
     String? page,
   }) async {
     var key = _arrayKey(M.toString().toLowerCase(), page: page);
     log('提取数组: $key', tag: HiLogTag.cache);
     var provider = HiDbProvider<M>();
     var json = await provider.fetch(key);
-    return json != null && json is List ? json.map((e) => fromJson(e)).toList() : [];
+    return json != null && json is List
+        ? json.map((e) => fromJson(e)).toList()
+        : [];
   }
 
   Future<void> delete<M extends HiModel>() async {}
