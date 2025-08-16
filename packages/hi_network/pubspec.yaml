@@ -1,6 +1,7 @@
 name: hi_network
 description: network of hi_flutter.
-version: 0.0.1
+version: 1.1.0
+publish_to: 'none'
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_network
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_network%22
 

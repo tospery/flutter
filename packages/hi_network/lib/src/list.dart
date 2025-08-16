@@ -15,28 +15,33 @@ class HiList<T> extends HiModel {
   });
 
   factory HiList.fromJson(dynamic data) => HiList(
-    hasNext: tryBool(tryJSON(data)?.value(['has_next', '!over'])),
-    count: tryInt(tryJSON(data)?.value(['count', 'total'])),
-    //   items: json.valueForKeys(['items', 'datas']) as List<T>?,
-    items: (tryJSON(data)?.value(['items', 'datas']) as List?)?.cast<T>(),
-  );
+        // hasNext: tryBool(tryJSON(data)?.value(['has_next', '!over'])),
+        // count: tryInt(tryJSON(data)?.value(['count', 'total'])),
+        // //   items: json.valueForKeys(['items', 'datas']) as List<T>?,
+        // items: (tryJSON(data)?.value(['items', 'datas']) as List?)?.cast<T>(),
+        hasNext: tryJSON(data)?.boolValue('has_next|!over', delimiter: '|'),
+        count: tryJSON(data)?.intValue('count|total', delimiter: '|'),
+        items: (tryJSON(data)?.value('items|datas', delimiter: '|') as List?)
+            ?.cast<T>(),
+      );
 
   @override
   Map<String, dynamic> toJson() => {
-    'has_next': hasNext,
-    'count': count,
-    'items': items,
-  };
+        'has_next': hasNext,
+        'count': count,
+        'items': items,
+      };
 
   HiList copyWith({
     bool? hasNext,
     int? count,
     List<T>? items,
-  }) => HiList(
-    hasNext: hasNext ?? this.hasNext,
-    count: count ?? this.count,
-    items: items ?? this.items,
-  );
+  }) =>
+      HiList(
+        hasNext: hasNext ?? this.hasNext,
+        count: count ?? this.count,
+        items: items ?? this.items,
+      );
 
   @override
   bool get stringify => true;

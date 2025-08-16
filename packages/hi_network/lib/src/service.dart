@@ -9,8 +9,10 @@ class HiService extends GetConnect {
     super.onInit();
     httpClient.defaultContentType = 'application/json';
     httpClient.addAuthenticator<dynamic>((request) => authenticator(request));
-    httpClient.addRequestModifier<dynamic>((request) => requestModifier(request));
-    httpClient.addResponseModifier((request, response) => responseModifier(request, response));
+    httpClient
+        .addRequestModifier<dynamic>((request) => requestModifier(request));
+    httpClient.addResponseModifier(
+        (request, response) => responseModifier(request, response));
     httpClient.defaultDecoder = (data) {
       var json = <String, dynamic>{};
       if (data is Map<String, dynamic>) {
@@ -30,12 +32,14 @@ class HiService extends GetConnect {
   }
 
   Request requestModifier(Request request) {
-    log('RESTful Request ->【${request.method}】${request.url}', tag: HiLogTag.network);
+    log('RESTful Request ->【${request.method}】${request.url}',
+        tag: HiLogTag.network);
     return request;
   }
 
   Response responseModifier(Request request, Response response) {
-    log('RESTful Response ->【${request.url.path}】(${response.statusCode}, ${response.statusText})', tag: HiLogTag.network);
+    log('RESTful Response ->【${request.url.path}】(${response.statusCode}, ${response.statusText})',
+        tag: HiLogTag.network);
     if (response.bodyString?.isNotEmpty ?? false) {
       log(response.bodyString);
     } else {
@@ -47,11 +51,11 @@ class HiService extends GetConnect {
   }
 
   Future<T> object<T>(
-      Response<dynamic> response, {
-        bool checkCode = true,
-        bool adoptData = true,
-        T Function(dynamic)? fromJson,
-      }) {
+    Response<dynamic> response, {
+    bool checkCode = true,
+    bool adoptData = true,
+    T Function(dynamic)? fromJson,
+  }) {
     var base = response.body;
     var code = response.statusCode ?? -1;
     var data = response.body;
@@ -67,7 +71,8 @@ class HiService extends GetConnect {
     }
 
     if (response.hasError || (checkCode && code != HiError.okCode)) {
-      return Future.error(HiServerError(code, message, data:data ?? response.body));
+      return Future.error(
+          HiServerError(code, message, data: data ?? response.body));
     }
 
     var genericType = typeOf<T>();
@@ -78,7 +83,7 @@ class HiService extends GetConnect {
       return Future.value(data);
     }
     if (data is T) {
-      return Future.value(data as T);
+      return Future.value(data);
     }
     if (T == bool && tryBool(data) != null) {
       return Future.value(tryBool(data) as T);
@@ -103,14 +108,15 @@ class HiService extends GetConnect {
   }
 
   Future<List<T>> array<T>(
-      Response<dynamic> response, {
-        bool checkCode = true,
-        bool adoptData = true,
-        T Function(dynamic)? fromJson,
-      }) {
+    Response<dynamic> response, {
+    bool checkCode = true,
+    bool adoptData = true,
+    T Function(dynamic)? fromJson,
+  }) {
     if (response.hasError) {
       return Future.error(
-        HiServerError(response.statusCode ?? -1, response.statusText, data: response.body),
+        HiServerError(response.statusCode ?? -1, response.statusText,
+            data: response.body),
       );
     }
 
@@ -118,7 +124,8 @@ class HiService extends GetConnect {
     var base = response.body;
     if (base is HiResponse) {
       if (checkCode && base.code != HiError.okCode) {
-        return Future.error(HiServerError(base.code ?? -1, base.message, data: base.json));
+        return Future.error(
+            HiServerError(base.code ?? -1, base.message, data: base.json));
       }
       data = adoptData ? base.data : base.json;
     }
@@ -132,7 +139,8 @@ class HiService extends GetConnect {
     if (fromJson == null) {
       return Future.error(HiError.unknown);
     }
-    var array = data.where((e) => e is Map<String, dynamic>)
+    var array = data
+        .where((e) => e is Map<String, dynamic>)
         .map((json) => fromJson(json))
         .toList();
     if (array.isEmpty) {
@@ -140,5 +148,4 @@ class HiService extends GetConnect {
     }
     return Future.value(array);
   }
-
 }

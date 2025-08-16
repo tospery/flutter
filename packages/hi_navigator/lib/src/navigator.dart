@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hi_logger/hi_logger.dart';
 import 'package:hi_navigator/src/impl/alert_view.dart';
 import 'package:hi_navigator/src/impl/toast_activity.dart';
 import 'package:hi_navigator/src/function.dart';

@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    var response = HiResponse();
+    var response = const HiResponse();
     log('response: $response');
     setState(() {
       _counter++;

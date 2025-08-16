@@ -1,6 +1,7 @@
 name: hi_navigator
 description: navigator of hi_flutter.
-version: 0.0.1
+version: 1.1.0
+publish_to: 'none'
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_navigator
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_navigator%22
 
@@ -20,9 +21,8 @@ dependencies:
   fluttertoast: 8.2.4
   lottie: 3.1.0
   url_launcher: 6.2.5
-  hi_core: ^1.1.0
-  # hi_core:
-  #   path: ../hi_core
+  hi_core:
+    path: ../hi_core
 
 dev_dependencies:
   flutter_test:

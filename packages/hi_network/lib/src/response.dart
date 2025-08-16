@@ -14,19 +14,25 @@ class HiResponse extends HiModel {
     this.json,
   });
 
-  factory HiResponse.fromJson(Map<String, dynamic> json) => HiResponse(
-    code: tryInt(json.value(HiNetwork.shared().codeKeys)),
-    message: tryString(json.value(HiNetwork.shared().messageKeys)),
-    data: json.value(HiNetwork.shared().dataKeys),
-    json: json,
-  );
+  factory HiResponse.fromJson(dynamic data) => HiResponse(
+        // code: tryInt(json.value(HiNetwork.shared().codeKeys)),
+        // message: tryString(json.value(HiNetwork.shared().messageKeys)),
+        // data: json.value(HiNetwork.shared().dataKeys),
+        // json: json,
+        code: tryJSON(data)
+            ?.intValue(HiNetwork.shared().codeKeys, delimiter: '|'),
+        message: tryJSON(data)
+            ?.stringValue(HiNetwork.shared().messageKeys, delimiter: '|'),
+        data: tryJSON(data)?.value(HiNetwork.shared().codeKeys, delimiter: '|'),
+        json: data,
+      );
 
   Map<String, dynamic> toJson() => {
-    'code': code,
-    'message': message,
-    'data': data,
-    'json': json,
-  };
+        'code': code,
+        'message': message,
+        'data': data,
+        'json': json,
+      };
 
   HiResponse copyWith({
     int? code,
