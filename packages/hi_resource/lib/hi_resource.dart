@@ -1,4 +1,4 @@
-library hi_res;
+library hi_resource;
 
 export 'src/assets_animtion.dart';
 export 'src/assets_data.dart';

@@ -1,4 +1,4 @@
-# hi_res
+# hi_resource
 
 This is a basic resource library for quick access to strings, images, animations, and other data resources.
 
