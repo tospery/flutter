@@ -1,6 +1,6 @@
 name: hi_res
 description: resource of hi_flutter.
-version: 1.0.2
+version: 1.0.0
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_res
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_res%22
 
