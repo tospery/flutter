@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:hi_core/hi_core.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hi_dialog/src/impl/toast_activity.dart';
 
 toast(String message) {
@@ -22,4 +19,3 @@ showToastActivity({String? title}) {
     barrierDismissible: false,
   );
 }
-

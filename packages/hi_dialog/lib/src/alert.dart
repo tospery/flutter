@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:hi_dialog/src/impl/alert_view.dart';
 import 'package:hi_dialog/src/impl/dialog.dart';
 
@@ -22,14 +19,14 @@ alert({
     HiAlertView(
       title: title ?? '',
       content: content ?? '',
-      backText : backText ?? '',
-      nextText : nextText ?? '',
-      backVisible : backVisible ?? false,
-      nextVisible : nextVisible ?? false,
-      backTap : backTap,
-      nextTap : nextTap,
+      backText: backText ?? '',
+      nextText: nextText ?? '',
+      backVisible: backVisible ?? false,
+      nextVisible: nextVisible ?? false,
+      backTap: backTap,
+      nextTap: nextTap,
     ),
-    transitionDuration:  const Duration(milliseconds: 500),
+    transitionDuration: const Duration(milliseconds: 500),
     barrierDismissible: backKey,
   );
 }

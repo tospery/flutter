@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:hi_core/hi_core.dart';
 import 'package:hi_dialog/hi_dialog.dart';
-import 'package:hi_dialog/src/impl/dialog.dart';
-import 'package:hi_dialog/src/impl/over_scroll_behavior.dart';
 
 class HiAlertView extends StatelessWidget {
   ///标题
-  String title = '';
+  final String title;
 
   ///内容
-  String content = '';
+  final String content;
 
   ///左侧文字
-  String backText = '';
+  final String backText;
 
   ///右侧文字
-  String nextText = '';
+  final String nextText;
 
   ///左侧事件
-  VoidCallback? backTap;
+  final VoidCallback? backTap;
 
   ///右侧事件
-  VoidCallback? nextTap;
+  final VoidCallback? nextTap;
 
   ///左侧是否隐藏
-  bool backVisible = true;
+  final bool backVisible;
 
   ///右侧是否隐藏
-  bool nextVisible = true;
+  final bool nextVisible;
 
-  HiAlertView({
-    Key? key,
+  const HiAlertView({
+    super.key,
     this.title = '',
     this.content = '',
     this.backText = '',
@@ -39,7 +36,7 @@ class HiAlertView extends StatelessWidget {
     this.nextVisible = true,
     this.backTap,
     this.nextTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +72,7 @@ class HiAlertView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       ///标题、内容
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Text(
@@ -139,9 +136,9 @@ class HiAlertView extends StatelessWidget {
             }
           },
           style: ButtonStyle(
-            shadowColor: MaterialStateProperty.all(Colors.green),
+            shadowColor: WidgetStateProperty.all(Colors.green),
             animationDuration: const Duration(milliseconds: 200),
-            padding: MaterialStateProperty.all(const EdgeInsets.all(0)),
+            padding: WidgetStateProperty.all(const EdgeInsets.all(0)),
           ),
           child: Container(
             alignment: Alignment.center,
