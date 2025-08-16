@@ -1,7 +1,7 @@
 name: hi_core
 description: core of hi_flutter.
 version: 1.1.1
-publish_to: 'none'
+# publish_to: 'none'
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_core
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_core%22
 
