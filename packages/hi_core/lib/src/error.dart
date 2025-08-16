@@ -1,5 +1,5 @@
 import 'package:hi_base/hi_base.dart';
-import 'package:hi_core/src/resource/r.dart';
+import 'package:hi_resource/hi_resource.dart';
 
 class HiError implements Exception {
   final int code;

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 - 2025-08-17
+
+### Saved
+
+- Saved for get architecture.
+
 ## 1.0.2 - 2025-08-09
 
 ### Fixed
