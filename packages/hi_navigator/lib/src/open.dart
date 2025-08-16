@@ -37,13 +37,13 @@ Future<T?> sheet<T extends ActionType>({
     actions: myActions,
     cancelAction: myCancel != null
         ? CancelAction(
-      title: Text(
-        myCancel!.title,
-        style: ctx.textTheme.titleMedium?.copyWith(
-          color: ctx.theme.colorScheme.secondary,
-        ),
-      ),
-    )
+            title: Text(
+              myCancel.title,
+              style: ctx.textTheme.titleMedium?.copyWith(
+                color: ctx.theme.colorScheme.secondary,
+              ),
+            ),
+          )
         : null,
   );
 }

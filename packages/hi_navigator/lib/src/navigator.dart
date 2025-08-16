@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hi_core/hi_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hi_logger/hi_logger.dart';
 import 'package:hi_navigator/src/impl/alert_view.dart';
 import 'package:hi_navigator/src/impl/toast_activity.dart';
 import 'package:hi_navigator/src/function.dart';
@@ -84,7 +85,6 @@ class HiNavigator {
       log("导航错误：$e");
       return null;
     }
-    return null;
   }
 
   void back<T>({
@@ -149,13 +149,13 @@ class HiNavigator {
 
   Future<T?> popup<T>(
     String url, {
-      Object? parameters,
-      bool barrierDismissible = true,
-      Color? barrierColor,
-      bool useSafeArea = true,
-      GlobalKey<NavigatorState>? navigatorKey,
-      Duration? transitionDuration,
-      Curve? transitionCurve,
+    Object? parameters,
+    bool barrierDismissible = true,
+    Color? barrierColor,
+    bool useSafeArea = true,
+    GlobalKey<NavigatorState>? navigatorKey,
+    Duration? transitionDuration,
+    Curve? transitionCurve,
   }) {
     dismiss();
     final widget = routeWidget(url.toRoute(baseWeb: baseWeb));

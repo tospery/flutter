@@ -20,8 +20,9 @@ dependencies:
   fluttertoast: 8.2.4
   lottie: 3.1.0
   url_launcher: 6.2.5
-  hi_core:
-    path: ../hi_core
+  hi_core: ^1.1.0
+  # hi_core:
+  #   path: ../hi_core
 
 dev_dependencies:
   flutter_test:

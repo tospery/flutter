@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 - 2025-08-17
+
+### Added
+
+- Added hi_logger.
+
 ## 1.1.0 - 2025-08-17
 
 ### Saved

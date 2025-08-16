@@ -1,6 +1,7 @@
 library hi_core;
 
 export 'package:hi_base/hi_base.dart';
+export 'package:hi_logger/hi_logger.dart';
 export 'package:hi_resource/hi_resource.dart';
 export 'src/convert.dart';
 export 'src/error.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hi_navigator/hi_navigator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,16 +32,17 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    var uri = Uri.tryParse('https://www.baidu.com/request/base_request.dart?q=abc&pagesize=123')!;
-    log('scheme: ${uri.scheme}');
-    log('authority: ${uri.authority}');
-    log('fragment: ${uri.fragment}');
-    log('host: ${uri.host}');
-    log('path: ${uri.hostpath}');
-    log('origin: ${uri.origin}');
-    log('query: ${uri.query}');
-    log('queryParameters: ${uri.queryParameters}');
-    log('pathSegments: ${uri.pathSegments}');
+    // var uri = Uri.tryParse(
+    //     'https://www.baidu.com/request/base_request.dart?q=abc&pagesize=123')!;
+    // log('scheme: ${uri.scheme}');
+    // log('authority: ${uri.authority}');
+    // log('fragment: ${uri.fragment}');
+    // log('host: ${uri.host}');
+    // log('path: ${uri.hostpath}');
+    // log('origin: ${uri.origin}');
+    // log('query: ${uri.query}');
+    // log('queryParameters: ${uri.queryParameters}');
+    // log('pathSegments: ${uri.pathSegments}');
     setState(() {
       _counter++;
     });

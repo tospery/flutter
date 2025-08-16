@@ -23,6 +23,8 @@ dependencies:
   # flutter_linkify: 5.0.2
   hi_core:
     path: ../hi_core
+  hi_logger:
+	path: ../hi_logger
   hi_navigator:
     path: ../hi_navigator
   hi_cache:

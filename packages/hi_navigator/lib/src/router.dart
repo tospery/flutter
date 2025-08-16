@@ -1,5 +1,3 @@
-import 'package:hi_core/hi_core.dart';
-
 class HiRouter {
   static final hosts = HiHost();
   static final paths = HiPath();
