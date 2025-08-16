@@ -1,19 +1,20 @@
 name: hi_cache
 description: Abstract layer for local data storage.
-version: 1.1.1
+version: 1.1.0
 publish_to: 'none'
 repository: https://github.com/tospery/flutter/tree/main/packages/hi_cache
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_cache%22
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: ^3.8.1
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: 2.2.2
-  sqflite: 2.3.2
-  cv: 0.2.19
+  shared_preferences: ^2.5.3
+  sqflite: ^2.4.2
+  cv: ^1.1.6
   hi_core:
     path: ../hi_core
 
