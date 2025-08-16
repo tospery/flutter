@@ -34,8 +34,8 @@ Future<bool> storeObject<M extends HiModel>(
     if (model is HiUser) {
       Get.replace<HiUser>(model);
     }
-    if (model is HiConfiguration) {
-      Get.replace<HiConfiguration>(model);
+    if (model is HiProfile) {
+      Get.replace<HiProfile>(model);
     }
   }
   eventBus.fire({
@@ -68,7 +68,8 @@ double metricWidth(
   BuildContext? context,
 }) {
   final designWidth = 393.0;
-  var deviceWidth = (context ?? Get.context ?? Get.overlayContext)?.width ?? designWidth;
+  var deviceWidth =
+      (context ?? Get.context ?? Get.overlayContext)?.width ?? designWidth;
   return width / designWidth * deviceWidth;
 }
 
@@ -77,7 +78,8 @@ double metricHeight(
   BuildContext? context,
 }) {
   final designHeight = 852.0;
-  var deviceHeight = (context ?? Get.context ?? Get.overlayContext)?.width ?? designHeight;
+  var deviceHeight =
+      (context ?? Get.context ?? Get.overlayContext)?.width ?? designHeight;
   return height / designHeight * deviceHeight;
 }
 
@@ -93,13 +95,13 @@ SizedBox newBox({double? width, double? height}) =>
     SizedBox(width: width, height: height);
 
 ClipRRect newRoundedRect({double? radius, Widget? child}) => ClipRRect(
-  borderRadius: BorderRadius.circular(radius ?? 0),
-  child: SizedBox(
-    width: (radius ?? 0) * 2,
-    height: (radius ?? 0) * 2,
-    child: child,
-  ),
-);
+      borderRadius: BorderRadius.circular(radius ?? 0),
+      child: SizedBox(
+        width: (radius ?? 0) * 2,
+        height: (radius ?? 0) * 2,
+        child: child,
+      ),
+    );
 
 Border newBorder({
   BuildContext? context,
@@ -127,44 +129,48 @@ UnderlineInputBorder newUnderlineBorder({
   BuildContext? context,
   double? width,
   Color? color,
-}) => UnderlineInputBorder(
-  borderSide: Divider.createBorderSide(
-    context,
-    width: width ?? context?.theme.dividerTheme.thickness,
-    color: color ?? context?.theme.dividerTheme.color,
-  ),
-  borderRadius: BorderRadius.zero,
-);
+}) =>
+    UnderlineInputBorder(
+      borderSide: Divider.createBorderSide(
+        context,
+        width: width ?? context?.theme.dividerTheme.thickness,
+        color: color ?? context?.theme.dividerTheme.color,
+      ),
+      borderRadius: BorderRadius.zero,
+    );
 
 OutlineInputBorder newOutlineBorder({
   Color? color,
   double? width = 1.0,
   double radius = 4.0,
   BuildContext? context,
-}) => OutlineInputBorder(
-  borderRadius: BorderRadius.all(Radius.circular(radius)),
-  borderSide: Divider.createBorderSide(
-    context,
-    width: width,
-    color: color ?? (context ?? Get.overlayContext)?.theme.dividerTheme.color,
-  ),
-);
+}) =>
+    OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(radius)),
+      borderSide: Divider.createBorderSide(
+        context,
+        width: width,
+        color:
+            color ?? (context ?? Get.overlayContext)?.theme.dividerTheme.color,
+      ),
+    );
 
 BoxDecoration newShadowDecoration({
   Color? color = Colors.white,
   double radius = 10,
-}) => BoxDecoration(
-  color: color,
-  borderRadius: BorderRadius.circular(radius),
-  boxShadow: const [
-    BoxShadow(
-      offset: Offset(-3.0, 3.0),
-      blurRadius: 10,
-      color: Color(0x66E0E6FD),
-      spreadRadius: 4,
-    )
-  ],
-);
+}) =>
+    BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.circular(radius),
+      boxShadow: const [
+        BoxShadow(
+          offset: Offset(-3.0, 3.0),
+          blurRadius: 10,
+          color: Color(0x66E0E6FD),
+          spreadRadius: 4,
+        )
+      ],
+    );
 
 Icon newIndicator({
   BuildContext? context,
@@ -173,19 +179,20 @@ Icon newIndicator({
 }) =>
     Icon(
       Icons.navigate_next,
-      color: color ?? context?.theme.indicatorColor,
+      color: color ?? context?.theme.tabBarTheme.indicatorColor,
       size: size,
     );
 
 Widget newBlur({double sigma = 10, Widget? child}) => BackdropFilter(
-  filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
-  child: Container(
-    color: Colors.white10,
-    child: child,
-  ),
-);
+      filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
+      child: Container(
+        color: Colors.white10,
+        child: child,
+      ),
+    );
 
-Widget newImageWidget(String url, {
+Widget newImageWidget(
+  String url, {
   double? width,
   double? height,
   double? radius,
@@ -210,7 +217,9 @@ Widget newImageWidget(String url, {
             return Container(
               width: width,
               height: height,
-              color: placeholderColor != null ? placeholderColor : context.theme.highlightColor,
+              color: placeholderColor != null
+                  ? placeholderColor
+                  : context.theme.highlightColor,
             );
           }
           return SizedBox(
@@ -220,14 +229,19 @@ Widget newImageWidget(String url, {
           );
         },
         errorWidget: (BuildContext context, String url, dynamic error) =>
-        const Icon(Icons.error),
+            const Icon(Icons.error),
         imageUrl: url,
       ),
     );
   }
   Widget? result;
   try {
-    result = Image.asset(url, width: width, height: height, color: blendedColor,);
+    result = Image.asset(
+      url,
+      width: width,
+      height: height,
+      color: blendedColor,
+    );
   } catch (e) {
     var value = int.tryParse(url, radix: 16);
     if (value != null) {

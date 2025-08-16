@@ -15,7 +15,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   final Map<String, dynamic> arguments;
   late int pageFirst;
   late Rx<HiUser> user;
-  late Rx<HiConfiguration> configuration;
+  late Rx<HiProfile> profile;
   late final String url;
   late final HiProvider provider;
   late final HiNavigator navigator;
@@ -42,7 +42,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     hideAppBar = parameters.boolValue(HiParameter.hideAppBar) ?? false;
     pageFirst = parameters.intValue(HiParameter.pageFirst) ?? 1;
     user = Get.find<HiUser>().obs;
-    configuration = Get.find<HiConfiguration>().obs;
+    profile = Get.find<HiProfile>().obs;
     provider = Get.find<HiProvider>();
     eventSubscription = eventBus.on().listen((event) {
       if (event is! Map<String, dynamic>) {
@@ -53,8 +53,8 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
       if (model is HiUser) {
         updateUser(model, needReload: needReload);
       }
-      if (model is HiConfiguration) {
-        updateConfiguration(model, needReload: needReload);
+      if (model is HiProfile) {
+        updateProfile(model, needReload: needReload);
       }
     });
   }
@@ -79,8 +79,8 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     }
   }
 
-  void updateConfiguration(HiConfiguration configuration, {bool? needReload}) {
-    this.configuration.value = configuration;
+  void updateProfile(HiProfile profile, {bool? needReload}) {
+    this.profile.value = profile;
     update();
     if (needReload ?? false) {
       reloadData();
@@ -102,8 +102,9 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   void finish({List<M>? items, bool? hasNext, HiError? error}) {
     this.error.value = error;
     if (this.error.value != null) {
-      this.navigator.toast(
-          error?.displayMessage?.tr ?? R.strings.loadFailure.tr);
+      this
+          .navigator
+          .toast(error?.displayMessage?.tr ?? R.strings.loadFailure.tr);
     } else {
       dataSource.clear();
       dataSource.addAll(items ?? []);
@@ -114,15 +115,11 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
 
   Future<List<M>> fetchLocal() async => Future<List<M>>.value([]);
 
-  void requestRemote(HiRequestMode mode, int pageIndex) {
-
-  }
+  void requestRemote(HiRequestMode mode, int pageIndex) {}
 
   void doPressed(M model, {extra}) async {
     log('doPressed: model = (${model.typeName}, ${model.id}), extra = $extra');
   }
 
-  void doChanged(value) {
-  }
-
+  void doChanged(value) {}
 }

@@ -20,14 +20,18 @@ class HiFlutter {
   static Future<bool> ready({
     int? pageSize,
     String? baseWeb,
-    List<String>? codeKeys,
-    List<String>? messageKeys,
-    List<String>? dataKeys,
+    String? codeKeys,
+    String? messageKeys,
+    String? dataKeys,
   }) async {
     _instance ??= HiFlutter._(pageSize: pageSize);
     await HiCache.ready();
     await HiNavigator.ready(baseWeb: baseWeb);
-    await HiNetwork.ready(codeKeys: codeKeys, messageKeys: messageKeys, dataKeys: dataKeys,);
+    await HiNetwork.ready(
+      codeKeys: codeKeys,
+      messageKeys: messageKeys,
+      dataKeys: dataKeys,
+    );
     await HiAppInfo.ready();
     await HiDeviceInfo.ready();
     return true;

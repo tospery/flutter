@@ -29,27 +29,36 @@ class HiTileCell extends HiCell<HiTile> {
       onTap: () => onPressed != null ? onPressed!(model) : null,
       shadow: BoxShadow(),
     );
-    return ((model.height ?? 0) == 0) ? tile :
-     Container(
-      height: model.height,
-      child: tile,
-    );
+    return ((model.height ?? 0) == 0)
+        ? tile
+        : Container(
+            height: model.height,
+            child: tile,
+          );
   }
 
   _buildTileTitle(BuildContext context) {
     if (model.title?.isEmpty ?? true) {
       return Container();
     }
-    return Text(model.title!, style: context.textTheme.titleMedium?.copyWith(
-      color: model.titleColor?.toColor(),
-    ), maxLines: 1, overflow: TextOverflow.ellipsis,);
+    return Text(
+      model.title!,
+      style: context.textTheme.titleMedium?.copyWith(
+        color: model.titleColor?.toColor(),
+      ),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+    );
   }
 
   _buildTileSubtitle(BuildContext context) {
     if (model.subTitle?.isEmpty ?? true) {
       return Container();
     }
-    return Text(model.subTitle!, style: context.textTheme.titleSmall,);
+    return Text(
+      model.subTitle!,
+      style: context.textTheme.titleSmall,
+    );
   }
 
   _buildTileDetail(BuildContext context) {
@@ -79,7 +88,7 @@ class HiTileCell extends HiCell<HiTile> {
       if (model.indicated ?? true) {
         children.add(Icon(
           Icons.keyboard_arrow_right,
-          color: context.theme.indicatorColor,
+          color: context.theme.tabBarTheme.indicatorColor,
         ));
         children.add(newBox(width: 8));
       }

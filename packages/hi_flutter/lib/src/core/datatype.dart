@@ -15,11 +15,11 @@ enum HiSimpleStyle {
         1: HiSimpleStyle.space,
         2: HiSimpleStyle.button,
       }[value] ??
-          HiSimpleStyle.tile;
+      HiSimpleStyle.tile;
 }
 
-mixin TabItemType {
-  String get id;
-  String? get title;
-  Widget? get image;
-}
+// mixin TabItemType {
+//   String get id;
+//   String? get title;
+//   Widget? get image;
+// }
