@@ -1,6 +1,6 @@
 # example
 
-example for hi_dialog.
+A new Flutter project.
 
 ## Getting Started
 

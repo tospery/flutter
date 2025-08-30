@@ -22,6 +22,8 @@ dependencies:
   webview_flutter: 4.7.0
   linkify: 5.0.0
   # flutter_linkify: 5.0.2
+  hi_base:
+    path: ../hi_base
   hi_core:
     path: ../hi_core
   hi_navigator:
