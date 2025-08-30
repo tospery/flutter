@@ -46,7 +46,7 @@ Future<bool> storeObject<M extends HiModel>(
 }
 
 Future<M?> fetchObject<M extends HiModel>(
-  M Function(Map<String, dynamic>) fromJson, {
+  M Function(dynamic) fromJson, {
   String? id,
 }) =>
     HiCache.shared().fetchObject(fromJson, id: id);
@@ -58,7 +58,7 @@ Future<bool> storeArray<M extends HiModel>(
     HiCache.shared().storeArray(models, page: page);
 
 Future<List<M>> fetchArray<M extends HiModel>(
-  M Function(Map<String, dynamic>) fromJson, {
+  M Function(dynamic) fromJson, {
   String? page,
 }) =>
     HiCache.shared().fetchArray(fromJson, page: page);

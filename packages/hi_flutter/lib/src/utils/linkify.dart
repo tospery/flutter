@@ -104,16 +104,16 @@ class Linkify extends StatelessWidget {
             .bodyMedium
             ?.merge(style)
             .copyWith(
-          color: Colors.blueAccent,
-          decoration: textDecoration,
-        )
+              color: Colors.blueAccent,
+              decoration: textDecoration,
+            )
             .merge(linkStyle),
       ),
       textAlign: textAlign,
       textDirection: textDirection,
       maxLines: maxLines,
       overflow: overflow,
-      textScaleFactor: textScaleFactor,
+      textScaler: TextScaler.linear(textScaleFactor),
       softWrap: softWrap,
       strutStyle: strutStyle,
       locale: locale,
@@ -180,7 +180,7 @@ class SelectableLinkify extends StatelessWidget {
   final bool autofocus;
 
   /// Configuration of toolbar options
-  final ToolbarOptions? toolbarOptions;
+  //final ToolbarOptions? toolbarOptions;
 
   /// How thick the cursor will be
   final double cursorWidth;
@@ -237,7 +237,7 @@ class SelectableLinkify extends StatelessWidget {
     this.strutStyle,
     this.showCursor = false,
     this.autofocus = false,
-    this.toolbarOptions,
+    //this.toolbarOptions,
     this.cursorWidth = 2.0,
     this.cursorRadius,
     this.cursorColor,
@@ -271,9 +271,9 @@ class SelectableLinkify extends StatelessWidget {
             .bodyMedium
             ?.merge(style)
             .copyWith(
-          color: Colors.blueAccent,
-          decoration: textDecoration,
-        )
+              color: Colors.blueAccent,
+              decoration: textDecoration,
+            )
             .merge(linkStyle),
       ),
       textAlign: textAlign,
@@ -283,9 +283,20 @@ class SelectableLinkify extends StatelessWidget {
       focusNode: focusNode,
       strutStyle: strutStyle,
       showCursor: showCursor,
-      textScaleFactor: textScaleFactor,
+      textScaler: TextScaler.linear(textScaleFactor),
       autofocus: autofocus,
-      toolbarOptions: toolbarOptions,
+
+      //       contextMenuBuilder: (BuildContext context, EditableTextState editableTextState) {
+      //   return AdaptiveTextSelectionToolbar.editableText(
+      //     editableTextState: editableTextState,
+      //   );
+      // },
+
+      // toolbarOptions: toolbarOptions,
+      contextMenuBuilder: (context, editableTextState) =>
+          AdaptiveTextSelectionToolbar.editableText(
+        editableTextState: editableTextState,
+      ),
       cursorWidth: cursorWidth,
       cursorRadius: cursorRadius,
       cursorColor: cursorColor,
@@ -307,26 +318,26 @@ class LinkableSpan extends WidgetSpan {
     required MouseCursor mouseCursor,
     required InlineSpan inlineSpan,
   }) : super(
-    child: MouseRegion(
-      cursor: mouseCursor,
-      child: Text.rich(
-        inlineSpan,
-      ),
-    ),
-  );
+          child: MouseRegion(
+            cursor: mouseCursor,
+            child: Text.rich(
+              inlineSpan,
+            ),
+          ),
+        );
 }
 
 /// Raw TextSpan builder for more control on the RichText
 TextSpan buildTextSpan(
-    List<LinkifyElement> elements, {
-      TextStyle? style,
-      TextStyle? linkStyle,
-      LinkCallback? onOpen,
-      bool useMouseRegion = false,
-    }) {
+  List<LinkifyElement> elements, {
+  TextStyle? style,
+  TextStyle? linkStyle,
+  LinkCallback? onOpen,
+  bool useMouseRegion = false,
+}) {
   return TextSpan(
     children: elements.map<InlineSpan>(
-          (element) {
+      (element) {
         if (element is LinkableElement) {
           if (useMouseRegion) {
             return LinkableSpan(
@@ -334,14 +345,18 @@ TextSpan buildTextSpan(
               inlineSpan: TextSpan(
                 text: element.text,
                 style: linkStyle,
-                recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
+                recognizer: onOpen != null
+                    ? (TapGestureRecognizer()..onTap = () => onOpen(element))
+                    : null,
               ),
             );
           } else {
             return TextSpan(
               text: element.text,
               style: linkStyle,
-              recognizer: onOpen != null ? (TapGestureRecognizer()..onTap = () => onOpen(element)) : null,
+              recognizer: onOpen != null
+                  ? (TapGestureRecognizer()..onTap = () => onOpen(element))
+                  : null,
             );
           }
         } else {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hi_base/hi_base.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    var aaa = HiParameter.code;
     setState(() {
       _counter++;
     });
