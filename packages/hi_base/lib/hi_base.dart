@@ -14,6 +14,6 @@ export 'src/extension/object.dart';
 export 'src/extension/string.dart';
 export 'src/extension/url.dart';
 export 'src/model/model.dart';
-export 'src/model/profile.dart';
+export 'src/model/preference.dart';
 export 'src/model/user.dart';
 export 'src/model/wrap.dart';

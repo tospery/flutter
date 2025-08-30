@@ -15,7 +15,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
   final Map<String, dynamic> arguments;
   late int pageFirst;
   late Rx<HiUser> user;
-  late Rx<HiProfile> profile;
+  late Rx<HiPreference> preference;
   late final String url;
   late final HiProvider provider;
   late final HiNavigator navigator;
@@ -42,7 +42,7 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     hideAppBar = parameters.boolValue(HiParameter.hideAppBar) ?? false;
     pageFirst = parameters.intValue(HiParameter.pageFirst) ?? 1;
     user = Get.find<HiUser>().obs;
-    profile = Get.find<HiProfile>().obs;
+    preference = Get.find<HiPreference>().obs;
     provider = Get.find<HiProvider>();
     eventSubscription = eventBus.on().listen((event) {
       if (event is! Map<String, dynamic>) {
@@ -53,8 +53,8 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
       if (model is HiUser) {
         updateUser(model, needReload: needReload);
       }
-      if (model is HiProfile) {
-        updateProfile(model, needReload: needReload);
+      if (model is HiPreference) {
+        updatePreference(model, needReload: needReload);
       }
     });
   }
@@ -79,8 +79,8 @@ class HiBaseController<M extends HiModel> extends FullLifeCycleController {
     }
   }
 
-  void updateProfile(HiProfile profile, {bool? needReload}) {
-    this.profile.value = profile;
+  void updatePreference(HiPreference preference, {bool? needReload}) {
+    this.preference.value = preference;
     update();
     if (needReload ?? false) {
       reloadData();

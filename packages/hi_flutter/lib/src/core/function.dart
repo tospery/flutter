@@ -34,8 +34,8 @@ Future<bool> storeObject<M extends HiModel>(
     if (model is HiUser) {
       Get.replace<HiUser>(model);
     }
-    if (model is HiProfile) {
-      Get.replace<HiProfile>(model);
+    if (model is HiPreference) {
+      Get.replace<HiPreference>(model);
     }
   }
   eventBus.fire({

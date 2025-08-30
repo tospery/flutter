@@ -3,17 +3,17 @@ import 'package:hi_base/src/function.dart';
 import 'package:hi_base/src/model/model.dart';
 
 /// 与用户关联的本地配置
-class HiProfile extends HiModel {
-  const HiProfile({super.id});
+class HiPreference extends HiModel {
+  const HiPreference({super.id});
 
-  factory HiProfile.fromJson(dynamic data) =>
-      HiProfile(id: tryJSON(data)?.stringValue('id'));
+  factory HiPreference.fromJson(dynamic data) =>
+      HiPreference(id: tryJSON(data)?.stringValue('id'));
 
   @override
   Map<String, dynamic> toJson() => {'id': id};
 
-  HiProfile copyWith({String? id}) {
-    return HiProfile(id: id ?? this.id);
+  HiPreference copyWith({String? id}) {
+    return HiPreference(id: id ?? this.id);
   }
 
   // @override
