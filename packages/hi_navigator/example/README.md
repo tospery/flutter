@@ -1,6 +1,6 @@
 # example
 
-example for hi_navigator.
+A new Flutter project.
 
 ## Getting Started
 

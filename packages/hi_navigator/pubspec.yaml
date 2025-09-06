@@ -11,16 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get: 4.6.6
-  flukit: 3.0.1
-  getwidget: 4.0.0
+  get: ^4.7.2
+  getwidget: ^6.0.0
   # flutter_spinkit: 5.2.1
-  flutter_easyloading: 3.0.5
-  adaptive_dialog: 2.1.0
-  adaptive_action_sheet: 2.0.3
-  fluttertoast: 8.2.4
-  lottie: 3.1.0
-  url_launcher: 6.2.5
+  flutter_easyloading: ^3.0.5
+  adaptive_dialog: ^2.4.2
+  adaptive_action_sheet: ^2.0.4
+  fluttertoast: ^8.2.12
+  lottie: ^3.3.1
+  url_launcher: ^6.3.2
   hi_core:
     path: ../hi_core
 
