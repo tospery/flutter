@@ -1,6 +1,6 @@
 # example
 
-example for hi_flutter.
+A new Flutter project.
 
 ## Getting Started
 

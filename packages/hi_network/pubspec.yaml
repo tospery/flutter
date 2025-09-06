@@ -6,12 +6,13 @@ repository: https://github.com/tospery/flutter/tree/main/packages/hi_network
 issue_tracker: https://github.com/tospery/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+hi_network%22
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: ^3.8.1
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  get: 4.6.6
+  get: ^4.7.2
   hi_core:
     path: ../hi_core
 
